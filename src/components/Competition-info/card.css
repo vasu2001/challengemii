@@ -1,0 +1,201 @@
+.info-container{
+    width: 100%;
+    height: 320px;
+    box-shadow: 0 0 10px rgba(0, 0,0,0.3);
+    position: relative;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    margin: 0 auto;
+}
+.side-1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.upper{
+    margin-left: 70px;  
+    padding-top: 30px;
+    padding-left: 20px;
+    margin-bottom: 50px;
+}
+.prizeImg{
+    /* background: url(../../assets/money.png) no-repeat center;
+    background-size: contain; */
+    width: 30px;
+    height: 30px;
+}
+.lower{
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.lower-item{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.lower-item:first-child{
+    margin-left: 0px;
+}
+
+.side-2{
+    width: 350px;
+    height: 100%;
+    border-left: 1px solid #aeaeae;
+    padding: 20px 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.btn-slide{
+    text-align: center;
+    width: 100%;
+    padding: 15px 110px;
+    display: block;
+    border-radius: 5px;
+    background-color: rgb(48,111,215);
+    transition: all .2s;
+    color: white;
+    font-size: 16px;
+    margin: 10px auto;
+}
+.btn-slide:hover{
+    background-color: rgb(19, 89, 201);
+    color: white;
+}
+.slide2-content{
+    width: 100%;
+    height: 70%;
+    border-radius: 10px;
+    border: 2px solid rgb(74,129,218);
+    box-shadow: 0 0 10px rgba(0, 0,0,0.3);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.slide2-item{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+}
+.slideImg{
+    width: 50px;
+    height: 50px;
+}
+.entry{
+    background-color: rgb(48,111,215);
+    display: inline-block;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,50%);
+}
+.time-stamp{
+    color: #777;
+    margin-left: 90px;
+}
+.registered{
+    font-size: 28px;
+}
+
+@media only screen and (max-width:1122px) {
+    .time-stamp-container{
+        width: 60%;
+        line-height: 1.2;
+    }
+}
+
+@media only screen and (max-width:1000px){
+    .upper{
+        margin-left: 70px;
+        padding-top: 30px !important;
+        padding-left: 20px;
+        margin-bottom: 50px;
+    }
+    .time-stamp-container{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:780px){
+    .upper{
+        margin-bottom: 30px;    
+    }
+    .date-time{
+        margin-bottom: 20px;
+    }
+}
+@media only screen and (max-width:425px){
+    .side-2{
+        width: 100% !important;
+        height: 100%;
+        border-left: 1px solid #aeaeae;
+        padding: 20px 30px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .btn-slide{
+        text-align: center;
+        width: 100%;
+        padding: 15px 20%;
+        border-radius: 5px;
+        background-color: rgb(48,111,215);
+        transition: all .2s;
+        color: white;
+        font-size: 16px;
+        margin: 10px auto;
+    }
+    .entry{
+        display: none;
+    }
+}
+@media only screen and (max-width:340px){
+    .upper{
+        margin-left: 5px !important;
+    }
+    .date-time{
+        transform: translateX(-10px);
+    }
+    .slideImg{
+        width: 40px;
+        height: 40px;
+    }
+    .registered{
+        font-size: 22px;
+        margin-top: 5px;
+    }
+}
+@media only screen and (max-width:300px){
+    .upper{
+        margin-left: 0px !important;
+    }
+    .date-time{
+        transform: translateX(-15px);
+    }
+    .registered-text{
+        font-size: 12px;
+    }
+    .prizeImg{
+        display: none;
+    }
+    .lower p{
+        margin-left: 0 !important;
+        transform: translateX(-10px);
+    }
+}

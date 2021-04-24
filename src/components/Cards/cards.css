@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700;900&display=swap');
+body{
+    /* padding: 0 100px; */
+    margin-bottom: 100px;
+    font-family: 'Nunito',sans-serif;
+    letter-spacing: 1.1px;
+}
+.card{
+    width:400px;
+    height:300px;
+    border-radius: 30px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin-top: 100px;
+    background: #fff url(../../assets/card3.jpg) no-repeat center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* padding: 0 40px; */
+    transition: all 0.5s;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.card:hover{
+    transform: translateY(-10px) scale(1.02);
+}
+.circle{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background-color:teal;
+    position: absolute;
+    border: 3px solid white;
+    top:-10px;
+    left:50%;
+    transform: translateX(-50%);
+}
+.title{
+    font-size: 25px;
+    font-weight: 500;
+}
+.startText{
+    font-size: 20px;
+    letter-spacing: 1.1px;
+    color: rgb(144,152,155);
+}
+.startDate{
+    font-size: 14px;
+    margin-top: 5px;
+    color: rgb(235, 235, 235);
+}
+.info{
+    text-align: left;
+}
+.infoText{
+    letter-spacing: 1px;
+}
+.btn-green{
+    background-color: rgb(93,193,169);
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.btn-green:hover{
+    color: #fff !important;
+    background-color: rgb(74, 148, 131);
+}
+
+
+.content{
+    width: 100%;
+    height: 40%;
+    background-color: rgba(31,36,43,.4);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    color: white;
+    position: relative;
+}
+
+.prize{
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(74, 148, 131);
+    padding: 10px 20px;
+    border-radius: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-align: center;
+}
+
+@media only screen and (max-width:450px){
+    .card{
+        width:100%;
+        height:300px;
+        border-radius: 30px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        margin-top: 100px;
+        background: #fff url(../../assets/card3.jpg) no-repeat center;
+        background-size: cover;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: all 0.5s;
+        margin-right: 0px;
+        cursor: pointer;
+    }
+}
+@media only screen and (max-width:320px){
+    .title{
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .startText{
+        font-size: 14px;
+        letter-spacing: 1.1px;
+        color: rgb(144,152,155);
+    }
+    .startDate{
+        font-size: 10px;
+        margin-top: 5px;
+        color: rgb(235, 235, 235);
+    }
+}

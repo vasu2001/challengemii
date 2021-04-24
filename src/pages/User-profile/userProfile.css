@@ -1,0 +1,126 @@
+.user-profile{
+    width: 100%;
+    background-color: #fff;
+    padding-bottom: 50px;
+}
+.user-content{
+    height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.side-left{
+    width: 100%;
+    padding: 50px 0;
+}
+.profile-username{
+    font-family: 'Lato';
+    color: #3C3B37;
+    font-size: 40px;
+}
+.username-text{
+    margin-left: 17px;
+    font-size: 50px;
+    color: #29303b;
+}
+.designation-text{
+    font-size: 18px;
+    color: #3C3B37;
+    margin-top: 5px;
+    margin-left: 19px;
+}
+.user-info-title{
+    font-size: 17px;
+    color: #73726c;
+}
+.user-info-text{
+    font-size: 22px;
+    margin-top: 10px;
+}
+.user-info{
+    width: 400px;
+    height: 80px;
+    display: flex;
+    margin-top: 30px;
+    text-align: center; 
+    margin-left: 8px;
+}
+.user-info-container{
+    width: 100%;
+}
+
+.public{
+    width: 200px;
+    height: 200px;
+}
+.user-about{
+    width: 90%;
+    margin-left: 19px;
+    margin-top: 30px;
+}
+.user-about-title{
+    font-size: 22px;
+    font-family: 'Lato';
+    color: #3C3B37;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.user-about-text{
+    color: #3C3B37;
+}
+.user-competitions{
+    width: 1000px;
+    padding-left: 20px;
+    margin: 50px auto;
+}
+.user-competitions-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -50px;
+    justify-content: space-between;
+}
+.competition{
+    font-size: 30px;
+}
+
+
+
+
+
+
+
+
+.side-right{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.handle-icons{
+    transform: scale(1.2);
+    margin-right: 5px;
+}
+.twitter{
+    transform: scale(1.2) translateY(2px);
+}
+.btn-handles{
+    color: #0f7c90;
+    background-color: white;
+    border: 2px solid #0f7c90;
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px 60px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.btn-handles:hover{
+    color: #0f5b68;
+    border: 2px solid #0f5b68;
+}
+
+.social-handles{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}

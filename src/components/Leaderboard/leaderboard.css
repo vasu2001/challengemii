@@ -1,0 +1,43 @@
+.leaderboard{
+    display: block;
+    margin: 70px 100px;
+    margin-bottom: 200px;
+    text-align: left;
+}
+.leaderboard ol li{
+    font-size: 22px !important ;
+    margin-bottom: 10px;
+    padding: 7px;
+}
+.leaderboard ol li:nth-child(odd){
+    background-color: rgb(201, 203, 205);
+}
+
+@media only screen and (max-width:850px) {
+    .leaderboard{
+        margin: 70px 20px !important;
+    }
+}
+@media only screen and (max-width:600px) {
+    .leaderboard{
+        margin: 70px 10px !important;
+    }
+}
+@media only screen and (max-width:470px) {
+    .leaderboard{
+        margin: 70px 20px !important;
+    }
+}
+@media only screen and (max-width:360px) {
+    .leaderboard{
+        margin: 70px 20px !important;
+    }
+    .submission-title{
+        /* font-size: 22px !important; */
+    }
+    .leaderboard ol li{
+        font-size: 18px !important ;
+        margin-bottom: 10px;
+        padding: 7px;
+    }
+}

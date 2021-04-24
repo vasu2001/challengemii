@@ -1,0 +1,42 @@
+.side-nav{
+    width: 250px;
+    border: 1px solid #d3d3d3;
+    border-bottom: none;
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #29303b;
+    margin-top: 30px;
+}
+.profile-name{
+    margin-top: 20px;
+    font-size: 18px;
+    color: #29303b;
+}
+.side-nav-items{
+    list-style-type: none;
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.side-nav-links{
+    font-size: 15px;
+    color: #007791;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+    padding: 5px;
+    cursor: pointer;
+    padding-left: 20px;
+}
+.side-nav-links:hover{
+    background-color: #8a92a3;
+    border-color: #8a92a3;
+    color: #fff;
+}

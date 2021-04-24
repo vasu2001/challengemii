@@ -1,0 +1,73 @@
+.basic-info{
+    color: #29303b;
+    letter-spacing: 0.5px;
+    padding: 40px 150px;
+}
+.input-field{
+    height: 45px;
+    width: 100%;
+    border: 1px solid #8a92a3;
+    border-radius: 2px;
+    margin-top: 20px;
+    padding-left: 10px;
+    font-size: 16px;
+    letter-spacing: 1.5;
+}
+.input-description{
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    padding: 10px;
+}
+.social-info{
+    padding: 0 150px;
+}
+.social-box{
+    display: flex;
+}
+.social-title{
+    border: 1px solid #8a92a3;
+    border-right: none;
+    height: 45px;
+    margin-top: 20px;
+    padding: 0 10px;
+    background-color: #f2f3f5;
+    color: #29303b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.social-link-head{
+    font-family: 'Lato';
+    font-size: 16px;
+}
+
+.input-label{
+    font-size: 11px;
+    color: #8a92a3;
+    margin-left: 5px;
+}
+.save{
+    width: 100%;
+    text-align: center;
+    margin: 30px 0;
+}
+.btn-save{
+    background-color: teal;
+    color: #fff;
+    padding: 10px 20px;
+}
+.btn-save:hover{
+    background-color: rgb(0, 87, 87);
+    color: #fff !important;
+}
+.btn-save:visited{
+    color: #fff !important;
+}
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+    border-color: rgba(229, 103, 23, 0.8);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    outline: 0 none;
+}
