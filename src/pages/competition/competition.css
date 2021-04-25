@@ -52,7 +52,11 @@
         display:none;
     }
 }
-
+@media only screen and (max-width: 600px){
+    .competition-content{
+        width: 100%;
+    }
+}
 @media only screen and (max-width: 560px){
     .section-submission{
         padding: 100px 20px;
