@@ -49,7 +49,9 @@
 .user-info-container{
     width: 100%;
 }
-
+.mobile{
+    display: none !important;
+}
 .public{
     width: 200px;
     height: 200px;
@@ -78,17 +80,13 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: -50px;
+    margin-right: 10px;
+    align-items: center;
     justify-content: space-between;
 }
 .competition{
     font-size: 30px;
 }
-
-
-
-
-
-
 
 
 .side-right{
@@ -123,4 +121,55 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+}
+
+@media only screen and (max-width: 1000px){
+    .user-content{
+        width: 100%;
+    }
+    .user-competitions{
+        width: 100%;
+    }
+    .user-competitions-container{
+        justify-content: space-around;
+    }
+}
+@media only screen and (max-width: 700px){
+    .user-content{
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+    /* .side-right{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    } */
+    .side-right{
+        order: 1;
+        align-items: flex-start;
+        margin-left: 20px ;
+    }
+    .mobile{
+        display: flex !important;
+        width: 250px;
+        margin-left: 20px;
+    }
+    .desktop{
+        display: none !important;
+    }
+    .user-info{
+        width: 100%;
+        height: 80px;
+        display: flex;
+        margin-top: 30px;
+        text-align: center; 
+        margin-left: 8px;
+    }
+    .side-left{
+        order: 2;
+    }
 }

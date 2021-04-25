@@ -33,6 +33,13 @@ const UserProfile = () => {
                             <p className='user-info-text'>2400</p>
                         </div>
                     </div>
+                    <div className='social-handles mobile'>
+                        <a className='btn-handles'><span><BsLink className='handle-icons'/></span>Website</a>
+                        <a className='btn-handles'><span><AiOutlineTwitter className='handle-icons twitter'/></span>Twitter</a>
+                        <a className='btn-handles'><span><AiFillInstagram className='handle-icons twitter'/></span>Instagram</a>
+                        <a className='btn-handles'><span><AiFillFacebook className='handle-icons twitter'/></span>Facebook</a>
+                        <a className='btn-handles'><span><AiFillLinkedin className='handle-icons twitter'/></span>LinkedIn</a>
+                    </div>
                     <div className='user-about'>
                         <p className='user-about-title'>About me</p>
                         <p className='user-about-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis mi lacinia, venenatis nibh ut, sodales lorem. Cras vulputate risus vitae mollis varius. Aliquam fermentum, lorem eget placerat congue, ante metus lacinia nisi, eu molestie arcu mauris in lacus. Praesent placerat sollicitudin urna, ut mollis felis dapibus eu. Ut id lorem pulvinar, ornare nulla quis, pellentesque nunc. Donec consectetur fermentum dolor, in ultricies ante finibus nec. Pellentesque id mattis nisl, vel congue arcu. Nam arcu diam, varius in purus quis, ultricies malesuada purus. Phasellus ligula eros, viverra eu placerat eu, laoreet sed magna.</p>
@@ -41,7 +48,7 @@ const UserProfile = () => {
                 </div>
                 <div className='side-right'>
                     <div className='profile-photo public'></div>
-                    <div className='social-handles'>
+                    <div className='social-handles desktop'>
                         <a className='btn-handles'><span><BsLink className='handle-icons'/></span>Website</a>
                         <a className='btn-handles'><span><AiOutlineTwitter className='handle-icons twitter'/></span>Twitter</a>
                         <a className='btn-handles'><span><AiFillInstagram className='handle-icons twitter'/></span>Instagram</a>
