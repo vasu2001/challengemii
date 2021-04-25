@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
+import { SRLWrapper } from "simple-react-lightbox";
 
 import Card from '../../components/Competition-info/Card';
 import Footer from '../../components/Footer/Footer';
@@ -12,16 +13,21 @@ import './competition.css';
 const Competition = () => {
 
     const subArr = [
-        'Submission-1',
-        'Submission-2',
-        'Submission-3',
-        'Submission-4',
-        'Submission-5',
-        'Submission-6',
-        'Submission-7',
-        'Submission-8',
-        'Submission-9'
+        'https://source.unsplash.com/random/krishan',
+        'https://source.unsplash.com/random/krish',
+        'https://source.unsplash.com/random/kris',
+        'https://source.unsplash.com/random/krhan',
+        'https://source.unsplash.com/random/kishan',
+        'https://source.unsplash.com/random/shan',
+        'https://source.unsplash.com/random/kan',
+        'https://source.unsplash.com/random/kshan'
     ];
+    const options = {
+        buttons: {
+            showAutoplayButton: false,
+            showDownloadButton: false
+        }
+    };
 
     return (
         <div className='competition-pg'>
@@ -37,20 +43,17 @@ const Competition = () => {
                     </Switch>
                     <Leaderboard />
                     <h2 className='submission-title'>Submissions</h2>
-                    <div className='submissions'>
-                        {/* <Submissions />
-                        <Submissions />
-                        <Submissions />
-                        <Submissions />
-                        <Submissions />
-                        <Submissions />
-                        <Submissions />
-                        <Submissions />
-                        <Submissions /> */}
-                        {
-                            subArr.map((item,index) => {return <Submissions />})
-                        }
-                    </div>
+                    <SRLWrapper options={options}>
+                        <div className='submissions'>
+                                <Submissions imgSrc='https://source.unsplash.com/random/krishan'/>
+                                <Submissions imgSrc='https://source.unsplash.com/random/none'/>
+                                <Submissions imgSrc='https://source.unsplash.com/random/nne'/>
+                                <Submissions imgSrc='https://source.unsplash.com/random/nne'/>
+                                    {
+                                        subArr.map((item,index) => {return <Submissions imgSrc={item} />})
+                                    }
+                        </div>
+                    </SRLWrapper>
                 </section>
                 <Footer />
             </div>

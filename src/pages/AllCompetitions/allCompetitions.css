@@ -1,0 +1,10 @@
+.all-competitions-content{
+    width: 80%;
+    margin: 60px auto;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 50px;
+}

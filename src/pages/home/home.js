@@ -32,7 +32,7 @@ const home = () => {
                 <Info title="Affiliate Program"/>
                 <Info title="Refer to friends"/>
             </section>
-            <section className='section-compi'>
+            {/* <section className='section-compi'>
             <div style={{width:'100%', textAlign:'center',marginTop:'10px', marginBottom:'70px'}}>
                 <h1 className='heading-primary'>Competitions</h1>
             </div>
@@ -53,7 +53,7 @@ const home = () => {
                     <Card />
                     <Card />
                 </div>
-            </section>
+            </section> */}
             <Footer />
         </div>
     )

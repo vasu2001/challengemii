@@ -38,6 +38,9 @@
     font-weight: 600;
     transition: all 0.3s;
 }
+.hamburger-container p{
+    margin-bottom: 0px;
+}
 .hamburger-container:hover{
     transform: translateY(-5px);
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -62,6 +65,7 @@
 .nav-link:hover{
     transform: translateY(-2px);
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    color: #fff
 }
 .banner-titlebox{
     position: absolute;

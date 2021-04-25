@@ -39,7 +39,7 @@ const Card = () => {
             </div>
             <div></div>
             <div className='side-2'>
-                <a className="btn btn-slide">Participate</a>
+                <a href='/participation' className="btn btn-slide">Participate</a>
                 <div className="slide2-content">
                     <div className="slide2-item">
                         <img className='slideImg' alt="Prize" src={population}/>

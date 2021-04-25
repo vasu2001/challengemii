@@ -71,3 +71,42 @@ textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
     box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
     outline: 0 none;
 }
+
+@media only screen and (max-width:1100px){
+    .basic-info{
+        padding: 40px 50px;
+    }
+    .social-info{
+        padding: 0 50px;
+    }
+}
+@media only screen and (max-width:600px){
+    .social-box{
+        display: flex;
+        flex-direction: column;
+    }
+    .social-title{
+        border: 1px solid #8a92a3;
+        width: 250px;
+        justify-content: left;
+    }
+    .social{
+        height: 45px;
+        margin-top: 0;
+    }
+}
+@media only screen and (max-width:352px){
+    .social-box{
+        display: flex;
+        flex-direction: column;
+    }
+    .social-title{
+        border: 1px solid #8a92a3;
+        width: 100%;
+        justify-content: left;
+    }
+    .social-link-head{
+        font-family: 'Lato';
+        font-size: 70%;
+    }
+}

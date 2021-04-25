@@ -1,4 +1,4 @@
-.side-nav{
+.admin-side-nav{
     width: 250px;
     border: 1px solid #d3d3d3;
     border-bottom: none;
@@ -7,25 +7,25 @@
     flex-direction: column;
     align-items: center;
 }
-.profile-photo{
+.admin-photo{
     width: 150px;
     height: 150px;
     border-radius: 50%;
     background-color: #29303b;
     margin-top: 30px;
 }
-.profile-name{
+.admin-name{
     margin-top: 20px;
     font-size: 18px;
     color: #29303b;
 }
-.side-nav-items{
+.admin-side-nav-items{
     list-style-type: none;
     margin-top: 20px;
     width: 100%;
     margin-bottom: 10px;
 }
-.side-nav-links{
+.admin-side-nav-links{
     font-size: 15px;
     color: #007791;
     font-family: 'Nunito', sans-serif;
@@ -35,19 +35,8 @@
     cursor: pointer;
     padding-left: 20px;
 }
-.side-nav-links:hover{
+.admin-side-nav-links:hover{
     background-color: #8a92a3;
     border-color: #8a92a3;
     color: #fff;
-}
-
-@media only screen and (max-width:600px) {
-    .side-nav{
-        width: 250px;
-        border-left: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0 auto;
-    }
 }

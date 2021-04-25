@@ -5,6 +5,7 @@
     background-color: white;
     margin-top: 50px;
     transition: all 0.5s;
+    position: relative;
 }
 
 .submission:hover{
@@ -14,7 +15,41 @@
 .selected{
     background: black;
 }
-
+.sub-img-container{
+    height: 80%;
+    overflow: hidden;
+    padding: 0;
+}
+.sub-head{
+    background-color: teal;
+    padding: 10px;
+    color: #fff;
+    width: 100%;
+}
+.vote-container{
+    background-color: aquamarine;
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+.btn-vote{
+    background-color: teal;
+    color: #fff;
+    width: 100%;
+    padding: 5.7px;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+.btn-vote:last-child{
+    border-left: 1px solid #000;
+}
+.btn-vote:hover{
+    color: #fff;
+    background-color: rgb(0,87,87);
+}
+.wrapper-img{
+    width: 100%;
+}
 @media only screen and (max-width:560px){
     
 }

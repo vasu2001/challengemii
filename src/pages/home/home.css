@@ -4,6 +4,15 @@
     scroll-behavior: smooth;
     overflow-y: scroll;
 }
+.about-text{
+    width: 80%;
+}
+.about-text p{
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
 .section-about{
     background-color: #f7f7f7;
     width: 100%;
@@ -92,10 +101,14 @@
     font-size: 22px;
     font-family: 'Lato';
     letter-spacing: 1.5px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0;
 }
 .heading-primary{
     text-transform: uppercase;
     font-family: 'Lato',sans-serif;
+    font-weight: 600;
     font-size: 35px;
     letter-spacing: 2px;
     background-image: linear-gradient(to right bottom,rgba(75, 176, 176, 0.8), rgba(9, 120, 120, 0.845));
@@ -138,6 +151,9 @@
     .about-para{
         font-size: 16px !important;
     }
+    .homepage{
+        padding: 0;
+    }
 }
 @media only screen and (max-width: 500px){
     .section-info{
@@ -174,6 +190,7 @@
         justify-content: center;
         padding-top: 50px;
     }
+
 }
 @media only screen and (max-width: 370px){
    .section-compi{

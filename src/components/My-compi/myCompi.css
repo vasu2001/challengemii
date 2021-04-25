@@ -1,11 +1,11 @@
-.past-compi{
+.my-compi{
     display: flex;
     flex-wrap: wrap;
 }
-.past-cards-container{
+.my-compi-container{
     transform: scale(0.9);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
