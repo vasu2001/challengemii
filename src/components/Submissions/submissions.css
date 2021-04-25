@@ -51,5 +51,16 @@
     width: 100%;
 }
 @media only screen and (max-width:560px){
-    
+    .submission{
+        width: 150px;
+        height: 150px;
+        margin-bottom: 30px;
+        margin-right:10px ;
+    }
+    .sub-head{
+        font-size: 14px !important;
+    }
+    .btn-vote{
+        font-size: 14px !important;
+    }
 }
