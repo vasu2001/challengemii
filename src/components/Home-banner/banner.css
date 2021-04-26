@@ -174,6 +174,7 @@
     .title-heading{
         font-size: 30px;
         margin: 0 20px;
+        margin-top: 20px;
     }
     .title-heading-sub{
         font-size: 16px;
@@ -188,10 +189,11 @@
         font-size: 16px;
         width: auto;
     }
-}
-@media only screen and (max-width: 450px){
     .home-banner{
         height: 70vh;
+    }
+    .title-heading{
+        margin-top: 40px;
     }
 }
 @media only screen and (max-width: 372px){

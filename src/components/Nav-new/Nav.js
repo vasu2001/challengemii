@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 import appleLogo from '../../assets/apple.png';
 import fbLogo from '../../assets/facebook.png'
 import googleLogo from '../../assets/google.svg'
+import navProfile from '../../assets/user.png'
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -45,7 +46,10 @@ const Nav = () => {
                 <img src={coins} alt='coins' className='coin-img'/>
                 <p className='item-text'>90 Points</p>
                 <a className='btn btn-signin' onClick={() => setModalShow(true)}>Sign in</a>
+                <img src={navProfile} className='nav-profile' onClick={()=> {window.location = '/profile/edit-profile'}} />
             </div>
+
+
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}

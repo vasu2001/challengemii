@@ -30,6 +30,7 @@
     text-transform: uppercase;
     transition: all 0.3s;
     cursor: pointer;
+    display: none;
 }
 .btn-signin:hover{
     color: #777;
@@ -108,6 +109,10 @@
 .btn-login:last-child{
     margin-bottom: 0;
 }
+.nav-profile{
+    width:50px;
+    cursor: pointer;
+}
 @media only screen and (max-width:780px) {
     .logo-new{
         margin: auto 50px;
@@ -140,6 +145,9 @@
     .logo-new{
         font-size: 16px;
         letter-spacing: 2px;
+    }
+    .nav-profile{
+        width:40px;
     }
 }
 @media only screen and (max-width: 400px){
