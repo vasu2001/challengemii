@@ -1,14 +1,12 @@
 .slider{
-    margin: 50px 100px;
-    border-radius: 20px;
+    /* margin: 50px 100px; */
     height: 70vh;
     box-sizing: border-box;
     display: flex;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     backface-visibility: hidden;
-
+    z-index: 0;
 }
 .slide{
     border: 1px solid #000;

@@ -2,10 +2,6 @@ import React, {useState} from 'react'
 import './carousel.css';
 import {BsChevronCompactLeft} from 'react-icons/bs';
 import {BsChevronCompactRight} from 'react-icons/bs';
-// import image1 from '../../assets/explore.png';
-// import image2 from '../../assets/second.jpg';
-// import image3 from '../../assets/third.jpg';
-
 
 const Carousel = () => {
 

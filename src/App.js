@@ -10,6 +10,9 @@ import Admin from './pages/admin-panel/Admin';
 import Login from './components/Login/Login';
 import Participation from './pages/Participation/Participation';
 import AllCompetitions from './pages/AllCompetitions/AllCompetitions';
+import { AdminLogin } from './components/Admin-Login/AdminLogin';
+import UserpNew from './pages/UserProfile-new/UserpNew';
+import Error from './pages/Error404/Error';
 const App = () => {
     return (
         <div className='app'>
@@ -19,9 +22,12 @@ const App = () => {
                 <Route exact path='/all-competitions' component={AllCompetitions}/>
                 <Route path='/profile' component={Profile} />
                 <Route path='/participation' component={Participation} />
-                <Route path='/user/username' component={UserProfile} />
+                <Route path='/user/username' component={UserpNew} />
+                <Route path='/admin' component={AdminLogin} />
                 <Route path='/admin-panel' component={Admin} />
                 <Route path='/login' component={Login} />
+
+                <Route path='*' component={Error} />
             </Switch>           
         </div>
     )

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SRLWrapper } from "simple-react-lightbox";
+import CarouselNew from '../Carousel-New/CarouselNew';
 import Nav from '../Nav-new/Nav'
 import Submission from '../Submissions/Submissions'
 import './login.css';
@@ -40,14 +41,7 @@ const Login = () => {
     return (
         <div>
             <Nav />
-            <SRLWrapper options={options}>
-            <div className='wrapper-container'>
-                <Submission imgSrc='https://source.unsplash.com/random/krishan'/>
-                <Submission imgSrc='https://source.unsplash.com/random/none'/>
-                <Submission imgSrc='https://source.unsplash.com/random/nne'/>
-                <Submission imgSrc='https://source.unsplash.com/random/nne'/>
-            </div>
-            </SRLWrapper>
+            <CarouselNew />
         </div>
     )
 }
