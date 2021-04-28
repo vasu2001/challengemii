@@ -30,7 +30,6 @@
     text-transform: uppercase;
     transition: all 0.3s;
     cursor: pointer;
-    display: none;
 }
 .btn-signin:hover{
     color: #777;
@@ -111,6 +110,23 @@
 }
 .nav-profile{
     width:50px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 50%;
+}
+.drop-down{
+    position: absolute;
+    color: #fff;
+    background-color: #14213d;
+    padding: 10px 30px;
+    right: 2%;
+    z-index: 2000;
+    transition: all 0.5s;
+}
+.drop-down-selected{
+    display: none !important;
+}
+.drop-down-links{
     cursor: pointer;
 }
 @media only screen and (max-width:780px) {

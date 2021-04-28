@@ -1,7 +1,7 @@
 import React from 'react'
 import './home.css';
 // import Nav from '../../components/Nav/Nav'
-import Card from '../../components/Cards/cards';
+// import Card from '../../components/Cards/cards';
 import Banner from '../../components/Home-banner/Banner';
 import Info from '../../components/Info-Card/Card';
 import image1 from '../../assets/explore.png'

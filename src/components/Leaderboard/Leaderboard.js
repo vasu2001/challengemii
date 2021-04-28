@@ -1,6 +1,5 @@
 import React from 'react'
 import './leaderboard.css';
-import {FaTrophy} from 'react-icons/fa'
 
 const Leaderboard = () => {
     return (

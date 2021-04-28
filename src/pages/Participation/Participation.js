@@ -4,11 +4,11 @@ import Nav from '../../components/Nav-new/Nav'
 
 const Participation = () => {
 
-    var sectionStyle = {
-        width: "100%",
-        height: "400px",
-        backgroundImage: "url("+"https://source.unsplash.com/random/krishan"+")"
-      };
+    // var sectionStyle = {
+    //     width: "100%",
+    //     height: "400px",
+    //     backgroundImage: "url("+"https://source.unsplash.com/random/krishan"+")"
+    //   };
 
     return (
         <div>
@@ -28,7 +28,7 @@ const Participation = () => {
                         <hr />
                         <input type='text' className='input-field' placeholder='Youtube video link'></input>
                         <div style={{marginTop:'30px'}}>
-                            <a className='btn-upload' >Upload</a>
+                            <a href={()=>false} className='btn-upload' >Upload</a>
                         </div>
                         </div>
                     </div>

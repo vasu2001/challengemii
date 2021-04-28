@@ -16,8 +16,8 @@ const AllCompetitions = () => {
             <div className='all-competitions-content'>
                 <div className='left-pane'>
                     <ul className='left-items'>
-                        <li><img src={ongoing} style={{width:'30px', transform: 'translateY(-5px)', marginRight:'5px'}}/>Ongoing</li>
-                        <li><img src={upcoming} style={{width:'30px', transform: 'translateY(-5px)', marginRight:'5px'}}/>Upcoming</li>
+                        <li><img alt='' src={ongoing} style={{width:'30px', transform: 'translateY(-5px)', marginRight:'5px'}}/>Ongoing</li>
+                        <li><img alt='' src={upcoming} style={{width:'30px', transform: 'translateY(-5px)', marginRight:'5px'}}/>Upcoming</li>
                     </ul>
                 </div>
                 <div className = 'right-pane'>

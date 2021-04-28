@@ -10,8 +10,8 @@ const ManageCoins = () => {
                     <img src={coins} alt='coins' className='coin-img manage-img'/>
                     <h4>2000</h4>
                     <div className='coin-action'>
-                        <a className='btn-buy'>Buy</a>
-                        <a className='btn-redeem'>Redeem now</a>
+                        <a href={()=>false} className='btn-buy'>Buy</a>
+                        <a href={()=>false} className='btn-redeem'>Redeem now</a>
                     </div>
                 </div>
             </div>

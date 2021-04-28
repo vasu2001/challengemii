@@ -19,7 +19,7 @@ const HostCompetiton = () => {
                 <input type='number' className='input-field host-field' placeholder=''></input>
             </div>
             <div className='save'>
-                    <a href='' className='btn-save'>Save</a>
+                    <a href={()=>{}} className='btn-save'>Save</a>
             </div>
         </div>
     )

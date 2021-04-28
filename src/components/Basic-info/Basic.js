@@ -47,7 +47,7 @@ const Basic = () => {
                 </div>
                 <hr style={{marginTop:'50px'}}/>
                 <div className='save'>
-                    <a href='' className='btn-save'>Save</a>
+                    <a href={()=>false} className='btn-save'>Save</a>
                 </div>
             </div>
         </div>

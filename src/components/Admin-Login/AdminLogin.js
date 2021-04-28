@@ -14,7 +14,7 @@ export const AdminLogin = () => {
                         <p>Password:</p>
                         <input type='password' className='input-field' placeholder=''></input>
                         <div className='save'>
-                            <a href='' className='btn-save'>Login</a>
+                            <a href={() => false} className='btn-save'>Login</a>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import "./vote.css";
 
 import Nav from '../../components/Nav-new/Nav';
 import Banner from '../../components/Compi-banner/banner';
-import Voter from '../../components/Voters/Voter';
+// import Voter from '../../components/Voters/Voter';
 
 import money from "../../assets/money.png";
 import skills from "../../assets/skills.png";
@@ -14,7 +14,7 @@ import population from "../../assets/population.png";
 import calendar from "../../assets/calendar.png";
 import Leaderboard from "../../components/Leaderboard/Leaderboard";
 import Submissions from "../../components/Submissions/Submissions";
-import { BsClockFill } from "react-icons/bs";
+// import { BsClockFill } from "react-icons/bs";
 
 const vote = () => {
   return (
@@ -96,7 +96,7 @@ const vote = () => {
           </div>
           <div></div>
           <div className="side-2">
-            <a className="btn btn-slide">Participate</a>
+            <a href={()=>false}className="btn btn-slide">Participate</a>
             <div className="slide2-content">
               <div className="slide2-item">
                 <img className="slideImg" alt="Prize" src={population} />
@@ -166,7 +166,7 @@ const vote = () => {
         </div>
       </div>
       <Slide right>
-        <a className="btn vote-btn">Vote</a>
+        <a href={()=>false} className="btn vote-btn">Vote</a>
       </Slide>
     </div>
   );

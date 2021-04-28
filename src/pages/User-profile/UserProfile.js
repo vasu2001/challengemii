@@ -34,11 +34,11 @@ const UserProfile = () => {
                         </div>
                     </div>
                     <div className='social-handles mobile'>
-                        <a className='btn-handles'><span><BsLink className='handle-icons'/></span>Website</a>
-                        <a className='btn-handles'><span><AiOutlineTwitter className='handle-icons twitter'/></span>Twitter</a>
-                        <a className='btn-handles'><span><AiFillInstagram className='handle-icons twitter'/></span>Instagram</a>
-                        <a className='btn-handles'><span><AiFillFacebook className='handle-icons twitter'/></span>Facebook</a>
-                        <a className='btn-handles'><span><AiFillLinkedin className='handle-icons twitter'/></span>LinkedIn</a>
+                        <a href={()=>false} className='btn-handles'><span><BsLink className='handle-icons'/></span>Website</a>
+                        <a href={()=>false} className='btn-handles'><span><AiOutlineTwitter className='handle-icons twitter'/></span>Twitter</a>
+                        <a href={()=>false} className='btn-handles'><span><AiFillInstagram className='handle-icons twitter'/></span>Instagram</a>
+                        <a href={()=>false} className='btn-handles'><span><AiFillFacebook className='handle-icons twitter'/></span>Facebook</a>
+                        <a href={()=>false} className='btn-handles'><span><AiFillLinkedin className='handle-icons twitter'/></span>LinkedIn</a>
                     </div>
                     <div className='user-about'>
                         <p className='user-about-title'>About me</p>
@@ -49,11 +49,11 @@ const UserProfile = () => {
                 <div className='side-right'>
                     <div className='profile-photo public'></div>
                     <div className='social-handles desktop'>
-                        <a className='btn-handles'><span><BsLink className='handle-icons'/></span>Website</a>
-                        <a className='btn-handles'><span><AiOutlineTwitter className='handle-icons twitter'/></span>Twitter</a>
-                        <a className='btn-handles'><span><AiFillInstagram className='handle-icons twitter'/></span>Instagram</a>
-                        <a className='btn-handles'><span><AiFillFacebook className='handle-icons twitter'/></span>Facebook</a>
-                        <a className='btn-handles'><span><AiFillLinkedin className='handle-icons twitter'/></span>LinkedIn</a>
+                        <a href={()=>false}className='btn-handles'><span><BsLink className='handle-icons'/></span>Website</a>
+                        <a href={()=>false}className='btn-handles'><span><AiOutlineTwitter className='handle-icons twitter'/></span>Twitter</a>
+                        <a href={()=>false}className='btn-handles'><span><AiFillInstagram className='handle-icons twitter'/></span>Instagram</a>
+                        <a href={()=>false}className='btn-handles'><span><AiFillFacebook className='handle-icons twitter'/></span>Facebook</a>
+                        <a href={()=>false}className='btn-handles'><span><AiFillLinkedin className='handle-icons twitter'/></span>LinkedIn</a>
                     </div>
                 </div>
                 </div>
