@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Nav from '../../components/Nav-new/Nav'
 import './allCompetitions.css';
 import Footer from '../../components/Footer/Footer';
@@ -7,8 +7,11 @@ import CardNew from '../../components/Cards-new/CardNew';
 
 import ongoing from '../../assets/gift-box.png'
 import upcoming from '../../assets/check-in.png'
+import { connect } from 'react-redux'
 
-const AllCompetitions = () => {
+class AllCompetitions extends Component {
+    render(){
+    const { competitions } = this.props;
     return (
         <div className='all-competitions'>
             <Nav />
@@ -28,15 +31,27 @@ const AllCompetitions = () => {
                             <div className='upcoming'>Upcoming</div>
                         </div>
                     </div>
-                    <CardNew title='Hack the space' active={true} status='Ongoing'/>
-                    <CardNew title='TechEden' active={true} status='Ongoing'/>
+                    {competitions && competitions.map(competition => {
+                        return(
+                            <CardNew competition={competition} key={competition.id} />
+                        )
+                    })}
+                    {/* <CardNew competitions={this.props} active={true} status='Ongoing'/> */}
+                    {/* <CardNew title='TechEden' active={true} status='Ongoing'/>
                     <CardNew title='FrostHack 2021' status='Upcoming'/>
-                    <CardNew title='Celo India Fellowship' status='Upcoming'/>
+                    <CardNew title='Celo India Fellowship' status='Upcoming'/> */}
                 </div>
             </div>
             <Footer />
         </div>
     )
+    }
 }
 
-export default AllCompetitions
+const mapStateToProps = (state) => {
+    return {
+        competitions: state.competition.competitions
+    }
+} 
+
+export default connect(mapStateToProps)(AllCompetitions)

@@ -6,13 +6,13 @@ import calendar from '../../assets/calendar.png';
 import clock from '../../assets/clock.png';
 import money from '../../assets/money.png';
 
-const CardNew = (props) => {
+const CardNew = ({competition}) => {
     return (
         <div>
             <div className='card-new' onClick={()=>{window.location = '/competition'}}>
                 <div className='card-photo'></div>
                 <div className='card-new-container'>
-                    <h3 className='card-new-title'>{props.title}</h3>
+                    <h3 className='card-new-title'>{competition.title}</h3>
                     <div  className='card-main-container long-time' style={{marginTop:'10px'}}>
                         <img className='prizeImg' alt="Prize" src={clock} style={{marginRight:'8px', width:'20px',height:'20px'}}/>
                         <p>16 Apr, 2021 12:00 AM IST - 26 Apr,2021 06:00 AM IST</p>
@@ -21,7 +21,7 @@ const CardNew = (props) => {
                         <p className='short-time'>Ends:16 Apr, 2021</p>
                     <div  className='card-main-container' style={{marginTop:'10px'}}>
                         <img className='prizeImg cd-nw-img' alt="Prize" src={money} style={{marginRight:'8px', width:'20px',height:'20px'}}/>
-                        <p>Entry: 500</p>
+                        <p>Entry: {competition.entry}</p>
                     </div>
                     <div className='card-new-footer'>
                     <div className='bottom-container'>
@@ -38,7 +38,7 @@ const CardNew = (props) => {
                     </div>
                     </div>
                 </div>
-                <a className={`btn-live ${props.active?"live-style":""}`} href='34'>{props.status}</a>
+                <a className={`btn-live ${competition.active?"live-style":""}`} href='34'>{competition.status}</a>
             </div>
         </div>
     )
