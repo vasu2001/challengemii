@@ -14,20 +14,21 @@ import { AdminLogin } from './components/Admin-Login/AdminLogin';
 import UserpNew from './pages/UserProfile-new/UserpNew';
 import Error from './pages/Error404/Error';
 import './firebase'
+import Nav from './components/Nav-new/Nav';
+
 const App = () => {
     return (
         <div className='app'>
             <Switch>
                 <Route exact path='/' component={Home} />
-                <Route path='/competition' component={Competition}/>
+                <Route path='/competition/:id' component={Competition}/>
                 <Route exact path='/all-competitions' component={AllCompetitions}/>
                 <Route path='/profile' component={Profile} />
-                <Route path='/participation' component={Participation} />
+                <Route path='/participation/:id' component={Participation} />
                 <Route path='/user/username' component={UserpNew} />
                 <Route path='/admin' component={AdminLogin} />
                 <Route path='/admin-panel' component={Admin} />
                 <Route path='/login' component={Login} />
-
                 <Route path='*' component={Error} />
             </Switch>           
         </div>

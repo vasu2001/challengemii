@@ -1,11 +1,16 @@
 import React from 'react'
 import './side.css'
-const Side = () => {
+const Side = (props) => {
+    const profilePhoto = {
+        backgroundImage: "url(" + props.user.photoURL + ")"
+    }
+    console.log(props);
     return (
-
         <div>
             <div className='side-nav'>
-                    <div className='profile-photo'></div>
+                    <div className='profile-photo'>
+                        <img alt='' src={props.user.photoURL} className='profile-photo-img'/>
+                    </div>
                     <h4 className='profile-name'>Profile Name</h4>
                     <ul className='side-nav-items'>
                         <li className='side-nav-links' onClick={()=>{window.location = '/user/username'}}>View public profile</li>

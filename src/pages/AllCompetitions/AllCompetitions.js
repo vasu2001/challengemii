@@ -8,6 +8,8 @@ import CardNew from '../../components/Cards-new/CardNew';
 import ongoing from '../../assets/gift-box.png'
 import upcoming from '../../assets/check-in.png'
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class AllCompetitions extends Component {
     render(){
@@ -36,10 +38,6 @@ class AllCompetitions extends Component {
                             <CardNew competition={competition} key={competition.id} />
                         )
                     })}
-                    {/* <CardNew competitions={this.props} active={true} status='Ongoing'/> */}
-                    {/* <CardNew title='TechEden' active={true} status='Ongoing'/>
-                    <CardNew title='FrostHack 2021' status='Upcoming'/>
-                    <CardNew title='Celo India Fellowship' status='Upcoming'/> */}
                 </div>
             </div>
             <Footer />
@@ -50,8 +48,13 @@ class AllCompetitions extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        competitions: state.competition.competitions
+        competitions: state.firestore.ordered.competitions
     }
 } 
 
-export default connect(mapStateToProps)(AllCompetitions)
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection: 'competitions'}
+    ])
+)(AllCompetitions)

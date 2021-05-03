@@ -6,26 +6,31 @@ import skills from '../../assets/skills.png';
 import trophy from '../../assets/trophy.png';
 import population from '../../assets/population.png';
 import calendar from '../../assets/calendar.png';
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
-const Card = () => {
-    return (
-        <div className='info-container'>
+const Card = (props) => {
+    const { competition } = props;
+    if(competition){
+        return(
+            <div className='info-container'>
             <div className='side-1'>
                 <div className='upper'>
-                    <p style={{fontSize:"28px", marginBottom:"5px"}}>Hack the space</p>
-                    <p style={{marginLeft:"3px"}}>lorem ipsum dolor sit amet.</p>
+                    <p style={{fontSize:"28px", marginBottom:"5px"}}>{competition.title}</p>
+                    <p style={{marginLeft:"3px"}}>{competition.tagline}</p>
                 </div>
                 <div className='time-stamp-container'>
-                <p className='time-stamp'>16 Apr, 2021 12:00 AM IST - 26 Apr,2021 06:00 AM IST</p>
+                <p className='time-stamp'>{competition.starts} - {competition.ends}</p>
                 </div>
                 <div className='date-time'>
-                    <p style={{fontSize:'16px', marginLeft:'20px'}}>Start:<span style={{fontSize:'14px', marginLeft:'10px', color:'#454545'}}>16 Apr, 2021 12:00 AM IST</span></p>
-                    <p style={{fontSize:'16px', marginLeft:'20px', marginBottom:'15px'}}>End:<span style={{fontSize:'14px', marginLeft:'10px', color:'#454545'}}>26 Apr, 2021 6:00 AM IST</span></p>
+                    <p style={{fontSize:'16px', marginLeft:'20px'}}>Start:<span style={{fontSize:'14px', marginLeft:'10px', color:'#454545'}}>{competition.starts}</span></p>
+                    <p style={{fontSize:'16px', marginLeft:'20px', marginBottom:'15px'}}>End:<span style={{fontSize:'14px', marginLeft:'10px', color:'#454545'}}>{competition.ends}</span></p>
                 </div>
                 <div className='lower'>
                 <div className='lower-item'>
                     <img className='prizeImg' alt="Prize" src={trophy}/>
-                    <p style={{marginTop:'3px', marginLeft:"10px"}}>Prize: <span>Rs.2000</span></p>
+                    <p style={{marginTop:'3px', marginLeft:"10px"}}>Prize: <span>{competition.prize}</span></p>
                 </div>
                 <div className='lower-item'>
                     <img className='prizeImg' alt="Prize" src={skills}/>
@@ -33,13 +38,13 @@ const Card = () => {
                 </div>
                 <div className='lower-item'>
                     <img className='prizeImg' alt="Prize" src={money}/>
-                    <p style={{marginTop:'3px', marginLeft:"10px"}}>Entry: <span>Rs. 500</span></p>
+                    <p style={{marginTop:'3px', marginLeft:"10px"}}>Entry: <span>Rs. {competition.fees}</span></p>
                 </div>
                 </div>
             </div>
             <div></div>
             <div className='side-2'>
-                <a href='/participation' className="btn btn-slide">Participate</a>
+                <a href={'/participation/'+props.id} className="btn btn-slide">Participate</a>
                 <div className="slide2-content">
                     <div className="slide2-item">
                         <img className='slideImg' alt="Prize" src={population}/>
@@ -52,12 +57,37 @@ const Card = () => {
                         <p style={{color:'#484848'}} className='registered-text'>Days Left</p>
                     </div>
                     <div className="entry">
-                        Rs. 500
+                        Rs. {competition.fees}
                     </div>
                 </div>
             </div>
         </div>
-    )
+        )
+    }
+    else{
+        return(
+            <center>
+            <div style={{marginTop:'100px'}}>
+                <h3>Loading competition...</h3>
+            </div>
+            </center>
+        )
+    }
 }
 
-export default Card
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.id
+    const competitions = state.firestore.data.competitions;
+    const competition = competitions ? competitions[id]:null
+    console.log(competitions,competition);
+    return {
+        competition: competition
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection: 'competitions'}
+    ])
+)(Card)

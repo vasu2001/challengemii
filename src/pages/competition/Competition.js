@@ -10,8 +10,7 @@ import Leaderboard from '../../components/Leaderboard/Leaderboard';
 
 import './competition.css';
 
-const Competition = () => {
-
+const Competition = (props) => {
     const subArr = [
         'https://source.unsplash.com/random/krishan',
         'https://source.unsplash.com/random/krish',
@@ -36,7 +35,7 @@ const Competition = () => {
                 <div className='cover-img'>
                     <div className='cover-dp'></div>
                 </div>
-                <Card />
+                <Card id={props.match.params.id} />
                 <section className='section-submission'>
                     <Switch>
                         <Route path="/competition/participant" component={Leaderboard} />

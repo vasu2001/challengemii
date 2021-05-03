@@ -13,6 +13,12 @@
     border-radius: 50%;
     background-color: #29303b;
     margin-top: 30px;
+    overflow: hidden;
+}
+.profile-photo img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%
 }
 .profile-name{
     margin-top: 20px;
