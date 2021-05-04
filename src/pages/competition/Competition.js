@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Switch } from "react-router-dom";
 import { SRLWrapper } from "simple-react-lightbox";
 import Card from '../../components/Competition-info/Card';
@@ -7,9 +7,9 @@ import Nav from '../../components/Nav-new/Nav'
 import Submissions from '../../components/Submissions/Submissions';
 import Leaderboard from '../../components/Leaderboard/Leaderboard'; 
 import './competition.css';
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import firebase from '../../firebase'
+
+const db = firebase.firestore();
 
 const Competition = (props) => {
     const options = {
@@ -18,6 +18,21 @@ const Competition = (props) => {
             showDownloadButton: false
         }
     };
+
+    const [mySubs, setMySubs] = useState([])
+
+    useEffect(() => {
+        db.collection('submissions').where('competition_id', '==', props.match.params.id).get()
+        .then((querySnap) => {
+            querySnap.forEach((doc) => {
+                setMySubs(prevState => [...prevState, doc.data()]);
+            })
+        })
+        .catch((err) => {
+            console.log('Error: ', err);
+        })
+    },[])
+    console.log('mysubs: ', mySubs);
     return (
         <div className='competition-pg'>
             <Nav />
@@ -35,7 +50,7 @@ const Competition = (props) => {
                     <SRLWrapper options={options}>
                         <div className='submissions'>
                             {
-                                props.submissions && props.submissions.map(submission => {
+                                mySubs && mySubs.map(submission => {
                                     return(
                                         <Submissions submission={submission} key={submission.id} />
                                     )
@@ -50,21 +65,5 @@ const Competition = (props) => {
     )
 }
 
-const mapStateToProps = (state,ownProps) => {
-    // const compi_id = ownProps.match.params.id;
-    // console.log('compi_id', compi_id);
-    // const submissions_db = state.firestore.data.submissions;
-    // console.log('submissions_db',submissions_db); 
-    // const submissions = submissions_db ? submissions_db[compi_id] : null
-    // console.log(submissions); 
-    return{
-        submissions: state.firestore.ordered.submissions
-    }
-}
 
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-        {collection: 'submissions'}
-    ])
-)(Competition)
+export default Competition

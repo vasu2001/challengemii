@@ -32,6 +32,16 @@ class Participation extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.createSubmission(this.state);
+        const db = firebase.firestore();
+        db.collection('submissions').where('user_id', '==', this.state.user_id).get()
+        .then((doc) => {
+            if(doc.exits){
+                console.log('submission found');
+            }
+            else{
+                console.log('submission not found');
+            }
+        })
     }
 
     render(){

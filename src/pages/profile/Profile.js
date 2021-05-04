@@ -30,17 +30,17 @@ const Profile = (props) => {
                 <Switch>
                     <Route exact path='/profile/edit-profile' render={() => <Fragment><Top title='Public profile'/><Basic user={props.user}/></Fragment>} />
                 </Switch>
-                <Switch>
+                {/* <Switch>
                     <Route exact path='/profile/edit-photo' render={() => <Fragment><Top title='Photo'/><ProfileDP /></Fragment>} />
-                </Switch>
+                </Switch> */}
                 <Switch>
                     <Route exact path='/profile/past-competitions' render={() => <Fragment><Top title='Past Competitions'/><PastCompi /></Fragment>} />
                 </Switch>
                 <Switch>
-                    <Route exact path='/profile/my-competitions' render={() => <Fragment><Top title='My Competitions'/><MyCompi /></Fragment>} />
+                    <Route exact path='/profile/my-competitions' render={() => <Fragment><Top title='My Competitions'/><MyCompi user={props.user} /></Fragment>} />
                 </Switch>
                 <Switch>
-                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Manage Coins'/><ManageCoins /></Fragment>} />
+                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Manage Coins'/><ManageCoins user={props.user} /></Fragment>} />
                 </Switch>
                 </div>
             </div>

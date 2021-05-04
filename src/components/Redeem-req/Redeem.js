@@ -1,6 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Component } from 'react';
+import firebase from '../../firebase';
 
-const Redeem = () => {
+const db = firebase.firestore();
+
+class Redeem extends Component {
+
+    state = {
+        requests: []
+    }
+
+    componentDidMount(){
+        db.collection('redeem_req').get().then((querySnap) => {
+            querySnap.forEach((doc) => {
+                this.setState(prevState => ({
+                    requests: [...prevState.requests, doc.data()]
+                }))
+                // this.setState({requests: doc.data()})
+            })
+        })
+    }
+    render(){
     return (
         <div>  
             <div className='redeem'>
@@ -13,7 +33,20 @@ const Redeem = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+
+                {
+                    this.state.requests.map((request, index) => {
+                        const {id, name, paytm_upi, coins} = request
+                        return(
+                            <tr key={id}>
+                                <td data-column="Name">{name}</td>
+                                <td data-column="Paytm/UPI Id">{paytm_upi}</td>
+                                <td data-column="Amount">{coins}</td>
+                            </tr>
+                        )
+                    })
+                }
+                    {/* <tr>
                     <td data-column="Name">Johnny Depp</td>
                     <td data-column="Paytm/UPI Id">9987877666</td>
                     <td data-column="Amount">400</td>
@@ -36,12 +69,13 @@ const Redeem = () => {
                     <td data-column="Paytm/UPI Id">9987899989</td>
                     <td data-column="Amount">300</td>
 
-                    </tr>
+                    </tr> */}
                 </tbody>
             </table>
             </div>
         </div>
     )
+}
 }
 
 export default Redeem

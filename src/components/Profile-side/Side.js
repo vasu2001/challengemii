@@ -15,10 +15,10 @@ const Side = (props) => {
                     <ul className='side-nav-items'>
                         <li className='side-nav-links' onClick={()=>{window.location = '/user/username'}}>View public profile</li>
                         <li className='side-nav-links' onClick={()=>{window.location = '/profile/edit-profile'}}>Profile</li>
-                        <li className='side-nav-links' onClick={()=>{window.location = '/profile/edit-photo'}}>Photo</li>
                         <li className='side-nav-links' onClick={()=>{window.location = '/profile/past-competitions'}}>Past Competitions</li>
                         <li className='side-nav-links' onClick={()=>{window.location = '/profile/my-competitions'}}>My Competitions</li>
                         <li className='side-nav-links' onClick={()=>{window.location = '/profile/manage-coins'}}>Manage Coins</li>
+                        <li className='side-nav-links' onClick={()=>{window.location = '/profile/manage-coins'}}>Manage Tickets</li>
                         <li className='side-nav-links' onClick={()=>{window.location = ''}}>Close Account</li>
                     </ul>
                 </div>

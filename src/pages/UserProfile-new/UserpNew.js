@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from '../../components/Nav-new/Nav'
 import './userpNew.css'
 import { AiOutlineInstagram } from 'react-icons/ai';
@@ -6,9 +6,22 @@ import { AiFillFacebook } from 'react-icons/ai';
 import { FaTwitter } from 'react-icons/fa';
 import { AiFillLinkedin } from 'react-icons/ai';
 import Footer from '../../components/Footer/Footer';
+import firebase from '../../firebase';
 
+const db = firebase.firestore();
 
 const UserpNew = () => {
+
+    const[currentUser, setCurrentUser] = useState({})
+
+    // useEffect(() => {
+    //     firebase.auth().onAuthStateChanged(user => {
+
+    //     })
+    //     setCurrentUser(firebase.auth().currentUser)
+    // })
+
+    console.log(currentUser);
     return (
         <div>
             <Nav />
@@ -29,7 +42,7 @@ const UserpNew = () => {
                     </div>
                 </div>
                 <div className='profile-content-new'>
-                    
+
                 </div>
             </div>
             <Footer />

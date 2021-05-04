@@ -48,3 +48,11 @@
 .manage-img{
     margin-top: 20px;
 }
+
+.coin-action input{
+    width: 250px;
+}
+.active{
+    opacity: 0;
+    display: none ;
+}

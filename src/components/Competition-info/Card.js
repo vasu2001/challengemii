@@ -48,7 +48,7 @@ const Card = (props) => {
                 <div className="slide2-content">
                     <div className="slide2-item">
                         <img className='slideImg' alt="Prize" src={population}/>
-                        <p className='registered'>48</p>
+                        <p className='registered'>{competition.submissions}</p>
                         <p style={{color:'#484848'}} className='registered-text'>Registered</p>
                     </div>
                     <div className="slide2-item">
