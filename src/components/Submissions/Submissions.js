@@ -13,14 +13,13 @@ const Submissions = (props) => {
     //     count>1?setValid(false):setValid(true);
     // }
     // onClick={() => {valid?setActive(!active):alert("Only 3 votes are allowed"); voteCount();}}
-
     return (
         <div className={`submission ${"active"?"selected":""}`} >
             <div className='sub-head'>
-                <p>Participant Name</p>
+                <p>{props.submission.user_name}</p>
             </div>
             <div className='sub-img-container'>
-             <img alt='' src={props.imgSrc} className='wrapper-img' />
+             <img alt='' src={props.submission.photo_link} className='wrapper-img' />
             </div>
             <div className='vote-container'>
                 <a href={()=>false} className='btn-vote'>Vote</a>

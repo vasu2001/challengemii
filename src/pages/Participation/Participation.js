@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, {Component} from 'react'
 import './participation.css'
 import Nav from '../../components/Nav-new/Nav'
 import firebase from '../../firebase';
 import { connect } from 'react-redux';
 import { createSubmission } from '../../store/actions/submissionAction';
-import { Component } from 'react';
 
 class Participation extends Component {
-    // const [userId,setUserId] = useState('');
-    // const [inputField, setInputField] = useState({
-    //   photo_link : '',
-    //   video_link : 'zakde',
-    //   user_id : '12345',
-    //   competition : '' 
-    // })
     state = {
         photo_link: '',
         video_link: '',
         user_id: '',
+        user_name: '',
         competition_id: ''
     }
 
@@ -25,6 +18,7 @@ class Participation extends Component {
         firebase.auth().onAuthStateChanged(user => {
             if(user)
             this.setState({user_id: user.uid})
+            this.setState({user_name: user.displayName})
         })
         this.setState({competition_id: this.props.match.params.id });
     }
@@ -39,25 +33,7 @@ class Participation extends Component {
         e.preventDefault();
         this.props.createSubmission(this.state);
     }
-    // useEffect(() => {
-    //     firebase.auth().onAuthStateChanged(user => {
-    //         if(user)
-    //         setUserId(user.uid);    
-    //     })
-    //     console.log(inputField);
-    // },[inputField])
 
-    // console.log(userId);
-    // console.log(props.match.params.id);
-
-    // const inputsHandler = (e) => {
-    //     setInputField({[e.target.name]: e.target.value})
-    // }
-
-    // const submitHandle = (e) => {
-    //     setInputField({user_id: '123455'})
-    //     console.log(inputField);
-    // }
     render(){
         console.log('state', this.state);
         console.log(this.props);    
