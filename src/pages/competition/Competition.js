@@ -20,6 +20,7 @@ const Competition = (props) => {
     };
 
     const [mySubs, setMySubs] = useState([])
+    const [passSubs, setPassSubs] = useState([])
 
     useEffect(() => {
         db.collection('submissions').where('competition_id', '==', props.match.params.id).get()
@@ -45,7 +46,7 @@ const Competition = (props) => {
                     <Switch>
                         <Route path="/competition/participant" component={Leaderboard} />
                     </Switch>
-                    <Leaderboard />
+                    <Leaderboard id={props.match.params.id} />
                     <h2 className='submission-title'>Submissions</h2>
                     <SRLWrapper options={options}>
                         <div className='submissions'>

@@ -1,21 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './leaderboard.css';
+import firebase from '../../firebase'
 
-const Leaderboard = () => {
+const db = firebase.firestore();
+
+const Leaderboard = (props) => {
+
+    const [mySubs,setMySubs] = useState([])
+
+    useEffect(() => {
+        db.collection('submissions').where('competition_id', '==', props.id).orderBy("vote", "desc").get()
+        .then(querySnap => {
+            querySnap.forEach(doc => {
+                setMySubs(prevState => [...prevState, doc.data()]);
+            })
+        })
+    },[])
+    console.log(mySubs);
     return (
         <div>
             <h2 className='submission-title'>LEADERBOARD</h2>
                 <div className="leaderboard">
                 <ol>
-                    <li>Participant 1</li>
-                    <li>Participant 2</li>
-                    <li>Participant 3</li>
-                    <li>Participant 4</li>
-                    <li>Participant 5</li>
-                    <li>Participant 6</li>
-                    <li>Participant 7</li>
-                    <li>Participant 8</li>
-                    <li>Participant 9</li>
+                    {
+                        mySubs && mySubs.map(mySub => {
+                            return(
+                                <li style={{display: 'flex', justifyContent:'space-between'}}>{mySub.user_name} <span style={{marginRight:'10px', color:'teal'}}>{mySub.vote}</span></li>
+                            )
+                        })
+                    }
                 </ol>
                 </div>
         </div>

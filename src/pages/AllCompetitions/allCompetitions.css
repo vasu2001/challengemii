@@ -7,14 +7,15 @@
 .all-competitions-content{
     width: 1200px;
     margin: -100px auto;
-    margin-bottom: 50px;
     background-color: #fff;
+    margin-bottom: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     display: flex;
     z-index: 1000;
     position: relative;
     border-radius: 30px;
+
 }
 .left-pane{
     height: inherit;

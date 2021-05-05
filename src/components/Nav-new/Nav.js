@@ -90,6 +90,13 @@ class Nav extends Component {
         return(
           <div className='nav-new'>
               <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
+              {/* <div className='nav-mid'>
+                <ol className='nav-mid-links'>
+                  <li>Competitions</li>
+                  <li>Buy Tickets</li>
+                  <li>Redeem Coins</li>
+                </ol>
+              </div> */}
               <div className='nav-items'>
                   <img src={coins} alt='coins' className='coin-img'/>
                   <p className='item-text'>{this.props.database.coin} Points</p>
@@ -110,8 +117,6 @@ class Nav extends Component {
           <div className='nav-new'>
               <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
               <div className='nav-items'>
-                  <img src={coins} alt='coins' className='coin-img'/>
-                  <p className='item-text'>90 Points</p>
                   {
                     <a href={()=>false} className='btn btn-signin' onClick={() => this.setState({modalShow: true})}>Sign in</a>
                   }

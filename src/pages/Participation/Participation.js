@@ -7,11 +7,12 @@ import { createSubmission } from '../../store/actions/submissionAction';
 
 class Participation extends Component {
     state = {
-        photo_link: '',
+        photo_link: null,
         video_link: '',
         user_id: '',
         user_name: '',
-        competition_id: ''
+        competition_id: '',
+        vote: ''
     }
 
     componentDidMount(){
@@ -27,26 +28,32 @@ class Participation extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+
+    }
+
+    handleUpload = (e) => {
+        if(e.target.files[0]){
+            this.setState({photo_link : e.target.files[0]});
+        }
     }
     
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.createSubmission(this.state);
-        const db = firebase.firestore();
-        db.collection('submissions').where('user_id', '==', this.state.user_id).get()
-        .then((doc) => {
-            if(doc.exits){
-                console.log('submission found');
-            }
-            else{
-                console.log('submission not found');
-            }
+
+        const storageRef = firebase.storage().ref(`images/${this.state.photo_link.name}`);
+        storageRef.put(this.state.photo_link).then(snapshot => {
+            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Uploaded ', progress + '%');
+        }).then(() => {
+            storageRef.getDownloadURL().then(downloadURL => {
+                console.log('file at: ', downloadURL);
+                this.setState({photo_link: downloadURL});
+                this.props.createSubmission(this.state);
+            })
         })
     }
 
     render(){
-        console.log('state', this.state);
-        console.log(this.props);    
     return (
         <div>
             <div className='participation-pg'>
@@ -55,12 +62,10 @@ class Participation extends Component {
                     <div className='participation-main'>
                         <div className='upload-photo'>
                             <h4>Upload your submission</h4>
-                            <div className='parti-img-container' style={{backgroundImage: "url(https://source.unsplash.com/random/krishan",backgroundSize:'contain',backgroundRepeat: 'no-repeat', backgroundPosition:'center'}}>
+                            <div className='parti-img-container' style={{backgroundImage: `url(${this.state.photo_link?this.state.photo_link:'http://placehold.jp/250x250.png'})`,backgroundSize:'contain',backgroundRepeat: 'no-repeat', backgroundPosition:'center'}}>
                             </div>
                             <div className='inputfile-container '>
-                                {/* <input type='file' name='photo_link' onChange={inputsHandler}></input> */}
-                                <input type='text' name='photo_link' onChange={this.handleChange} className='input-field' placeholder='Picture link'></input>
-
+                                <input type='file' name='photo_link' onChange={this.handleUpload}></input>
                             </div>
                         </div>
                         <div className='upload-video'>

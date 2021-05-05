@@ -32,28 +32,6 @@ const home = () => {
                 <Info title="Affiliate Program"/>
                 <Info title="Refer to friends"/>
             </section>
-            {/* <section className='section-compi'>
-            <div style={{width:'100%', textAlign:'center',marginTop:'10px', marginBottom:'70px'}}>
-                <h1 className='heading-primary'>Competitions</h1>
-            </div>
-                <div className='compi-nav'>
-                    <div className='ongoing'>
-                        <h1 className='heading-secondary'>Ongoing</h1>
-                    </div>
-                    <div className='upcoming'>
-                        <h1 className='heading-secondary'>Upcoming</h1>
-                    </div>
-                </div>
-                <div className='competition-container' id='competitions'>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                </div>
-            </section> */}
             <Footer />
         </div>
     )

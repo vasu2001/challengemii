@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-between;
 }
+
 .logo-new{
     color: #fff;
     text-transform: uppercase;
@@ -15,10 +16,14 @@
     margin: auto 100px;
     cursor: pointer;
 }
+.nav-mid{
+    color: #fff;
+}
 .nav-items{
     display: flex;
     align-items: center;
     margin-right: 100px;
+    color: #fff;
 }
 .btn-signin{
     background-color: #fff;
@@ -42,6 +47,11 @@
     margin-left: 10px;
     margin-right: 20px;
     color: #fff;
+}
+.link{
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase ;
 }
 .coin-img{
     width: 30px;
