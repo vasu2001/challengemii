@@ -145,6 +145,79 @@
     cursor: pointer;
     margin-top: 5px;
 }
+.coin-drop{
+    display: none;
+}
+
+@media only screen and (max-width: 1200px){
+    .link{
+        font-size: 14px;
+    }
+    .nav-items{
+        width: 300px;
+        margin-right: 50px;
+    }
+    .nav-mid{
+        width: 750px;
+    }
+    .item-text{
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 1200px){
+    .link{
+        font-size: 14px;
+    }
+    .nav-items{
+        width: 300px;
+        margin-right: 20px;
+    }
+    .nav-mid{
+        width: 750px;
+    }
+    .logo-new{
+        margin: auto 0;
+        margin-left: 50px;
+        margin-right: 100px;
+    }
+    .item-text{
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 1000px){
+    .link{
+        font-size: 12px;
+    }
+    .nav-items{
+        width: 300px;
+    }
+    .nav-mid{
+        width: 750px;
+    }
+    .logo-new{
+        margin: auto 0;
+        font-size: 18px;
+        margin-left: 20px;
+        margin-right: 100px;
+    }
+    .item-text{
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 850px){
+    .nav-mid{
+        display: none;
+    }
+    .logo-new{
+        margin: auto 50px;
+        font-size: 24px;
+    }
+    .nav-items{
+        margin-right: 50px;
+        width: auto;
+    }    
+}
+
 @media only screen and (max-width:780px) {
     .logo-new{
         margin: auto 50px;
@@ -188,5 +261,8 @@
     }
     .item-text{
         display: none;
+    }
+    .coin-drop{
+        display: block;
     }
 }

@@ -9,6 +9,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { BiCoinStack } from 'react-icons/bi';
 
 const db = firebase.firestore();
 
@@ -104,7 +105,8 @@ class Nav extends Component {
                         <img src={this.state.loggedUser.photoURL} alt='' className='nav-profile' onClick={()=>{this.setState({isVisible: !this.state.isVisible })}} />
                       </div>
                       <div className={this.state.isVisible ? "drop-down" : "drop-down-selected"}>
-                        <p>Hi, {this.state.loggedUser.displayName} </p>
+                        <p>Hi, {this.state.loggedUser.displayName}</p>
+                        <p className='coin-drop'>Coins: {this.props.database.coin} <BiCoinStack style={{transform: 'translateY(-1px)'}}/> </p>
                         <p className='drop-down-links' onClick={()=> {window.location = ('/profile/edit-profile')} }>View Profile</p>
                         <p className='drop-down-links' onClick={()=> {window.location = ('/all-competitions')} }>Competitions</p>
                         <p className='drop-down-links' onClick={()=> {window.location = ('/profile/manage-coins')} }>Buy Tickets</p>
