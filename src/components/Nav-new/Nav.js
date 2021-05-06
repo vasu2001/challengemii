@@ -90,18 +90,28 @@ class Nav extends Component {
         return(
           <div className='nav-new'>
               <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
-              {/* <div className='nav-mid'>
-                <ol className='nav-mid-links'>
-                  <li>Competitions</li>
-                  <li>Buy Tickets</li>
-                  <li>Redeem Coins</li>
-                </ol>
-              </div> */}
+              <div className='nav-mid'>
+                <p className='link' onClick={() => {window.location = '/all-competitions'}}>Competitons</p>
+                <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Buy Tickets</p>
+                <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Redeem Coins</p>
+              </div>
               <div className='nav-items'>
                   <img src={coins} alt='coins' className='coin-img'/>
                   <p className='item-text'>{this.props.database.coin} Points</p>
                   {
-                    <div><div className='nav-profile-box'><img src={this.state.loggedUser.photoURL} alt='' className='nav-profile' onClick={()=>{this.setState({isVisible: !this.state.isVisible })}} /></div> <div className={this.state.isVisible ? "drop-down" : "drop-down-selected"}><p>Hi, {this.state.loggedUser.displayName} </p><p className='drop-down-links' onClick={()=> {window.location = ('/profile/edit-profile')} }>View Profile</p><p className='drop-down-links' onClick={() => firebase.auth().signOut()}>Sign out</p></div></div>
+                    <div>
+                      <div className='nav-profile-box'>
+                        <img src={this.state.loggedUser.photoURL} alt='' className='nav-profile' onClick={()=>{this.setState({isVisible: !this.state.isVisible })}} />
+                      </div>
+                      <div className={this.state.isVisible ? "drop-down" : "drop-down-selected"}>
+                        <p>Hi, {this.state.loggedUser.displayName} </p>
+                        <p className='drop-down-links' onClick={()=> {window.location = ('/profile/edit-profile')} }>View Profile</p>
+                        <p className='drop-down-links' onClick={()=> {window.location = ('/all-competitions')} }>Competitions</p>
+                        <p className='drop-down-links' onClick={()=> {window.location = ('/profile/manage-coins')} }>Buy Tickets</p>
+                        <p className='drop-down-links' onClick={()=> {window.location = ('/profile/manage-coins')} }>Redeem Coins</p>
+                        <p className='drop-down-links' onClick={() => firebase.auth().signOut()}>Sign out</p></div>
+
+                      </div>
                   }
               </div>
               <MyVerticallyCenteredModal
@@ -117,6 +127,7 @@ class Nav extends Component {
           <div className='nav-new'>
               <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
               <div className='nav-items'>
+                  <p className='item-text link' onClick={() => {window.location = ('/all-competitions')}}>Competitions</p>
                   {
                     <a href={()=>false} className='btn btn-signin' onClick={() => this.setState({modalShow: true})}>Sign in</a>
                   }
