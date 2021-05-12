@@ -9,12 +9,13 @@ import ongoing from '../../assets/gift-box.png'
 import upcoming from '../../assets/check-in.png'
 import { useState } from 'react';
 
-const db = firebase.firestore();
+const db = firebase.firestore(); 
 
 const AllCompetitions = () => {
 
     const [competitions,setCompetitions] = useState([])
 
+    // getting all competitions from firestore 
     useEffect(() => {
         db.collection('competitions').get().then(querySnap => {
             querySnap.forEach(doc => {

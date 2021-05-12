@@ -1,10 +1,10 @@
 import React from 'react'
 import './side.css'
 const Side = (props) => {
+
     const profilePhoto = {
         backgroundImage: "url(" + props.user.photoURL + ")"
     }
-    console.log(props);
     return (
         <div>
             <div className='side-nav'>

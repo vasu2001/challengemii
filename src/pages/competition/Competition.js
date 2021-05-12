@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import { SRLWrapper } from "simple-react-lightbox";
 import Card from '../../components/Competition-info/Card';
 import Footer from '../../components/Footer/Footer';
-import Nav from '../../components/Nav-new/Nav'
 import Submissions from '../../components/Submissions/Submissions';
 import Leaderboard from '../../components/Leaderboard/Leaderboard'; 
 import './competition.css';
@@ -60,7 +59,6 @@ const Competition = (props) => {
                         </div>
                     </SRLWrapper>
                 </section>
-                {/* <Footer /> */}
             </div>
         </div>
     )
