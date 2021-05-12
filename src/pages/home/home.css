@@ -2,7 +2,8 @@
     background-color: #fff;
     scroll-behavior: smooth;
     overflow-y: scroll;
-    transform: translateY(-60px);
+    /* transform: translateY(-60px); */
+    margin-top: -60px;
 }
 .about-text{
     width: 80%;
