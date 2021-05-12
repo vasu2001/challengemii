@@ -15,10 +15,12 @@ import UserpNew from './pages/UserProfile-new/UserpNew';
 import Error from './pages/Error404/Error';
 import './firebase'
 import Nav from './components/Nav-new/Nav';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
     return (
         <div className='app'>
+            <Nav/>
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/competition/:id' component={Competition}/>
@@ -30,7 +32,8 @@ const App = () => {
                 <Route path='/admin-panel' component={Admin} />
                 <Route path='/login' component={Login} />
                 <Route path='*' component={Error} />
-            </Switch>           
+            </Switch>
+            <Footer/>           
         </div>
     )
 }

@@ -57,7 +57,7 @@ class Participation extends Component {
     return (
         <div>
             <div className='participation-pg'>
-                <Nav />
+                {/* <Nav /> */}
                 <div className='participation-container'>
                     <div className='participation-main'>
                         <div className='upload-photo'>

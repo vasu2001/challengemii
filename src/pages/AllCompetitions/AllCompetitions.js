@@ -16,7 +16,7 @@ class AllCompetitions extends Component {
     const { competitions } = this.props;
     return (
         <div className='all-competitions'>
-            <Nav />
+            {/* <Nav /> */}
             <CarouselNew />
             <div className='all-competitions-content'>
                 <div className='left-pane'>
@@ -40,7 +40,7 @@ class AllCompetitions extends Component {
                     })}
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
     }

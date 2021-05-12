@@ -36,7 +36,7 @@ const Competition = (props) => {
     console.log('mysubs: ', mySubs);
     return (
         <div className='competition-pg'>
-            <Nav />
+            {/* <Nav /> */}
             <div className='competition-content'>
                 <div className='cover-img'>
                     <div className='cover-dp'></div>
@@ -60,7 +60,7 @@ const Competition = (props) => {
                         </div>
                     </SRLWrapper>
                 </section>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </div>
     )

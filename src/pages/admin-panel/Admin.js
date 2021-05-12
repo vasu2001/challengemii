@@ -12,7 +12,7 @@ import Redeem from '../../components/Redeem-req/Redeem';
 const Admin = () => {
     return (
         <div>
-            <Nav />
+            {/* <Nav /> */}
             <div className='admin-container'>
                 <Side />
                 <div className='nav-main'>

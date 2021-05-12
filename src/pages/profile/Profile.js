@@ -23,7 +23,7 @@ const Profile = (props) => {
     if(props.user){
     return (
         <div className='profile'>
-            <Nav />
+            {/* <Nav /> */}
             <div className='profile-container'>
             <Side user={props.user} />
                 <div className='nav-main'>
@@ -44,7 +44,7 @@ const Profile = (props) => {
                 </Switch>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
     }

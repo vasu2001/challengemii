@@ -24,7 +24,7 @@ const UserpNew = () => {
     console.log(currentUser);
     return (
         <div>
-            <Nav />
+            {/* <Nav /> */}
             <div className='user-profile-new'>
                 <div className='profile-dp-new'></div>
                 <div className='social-container-new'>
@@ -45,7 +45,7 @@ const UserpNew = () => {
 
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

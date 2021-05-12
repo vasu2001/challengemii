@@ -1,8 +1,11 @@
 .homepage{
-    padding: 30px 30px;
+    padding: 0;
     background-color: #fff;
     scroll-behavior: smooth;
     overflow-y: scroll;
+    margin-top: -60px;
+    width: 100%;
+
 }
 .about-text{
     width: 80%;
@@ -154,9 +157,7 @@
     .about-para{
         font-size: 16px !important;
     }
-    .homepage{
-        padding: 0;
-    }
+
 }
 @media only screen and (max-width: 500px){
     .section-info{
