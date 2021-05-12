@@ -48,7 +48,7 @@ const AllCompetitions = () => {
                     })}
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

@@ -44,7 +44,7 @@ const UserpNew = () => {
     console.log(userData);
     return (
         <div>
-            <Nav />
+            {/* <Nav /> */}
             <div className='user-profile-new'>
                 <div className='profile-dp-new' style={{backgroundImage: `url(${currentUser.photoURL})`}}></div>
                 <div className='social-container-new'>
@@ -82,7 +82,7 @@ const UserpNew = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

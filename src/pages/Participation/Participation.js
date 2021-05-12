@@ -57,7 +57,6 @@ class Participation extends Component {
     }
 
     render(){
-        // if(!this.props.contextUser) return <Redirect to={'/all-competitions'} />
             return (
                 <div>
                     <div className='participation-pg'>

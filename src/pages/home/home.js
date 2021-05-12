@@ -32,7 +32,7 @@ const home = () => {
                 <Info title="Affiliate Program"/>
                 <Info title="Refer to friends"/>
             </section>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

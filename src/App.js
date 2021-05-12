@@ -18,6 +18,7 @@ import { AuthProvider } from './Auth';
 import PrivateRoute from './PrivateRoute';
 import firebase from './firebase'
 import Nav from './components/Nav-new/Nav';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
 
@@ -39,7 +40,7 @@ const App = () => {
                     <Route path='/sign-in' component={Login} />
                     <Route exact path='/all-competitions' component={AllCompetitions}/>
                     <Route path='/profile' component={Profile} />
-                    <Route path='/participation/:id' component={props => <Participation {...props} contextUser={currentUser} />}/>
+                    <Route path='/participation/:id' component={props => <Participation />}/>
                     <Route path='/user/username' component={UserpNew} />
                     <Route path='/admin' component={AdminLogin} />
                     <Route path='/admin-panel' component={Admin} />

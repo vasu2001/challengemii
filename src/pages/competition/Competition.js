@@ -60,7 +60,7 @@ const Competition = (props) => {
                         </div>
                     </SRLWrapper>
                 </section>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </div>
     )

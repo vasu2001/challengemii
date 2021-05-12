@@ -56,32 +56,10 @@ const Profile = (props) => {
                 </Switch>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
     }
-    // else{
-    //     return(
-    //         <center>
-    //             <h3>Loading</h3>
-    //         </center>
-    //     )
-    // }
 }
-
-// const mapStateToProps = (state) => {
-//     const currentUser = firebase.auth().currentUser;
-//     const user = currentUser ? currentUser:'' 
-//     return{
-//         user: user
-//     }
-// }  
-
-// export default compose(
-//     connect(mapStateToProps),
-//     firestoreConnect([
-//         {collection: 'user'}
-//     ])
-// )(Profile)
 
 export default Profile
