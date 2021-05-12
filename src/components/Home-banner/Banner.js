@@ -47,7 +47,7 @@ const Banner = () => {
                     <a href='/all-competitions' className='nav-link'>Competitions</a>
                     <div className='hamburger-container'>
                         {/* <GiHamburgerMenu className="hamburger" /> */}
-                        <p onClick={() => setModalShow(true)}>Sign In</p>
+                        <p onClick={() => window.location.href = '/sign-in'}>Sign In</p>
                     </div>
                 </div>
                 <MyVerticallyCenteredModal

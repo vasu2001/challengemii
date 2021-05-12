@@ -1,18 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './submissions.css'
+import { AiFillLike } from 'react-icons/ai';
+import { FaShareAlt } from 'react-icons/fa';
+
 
 const Submissions = (props) => {
-
-    // const [active,setActive] = React.useState(false);
-    // const [count,setCount] = React.useState(0);
-    // const [valid,setValid] = React.useState(true)
-
-    // const voteCount = () => {
-    //     setCount(count+1);
-    //     console.log(count);
-    //     count>1?setValid(false):setValid(true);
-    // }
-    // onClick={() => {valid?setActive(!active):alert("Only 3 votes are allowed"); voteCount();}}
+    
     return (
         <div className={`submission ${"active"?"selected":""}`} >
             <div className='sub-head'>
@@ -22,8 +15,8 @@ const Submissions = (props) => {
              <img alt='' src={props.submission.photo_link} className='wrapper-img' />
             </div>
             <div className='vote-container'>
-                <a href={()=>false} className='btn-vote'>Vote</a>
-                <a href={()=>false} className='btn-vote'>Share</a>
+                <a href={()=>false} className='btn-vote'><AiFillLike /></a>
+                <a href={()=>false} className='btn-vote'><FaShareAlt /></a>
             </div>
         </div>
     )

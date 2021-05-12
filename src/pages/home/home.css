@@ -1,8 +1,9 @@
 .homepage{
-    padding: 30px 30px;
+    /* padding: 30px 30px; */
     background-color: #fff;
     scroll-behavior: smooth;
     overflow-y: scroll;
+    transform: translateY(-60px);
 }
 .about-text{
     width: 80%;

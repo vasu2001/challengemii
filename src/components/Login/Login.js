@@ -1,78 +1,69 @@
-import React from 'react'
-import coins from '../../assets/coin.png'
-import Modal from 'react-bootstrap/Modal'
-import appleLogo from '../../assets/apple.png';
-import fbLogo from '../../assets/facebook.png'
-import googleLogo from '../../assets/google.svg'
-import navProfile from '../../assets/user.png'
+import React, { useEffect, useState, useContext } from 'react'
+import './login.css'
+import {GrClose} from 'react-icons/gr'
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import firebase from '../../firebase'
+import { AuthContext } from '../../Auth'
+import {Redirect} from 'react-router'
 
+const db = firebase.firestore(); //getting firestore
 
-import { connect } from 'react-redux'
-import { signIn } from '../../store/actions/authActions'
+// uiConfig of StyledFirebaseAuth
+const uiConfig = {
+    signInFlow: "popup",
+    signInSuccessUrl: '/all-competitions',
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccess: () => false
+    }
+  }
 
-function MyVerticallyCenteredModal(props) {
-    return (
-      <Modal
-        {...props}
-        dialogClassName='modal-50w'
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        style={{
-            textAlign: 'center',
-        }}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter" > 
-            <p>Login</p>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className='login-container'>
-            <a href='' className='btn-login google'><img src={googleLogo} alt='' className='google-logo'/>Sign in with Google</a>
-            <a href='/profile/edit-profile' className='btn-login fb'><img src={fbLogo} alt=''  className='fb-logo'/>Sign in with Facebook</a>
-            <a href='/profile/edit-profile' className='btn-login apple'><img src={appleLogo} alt='' className='apple-logo'/> Sign in with Apple</a>
-          </div>
-        </Modal.Body>
-      </Modal>
-    );
-}
 const Login = (props) => {
-    const [modalShow, setModalShow] = React.useState(false);
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        props.signIn();
-        console.log(props);
+
+    const [active,setActive] = useState(true)    
+    const [currentUser, setCurrentUser] = useContext(AuthContext);
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            if(user){
+                setCurrentUser(user) // updating currentUser state of Auth context 
+                // saving user in database if no user exists with the same uid.
+                const docRef = db.collection('users').doc(user.uid); 
+                docRef.get().then(doc => {
+                    if(doc.exists){
+                        console.log('User found');
+                    }
+                    else{
+                        db.collection('users').doc(user.uid).set({
+                            name: user.displayName,
+                            photoURL: user.photoURL,
+                            coins: 120
+                        })
+                    }
+                })
+                }
+            else console.log('no user found');
+        })
+    },[]);
+
+    if(currentUser){
+        return <Redirect to='/' /> //if user is signed in, redirecting to homepage.
     }
     return (
-        <div className='nav-new'>
-            <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
-            <div className='nav-items'>
-                <img src={coins} alt='coins' className='coin-img'/>
-                <p className='item-text' onClick={handleSubmit}>90 Points</p>
-                {/* <a className='btn btn-signin' onClick={() => setModalShow(true)}>Sign in</a> */}
-                <a className='btn btn-signin' onClick={handleSubmit}>Sign in</a>
+        <div className='login'>
+            <div className='login-card'>
+                <a className='close-btn' onClick={() => setActive(!active)}><GrClose /></a>
+                <h3 style={{color: '#333'}}>Login/SignUp</h3>
+            <div style={{marginTop: '60px'}}>
+                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} onClick={()=>{setActive(false)}}/> 
             </div>
-            <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-                backdrop='static'
-            />
+            </div>
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
-    console.log(state);
-    return{
-        
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-      signIn: () => dispatch(signIn())
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+export default Login

@@ -13,7 +13,6 @@ import { AiFillLinkedin } from 'react-icons/ai';
 const UserProfile = () => {
     return (
         <div>
-            <Nav />
             <div className='user-profile'>
                 <div className='user-content'>
                 <div className='side-left'>

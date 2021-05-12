@@ -20,7 +20,7 @@ const Competition = (props) => {
     };
 
     const [mySubs, setMySubs] = useState([])
-    const [passSubs, setPassSubs] = useState([])
+    const [selectedSub, setSelectedSub] = useState({});
 
     useEffect(() => {
         db.collection('submissions').where('competition_id', '==', props.match.params.id).get()
@@ -33,10 +33,10 @@ const Competition = (props) => {
             console.log('Error: ', err);
         })
     },[])
+
     console.log('mysubs: ', mySubs);
     return (
         <div className='competition-pg'>
-            <Nav />
             <div className='competition-content'>
                 <div className='cover-img'>
                     <div className='cover-dp'></div>

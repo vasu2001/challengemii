@@ -19,7 +19,6 @@ import Submissions from "../../components/Submissions/Submissions";
 const vote = () => {
   return (
     <div>
-      <Nav />
       <Banner />
       <div className="body-container">
         <div

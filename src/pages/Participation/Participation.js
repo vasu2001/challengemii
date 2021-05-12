@@ -4,6 +4,8 @@ import Nav from '../../components/Nav-new/Nav'
 import firebase from '../../firebase';
 import { connect } from 'react-redux';
 import { createSubmission } from '../../store/actions/submissionAction';
+import { Redirect } from 'react-router';
+
 
 class Participation extends Component {
     state = {
@@ -12,16 +14,17 @@ class Participation extends Component {
         user_id: '',
         user_name: '',
         competition_id: '',
-        vote: ''
+        vote: '',
     }
-
     componentDidMount(){
         firebase.auth().onAuthStateChanged(user => {
-            if(user)
+            if(user){
             this.setState({user_id: user.uid})
             this.setState({user_name: user.displayName})
+            }
         })
         this.setState({competition_id: this.props.match.params.id });
+        
     }
 
     handleChange = (e) => {
@@ -54,34 +57,35 @@ class Participation extends Component {
     }
 
     render(){
-    return (
-        <div>
-            <div className='participation-pg'>
-                <Nav />
-                <div className='participation-container'>
-                    <div className='participation-main'>
-                        <div className='upload-photo'>
-                            <h4>Upload your submission</h4>
-                            <div className='parti-img-container' style={{backgroundImage: `url(${this.state.photo_link?this.state.photo_link:'http://placehold.jp/250x250.png'})`,backgroundSize:'contain',backgroundRepeat: 'no-repeat', backgroundPosition:'center'}}>
+        // if(!this.props.contextUser) return <Redirect to={'/all-competitions'} />
+            return (
+                <div>
+                    <div className='participation-pg'>
+                        <div className='participation-container'>
+                            <div className='participation-main'>
+                                <div className='upload-photo'>
+                                    <h4>Upload your submission</h4>
+                                    <div className='parti-img-container' style={{backgroundImage: `url(${this.state.photo_link?this.state.photo_link:'http://placehold.jp/250x250.png'})`,backgroundSize:'contain',backgroundRepeat: 'no-repeat', backgroundPosition:'center'}}>
+                                    </div>
+                                    <div className='inputfile-container '>
+                                        <input type='file' name='photo_link' onChange={this.handleUpload}></input>
+                                    </div>
+                                </div>
+                                <div className='upload-video'>
+                                <hr />
+                                <input type='text' name='video_link' onChange={this.handleChange} className='input-field' placeholder='Youtube video link'></input>
+                                <div style={{marginTop:'30px'}}>
+                                    <a href={()=>false} onClick={this.handleSubmit} className='btn-upload' >Upload</a>
+                                </div>
+                                </div>
                             </div>
-                            <div className='inputfile-container '>
-                                <input type='file' name='photo_link' onChange={this.handleUpload}></input>
-                            </div>
-                        </div>
-                        <div className='upload-video'>
-                        <hr />
-                        <input type='text' name='video_link' onChange={this.handleChange} className='input-field' placeholder='Youtube video link'></input>
-                        <div style={{marginTop:'30px'}}>
-                            <a href={()=>false} onClick={this.handleSubmit} className='btn-upload' >Upload</a>
-                        </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    )
-    }
+            )
+        }
 }
+
 
 
 const mapDispatchToProps = (dispatch) => {

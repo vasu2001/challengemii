@@ -1,22 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import Nav from '../../components/Nav-new/Nav'
 import './allCompetitions.css';
 import Footer from '../../components/Footer/Footer';
 import CarouselNew from '../../components/Carousel-New/CarouselNew';
 import CardNew from '../../components/Cards-new/CardNew';
-
+import firebase from '../../firebase';
 import ongoing from '../../assets/gift-box.png'
 import upcoming from '../../assets/check-in.png'
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import { useState } from 'react';
 
-class AllCompetitions extends Component {
-    render(){
-    const { competitions } = this.props;
-    return (
-        <div className='all-competitions'>
-            <Nav />
+const db = firebase.firestore();
+
+const AllCompetitions = () => {
+
+    const [competitions,setCompetitions] = useState([])
+
+    useEffect(() => {
+        db.collection('competitions').get().then(querySnap => {
+            querySnap.forEach(doc => {
+                setCompetitions(prevState => [...prevState, {id:doc.id, data:doc.data()}]);
+            })
+        })
+    },[])
+    console.log(competitions);
+    return(
+    <div className='all-competitions'>
             <CarouselNew />
             <div className='all-competitions-content'>
                 <div className='left-pane'>
@@ -43,18 +51,6 @@ class AllCompetitions extends Component {
             <Footer />
         </div>
     )
-    }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        competitions: state.firestore.ordered.competitions
-    }
-} 
-
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-        {collection: 'competitions'}
-    ])
-)(AllCompetitions)
+export default AllCompetitions

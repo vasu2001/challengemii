@@ -6,54 +6,27 @@ import { Component } from 'react';
 
 const db = firebase.firestore();
 
-class MyCompi extends Component {
 
-// const [submissions,setSubmissions] = useState([]);
+const MyCompi = (props) => {
+    const [submissions, setSubmissions] = useState([]);
+    const user_id = props.user;
 
-    // useEffect(() => {
-    //     db.collection('submissions').where('user_id', '==', props.user.uid)
-    //     .get()
-    //     .then((querySnap) => {
-    //         querySnap.forEach((doc) => {
-    //             setSubmissions(...submissions,doc.data());
-    //         });
-    //     })
-    //     .catch((err) => {
-    //         console.log('Error getting documents: ', err);
-    //     })
-    // },[])
-
-    state = {
-        submissions : []
-    }
-
-    componentDidMount(){
-        db.collection('submissions').where('user_id', '==', this.props.user.uid)
-        .get()
-        .then((querySnap) => {
-            querySnap.forEach((doc) => {
-                this.setState(prevState => ({
-                    submissions: [...prevState.submissions,doc.data()]
-                }))
-            });
+    useEffect(() => {
+        db.collection('submissions').where('user_id', '==', user_id).get().
+        then(querySnap => {
+            querySnap.forEach(doc => {
+                setSubmissions(prevState => [...prevState, doc.data()])
+            })
         })
-        .catch((err) => {
-            console.log('Error getting documents: ', err);
-        })
-    }
+    },[])
 
-    render(){
-    if(this.state.submissions){
+    console.log(submissions);
     return (
         <div>
             <div className='my-compi'>
                 <div className='my-compi-container'>
-                    {/* <Submissions imgSrc='https://source.unsplash.com/random/krishan'/>
-                    <Submissions imgSrc='https://source.unsplash.com/random/none'/>
-                    <Submissions imgSrc='https://source.unsplash.com/random/nne'/>
-                    <Submissions imgSrc='https://source.unsplash.com/random/nne'/> */}
                     {
-                        this.state.submissions && this.state.submissions.map(submission => {
+                        submissions && submissions.map(submission => {
                             return(
                                 <Submissions submission={submission} key={submission.id} />
                             )
@@ -63,13 +36,58 @@ class MyCompi extends Component {
             </div>
         </div>
     )
-    }
-    else{
-        <center>
-            <div>Loading...</div>
-        </center>
-    }
 }
-}
+
+
+// class MyCompi extends Component {
+
+//     state = {
+//         submissions : []
+//     }
+
+//     componentDidMount(){
+//         db.collection('submissions').where('user_id', '==', this.props.user.uid)
+//         .get()
+//         .then((querySnap) => {
+//             querySnap.forEach((doc) => {
+//                 this.setState(prevState => ({
+//                     submissions: [...prevState.submissions,doc.data()]
+//                 }))
+//             });
+//         })
+//         .catch((err) => {
+//             console.log('Error getting documents: ', err);
+//         })
+//     }
+
+//     render(){
+//     if(this.state.submissions){
+//     return (
+//         <div>
+//             <div className='my-compi'>
+//                 <div className='my-compi-container'>
+//                     {/* <Submissions imgSrc='https://source.unsplash.com/random/krishan'/>
+//                     <Submissions imgSrc='https://source.unsplash.com/random/none'/>
+//                     <Submissions imgSrc='https://source.unsplash.com/random/nne'/>
+//                     <Submissions imgSrc='https://source.unsplash.com/random/nne'/> */}
+//                     {
+//                         this.state.submissions && this.state.submissions.map(submission => {
+//                             return(
+//                                 <Submissions submission={submission} key={submission.id} />
+//                             )
+//                         })
+//                     }
+//                 </div>
+//             </div>
+//         </div>
+//     )
+//     }
+//     else{
+//         <center>
+//             <div>Loading...</div>
+//         </center>
+//     }
+// }
+// }
 
 export default MyCompi
