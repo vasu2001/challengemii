@@ -1,54 +1,95 @@
-.participation-container{
-    width: 800px;
-    height: 80vh;
-    margin: 50px auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Lato';
-    background-color: rgba(0,87,87,0.8);
-    border-radius: 5px;
-}
-.participation-main{
-    width: 60%;
-    height: 90%;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-}
-.upload-photo{
-    height: 100%;
+.participation-pg{
+    background-color: #14213d;
     width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.participation-card{
+    width: 400px;
+    height: 550px;
+    background-color: #fff;
+    position: absolute;
+    border-radius: 10px;
+    top:45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 20px 10px;
+    position: relative;
+}
+.card-title{
+    font-size: 22px;
+}
+.upload-img-container{
+    width: 100%;
+    height: 300px;
+    background-color:peachpuff;
+    position: relative;
+    z-index: -2;
+}
+.upload-img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.upload-img-container p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+}
+.action-container{
+    margin-top: 15px;
+    height: 100px;
+}
+.action-container input{
+    border: none;
+    border-bottom: 1px solid #777;
+    background: transparent;
+    width: 80%;
+    padding: 5px 20px;
     text-align: center;
 }
-.parti-img-container{
-    width: 70%;
-    height: 70%;
-    margin: 10px auto;
-    object-fit: contain;
-    overflow: hidden;
+.hide{
+    display: none;
 }
-.inputfile-container{
-    width: 70%;
-    margin: 0 auto;
-    text-align: right;
+.action-container input:focus{
+    outline: none;
+    box-shadow: none;
 }
-.upload-video{
-    width: 70%;
-    height: 70%;
-    text-align: center;
-}
-.btn-upload{
-    color: white;
-    background-color: teal;
-    padding: 10px 20px;
-    text-decoration: none !important;
-    cursor: pointer;
-}
-.btn-upload:hover{
+.btn-choose{
+    background-color: #FCA311;
     color: #fff;
-    background-color: rgb(0,87,87);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.yt-link{
+    position: relative;
+    cursor: pointer;
+    color: palevioletred;
+}
+
+.btn-choose:hover{
+    text-decoration: none;
+    color: #fff;
+}
+.btn-submit{
+    background-color: teal;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.btn-submit:hover{
+    text-decoration: none;
+    color: #fff;
 }

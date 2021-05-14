@@ -23,7 +23,7 @@ const AllCompetitions = () => {
             })
         })
     },[])
-    console.log(competitions);
+
     return(
     <div className='all-competitions'>
             <CarouselNew />
@@ -49,7 +49,6 @@ const AllCompetitions = () => {
                     })}
                 </div>
             </div>
-            {/* <Footer /> */}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './home.css';
 // import Nav from '../../components/Nav/Nav'
 // import Card from '../../components/Cards/cards';
@@ -6,11 +6,15 @@ import Banner from '../../components/Home-banner/Banner';
 import Info from '../../components/Info-Card/Card';
 import image1 from '../../assets/explore.png'
 import Footer from '../../components/Footer/Footer'
+import {AuthContext} from '../../Auth';
 
-const home = () => {
+const Home = () => {
+
+    const [currentUser, setCurrentUser] = useContext(AuthContext);
+
     return (
         <div className='homepage'>
-            <Banner />
+            <Banner user={currentUser} />
             <section className='section-about'>
                 <div className='about-text-container'>
                     <div className='about-text'>
@@ -32,9 +36,8 @@ const home = () => {
                 <Info title="Affiliate Program"/>
                 <Info title="Refer to friends"/>
             </section>
-            <Footer />
         </div>
     )
 }
 
-export default home
+export default Home

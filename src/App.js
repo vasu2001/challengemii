@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Route,Switch } from 'react-router-dom';
 import Competition from './pages/competition/Competition';
-import Home from './pages/home/home';
+import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile';
 import Vote from './pages/vote/vote'
 import './App.css'; 
@@ -40,13 +40,14 @@ const App = () => {
                     <Route path='/sign-in' component={Login} />
                     <Route exact path='/all-competitions' component={AllCompetitions}/>
                     <Route path='/profile' component={Profile} />
-                    <Route path='/participation/:id' component={props => <Participation />}/>
+                    <Route path='/participation/:id' component={Participation}/>
                     <Route path='/user/username' component={UserpNew} />
                     <Route path='/admin' component={AdminLogin} />
                     <Route path='/admin-panel' component={Admin} />
                     <Route path='/login' component={Login} />
                     <Route path='*' component={Error} />
                 </Switch>   
+                <Footer />
             </div>
         </AuthProvider>        
     )

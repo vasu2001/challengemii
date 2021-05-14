@@ -182,9 +182,6 @@
     }
 }
 @media only screen and (max-width:400px){
-    .section-about{
-        height: 80vh;
-    }
     .about-text-container{
         width: 100%;
         height: 100%;

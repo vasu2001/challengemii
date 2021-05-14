@@ -45,19 +45,12 @@ const Nav = () => {
                   <p className='item-text'>100 Points</p>
                   {
                     <div>
-                      <div className='nav-profile-box'>
+                      <div className='nav-profile-box' onClick={() => window.location.href = '/profile/edit-profile'}>
                         <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
                       </div>
-                      <div className={isVisible ? "drop-down" : "drop-down-selected"}>
-                        <p>Hi, {currentUser.displayName}</p>
-                        <p className='coin-drop'>Coins: 100 <BiCoinStack style={{transform: 'translateY(-1px)'}}/> </p>
-                        <p className='drop-down-links' onClick={()=> {window.location = ('/profile/edit-profile')} }>View Profile</p>
-                        <p className='drop-down-links' onClick={()=> {window.location = ('/all-competitions')} }>Competitions</p>
-                        <p className='drop-down-links' onClick={()=> {window.location = ('/profile/manage-coins')} }>Buy Tickets</p>
-                        <p className='drop-down-links' onClick={()=> {window.location = ('/profile/manage-coins')} }>Redeem Coins</p>
-                        <p className='drop-down-links' onClick={() => {firebase.auth().signOut(); window.location.reload()}}>Sign out</p></div>
-                      </div>
+                    </div>
                   }
+                  <p className='item-text' style={{marginLeft: '10px', cursor:'pointer'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}>SIGN OUT</p>
               </div>
               </div>
         )
