@@ -38,7 +38,6 @@ const Competition = (props) => {
         <div className='competition-pg'>
             <div className='competition-content'>
                 <div className='cover-img'>
-                    <div className='cover-dp'></div>
                 </div>
                 <Card id={props.match.params.id} />
                 <section className='section-submission'>

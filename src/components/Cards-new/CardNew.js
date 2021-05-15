@@ -14,7 +14,9 @@ const CardNew = (props) => {
         return(
             <div>
             <div className='card-new' onClick={()=>{window.location = '/competition/' + competition_id}}>
-                <div className='card-photo'></div>
+                <div className='card-photo'>
+                    <img src={competition.coverUrl}></img>
+                </div>
                 <div className='card-new-container'>
                     <h3 className='card-new-title'>{competition.title}</h3>
                     <div  className='card-main-container long-time' style={{marginTop:'10px'}}>
