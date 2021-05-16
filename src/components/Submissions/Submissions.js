@@ -4,18 +4,22 @@ import { AiFillLike } from 'react-icons/ai';
 import { FaShareAlt } from 'react-icons/fa';
 
 
-const Submissions = (props) => {
+const Submissions = ({submission,onLike,selected}) => {
     
     return (
         <div className={`submission ${"active"?"selected":""}`} >
             <div className='sub-head'>
-                <p>{props.submission.user_name}</p>
+                <p>{submission.user_name}</p>
             </div>
             <div className='sub-img-container'>
-             <img alt='' src={props.submission.photo_link} className='wrapper-img' />
+             <img alt='' src={submission.photo_link} className='wrapper-img' />
             </div>
             <div className='vote-container'>
-                <a href={()=>false} className='btn-vote'><AiFillLike /></a>
+                <a 
+                    onClick={onLike} 
+                    style={{color:selected?'black':'white'}} 
+                    className='btn-vote'><AiFillLike 
+                /></a>
                 <a href={()=>false} className='btn-vote'><FaShareAlt /></a>
             </div>
         </div>

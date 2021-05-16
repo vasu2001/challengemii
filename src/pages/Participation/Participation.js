@@ -53,7 +53,8 @@ const Participation = (props) => {
                     user_id,
                     user_name,
                     video_link: videoLink,
-                    vote: ''
+                    vote: 0,
+                    voters:[]
                 }).then(docRef => {
                     console.log('Document added: ', docRef.id);
                 }).catch(error => {

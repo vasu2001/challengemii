@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Route,Switch } from 'react-router-dom';
 import Competition from './pages/competition/Competition';
-import Home from './pages/home/Home';
+import Home from './pages/home/home';
 import Profile from './pages/profile/Profile';
 // import Profile from './pages/profile-new/Profile';
 import Vote from './pages/vote/vote'
@@ -23,14 +23,14 @@ import Footer from './components/Footer/Footer';
 
 const App = () => {
 
-    const [currentUser,setCurrentUser] = useState(null);
+    // const [currentUser,setCurrentUser] = useState(null);
 
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            if(!user) console.log('No user found');
-            else setCurrentUser(user);
-        })
-    },[currentUser])
+    // useEffect(() => {
+    //     firebase.auth().onAuthStateChanged(user => {
+    //         if(!user) console.log('No user found');
+    //         else setCurrentUser(user);
+    //     })
+    // },[currentUser])
     return (
         <AuthProvider>
             <div className='app'>

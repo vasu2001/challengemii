@@ -47,6 +47,10 @@
     justify-content: space-around;
 }
 
+.submitButton{
+    margin-top: 100px;
+}
+
 @media only screen and (max-width:780px){
     .cover-dp{
         display:none;

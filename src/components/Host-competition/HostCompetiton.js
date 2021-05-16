@@ -32,7 +32,8 @@ class HostCompetiton extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const storageRef = firebase.storage().ref(`compi-covers/${this.state.coverUrl.name}`);
-        storageRef.put(this.state.coverUrl).then(snapshot => {
+        storageRef.put(this.state.coverUrl)
+        .then(snapshot => {
             console.log('Uploaded');
         }).then(() => {
             storageRef.getDownloadURL().then(downloadUrl => {
