@@ -1,7 +1,5 @@
 import React, {Component, useState} from 'react'
 import './hostCompetition.css'
-import {connect} from 'react-redux';
-import { createCompetition } from '../../store/actions/competitionActions'
 import firebase from '../../firebase';
 
 const db = firebase.firestore();

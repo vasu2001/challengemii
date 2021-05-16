@@ -13,7 +13,7 @@
     font-family: 'Lato',sans-serif;
     font-weight: 400;
     letter-spacing: 5px;
-    margin: auto 100px;
+    margin: auto 50px;
     cursor: pointer;  
 }
 .nav-mid{
@@ -55,11 +55,10 @@
     color: #fff;
 }
 .link{
+    margin-right: 20px;
     cursor: pointer;
-    letter-spacing: 2px;
-    text-transform: uppercase ;
-    position: relative;
 }
+
 .link::before{
     content: '';
     background-color: #fff;
@@ -103,42 +102,6 @@
     color: #fff;
     transform: translateY(-2px);
 }
-.google{
-    /* background-color: #4285F4; */
-    color: #777;
-    position: relative;
-    padding-left: 50px;
-}
-.google:hover{
-    /* background-color: #2d71de; */
-    color: #777;
-}
-.fb{
-    background-color: rgb(23,114,233);
-}
-/* .fb:hover{
-    background-color: rgb(20, 96, 196);
-} */
-.apple{
-    background-color: rgb(0,0,0);
-}
-/* .apple:hover{
-    background-color: rgb(38, 37, 37);
-} */
-.apple-logo{
-    width: 20px;
-    transform: scale(1.4) translateY(-0.5px);
-}
-.fb-logo{
-    width: 20px;
-    transform: translate(-5px,-3px);
-}
-.google-logo{
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    height: 62px;
-}
 .btn-login:last-child{
     margin-bottom: 0;
 }
@@ -148,141 +111,44 @@
     position: relative;
     border-radius: 50%;
 }
-.drop-down{
-    position: absolute;
-    color: #fff;
-    background-color: #14213d;
-    padding: 10px 30px;
-    right: 2%;
-    z-index: 2000;
-    transition: all 0.5s;
+.link-box{
+    display: flex;
+    margin-right: 20px;
 }
-.drop-down-selected{
-    display: none !important;
+.side-nav{
+    position: fixed;
+    right: 0;
+    background-color: #e5e5e5;
+    width: 200px;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 5000;
+    transform: translateX(100%);
+    transition: all 1s;
 }
-.drop-down-links{
-    cursor: pointer;
-    margin-top: 5px;
-}
-.coin-drop{
+.hamburger{
+    margin-left: 10px;
+    font-size: 22px;
     display: none;
 }
-@media only screen and (max-width: 1200px){
-    .link{
-        font-size: 14px;
-    }
-    .nav-items{
-        width: 300px;
-        margin-right: 50px;
-    }
-    .nav-mid{
-        width: 750px;
-    }
-    .item-text{
-        font-size: 14px;
-    }
-}
-@media only screen and (max-width: 1200px){
-    .link{
-        font-size: 14px;
-    }
-    .nav-items{
-        width: 300px;
-        margin-right: 20px;
-    }
-    .nav-mid{
-        width: 750px;
-    }
-    .logo-new{
-        margin: auto 0;
-        margin-left: 50px;
-        margin-right: 100px;
-    }
-    .item-text{
-        font-size: 14px;
-    }
-}
-@media only screen and (max-width: 1000px){
-    .link{
-        font-size: 12px;
-    }
-    .nav-items{
-        width: 300px;
-    }
-    .nav-mid{
-        width: 750px;
-    }
-    .logo-new{
-        margin: auto 0;
-        font-size: 18px;
-        margin-left: 20px;
-        margin-right: 100px;
-    }
-    .item-text{
-        font-size: 14px;
-    }
-}
-@media only screen and (max-width: 900px) {
-    .nav-mid{
-        display: none;
-    }
-}
-@media only screen and (max-width: 850px){
-    .logo-new{
-        margin: auto 50px;
-        font-size: 24px;
-    }
-    .nav-items{
-        margin-right: 50px;
-        width: auto;
-    }    
-}
-
-@media only screen and (max-width:780px) {
-    .logo-new{
-        margin: auto 50px;
-    }
-    .nav-items{
-        margin-right: 50px;
-    }
-}
-@media only screen and (max-width:630px) {
+@media only screen and (max-width:1030px){
     .logo-new{
         margin: auto 20px;
     }
     .nav-items{
         margin-right: 20px;
     }
-    .btn-signin{
-        padding: 10px 15px;
-        font-size: 12px;
-    }
-    .item-text{
-        font-size: 12px;
-    }
-    .coin-img{
-        width: 25px;
-        height: 25px;
-    }
 }
-
-@media only screen and (max-width: 500px){
-    .logo-new{
-        font-size: 16px;
-        letter-spacing: 2px;
-    }
-    .nav-profile{
-        width:40px;
-    }
-}
-@media only screen and (max-width: 400px){
-    .coin-img{
+@media only screen and (max-width:890px){
+    .link-box{
         display: none;
     }
-    .item-text{
-        display: none;
-    }
-    .coin-drop{
+    .hamburger{
         display: block;
+    }
+}
+@media only screen and (max-width:650px){
+    .nav-items{
+        display: none;
     }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Route,Switch } from 'react-router-dom';
 import Competition from './pages/competition/Competition';
-import Home from './pages/home/home';
+import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile';
 // import Profile from './pages/profile-new/Profile';
 import Vote from './pages/vote/vote'
@@ -16,10 +16,9 @@ import UserpNew from './pages/UserProfile-new/UserpNew';
 import Error from './pages/Error404/Error';
 import './firebase'
 import { AuthProvider } from './Auth';
-import PrivateRoute from './PrivateRoute';
-import firebase from './firebase'
 import Nav from './components/Nav-new/Nav';
 import Footer from './components/Footer/Footer';
+import BottomNav from './components/Bottom-nav/BottomNav';
 
 const App = () => {
 
@@ -45,9 +44,9 @@ const App = () => {
                     <Route path='/user/username' component={UserpNew} />
                     <Route path='/admin' component={AdminLogin} />
                     <Route path='/admin-panel' component={Admin} />
-                    <Route path='/login' component={Login} />
                     <Route path='*' component={Error} />
                 </Switch>   
+                <BottomNav />
                 <Footer />
             </div>
         </AuthProvider>        

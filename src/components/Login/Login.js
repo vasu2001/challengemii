@@ -41,7 +41,8 @@ const Login = (props) => {
                         db.collection('users').doc(user.uid).set({
                             name: user.displayName,
                             photoURL: user.photoURL,
-                            coins: 120
+                            coins: 0,
+                            tickets: 0
                         })
                     }
                 })
@@ -51,12 +52,12 @@ const Login = (props) => {
     },[]);
 
     if(currentUser){
-        return <Redirect to='/' /> //if user is signed in, redirecting to homepage.
+        return <Redirect to={props.history.goBack()} /> //if user is signed in, redirecting to homepage.
     }
     return (
         <div className='login'>
             <div className='login-card'>
-                <a className='close-btn' onClick={() => setActive(!active)}><GrClose /></a>
+                <a className='close-btn' onClick={() => console.log(props.history.goBack())}><GrClose /></a>
                 <h3 style={{color: '#333'}}>Login/SignUp</h3>
             <div style={{marginTop: '60px'}}>
                 <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} onClick={()=>{setActive(false)}}/> 

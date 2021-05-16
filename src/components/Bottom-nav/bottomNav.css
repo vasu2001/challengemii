@@ -1,0 +1,81 @@
+.bottom-nav{
+    display: none;
+}
+@media only screen and (max-width:650px){
+    .bottom-nav{
+        width: 100%;
+        height: 70px;
+        background-color: #FCA311;
+        position: fixed;
+        bottom: 0;
+        z-index: 7000;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .item-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+    }
+    .bottom-nav-icons{
+        width: 40px;
+    }
+    .coin-container{
+        position: relative;
+    }
+    .coins{
+        position: absolute;
+        top: 3px;
+        right: -18px;
+        padding: 5px;
+        border-radius: 50%;
+        background-color: red;
+    }
+    .ticket-container{
+        position: relative;
+    }
+    .tickets{
+        position: absolute;
+        top:3px;
+        right: -35px;
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+        border-radius: 50%;
+        background-color: red;
+    }
+    .profile-icon{
+        border-radius: 50%;
+        width: 45px;
+    }
+}
+
+@media only screen and (max-width:450px){
+    .bottom-nav-icons{
+        width: 30px;
+    }
+    .item-box{
+        font-size: 12px;
+    }
+    .tickets{
+        top:0px;
+        right: -25px;
+    }
+    .coins{
+        top: 0;
+    }
+}
+@media only screen and (max-width:300px){
+    .bottom-nav-icons{
+        width: 25px;
+    }
+    .item-box{
+        font-size: 10px;
+    }
+}

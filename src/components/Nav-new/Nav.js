@@ -4,6 +4,7 @@ import {AuthContext} from '../../Auth';
 import firebase from '../../firebase';
 import coins from '../../assets/coin.png'
 import { BiCoinStack } from 'react-icons/bi';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Nav = () => {
 
@@ -33,26 +34,48 @@ const Nav = () => {
     }
     else{
         return(
+            // <div className='nav-new'>
+            //   <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
+            //   <div className='nav-mid'>
+            //     <p className='link' onClick={() => {window.location = '/all-competitions'}}>Competitons</p>
+            //     <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Buy Tickets</p>
+            //     <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Redeem Coins</p>
+            //   </div>
+            //   <div className='nav-items'>
+            //       <img src={coins} alt='coins' className='coin-img'/>
+            //       <p className='item-text'>100 Points</p>
+            //       {
+            //         <div>
+            //           <div className='nav-profile-box' onClick={() => window.location.href = '/profile/edit-profile'}>
+            //             <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
+            //           </div>
+            //         </div>
+            //       }
+            //       <p className='item-text' style={{marginLeft: '10px', cursor:'pointer'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}>SIGN OUT</p>
+            //   </div>
+            //   </div>
             <div className='nav-new'>
-              <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
-              <div className='nav-mid'>
-                <p className='link' onClick={() => {window.location = '/all-competitions'}}>Competitons</p>
-                <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Buy Tickets</p>
-                <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Redeem Coins</p>
-              </div>
-              <div className='nav-items'>
-                  <img src={coins} alt='coins' className='coin-img'/>
-                  <p className='item-text'>100 Points</p>
-                  {
-                    <div>
-                      <div className='nav-profile-box' onClick={() => window.location.href = '/profile/edit-profile'}>
-                        <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
-                      </div>
+                <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
+                <div className='nav-items'>
+                  <p className='link vip'>Competitions</p>
+                  <div className='link-box'>  
+                    <p className='link'>Buy Tickets</p>
+                    <p className='link'>Redeem Coins</p>
+                  </div>
+                    <div style={{display:'flex', alignItems:'center'}}>
+                      <img src={coins} alt='coins' className='coin-img'/>
+                      <p className='item-text'>100 Coins</p>
                     </div>
-                  }
-                  <p className='item-text' style={{marginLeft: '10px', cursor:'pointer'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}>SIGN OUT</p>
-              </div>
-              </div>
+                    <div className='nav-profile-box' onClick={() => window.location.href = '/profile/edit-profile'}>
+                            <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
+                    </div>
+                    <p className='item-text' style={{marginLeft: '10px', cursor:'pointer'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}>SIGN OUT</p>
+                    {/* <div className='hamburger'>
+                      <GiHamburgerMenu />
+                    </div> */}
+                </div>
+                <div className='side-nav'></div>
+            </div>
         )
     }
 }

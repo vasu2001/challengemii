@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './card.css';
 
 import money from '../../assets/money.png';
@@ -6,12 +6,23 @@ import skills from '../../assets/skills.png';
 import trophy from '../../assets/trophy.png';
 import population from '../../assets/population.png';
 import calendar from '../../assets/calendar.png';
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import firebase from '../../firebase'
+
+const db = firebase.firestore();
 
 const Card = (props) => {
-    const { competition } = props;
+    
+    console.log(props.id);
+    const [competition,setCompetitions] = useState({});
+
+    useEffect(() => {
+        db.collection('competitions').doc(props.id).get().then(doc => {
+            if(doc.exists){
+                setCompetitions(doc.data());
+            }
+        })
+    },[competition, props.id])
+
     if(competition){
         return(
             <div className='info-container'>
@@ -75,19 +86,21 @@ const Card = (props) => {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const id = ownProps.id
-    const competitions = state.firestore.data.competitions;
-    const competition = competitions ? competitions[id]:null
-    console.log(competitions,competition);
-    return {
-        competition: competition
-    }
-}
+// const mapStateToProps = (state, ownProps) => {
+//     const id = ownProps.id
+//     const competitions = state.firestore.data.competitions;
+//     const competition = competitions ? competitions[id]:null
+//     console.log(competitions,competition);
+//     return {
+//         competition: competition
+//     }
+// }
 
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-        {collection: 'competitions'}
-    ])
-)(Card)
+// export default compose(
+//     connect(mapStateToProps),
+//     firestoreConnect([
+//         {collection: 'competitions'}
+//     ])
+// )(Card)
+
+export default Card;
