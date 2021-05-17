@@ -31,6 +31,14 @@ const Participation = (props) => {
         defaultBtn.click();
     }
 
+    const previewImg = (e) => {
+        if(e.target.files.length > 0){
+            var src = URL.createObjectURL(e.target.files[0]);
+            var preview = document.getElementById('preview-img');
+            preview.src = src;
+        }
+    }
+
     const handleInput = (e) => {
         setVideoLink(e.target.value)
     }
@@ -85,11 +93,11 @@ const Participation = (props) => {
             <div className='participation-card'>
                 <h3 className='card-title'>Upload your submission</h3>
                 <div className='upload-img-container'>
-                    {/* <img src=''></img> */}
+                    <img id='preview-img'></img>
                     <p>No file chosen, yet!</p>
                 </div>
                 <div className='action-container'>
-                <input id='choose-input' onChange={handleUpload} type='file' hidden></input>
+                <input id='choose-input' onChange={(e) => {handleUpload(e);previewImg(e)}} type='file' hidden></input>
                 <a className='btn-choose' onClick={defaultBtn}>Choose File</a>
                 <div style={{marginTop:'30px'}}>
                     <p className={`yt-link ${hidden?'':'hide'}`} onClick={()=>setHidden(!hidden)}>Add link to your youtube video</p>
