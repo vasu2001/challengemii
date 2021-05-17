@@ -23,15 +23,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import ManageTickets from './pages/Manage-tickets/ManageTickets';
 const App = () => {
-
-    // const [currentUser,setCurrentUser] = useState(null);
-
-    // useEffect(() => {
-    //     firebase.auth().onAuthStateChanged(user => {
-    //         if(!user) console.log('No user found');
-    //         else setCurrentUser(user);
-    //     })
-    // },[currentUser])
+    
     return (
         <AuthProvider>
             <div className='app'>

@@ -67,11 +67,10 @@ const Participation = (props) => {
                     vote: 0,
                     voters:[]
                 }).then(docRef => {
-                    console.log('Document added: ', docRef.id);
                     toast.success('Congrats! Your submission has been successfully uploaded.')
+                    setTimeout(() => {props.history.goBack()},3000);
 
                 }).catch(error => {
-                    console.log('error adding document', error);
                     toast.error('Sorry! We encountered some error uploading your submission.')
                 })
             })
@@ -84,7 +83,6 @@ const Participation = (props) => {
             })
         })
     }
-
     return (
         <div className='participation-pg'>
             {

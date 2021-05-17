@@ -4,6 +4,7 @@ import pizza from '../../assets/pizza.jpg'
 import coins from '../../assets/coin.png'
 
 const PrizeBox = ({data,onRedeem}) => {
+    console.log(data);
     return (
         <div className='prize-box'>
             <div className='img-holder'>

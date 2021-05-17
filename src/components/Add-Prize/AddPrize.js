@@ -3,13 +3,15 @@ import './addPrize.css'
 import {toast} from 'react-toastify'
 import {v4 as uuid4} from 'uuid'
 import firebase from '../../firebase';
+import Loading from '../Loading/Loading';
 
 const AddPrize = () => {
     const [details,setDetails]=useState({
        name:"",
        coins:"",
-       image:"" 
+       image:"" ,
     })
+    const [loading,setLoading] = useState(false);
 
     const handleChange = (e)=>{
         setDetails({
@@ -39,8 +41,8 @@ const AddPrize = () => {
                 coins:details.coins,
                 image:imageURL
             })
-
-            toast('Prize Uploaded Successfully!')
+            setLoading(false);
+            toast.success('Prize Uploaded Successfully!')
 
 
         }catch(err){
@@ -51,16 +53,26 @@ const AddPrize = () => {
         
     }
 
-
     return (
         <div className='add-prize'>
+            {
+                loading?<Loading />:null
+            }
             <p>Prize Title:</p>
             <input type='text' id='name' onChange={handleChange} className='input-field host-field' placeholder='Name'></input>
             <p>Prize Coin:</p>
             <input type='number' id='coins' onChange={handleChange} className='input-field host-field' placeholder='Coins'></input>
             <p>Add Product Image:</p>
             <input id='choose-input' type='file' onChange={handleUpload}></input><br/>
-            <a className='btn-add-product' onClick={onSubmit}>Add Product</a>
+            <a href={false} className='btn-add-product' onClick={(e) => {
+                if(details.name === '' || details.coins === '' || details.image === ''){
+                    toast.error('Fill out all the fields');
+                }
+                else{
+                    setLoading(true);
+                    onSubmit(e);
+                }
+            }}>Add Product</a>
         </div>
     )
 }

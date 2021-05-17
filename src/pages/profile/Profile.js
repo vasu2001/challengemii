@@ -18,17 +18,6 @@ const Profile = (props) => {
     const {currentUser,userData:user} = useContext(AuthContext); // to get the id of current user 
     // const [user,setUser] = useState({}); // to hold the data of user stored in firestore database
 
-    // useEffect(() => {
-    //     if(currentUser){
-    //         db.collection('users').doc(currentUser.uid).get().then(doc => {
-    //             if(doc.exists){
-    //                 setUser(doc.data())                    
-    //             }
-    //         })    
-    //     }
-
-    // },[currentUser])
-
     if(!currentUser || !user){
         return(
             <center>

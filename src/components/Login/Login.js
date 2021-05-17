@@ -42,7 +42,13 @@ const Login = (props) => {
                             name: user.displayName,
                             photoURL: user.photoURL,
                             coins: 0,
-                            tickets: 0
+                            tickets: 0,
+                            desc: '',
+                            website: '',
+                            twitter: '',
+                            instagram: '',
+                            facebook: '',
+                            linkedin: ''
                         })
                     }
                 })
