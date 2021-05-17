@@ -12,7 +12,7 @@ const db = firebase.firestore();
 
 const BottomNav = () => {
 
-    const [currentUser, setCurrentUser] = useContext(AuthContext);
+    const {currentUser, setCurrentUser} = useContext(AuthContext);
     const [user,setUser] = useState({});
 
     useEffect(() => {

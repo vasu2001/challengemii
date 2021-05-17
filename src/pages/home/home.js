@@ -10,7 +10,7 @@ import {AuthContext} from '../../Auth';
 
 const Home = () => {
 
-    const [currentUser, setCurrentUser] = useContext(AuthContext);
+    const {currentUser, setCurrentUser} = useContext(AuthContext);
 
     return (
         <div className='homepage'>

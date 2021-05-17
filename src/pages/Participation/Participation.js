@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 const db = firebase.firestore();
 
 const Participation = (props) => {
-    const [currentUser, setCurrentUser] = useContext(AuthContext);
+    const {currentUser, setCurrentUser} = useContext(AuthContext);
     const [hidden, setHidden] = useState(true);
     const [photoUrl,setPhotoUrl] = useState('');
     const [videoLink,setVideoLink] = useState('');

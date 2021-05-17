@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Route,Switch } from 'react-router-dom';
 import Competition from './pages/competition/Competition';
-import Home from './pages/home/Home';
+import Home from './pages/home/home';
 import Profile from './pages/profile/Profile';
 // import Profile from './pages/profile-new/Profile';
 import Vote from './pages/vote/vote'

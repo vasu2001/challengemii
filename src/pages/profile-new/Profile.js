@@ -13,7 +13,7 @@ import MyCompi from "../../components/My-compi/MyCompi";
 const db = firebase.firestore()
 
 const Profile = () => {
-    const [currentUser,setCurrentUser] = useContext(AuthContext); // to get the id of current user 
+    const {currentUser,setCurrentUser} = useContext(AuthContext); // to get the id of current user 
     const [user,setUser] = useState({}); // to hold the data of user stored in firestore database
 
     useEffect(() => {

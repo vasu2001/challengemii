@@ -8,14 +8,18 @@ import { GoSignOut } from 'react-icons/go';
 
 const Nav = () => {
 
-    const [currentUser,setCurrentUser] = useContext(AuthContext);
+    const {currentUser,setCurrentUser,setUserData,userData} = useContext(AuthContext);
 
     const [isVisible,setIsVisible] = useState(false);
     
     // Updating currentUser state in Auth Context 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            if(user) setCurrentUser(user) 
+        firebase.auth().onAuthStateChanged(async user => {
+            if(user) {
+                const data =(await firebase.firestore().collection('users').doc(user.uid).get()).data()
+                setUserData(data)
+                setCurrentUser(user)
+            } 
             else console.log('no user found');
         })
     },[])
@@ -66,7 +70,7 @@ const Nav = () => {
                   </div>
                     <div style={{display:'flex', alignItems:'center'}}>
                       <img src={coins} alt='coins' className='coin-img'/>
-                      <p className='item-text'>100 Coins</p>
+                      <p className='item-text'>{userData.coin} Coins</p>
                     </div>
                     <div className='nav-profile-box' onClick={() => window.location.href = '/user/username'}>
                             <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
