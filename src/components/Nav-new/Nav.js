@@ -4,7 +4,7 @@ import {AuthContext} from '../../Auth';
 import firebase from '../../firebase';
 import coins from '../../assets/coin.png'
 import { BiCoinStack } from 'react-icons/bi';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { GoSignOut } from 'react-icons/go';
 
 const Nav = () => {
 
@@ -57,10 +57,11 @@ const Nav = () => {
             <div className='nav-new'>
                 <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
                 <div className='nav-items'>
-                  <p className='link vip'>Competitions</p>
+                <div className='desktop'>
+                  <p className='link' onClick={() => window.location.href = '/all-competitions'}>Competitions</p>
                   <div className='link-box'>  
-                    <p className='link'>Buy Tickets</p>
-                    <p className='link'>Redeem Coins</p>
+                    <p className='link' onClick={() => window.location.href = '/profile/manage-tickets'}>Buy Tickets</p>
+                    <p className='link' onClick={() => window.location.href = '/profile/manage-coins'}>Redeem Coins</p>
                   </div>
                     <div style={{display:'flex', alignItems:'center'}}>
                       <img src={coins} alt='coins' className='coin-img'/>
@@ -69,12 +70,9 @@ const Nav = () => {
                     <div className='nav-profile-box' onClick={() => window.location.href = '/profile/edit-profile'}>
                             <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
                     </div>
-                    <p className='item-text' style={{marginLeft: '10px', cursor:'pointer'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}>SIGN OUT</p>
-                    {/* <div className='hamburger'>
-                      <GiHamburgerMenu />
-                    </div> */}
                 </div>
-                <div className='side-nav'></div>
+                    <p className='item-text' style={{fontSize:'30px' ,marginLeft: '20px', cursor:'pointer', display:'block'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}><GoSignOut /></p>
+                </div>
             </div>
         )
     }

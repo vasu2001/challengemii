@@ -1,14 +1,79 @@
 .manage-coins{
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-}
-.manage-coins-container{
-    transform: scale(0.9);
     width: 100%;
-    height: 70vh;
+    height: 100%;
+    padding: 0 10px;
+    margin-bottom: 50px;
+}
+.container-1{
+    display: flex;
+    width: 100%;
+
+}
+.cash-req{
+    width: 80%;
+    padding: 20px 10px;
+    background-color: rgb(236,129,99);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 20px;
+    margin-right: 10px;
+    color: #333;
+}
+.cash-action{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#paytm_upi{
+    width: 80%;
+    margin-top: 0;
+    border-bottom-left-radius: 20px;
+    padding-left: 20px;
+}
+.balance-container{
+    display: flex;
+    color: #333;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background-color: #fca311;
+    width: 20%;
+}
+.prize-container{
+    width: 100%;
+    background-color: #eee;
+    margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #333;
     text-align: center;
-    padding-top: 100px;
+    padding: 20px 10px;
+}
+.prizes{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.btn-redeem:hover{
+    color: #fff;
+    background-color: rgb(191, 70, 66);
+}
+.btn-redeem{
+    font-size: 18px;
+    color: #fff;
+    width: 180px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-top-right-radius: 20px;
+    background-color: #8BAE46;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+.balance-img{
+    width: 30px;
+    margin-right: 10px;
 }
 .coin-action{
     display: flex;
@@ -30,29 +95,51 @@
     color: #fff;
     background-color: rgb(0,87,87);    
 }
-.btn-redeem:hover{
-    color: #fff;
-    background-color: rgb(191, 70, 66);
-}
-.btn-redeem{
-    font-size: 18px;
-    color: #fff;
-    width: 180px;
-    padding: 10px 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    background-color: rgb(220,93,88);
-    margin-top: 20px;
-    cursor: pointer;
-    text-decoration: none !important;
-}
-.manage-img{
-    margin-top: 20px;
-}
 
 .coin-action input{
-    width: 250px;
+    /* width: 250px; */
 }
 .active{
     opacity: 0;
     display: none ;
+}
+.prize-req{
+    background-color: powderblue;
+}
+
+@media only screen and (max-width:1100px){
+    .balance-container h3{
+        font-size: 16px;
+    }
+    .balance-img {
+        width: 20px;
+    }
+    .balance-container h4{
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width:550px){
+    .container-1{
+        flex-direction: column;
+    }
+    .cash-req{
+        width: 100%;
+        order: 2;
+    }
+    .balance-container{
+        width: 100%;
+        order: 1;
+        margin-bottom: 10px;
+        flex-direction: row;
+    }
+    .balance-container h3{
+        font-size: 22px;
+        padding: 20px;
+    }
+    .balance-container h4{
+        font-size: 22px;
+        transform: translateY(4px);
+    }
+
 }

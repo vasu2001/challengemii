@@ -80,12 +80,4 @@ class HostCompetiton extends Component {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return{
-//         createCompetition: (competition) => dispatch(createCompetition(competition))
-//     }
-// }
-
-// export default connect(null,mapDispatchToProps)(HostCompetiton)
-
 export default HostCompetiton

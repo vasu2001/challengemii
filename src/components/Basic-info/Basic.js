@@ -47,7 +47,6 @@ const Basic = (props) => {
                         </div>
                         <label for='linkedin-link' className='input-label'>Add your linkedin username (e.g. tomcruise11)</label>
                     </div>
-                    <hr style={{marginTop:'50px'}}/>
                     <div className='save'>
                         <a href={()=>false} className='btn-save'>Save</a>
                     </div>

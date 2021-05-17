@@ -3,6 +3,7 @@ import './participation.css'
 import firebase from '../../firebase';
 import image1 from '../../assets/banner.jpg';
 import { AuthContext } from '../../Auth';
+import Loading from '../../components/Loading/Loading';
 
 const db = firebase.firestore();
 
@@ -14,7 +15,7 @@ const Participation = (props) => {
     const [user_id, setUser_id] = useState('');
     const [user_name, setUser_name] = useState('');
     const [competition_id, setCompetition_id] = useState('');
-
+    const [loading,setLoading] = useState(false);
 
     useEffect(() => {
         if(currentUser){
@@ -45,6 +46,7 @@ const Participation = (props) => {
         storageRef.put(photoUrl).then(snapshot => {
             let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Uploaded ', progress + '%');
+            setLoading(false);
         }).then(() => {
             storageRef.getDownloadURL().then(downloadUrl => {
                 db.collection('submissions').add({
@@ -70,8 +72,12 @@ const Participation = (props) => {
             })
         })
     }
+
     return (
         <div className='participation-pg'>
+            {
+                loading?<Loading/>:null
+            }
             <div className='participation-card'>
                 <h3 className='card-title'>Upload your submission</h3>
                 <div className='upload-img-container'>
@@ -86,7 +92,7 @@ const Participation = (props) => {
                     <input className={hidden?'hide':''} type='text' onChange={handleInput} placeholder='Youtube-link'></input>
                 </div>
                 </div>
-                <a className='btn-submit' onClick={handleSubmit}>Submit</a>
+                <a href={false} className='btn-submit' onClick={(e) => {handleSubmit(e); setLoading(true)}}>Submit</a>
             </div>
         </div>
     )

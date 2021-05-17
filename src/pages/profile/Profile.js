@@ -40,7 +40,7 @@ const Profile = (props) => {
     return (
         <div className='profile'>
             <div className='profile-container'>
-            <Side user={currentUser} />
+                <Side user={currentUser} />
                 <div className='nav-main'>
                 <Switch>
                     <Route exact path='/profile/edit-profile' render={() => <Fragment><Top title='Public profile'/><Basic user={user}/></Fragment>} />
@@ -52,7 +52,7 @@ const Profile = (props) => {
                     <Route exact path='/profile/my-competitions' render={() => <Fragment><Top title='My Competitions'/><MyCompi user={currentUser.uid} /></Fragment>} />
                 </Switch>
                 <Switch>
-                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Manage Coins'/><ManageCoins user={user} uid={currentUser.uid} /></Fragment>} />
+                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Redeem Coins'/><ManageCoins user={user} uid={currentUser.uid} /></Fragment>} />
                 </Switch>
                 </div>
             </div>

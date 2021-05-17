@@ -51,12 +51,14 @@
 .save{
     width: 100%;
     text-align: center;
-    margin: 30px 0;
+    margin: 70px 0;
 }
 .btn-save{
-    background-color: teal;
+    background-color: #fca311;
+    border-radius: 10px;
     color: #fff;
-    padding: 10px 20px;
+    padding: 15px 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
     text-decoration: none !important;
     cursor: pointer;
 }
@@ -95,6 +97,14 @@ textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
     .social{
         height: 45px;
         margin-top: 0;
+    }
+}
+@media only screen and (max-width: 400px){
+    .basic-info{
+        padding: 40px 20px;
+    }
+    .social-info{
+        padding: 0 20px;
     }
 }
 @media only screen and (max-width:352px){

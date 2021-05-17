@@ -1,11 +1,12 @@
 .bottom-nav{
     display: none;
 }
-@media only screen and (max-width:650px){
+@media only screen and (max-width:686px){
     .bottom-nav{
         width: 100%;
         height: 70px;
-        background-color: #FCA311;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
         position: fixed;
         bottom: 0;
         z-index: 7000;
@@ -20,7 +21,7 @@
         flex-direction: column;
         align-items: center;
         font-size: 14px;
-        color: #fff;
+        color: #777;
         cursor: pointer;
     }
     .bottom-nav-icons{
@@ -36,6 +37,7 @@
         padding: 5px;
         border-radius: 50%;
         background-color: red;
+        color: #fff;
     }
     .ticket-container{
         position: relative;
@@ -49,6 +51,7 @@
         text-align: center;
         border-radius: 50%;
         background-color: red;
+        color:#fff;
     }
     .profile-icon{
         border-radius: 50%;
