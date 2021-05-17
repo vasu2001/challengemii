@@ -23,6 +23,9 @@ const Leaderboard = (props) => {
                 <div className="leaderboard">
                 <ol>
                     {
+                        mySubs==''?<center><p>There is no submission yet.</p></center>:null
+                    }
+                    {  
                         mySubs && mySubs.map(mySub => {
                             return(
                                 <li style={{display: 'flex', justifyContent:'space-between'}}>{mySub.user_name} <span style={{marginRight:'10px', color:'teal'}}>{mySub.vote}</span></li>

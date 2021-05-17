@@ -1,6 +1,8 @@
 import React, {Component, useState} from 'react'
 import './hostCompetition.css'
 import firebase from '../../firebase';
+import { toast } from 'react-toastify';
+import Loading from '../Loading/Loading';
 
 const db = firebase.firestore();
 
@@ -14,7 +16,8 @@ class HostCompetiton extends Component {
         ends: '',
         prize: '',
         fees: '',
-        coverUrl: ''
+        coverUrl: '',
+        loading: false
     }
     handleChange = (e) => {
         this.setState({
@@ -45,17 +48,20 @@ class HostCompetiton extends Component {
                     coverUrl: downloadUrl,
                     submissions: 0
                 }).then(docRef => {
-                    console.log('document written => ', docRef.id);
+                    this.setState({loading: false});
+                    toast.success('Competition added successfully');
                 }).catch(err => {
-                    console.log(err);
+                    toast.error('Error adding document');
                 })
             })
         })
     }
     render() {
-        console.log(this.state);
     return (
         <div>
+            {
+                this.state.loading?<Loading />:null
+            }
             <div className='host-competition'>
                 <p>Competition Title:</p>
                 <input type='text' onChange={this.handleChange} id='title' className='input-field host-field' placeholder='Title'></input>
@@ -73,7 +79,7 @@ class HostCompetiton extends Component {
                 <input id='choose-input' onChange={this.handleUpload} type='file'></input>
             </div>
             <div className='save'>
-                    <a href={()=>false} onClick={this.handleSubmit} className='btn-save'>Save</a>
+                    <a href={()=>false} onClick={(e)=>{this.setState({loading:true});this.handleSubmit(e)}} className='btn-save'>Save</a>
             </div>
         </div>
     )

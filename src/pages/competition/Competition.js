@@ -8,6 +8,7 @@ import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import './competition.css';
 import firebase from '../../firebase'
 import { AuthContext } from '../../Auth';
+import { ToastContainer, toast } from 'react-toastify';
 
 const db = firebase.firestore();
 
@@ -38,7 +39,7 @@ const Competition = (props) => {
             ));
         })
         .catch((err) => {
-            console.log('Error: ', err);
+            toast.error('Error getting competition.')
         })
     },[])
 
@@ -82,6 +83,10 @@ const Competition = (props) => {
                     <h2 className='submission-title'>Submissions</h2>
                     <SRLWrapper options={options}>
                         <div className='submissions'>
+
+                            {
+                                mySubs==''?<center><p>There is no submission yet.</p></center>:null
+                            }
                             {
                                 mySubs && mySubs.map((submission,i) => {
                                     return(

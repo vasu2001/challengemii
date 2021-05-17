@@ -54,6 +54,7 @@ const Nav = () => {
             //       <p className='item-text' style={{marginLeft: '10px', cursor:'pointer'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}>SIGN OUT</p>
             //   </div>
             //   </div>
+            <div>
             <div className='nav-new'>
                 <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
                 <div className='nav-items'>
@@ -67,12 +68,13 @@ const Nav = () => {
                       <img src={coins} alt='coins' className='coin-img'/>
                       <p className='item-text'>100 Coins</p>
                     </div>
-                    <div className='nav-profile-box' onClick={() => window.location.href = '/profile/edit-profile'}>
+                    <div className='nav-profile-box' onClick={() => window.location.href = '/user/username'}>
                             <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
                     </div>
                 </div>
                     <p className='item-text' style={{fontSize:'30px' ,marginLeft: '20px', cursor:'pointer', display:'block'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}><GoSignOut /></p>
                 </div>
+            </div>
             </div>
         )
     }

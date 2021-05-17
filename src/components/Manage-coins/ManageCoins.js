@@ -3,6 +3,7 @@ import './manageCoins.css'
 import coins from '../../assets/coin.png'
 import firebase from '../../firebase';
 import PrizeBox from '../prize-box/PrizeBox';
+import { toast } from 'react-toastify';
 
 const db = firebase.firestore();
 
@@ -10,6 +11,7 @@ const ManageCoins = (props) => {
     const user = props.user
     const [active, setActive] = useState(false);
     const [paytm_upi, setPaytm_upi] = useState('');
+    const [loading,setLoading] = useState(false);
     
     const redeem = () => {
         db.collection('redeem_req').add({
@@ -27,18 +29,6 @@ const ManageCoins = (props) => {
     }
 
     return (
-            {/* <div className='manage-coins'>
-                <div className='manage-coins-container'>
-                    <h2>Balance</h2>
-                    <img src={coins} alt='coins' className='coin-img manage-img'/>
-                    <h4>{user.coin}</h4>
-                    <div className='coin-action'>
-                        <input type='text' id='paytm_upi' className={`input-field ${active?'':'active'}`} onChange={event => setPaytm_upi(event.target.value)} placeholder='Paytm/UPI'></input>
-                        <a href={()=>false} className={`btn-redeem ${active?'active':''}`} onClick={()=> setActive(!active)}>Redeem Now</a>
-                        <a href={()=>false} className={`btn-redeem ${active?'':'active'}`} onClick={redeem} >Redeem Now</a>
-                    </div>
-                </div>
-            </div> */},
             <div className='manage-coins'>
             <div className='container-1'>
             <div className='cash-req'>
@@ -46,7 +36,15 @@ const ManageCoins = (props) => {
                     <p>Note: Minimum redeem cash limit is INR 1000</p>
                     <div className='cash-action'>
                         <input type='text' id='paytm_upi' className='input-field' onChange={event => setPaytm_upi(event.target.value)} placeholder='Paytm/UPI'></input> 
-                        <a className='btn-redeem' onClick={redeem}>Redeem</a>
+                        <a href={false} className='btn-redeem' onClick={() => {
+                            if(paytm_upi!==''){
+                                setLoading(true)
+                                redeem()
+                            }
+                            else{
+                                toast.error('Enter your paytm/upi id');
+                            }
+                        }}>Redeem</a>
                     </div>
                 </div>
                 <div className='balance-container'>

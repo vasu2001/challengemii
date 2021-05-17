@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Nav from '../../components/Nav-new/Nav'
 import './userpNew.css'
 import { AiOutlineInstagram } from 'react-icons/ai';
@@ -8,43 +8,46 @@ import { AiFillLinkedin } from 'react-icons/ai';
 import Footer from '../../components/Footer/Footer';
 import firebase from '../../firebase';
 import Submissions from '../../components/Submissions/Submissions';
+import { AuthContext } from '../../Auth';
 
 const db = firebase.firestore();
 
 const UserpNew = () => {
 
-    const[currentUser, setCurrentUser] = useState({})
+    const[currentUser, setCurrentUser] = useContext(AuthContext)
     const[userData, setUserData] = useState({})
+    const[userId, setUserId] = useState('');
     const[submissions, setSubmissions] = useState([])
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            if(user){
-            setCurrentUser(user)
-            db.collection('users').doc(user.uid).get().then(doc => {
-                if(doc.exists){
-                    setUserData(doc.data());
-                }
-                else{
-                    console.log('No such documents');
-                }
-            })
-            db.collection('submissions').where('user_id', '==', user.uid).get().then(querySnap => {
-                querySnap.forEach(doc => {
-                    setSubmissions(prevState => [...prevState, doc.data()]);
-                })
-            })
+        if(currentUser){
+        db.collection('users').doc(currentUser.uid).get().then(doc => {
+            if(doc.exists){
+                setUserData(doc.data());
+                setUserId(doc.id);
             }
             else{
-                alert('User not logged in');
+                console.log('No such documents');
             }
         })
-    },[]) 
+        db.collection('submissions').where('user_id', '==', currentUser.uid).get().then(querySnap => {
+            querySnap.forEach(doc => {
+                setSubmissions(prevState => [...prevState, doc.data()]);
+            })
+        })
+    }
+    },[currentUser]) 
     console.log(currentUser);
     console.log(userData);
+    if(!currentUser || !userData){
+        return(
+            <center>
+                <h3>Loading...</h3>
+            </center>
+        )
+    }
     return (
         <div>
-            {/* <Nav /> */}
             <div className='user-profile-new'>
                 <div className='profile-dp-new' style={{backgroundImage: `url(${currentUser.photoURL})`}}></div>
                 <div className='social-container-new'>
@@ -62,6 +65,9 @@ const UserpNew = () => {
                     </div>
                 </div>
                 <div className='profile-content-new'>
+                    {
+                        currentUser.uid===userId?<a href='/profile/edit-profile' className='btn-edit-profile'>Edit profile</a>:null   
+                    }
                     <div className='content-top'>
                         <h3>{userData.name}</h3>
                         <div className='about-para-new'>

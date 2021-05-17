@@ -36,20 +36,12 @@ const Profile = (props) => {
             </center>
         )
     }
-    else{
     return (
         <div className='profile'>
             <div className='profile-container'>
-                <Side user={currentUser} />
                 <div className='nav-main'>
                 <Switch>
                     <Route exact path='/profile/edit-profile' render={() => <Fragment><Top title='Public profile'/><Basic user={user}/></Fragment>} />
-                </Switch>
-                <Switch>
-                    <Route exact path='/profile/past-competitions' render={() => <Fragment><Top title='Past Competitions'/><PastCompi /></Fragment>} />
-                </Switch>
-                <Switch>
-                    <Route exact path='/profile/my-competitions' render={() => <Fragment><Top title='My Competitions'/><MyCompi user={currentUser.uid} /></Fragment>} />
                 </Switch>
                 <Switch>
                     <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Redeem Coins'/><ManageCoins user={user} uid={currentUser.uid} /></Fragment>} />
@@ -59,7 +51,6 @@ const Profile = (props) => {
             {/* <Footer /> */}
         </div>
     )
-    }
 }
 
 export default Profile

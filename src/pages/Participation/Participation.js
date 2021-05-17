@@ -4,6 +4,7 @@ import firebase from '../../firebase';
 import image1 from '../../assets/banner.jpg';
 import { AuthContext } from '../../Auth';
 import Loading from '../../components/Loading/Loading';
+import { toast } from 'react-toastify';
 
 const db = firebase.firestore();
 
@@ -59,8 +60,11 @@ const Participation = (props) => {
                     voters:[]
                 }).then(docRef => {
                     console.log('Document added: ', docRef.id);
+                    toast.success('Congrats! Your submission has been successfully uploaded.')
+
                 }).catch(error => {
                     console.log('error adding document', error);
+                    toast.error('Sorry! We encountered some error uploading your submission.')
                 })
             })
             db.collection('competitions').doc(competition_id).set({
@@ -92,7 +96,15 @@ const Participation = (props) => {
                     <input className={hidden?'hide':''} type='text' onChange={handleInput} placeholder='Youtube-link'></input>
                 </div>
                 </div>
-                <a href={false} className='btn-submit' onClick={(e) => {handleSubmit(e); setLoading(true)}}>Submit</a>
+                <a href={false} className='btn-submit' onClick={(e) => {
+                    if(photoUrl !== ''){
+                        setLoading(true);
+                        handleSubmit(e); 
+                    }
+                    else{
+                        toast.error('Choose a file to upload!');
+                    }
+                    }}>Submit</a>
             </div>
         </div>
     )

@@ -69,7 +69,7 @@ const BottomNav = () => {
                 Redeem
             </div>
             <div className='item-box'>
-                <img src={currentUser.photoURL} className='bottom-nav-icons profile-icon' onClick={() => window.location.href = '/profile/edit-profile'}></img>
+                <img src={currentUser.photoURL} className='bottom-nav-icons profile-icon' onClick={() => window.location.href = '/user/username'}></img>
                 Profile
             </div>
         </div>
