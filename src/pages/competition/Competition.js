@@ -22,7 +22,7 @@ const Competition = (props) => {
         }
     };
 
-    const [currentUser] = useContext(AuthContext);
+    const {currentUser} = useContext(AuthContext);
     console.log({currentUser})
 
     const [mySubs, setMySubs] = useState([])

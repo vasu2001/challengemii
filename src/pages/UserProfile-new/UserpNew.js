@@ -14,7 +14,7 @@ const db = firebase.firestore();
 
 const UserpNew = () => {
 
-    const[currentUser, setCurrentUser] = useContext(AuthContext)
+    const{currentUser, setCurrentUser} = useContext(AuthContext)
     const[userData, setUserData] = useState({})
     const[userId, setUserId] = useState('');
     const[submissions, setSubmissions] = useState([])

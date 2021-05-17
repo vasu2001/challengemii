@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component, useEffect,useState } from 'react'
 import Nav from '../../components/Nav-new/Nav'
 import './allCompetitions.css';
 import Footer from '../../components/Footer/Footer';
@@ -7,7 +7,6 @@ import CardNew from '../../components/Cards-new/CardNew';
 import firebase from '../../firebase';
 import ongoing from '../../assets/gift-box.png'
 import upcoming from '../../assets/check-in.png'
-import { useState } from 'react';
 
 const db = firebase.firestore(); 
 
@@ -18,9 +17,7 @@ const AllCompetitions = () => {
     // getting all competitions from firestore 
     useEffect(() => {
         db.collection('competitions').get().then(querySnap => {
-            querySnap.forEach(doc => {
-                setCompetitions(prevState => [...prevState, {id:doc.id, data:doc.data()}]);
-            })
+            setCompetitions(querySnap.docs.map(x=>({data:x.data(),id:x.id})))
         })
     },[])
 

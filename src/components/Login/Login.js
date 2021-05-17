@@ -25,7 +25,7 @@ const uiConfig = {
 const Login = (props) => {
 
     const [active,setActive] = useState(true)    
-    const [currentUser, setCurrentUser] = useContext(AuthContext);
+    const {currentUser, setCurrentUser} = useContext(AuthContext);
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {

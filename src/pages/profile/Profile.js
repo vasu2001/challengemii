@@ -15,19 +15,19 @@ import { AuthContext } from '../../Auth';
 const db = firebase.firestore();
 
 const Profile = (props) => {
-    const [currentUser,setCurrentUser] = useContext(AuthContext); // to get the id of current user 
-    const [user,setUser] = useState({}); // to hold the data of user stored in firestore database
+    const {currentUser,userData:user} = useContext(AuthContext); // to get the id of current user 
+    // const [user,setUser] = useState({}); // to hold the data of user stored in firestore database
 
-    useEffect(() => {
-        if(currentUser){
-            db.collection('users').doc(currentUser.uid).get().then(doc => {
-                if(doc.exists){
-                    setUser(doc.data())                    
-                }
-            })    
-        }
+    // useEffect(() => {
+    //     if(currentUser){
+    //         db.collection('users').doc(currentUser.uid).get().then(doc => {
+    //             if(doc.exists){
+    //                 setUser(doc.data())                    
+    //             }
+    //         })    
+    //     }
 
-    },[currentUser])
+    // },[currentUser])
 
     if(!currentUser || !user){
         return(
@@ -44,7 +44,7 @@ const Profile = (props) => {
                     <Route exact path='/profile/edit-profile' render={() => <Fragment><Top title='Public profile'/><Basic user={user}/></Fragment>} />
                 </Switch>
                 <Switch>
-                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Redeem Coins'/><ManageCoins user={user} uid={currentUser.uid} /></Fragment>} />
+                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Redeem Coins'/><ManageCoins/></Fragment>} />
                 </Switch>
                 </div>
             </div>
