@@ -34,7 +34,7 @@ const CardNew = (props) => {
                         <img className='prizeImg cd-nw-img' alt="Prize" src={trophy} style={{marginRight:'8px'}}/>
                         <p>: {competition.prize}</p>
                     </div>
-                    <div className='bottom-container'>
+                    <div className='bottom-container registered-sec'>
                         <img className='prizeImg cd-nw-img' alt="Prize" src={population} style={{marginRight:'8px'}}/>
                         <p>: {competition.submissions} Registered</p>
                     </div>

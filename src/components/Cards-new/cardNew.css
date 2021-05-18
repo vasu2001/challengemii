@@ -8,13 +8,11 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    border-radius: 20px;
 }
 .card-photo{
     width: 30%;
     height: 100%;
-    /* background: url(https://source.unsplash.com/random/ana) no-repeat center; */
-    /* background-size: cover; */
-
 }
 .card-photo img{
     width:100%;
@@ -84,7 +82,7 @@
 @media only screen and (max-width:1200px){
     .card-new{
         width: 100%;
-        height: 190px;
+        height: 160px;
         margin-top: 15px;
         display: flex;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -100,7 +98,7 @@
 @media only screen and (max-width:900px){
     .card-new{
         width: 100%;
-        height: 190px;
+        height: 160px;
         margin-top: 15px;
         display: flex;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -137,10 +135,6 @@
         height: 20px !important;
     }
 }
-@media only screen and (max-width:450px){
-    
-}
-
 @media only screen and (max-width:500px){
     .card-new{
         background-color: #fff;
@@ -148,8 +142,9 @@
     .card-photo{
         width: 50%;
         height: 100%;
-        background: url(https://source.unsplash.com/random/ana) no-repeat center;
-        background-size: cover;
+    }
+    .registered-sec{
+        display:none;
     }
     .short-time{
         font-size: 14px;
