@@ -17,12 +17,18 @@ const ManageCoins = (props) => {
     const [prizes,setPrizes]=useState([])
     
     const redeem = (prize) => {
+        if(parseInt(user.coin)<parseInt(prize.coins)){
+            toast.error('Insufficient coins')
+            return;
+        }
+
         db.collection('redeem_req').add({
             user_id: currentUser.uid,
             name: user.name,
             details: paytm_upi,
             coins: prize.coins,
-            prize_id:prize.id
+            prize_id:prize.id,
+            completed:false,
         })
         .then((docRef) => {
             console.log('Request sent');
@@ -41,7 +47,7 @@ const ManageCoins = (props) => {
 
     return (
             <div className='manage-coins'>
-            <div className='container-1'>
+            {/* <div className='container-1'>
             <div className='cash-req'>
                     <h4>Get Cash</h4>
                     <p>Note: Minimum redeem cash limit is INR 1000</p>
@@ -62,19 +68,19 @@ const ManageCoins = (props) => {
                     <h3 className='balance-titls'>Balance:</h3>
                     <h4><span><img src={coins} className='balance-img'></img></span>120</h4>
                 </div>
-            </div>
-            <div className='prize-container'>
-                <h4>Get Prize</h4>
-                <div className='cash-action'>
+            </div> */}
+            {/* <div className='prize-container'> */}
+                {/* <h4>Get Prize</h4> */}
+                {/* <div className='cash-action'>
                         <input type='text' id='paytm_upi' className='input-field' placeholder='Full shipping address'></input> 
-                        {/* <a className='btn-redeem' onClick={redeem}>Redeem</a> */}
-                    </div>
+                        <a className='btn-redeem' onClick={redeem}>Redeem</a>
+                    </div> */}
                 <div className='prizes'>
                    {
                        prizes.map((data,i)=>(<PrizeBox data={data} key={i} onRedeem={()=>redeem(data)} />))
                    }
                 </div>
-            </div>
+            {/* </div> */}
             </div>
     )
 }

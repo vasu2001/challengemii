@@ -6,23 +6,47 @@ import coins from '../../assets/coin.png'
 import { BiCoinStack } from 'react-icons/bi';
 import { GoSignOut } from 'react-icons/go';
 
+const db = firebase.firestore(); //getting firestore
+
+
 const Nav = () => {
 
     const {currentUser,setCurrentUser,setUserData,userData} = useContext(AuthContext);
-
     const [isVisible,setIsVisible] = useState(false);
     
-    // Updating currentUser state in Auth Context 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged(async user => {
-            if(user) {
-                const data =(await firebase.firestore().collection('users').doc(user.uid).get()).data()
-                setUserData(data)
-                setCurrentUser(user)
-            } 
+        const unsubsribe = firebase.auth().onAuthStateChanged(async user => {
+            if(user){
+                const userDoc = await firebase.firestore().collection('users').doc(user.uid).get()
+                if(userDoc.exists){
+                    setUserData(userDoc.data())
+                }else{
+                    // saving user in database if no user exists with the same uid.
+                    const newUserData = {
+                        name: user.displayName,
+                        photoURL: user.photoURL,
+                        coins: 0,
+                        tickets: 0,
+                        desc: '',
+                        website: '',
+                        twitter: '',
+                        instagram: '',
+                        facebook: '',
+                        linkedin: ''
+                    } 
+                    await db.collection('users').doc(user.uid).set(newUserData)
+                    setUserData(newUserData)
+                }
+
+                setCurrentUser(user) // updating currentUser state of Auth context                 
+            }
             else console.log('no user found');
         })
-    },[])
+
+        return ()=>{
+            unsubsribe()
+        }
+    },[]);
 
     if(!currentUser){
     return (

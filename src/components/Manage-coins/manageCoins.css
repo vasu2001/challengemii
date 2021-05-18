@@ -4,7 +4,14 @@
     padding: 0 20px;
     margin-bottom: 50px;
 }
-.container-1{
+
+.prizes{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* .container-1{
     display: flex;
     width: 100%;
 
@@ -50,13 +57,9 @@
     color: #333;
     text-align: center;
     padding: 20px 10px;
-}
-.prizes{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.btn-redeem:hover{
+} */
+
+/* .btn-redeem:hover{
     color: #fff;
     background-color: rgb(191, 70, 66);
 }
@@ -97,7 +100,7 @@
 }
 
 .coin-action input{
-    /* width: 250px; */
+    width: 250px; 
 }
 .active{
     opacity: 0;
@@ -117,9 +120,9 @@
     .balance-container h4{
         font-size: 14px;
     }
-}
+} */
 
-@media only screen and (max-width:550px){
+/* @media only screen and (max-width:550px){
     .container-1{
         flex-direction: column;
     }
@@ -142,4 +145,4 @@
         transform: translateY(4px);
     }
 
-}
+} */

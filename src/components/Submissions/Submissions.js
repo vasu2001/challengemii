@@ -5,6 +5,13 @@ import { FaShareAlt } from 'react-icons/fa';
 
 
 const Submissions = ({submission,onLike,selected}) => {
+
+    const onShare=()=>{
+        navigator.share?.({
+            title: "Share your submission with your friends!",
+            url: window.location.href
+          })
+    }
     
     return (
         <div className={`submission ${"active"?"selected":""}`} >
@@ -20,7 +27,7 @@ const Submissions = ({submission,onLike,selected}) => {
                     style={{color:selected?'black':'white'}} 
                     className='btn-vote'><AiFillLike 
                 /></a>
-                <a href={()=>false} className='btn-vote'><FaShareAlt /></a>
+                <a onClick={onShare} className='btn-vote'><FaShareAlt /></a>
             </div>
         </div>
     )

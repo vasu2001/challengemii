@@ -12,7 +12,7 @@ const db = firebase.firestore();
 
 const Card = (props) => {
     
-    console.log(props.id);
+    // console.log(props.id);
     const [competition,setCompetitions] = useState({});
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const Card = (props) => {
                 setCompetitions(doc.data());
             }
         })
-    },[competition, props.id])
+    },[props.id])
 
     if(competition){
         return(
