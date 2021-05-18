@@ -30,10 +30,10 @@ const Profile = (props) => {
             <div className='profile-container'>
                 <div className='nav-main'>
                 <Switch>
-                    <Route exact path='/profile/edit-profile' render={() => <Fragment><Top title='Public profile'/><Basic user={user}/></Fragment>} />
+                    <Route exact path='/profile/edit-profile' render={() => <Fragment><Top title='Public profile' subtitle='Add information about yourself.' /><Basic user={user}/></Fragment>} />
                 </Switch>
                 <Switch>
-                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Redeem Coins'/><ManageCoins/></Fragment>} />
+                    <Route exact path='/profile/manage-coins' render={() => <Fragment><Top title='Redeem Coins' subtitle='Get cash or exciting prizes ' /><ManageCoins/></Fragment>} />
                 </Switch>
                 </div>
             </div>

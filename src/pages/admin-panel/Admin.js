@@ -8,6 +8,7 @@ import HostCompetiton from '../../components/Host-competition/HostCompetiton';
 import CompetitionStat from '../../components/Competition-Stat/CompetitionStat';
 import Redeem from '../../components/Redeem-req/Redeem';
 import AddPrize from '../../components/Add-Prize/AddPrize';
+import EditVote from '../../components/Edit-vote/EditVote';
 
 
 const Admin = () => {
@@ -27,6 +28,9 @@ const Admin = () => {
                    </Switch>
                    <Switch>
                     <Route exact path='/admin-panel/add-prize' render={() => <Fragment><Top title='Add Prize'/><AddPrize /></Fragment>} />
+                   </Switch>
+                   <Switch>
+                    <Route exact path='/admin-panel/edit-vote' render={() => <Fragment><Top title='Edit Vote'/><EditVote /></Fragment>} />
                    </Switch>
                 </div>
             </div>

@@ -53,7 +53,7 @@ const Nav = () => {
         <div className='nav-new'>
               <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
               <div className='nav-items'>
-                  <p className='item-text link' onClick={() => {window.location = ('/all-competitions')}}>Competitions</p>
+                  <p className='item-text link desktop' onClick={() => {window.location = ('/all-competitions')}}>Competitions</p>
                   {/* Redirecting to sign-in page - LOGIN.JS */}
                   <a href={()=>false} className='btn btn-signin' onClick={()=> {window.location = ('/sign-in')} }>Sign in</a>
           </div>
@@ -89,7 +89,7 @@ const Nav = () => {
                 <div className='desktop'>
                   <p className='link' onClick={() => window.location.href = '/all-competitions'}>Competitions</p>
                   <div className='link-box'>  
-                    <p className='link' onClick={() => window.location.href = '/profile/manage-tickets'}>Buy Tickets</p>
+                    <p className='link' onClick={() => window.location.href = '/manage-tickets'}>Buy Tickets</p>
                     <p className='link' onClick={() => window.location.href = '/profile/manage-coins'}>Redeem Coins</p>
                   </div>
                     <div style={{display:'flex', alignItems:'center'}}>

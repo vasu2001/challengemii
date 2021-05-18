@@ -22,6 +22,7 @@
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin: 10px;
 }
 .close{
     opacity:0;

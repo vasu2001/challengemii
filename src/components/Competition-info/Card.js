@@ -7,6 +7,7 @@ import trophy from '../../assets/trophy.png';
 import population from '../../assets/population.png';
 import calendar from '../../assets/calendar.png';
 import firebase from '../../firebase'
+import moment from 'moment';
 
 const db = firebase.firestore();
 
@@ -32,7 +33,7 @@ const Card = (props) => {
                     <p style={{marginLeft:"3px"}}>{competition.tagline}</p>
                 </div>
                 <div className='time-stamp-container'>
-                <p className='time-stamp'>{competition.starts} - {competition.ends}</p>
+                <p className='time-stamp'>{moment(competition.starts).format("Do MMM,YYYY h:mm a")} - {moment(competition.ends).format("Do MMM,YYYY h:mm a")}</p>
                 </div>
                 <div className='date-time'>
                     <p style={{fontSize:'16px', marginLeft:'20px'}}>Start:<span style={{fontSize:'14px', marginLeft:'10px', color:'#454545'}}>{competition.starts}</span></p>
@@ -64,8 +65,8 @@ const Card = (props) => {
                     </div>
                     <div className="slide2-item">
                         <img className='slideImg' alt="Prize" src={calendar}/>
-                        <p className='registered'>4</p>
-                        <p style={{color:'#484848'}} className='registered-text'>Days Left</p>
+                        <p className='registered'>{moment(competition.starts).fromNow(true)}</p>
+                        <p style={{color:'#484848'}} className='registered-text'></p>
                     </div>
                     <div className="entry">
                         Rs. {competition.fees}

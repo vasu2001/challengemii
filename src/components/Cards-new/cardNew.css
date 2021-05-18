@@ -105,6 +105,9 @@
         color: #777;
         position: relative;
     }
+    .entry-sec{
+        display: none;
+    }
     .long-time{
         display: none;
     }

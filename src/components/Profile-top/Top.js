@@ -6,7 +6,7 @@ const Top = (props) => {
         <div>
             <div className='top-container'>
                 <h2>{props.title}</h2>
-                <p style={{marginTop:'5px'}}>Add information about yourself</p>
+                <p style={{marginTop:'5px'}}>{props.subtitle}</p>
             </div>
         </div>
     )

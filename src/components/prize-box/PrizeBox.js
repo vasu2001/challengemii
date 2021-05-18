@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './prizeBox.css'
 import pizza from '../../assets/pizza.jpg'
 import coins from '../../assets/coin.png'
+import QuestionModal from '../Question-modal/QuestionModal'
 
 const PrizeBox = ({data,onRedeem}) => {
-    console.log(data);
+
+    const [modalDisplay,setModalDisplay] = useState(false)
+
+    const setModalState = () => {
+        setModalDisplay(false);
+    }
+
     return (
         <div className='prize-box'>
+            {
+                modalDisplay?<QuestionModal displayState={setModalState} />: null
+            }
             <div className='img-holder'>
                 <img src={data.image}></img>
             </div>
@@ -14,7 +24,7 @@ const PrizeBox = ({data,onRedeem}) => {
                 <p>{data.name}</p>
                 <p><span><img src={coins} className='prize-value'></img></span>{data.coins} coins</p>
             </div>
-            <a className='btn-add' onClick={onRedeem}>Redeem</a>
+            <a className='btn-add' onClick={() => {setModalDisplay(true)}}>Redeem</a>
         </div>
     )
 }
