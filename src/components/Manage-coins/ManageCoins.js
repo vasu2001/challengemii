@@ -5,38 +5,55 @@ import firebase from '../../firebase';
 import PrizeBox from '../prize-box/PrizeBox';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Auth';
+import QuestionModal from '../Question-modal/QuestionModal';
+import Loading from '../Loading/Loading';
+import moment from 'moment';
 
 const db = firebase.firestore();
 
 const ManageCoins = (props) => {
-    const [active, setActive] = useState(false);
-    const [paytm_upi, setPaytm_upi] = useState('');
+    // const [active, setActive] = useState(false);
+    // const [paytm_upi, setPaytm_upi] = useState('');
     const [loading,setLoading] = useState(false);
+    const [modal,setModal] = useState(-1)
 
     const {userData:user,currentUser}=useContext(AuthContext)
     const [prizes,setPrizes]=useState([])
     
-    const redeem = (prize) => {
-        if(parseInt(user.coin)<parseInt(prize.coins)){
-            toast.error('Insufficient coins')
-            return;
-        }
+    const onRedeem = (answers) => {
+        const prize=prizes[modal]
+        setLoading(true)
 
         db.collection('redeem_req').add({
             user_id: currentUser.uid,
             name: user.name,
-            details: paytm_upi,
+            answers,
             coins: prize.coins,
             prize_id:prize.id,
             completed:false,
+            date:moment().toString()
         })
         .then((docRef) => {
             console.log('Request sent');
             toast('Redeem Request Sent!')
+            setLoading(false)
+            setModal(-1)
         })
         .catch((err) => {
             console.log('Error sending request');
+            setLoading(false)
         })
+    }
+
+    const openModal=(i)=>{
+        const {coins}=prizes[i]
+
+        if(parseInt(user.coin)<parseInt(coins)){
+            toast.error('Insufficient coins')
+            return;
+        }
+
+        setModal(i);
     }
 
     useEffect(()=>{
@@ -47,40 +64,17 @@ const ManageCoins = (props) => {
 
     return (
             <div className='manage-coins'>
-            {/* <div className='container-1'>
-            <div className='cash-req'>
-                    <h4>Get Cash</h4>
-                    <p>Note: Minimum redeem cash limit is INR 1000</p>
-                    <div className='cash-action'>
-                        <input type='text' id='paytm_upi' className='input-field' onChange={event => setPaytm_upi(event.target.value)} placeholder='Paytm/UPI'></input> 
-                        <a href={false} className='btn-redeem' onClick={() => {
-                            // if(paytm_upi!==''){
-                            //     setLoading(true)
-                            //     redeem()
-                            // }
-                            // else{
-                            //     toast.error('Enter your paytm/upi id');
-                            // }
-                        }}>Redeem</a>
-                    </div>
-                </div>
-                <div className='balance-container'>
-                    <h3 className='balance-titls'>Balance:</h3>
-                    <h4><span><img src={coins} className='balance-img'></img></span>120</h4>
-                </div>
-            </div> */}
-            {/* <div className='prize-container'> */}
-                {/* <h4>Get Prize</h4> */}
-                {/* <div className='cash-action'>
-                        <input type='text' id='paytm_upi' className='input-field' placeholder='Full shipping address'></input> 
-                        <a className='btn-redeem' onClick={redeem}>Redeem</a>
-                    </div> */}
+                {
+                    modal > -1?<QuestionModal onClose={()=>setModal(-1)} ques={prizes[modal].ques} onRedeem={onRedeem} />: null
+                }
                 <div className='prizes'>
                    {
-                       prizes.map((data,i)=>(<PrizeBox data={data} key={i} onRedeem={()=>redeem(data)} />))
+                       prizes.map((data,i)=>(<PrizeBox data={data} key={i} onRedeem={()=>openModal(i)} />))
                    }
                 </div>
-            {/* </div> */}
+                {
+                    loading?<Loading/>:null
+                }
             </div>
     )
 }

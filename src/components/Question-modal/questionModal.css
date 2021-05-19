@@ -6,7 +6,7 @@
     /* opacity: 0.6; */
     top: 0;
     left: 0;
-    z-index: 11000;
+    z-index: 11;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,6 +57,18 @@
     cursor: pointer;
     font-size: 22px;
 }
+
+.ques-next{
+    margin:0 20px;
+}
+.ques-nav{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 70px;
+    align-self: stretch;
+    margin-top: 10px;
+}
+
 @media only screen and (max-width:522px){
     .question-textbox{
         padding: 140px 50px 60px 50px;
