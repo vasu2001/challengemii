@@ -26,3 +26,6 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+.Toastify{
+    z-index: 99999;
+}

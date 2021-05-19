@@ -12,18 +12,8 @@ const db = firebase.firestore();
 
 const BottomNav = () => {
 
-    const {currentUser, setCurrentUser} = useContext(AuthContext);
-    const [user,setUser] = useState({});
-
-    useEffect(() => {
-        if(currentUser){
-        db.collection('users').doc(currentUser.uid).get().then(doc=>{
-            if(doc.exists){
-                setUser(doc.data())
-            }
-        })
-    }
-    },[currentUser])
+    const {currentUser, setCurrentUser, userData:user} = useContext(AuthContext);
+  
 
     if(!currentUser || !user){
     return (
