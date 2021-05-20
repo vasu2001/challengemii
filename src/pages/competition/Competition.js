@@ -8,7 +8,8 @@ import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import './competition.css';
 import firebase from '../../firebase'
 import { AuthContext } from '../../Auth';
-import { ToastContainer, toast } from 'react-toastify';
+import {toast } from 'react-toastify';
+import Gallery from '../../components/Gallery/Gallery';
 
 const db = firebase.firestore();
 
@@ -27,7 +28,8 @@ const Competition = (props) => {
 
     const [mySubs, setMySubs] = useState([])
     const [selectedSub, setSelectedSub] = useState([]);
-    
+    // const [showButton,setShowButton] = useState(false);
+
     useEffect(() => {
         db.collection('submissions').where('competition_id', '==', props.match.params.id).get()
         .then((querySnap) => {
@@ -45,12 +47,12 @@ const Competition = (props) => {
 
 
     const onSubmit=async ()=>{
-        if(selectedSub.length==VOTE_LIMIT){
+        if(selectedSub.length===VOTE_LIMIT){
             const batch = firebase.firestore().batch()
             const dbRef = firebase.firestore().collection('submissions')
             selectedSub.forEach(i=>{
                 const data=mySubs[i]
-                if(data.vote=="")
+                if(data.vote==="")
                     data.vote='0'
                 if(!data.voters)
                     data.voters=[]
@@ -63,12 +65,26 @@ const Competition = (props) => {
 
             await batch.commit()
             setSelectedSub([])
+            window.location.reload();
         }else{
-            //show user message
+            toast.error('You must vote '+ VOTE_LIMIT + ' participants to submit')
         }
     }
 
-    console.log('mysubs: ', mySubs);
+    
+
+    const showButton = () => {
+        const element = document.getElementById('submit-vote');
+        if(window.scrollY >= 1000){
+            element.style.right = '0'
+        }
+        if(window.scrollY < 300){
+            element.style.right = '-200px'
+        }
+    }
+
+    window.addEventListener('scroll',showButton);
+
     return (
         <div className='competition-pg'>
             <div className='competition-content'>
@@ -81,7 +97,7 @@ const Competition = (props) => {
                     </Switch>
                     <Leaderboard id={props.match.params.id} />
                     <h2 className='submission-title'>Submissions</h2>
-                    <SRLWrapper options={options}>
+                    {/* <SRLWrapper options={options}> */}
                         <div className='submissions'>
 
                             {
@@ -96,7 +112,7 @@ const Competition = (props) => {
                                             selected={selectedSub.includes(i)}
                                             onLike={()=>{
                                                 if(selectedSub.includes(i))
-                                                    setSelectedSub([...selectedSub.filter(x=>x!=i)])
+                                                    setSelectedSub([...selectedSub.filter(x=>x!==i)])
                                                 else 
                                                     setSelectedSub([...selectedSub,i])
                                         }} />
@@ -104,11 +120,10 @@ const Competition = (props) => {
                                 })
                             }
                         </div>
-                    </SRLWrapper>
-
-                    <a onClick={onSubmit} className='submitButton'>
-                        submit ({selectedSub.length}/{VOTE_LIMIT})
-                    </a>
+                    {/* </SRLWrapper> */}
+                            <a onClick={onSubmit} className='submitButton' id='submit-vote'>
+                                Submit ({selectedSub.length}/{VOTE_LIMIT})
+                            </a>
                 </section>
             </div>
         </div>

@@ -45,10 +45,25 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    position: relative;
 }
-
 .submitButton{
-    margin-top: 100px;
+    background-color: #fca311;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    bottom: 100px;
+    right: -200px;
+    transition: all 0.5s;
+    z-index: 2000;
+    cursor: pointer;
+}
+.submitButton:hover{
+    color: #fff;
+    text-decoration: none;
 }
 
 @media only screen and (max-width:780px){
@@ -59,6 +74,10 @@
 @media only screen and (max-width: 600px){
     .competition-content{
         width: 100%;
+    }
+    .submitButton{
+        font-size: 12px;
+        padding:10px 15px;
     }
 }
 @media only screen and (max-width: 560px){

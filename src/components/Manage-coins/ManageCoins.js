@@ -20,6 +20,8 @@ const ManageCoins = (props) => {
     const {userData:user,currentUser}=useContext(AuthContext)
     const [prizes,setPrizes]=useState([])
     
+    const [dropdown,setDropdown] = useState(false);
+
     const onRedeem = (answers) => {
         const prize=prizes[modal]
         setLoading(true)
@@ -64,6 +66,26 @@ const ManageCoins = (props) => {
 
     return (
             <div className='manage-coins'>
+                <div className='search-filter-container'>
+                    <input type='text' className='input-search' placeholder='Search'></input>
+                    <div class="wrapper">
+                        <input type="radio" name="select" id="option-1" checked></input>
+                        <input type="radio" name="select" id="option-2"></input>
+                        <label for="option-1" class="option option-1">
+                            <div class="dot"></div>
+                            <span>Low-to-High</span>
+                            </label>
+                        <label for="option-2" class="option option-2">
+                            <div class="dot"></div>
+                            <span>High-to-Low</span>
+                        </label>
+                    </div>
+                    {/* <a className='btn-filter' onClick={() => setDropdown(!dropdown)}>Filter</a>
+                    <div className={`dropdown-hide ${dropdown?'dropdown':null}`}>
+                        <p id='low'>Price: Low to High</p>
+                        <p id='high'>Price: High to Low</p>
+                    </div> */}
+                </div>
                 {
                     modal > -1?<QuestionModal onClose={()=>setModal(-1)} ques={prizes[modal].ques} onRedeem={onRedeem} />: null
                 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './submissions.css'
 import { AiFillLike } from 'react-icons/ai';
 import { FaShareAlt } from 'react-icons/fa';
+import Gallery from '../Gallery/Gallery';
 
 
 const Submissions = ({submission,onLike,selected}) => {
@@ -12,7 +13,6 @@ const Submissions = ({submission,onLike,selected}) => {
             url: window.location.href
           })
     }
-    
     return (
         <div className={`submission ${"active"?"selected":""}`} >
             <div className='sub-head'>

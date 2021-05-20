@@ -20,12 +20,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 14px;
+        font-size: 12px;
         color: #777;
         cursor: pointer;
     }
     .bottom-nav-icons{
-        width: 40px;
+        width: 30px;
     }
     .coin-container{
         position: relative;
@@ -45,7 +45,7 @@
     .tickets{
         position: absolute;
         top:3px;
-        right: -35px;
+        right: -30px;
         padding: 5px;
         width: 100%;
         text-align: center;
@@ -55,7 +55,7 @@
     }
     .profile-icon{
         border-radius: 50%;
-        width: 45px;
+        width: 30px;
     }
 }
 

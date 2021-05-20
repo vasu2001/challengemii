@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Component } from 'react';
 import firebase from '../../firebase';
+import moment from 'moment'
 
 const db = firebase.firestore();
 
@@ -16,7 +17,6 @@ class Redeem extends Component {
                 this.setState(prevState => ({
                     requests: [...prevState.requests, doc.data()]
                 }))
-                // this.setState({requests: doc.data()})
             })
         })
     }
@@ -28,48 +28,26 @@ class Redeem extends Component {
                 <thead>
                     <tr>
                     <th>Name</th>
-                    <th>Paytm/UPI Id</th>
-                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>status</th>
                     </tr>
                 </thead>
                 <tbody>
 
                 {
                     this.state.requests.map((request, index) => {
-                        const {id, name, paytm_upi, coins} = request
+                        const {id, name, date} = request
                         return(
                             <tr key={id}>
                                 <td data-column="Name">{name}</td>
-                                <td data-column="Paytm/UPI Id">{paytm_upi}</td>
-                                <td data-column="Amount">{coins}</td>
+                                <td data-column="Paytm/UPI Id">{moment(date).format('DD/MM/YYYY, hh:mm a')}</td>
+                                <td data-column="details"><a href=''>Details</a></td>
+                                <td data-column="Amount"><a href=''>Done</a></td>
                             </tr>
                         )
                     })
                 }
-                    {/* <tr>
-                    <td data-column="Name">Johnny Depp</td>
-                    <td data-column="Paytm/UPI Id">9987877666</td>
-                    <td data-column="Amount">400</td>
-
-                    </tr>
-                    <tr>
-                    <td data-column="Name">Tom Ellies</td>
-                    <td data-column="Paytm/UPI Id">9974838473</td>
-                    <td data-column="Amount">600</td>
-
-                    </tr>
-                    <tr>
-                    <td data-column="Name">Ian Somerhalder</td>
-                    <td data-column="Paytm/UPI Id">9987877666</td>
-                    <td data-column="Amount">800</td>
-
-                    </tr>
-                    <tr>
-                    <td data-column="Name">Chris Evans</td>
-                    <td data-column="Paytm/UPI Id">9987899989</td>
-                    <td data-column="Amount">300</td>
-
-                    </tr> */}
                 </tbody>
             </table>
             </div>
