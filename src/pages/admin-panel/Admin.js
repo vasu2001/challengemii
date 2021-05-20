@@ -29,9 +29,6 @@ const Admin = () => {
                    <Switch>
                     <Route exact path='/admin-panel/add-prize' render={() => <Fragment><Top title='Add Prize'/><AddPrize /></Fragment>} />
                    </Switch>
-                   <Switch>
-                    <Route exact path='/admin-panel/edit-vote' render={() => <Fragment><Top title='Edit Vote'/><EditVote /></Fragment>} />
-                   </Switch>
                 </div>
             </div>
         </div>

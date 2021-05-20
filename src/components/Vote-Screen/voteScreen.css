@@ -21,6 +21,16 @@
     overflow: auto;
     position: relative;
 }
+.vote-box li{
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+}
+.vote-box li:nth-child(odd){
+    background-color: #e5e5e5;
+}
 .close-vote{
     position: absolute;
     top: 20px;

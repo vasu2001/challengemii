@@ -1,29 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './competitionStat.css'
 import firebase from '../../firebase'
-import { Component } from 'react';
+import VoteScreen from '../Vote-Screen/VoteScreen';
 
 const db = firebase.firestore();
 
-class CompetitionStat extends Component {
+const CompetitionStat = () => {
 
-    state = {
-        competitions: []
-    }
+   const [competitions,setCompetitions] = useState([])
+   const [display,setDisplay] = useState(false);
 
-    componentDidMount(){
+    useEffect(() => {
         db.collection('competitions').get().then((querySnap) => {
-            querySnap.forEach((doc) => {
-                this.setState(prevState => ({
-                    competitions: [...prevState.competitions, doc.data()]
-                }))
-            })
+           setCompetitions(querySnap.docs.map(doc => (doc.data())))
         })
+    },[])
+
+    const displayState = () => {
+        setDisplay(false);
     }
-    render(){
+
     return (
         <div>
             <div className='competition-stat'>
+                {
+                display?<VoteScreen displayState={displayState} />:null
+                }
                 <table>
                     <thead>
                         <tr>
@@ -32,59 +34,29 @@ class CompetitionStat extends Component {
                         <th>Ends</th>
                         <th>Participants</th>
                         <th>Prize</th>
+                        <th>Votes</th>
                         </tr>
                     </thead>
                     <tbody>
-
                         {
-                            this.state.competitions.map((competition, index) => {
-                                const { id,title,starts,ends,prize,submissions } = competition;
+                            competitions && competitions.map(competition => {
                                 return(
-                                    <tr key={id} >
-                                        <td data-column="Title">{title}</td>
-                                        <td data-column="Starts">{starts}</td>
-                                        <td data-column="Ends">{ends}</td>
-                                        <td data-column="Participants">{submissions}</td>
-                                        <td data-column="Prize">{prize}</td>
+                                    <tr key={competition.id} >
+                                        <td data-column="Title">{competition.title}</td>
+                                        <td data-column="Starts">{competition.starts}</td>
+                                        <td data-column="Ends">{competition.ends}</td>
+                                        <td data-column="Participants">{competition.submissions}</td>
+                                        <td data-column="Prize">{competition.prize}</td>
+                                        <td data-column='Votes'><a className='' style={{cursor:'pointer'}} onClick={() => setDisplay(true)}>Details</a></td>
                                     </tr>
                                 )
                             })
                         }
-
-                        {/* <tr>
-                        <td data-column="Title">Hack the Space</td>
-                        <td data-column="Starts">16 Apr,2021 12:00 AM</td>
-                        <td data-column="Ends">26 Apr,2021 06:00 AM</td>
-                        <td data-column="Participants">48</td>
-                        <td data-column="Prize">2000</td>
-                        </tr>
-                        <tr>
-                        <td data-column="Title">FrostHack 2021</td>
-                        <td data-column="Starts">7 May,2021 12:00 AM</td>
-                        <td data-column="Ends">9 May,2021 06:00 AM</td>
-                        <td data-column="Participants">22</td>
-                        <td data-column="Prize">6000</td>
-                        </tr>
-                        <tr>
-                        <td data-column="Title">Hack the Space</td>
-                        <td data-column="Starts">16 Apr,2021 12:00 AM</td>
-                        <td data-column="Ends">26 Apr,2021 06:00 AM</td>
-                        <td data-column="Participants">48</td>
-                        <td data-column="Prize">2000</td>
-                        </tr>
-                        <tr>
-                        <td data-column="Title">FrostHack 2021</td>
-                        <td data-column="Starts">7 May,2021 12:00 AM</td>
-                        <td data-column="Ends">9 May,2021 06:00 AM</td>
-                        <td data-column="Participants">22</td>
-                        <td data-column="Prize">6000</td>
-                        </tr> */}
                     </tbody>
                 </table>
             </div>
         </div>
     )
-    }
 }
 
 export default CompetitionStat

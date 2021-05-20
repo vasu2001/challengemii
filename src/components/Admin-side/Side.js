@@ -11,7 +11,6 @@ const Side = () => {
                         <li className='admin-side-nav-links' onClick={()=>{window.location = '/admin-panel/host'}}>Host Competition</li>
                         <li className='admin-side-nav-links' onClick={()=>{window.location = '/admin-panel/stat'}}>Competition Stats</li>
                         <li className='admin-side-nav-links' onClick={()=>{window.location = '/admin-panel/redeem-req'}}>Redeem requests</li>
-                        <li className='admin-side-nav-links' onClick={()=>{window.location = '/admin-panel/edit-vote'}}>Edit Votes</li>
                         <li className='admin-side-nav-links' onClick={()=>{window.location = '/admin-panel/add-prize'}}>Add prize</li>
                     </ul>
             </div>
