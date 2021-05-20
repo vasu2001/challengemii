@@ -16,6 +16,7 @@
     text-align: center;
     padding: 20px 10px;
     position: relative;
+    
 }
 .card-title{
     font-size: 22px;
@@ -92,4 +93,25 @@
 .btn-submit:hover{
     text-decoration: none;
     color: #fff;
+}
+
+@media only screen and (max-width: 420px){
+    .participation-card{
+        width: 300px;
+    }
+    .card-title{
+        font-size: 18px;
+    }
+    .upload-img-container p{
+        font-size: 14px;
+    }
+    .btn-submit{
+        font-size: 12px;
+    }
+    .btn-choose{
+        font-size: 14px;
+    }
+    .yt-link{
+        font-size: 14px;
+    }
 }

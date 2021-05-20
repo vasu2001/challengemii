@@ -24,8 +24,8 @@ const CardNew = (props) => {
                         <img className='prizeImg' alt="Prize" src={clock} style={{marginRight:'8px', width:'20px',height:'20px'}}/>
                         <p>{moment(competition.starts).format("Do MMM,YYYY h:mm a")} - {moment(competition.ends).format("Do MMM,YYYY h:mm a")}</p>
                     </div>
-                        <p className='short-time' style={{marginTop:'10px'}}>Starts: {moment(competition.starts).format("Do, MMM h:mm")}</p>
-                        <p className='short-time'>Ends: {moment(competition.ends).format("Do, MMM h:mm")}</p>
+                        <p className='short-time' style={{marginTop:'10px'}}>Starts: {moment(competition.starts).format("Do, MMM h:mm a")}</p>
+                        <p className='short-time'>Ends: {moment(competition.ends).format("Do, MMM h:mm a")}</p>
                     <div  className='card-main-container entry-sec' style={{marginTop:'10px'}}>
                         <img className='prizeImg cd-nw-img' alt="Prize" src={money} style={{marginRight:'8px', width:'20px',height:'20px'}}/>
                         <p>Entry: {competition.fees}</p>
