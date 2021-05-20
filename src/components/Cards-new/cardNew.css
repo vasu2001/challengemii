@@ -8,7 +8,7 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .card-photo{
     width: 30%;
@@ -82,7 +82,6 @@
 @media only screen and (max-width:1200px){
     .card-new{
         width: 100%;
-        height: 160px;
         margin-top: 15px;
         display: flex;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -98,7 +97,7 @@
 @media only screen and (max-width:900px){
     .card-new{
         width: 100%;
-        height: 160px;
+        height: 140px;
         margin-top: 15px;
         display: flex;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -115,9 +114,13 @@
         display: block;
     }
     .bottom-container{
+        font-size: 14px;
         display: flex;
         align-items: center;
         margin-left: 0px;
+    }
+    .short-time{
+        font-size: 14px;
     }
 }
 @media only screen and (max-width:600px){
@@ -140,7 +143,7 @@
 }
 @media only screen and (max-width:500px){
     .card-new{
-        background-color: #fff;
+        height: 130px;
     }
     .card-photo{
         width: 50%;

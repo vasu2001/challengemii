@@ -8,7 +8,6 @@ import HostCompetiton from '../../components/Host-competition/HostCompetiton';
 import CompetitionStat from '../../components/Competition-Stat/CompetitionStat';
 import Redeem from '../../components/Redeem-req/Redeem';
 import AddPrize from '../../components/Add-Prize/AddPrize';
-import EditVote from '../../components/Edit-vote/EditVote';
 
 
 const Admin = () => {
