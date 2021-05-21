@@ -91,12 +91,48 @@ a:focus{
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     cursor: pointer;
 }
+.btn-edit-profile-mob{
+    position: absolute;
+    right: 60px;
+    top: 40px;
+    font-size: 22px;
+    color: #666;
+    border-radius: 50%;
+    display: none;
+}
 .btn-edit-profile:hover{
     text-decoration: none;
     color: #fff;
 }
+@media only screen and (max-width:700px){
+    .btn-edit-profile{
+        right: 20px;
+    }
+}
 @media only screen and (max-width:600px){
     .profile-content-new{
         width: 100%;
+    }
+    .conte h3{
+        font-size: 18px;
+    }
+    .about-para-new{
+        font-size: 14px;
+    }
+    .btn-edit-profile{
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width:500px){
+    .btn-edit-profile{
+        display: none;
+    }
+    .btn-edit-profile-mob{
+        display: block;
+    }
+}
+@media only screen and (max-width:500px){
+    .btn-edit-profile-mob{
+        right: 30px;
     }
 }

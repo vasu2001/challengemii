@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Nav from '../../components/Nav-new/Nav'
 import './userpNew.css'
 import { AiOutlineInstagram } from 'react-icons/ai';
+import { AiFillEdit } from 'react-icons/ai';
 import { AiFillFacebook } from 'react-icons/ai';
 import { FaTwitter } from 'react-icons/fa';
 import { AiFillLinkedin } from 'react-icons/ai';
@@ -67,6 +68,9 @@ const UserpNew = () => {
                 <div className='profile-content-new'>
                     {
                         currentUser.uid===userId?<a href='/profile/edit-profile' className='btn-edit-profile'>Edit profile</a>:null   
+                    }
+                    {
+                        currentUser.uid===userId?<a href='/profile/edit-profile' className='btn-edit-profile-mob'><AiFillEdit /></a>:null   
                     }
                     <div className='content-top'>
                         <h3>{userData.name}</h3>

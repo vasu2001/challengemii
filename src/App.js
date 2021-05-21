@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Route,Switch } from 'react-router-dom';
 import Competition from './pages/competition/Competition';
 import Home from './pages/home/home';
 import Profile from './pages/profile/Profile';
-import Vote from './pages/vote/vote'
 import './App.css'; 
 import Admin from './pages/admin-panel/Admin';
 import Login from './components/Login/Login';

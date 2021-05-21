@@ -1,12 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Redirect, Route,Switch } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Route,Switch } from 'react-router-dom';
 import Basic from '../../components/Basic-info/Basic'
-import Side from '../../components/Profile-side/Side';
 import Top from '../../components/Profile-top/Top';
-import Footer from '../../components/Footer/Footer'
-import MyCompi from "../../components/My-compi/MyCompi";
 import './profile.css'
-import PastCompi from '../../components/Past-profile/PastCompi';
 import ManageCoins from '../../components/Manage-coins/ManageCoins';
 import firebase from '../../firebase';
 import { useContext } from 'react';
