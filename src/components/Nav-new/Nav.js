@@ -100,7 +100,16 @@ const Nav = () => {
                             <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
                     </div>
                 </div>
-                    <p className='item-text' style={{fontSize:'30px' ,marginLeft: '20px', cursor:'pointer', display:'block'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}><GoSignOut /></p>
+                    <p 
+                        className='item-text' 
+                        style={{fontSize:'30px' ,marginLeft: '20px', cursor:'pointer', display:'block'}} 
+                        onClick={() => {
+                            firebase.auth().signOut(); 
+                            window.location = ('/')
+                        }}
+                    >
+                        <GoSignOut />
+                    </p>
                 </div>
             </div>
             </div>

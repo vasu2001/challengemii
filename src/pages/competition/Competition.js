@@ -24,13 +24,15 @@ const Competition = (props) => {
     };
 
     const {currentUser} = useContext(AuthContext);
-    console.log({currentUser})
+    // console.log({currentUser})
 
     const [mySubs, setMySubs] = useState([])
     const [selectedSub, setSelectedSub] = useState([]);
-    // const [showButton,setShowButton] = useState(false);
+    const [gallery,setGallery] = useState(-1);
 
     useEffect(() => {
+        window.addEventListener('scroll',showButton);
+
         db.collection('submissions').where('competition_id', '==', props.match.params.id).get()
         .then((querySnap) => {
             setMySubs(querySnap.docs.map(doc=>
@@ -43,6 +45,10 @@ const Competition = (props) => {
         .catch((err) => {
             toast.error('Error getting competition.')
         })
+
+        return ()=>{
+            window.removeEventListener('scroll',showButton)
+        }
     },[])
 
 
@@ -71,8 +77,6 @@ const Competition = (props) => {
         }
     }
 
-    
-
     const showButton = () => {
         const element = document.getElementById('submit-vote');
         if(window.scrollY >= 1000){
@@ -82,11 +86,18 @@ const Competition = (props) => {
             element.style.right = '-200px'
         }
     }
+    
 
-    window.addEventListener('scroll',showButton);
+    const onLike=(i)=>{
+        if(selectedSub.includes(i))
+            setSelectedSub([...selectedSub.filter(x=>x!==i)])
+        else 
+            setSelectedSub([...selectedSub,i])
+    
+    }
 
     return (
-        <div className='competition-pg'>
+        <div className={'competition-pg'}>
             <div className='competition-content'>
                 <div className='cover-img'>
                 </div>
@@ -101,7 +112,7 @@ const Competition = (props) => {
                         <div className='submissions'>
 
                             {
-                                mySubs==''?<center><p>There is no submission yet.</p></center>:null
+                                mySubs.length==0?<center><p>There is no submission yet.</p></center>:null
                             }
                             {
                                 mySubs && mySubs.map((submission,i) => {
@@ -110,12 +121,9 @@ const Competition = (props) => {
                                             submission={submission} 
                                             key={submission.id} 
                                             selected={selectedSub.includes(i)}
-                                            onLike={()=>{
-                                                if(selectedSub.includes(i))
-                                                    setSelectedSub([...selectedSub.filter(x=>x!==i)])
-                                                else 
-                                                    setSelectedSub([...selectedSub,i])
-                                        }} />
+                                            onClick={()=>setGallery(i)}
+                                            onLike={onLike} 
+                                            i={i}/>
                                     )
                                 })
                             }
@@ -126,6 +134,7 @@ const Competition = (props) => {
                             </a>
                 </section>
             </div>
+            <Gallery display={gallery} setDisplay={setGallery} data={mySubs} onLike={onLike} selected={selectedSub}/>
         </div>
     )
 }

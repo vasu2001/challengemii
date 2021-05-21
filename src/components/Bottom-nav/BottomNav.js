@@ -7,6 +7,7 @@ import ticketImg from '../../assets/ticket.png'
 import competitionImg from '../../assets/competition.png'
 import { AuthContext } from '../../Auth'
 import firebase from '../../firebase';
+import { Link, NavLink } from 'react-router-dom'
 
 const db = firebase.firestore();
 
@@ -40,10 +41,12 @@ const BottomNav = () => {
     else{
         return(
         <div className='bottom-nav'>
-            <div className='item-box' onClick={() => window.location.href = '/all-competitions'}>
-                <img src={competitionImg} className='bottom-nav-icons'></img>
-                Competitions
-            </div>
+            <NavLink to='/all-competitions' >
+                <div className='item-box'>
+                    <img src={competitionImg} className='bottom-nav-icons'></img>
+                    Competitions
+                </div>
+            </NavLink>
             <div className='item-box ticket-container' onClick={() => window.location.href = '/profile/manage-coins'}>
                 <div className='tickets'>
                     {user.tickets}

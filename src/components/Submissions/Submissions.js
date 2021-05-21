@@ -5,7 +5,7 @@ import { FaShareAlt } from 'react-icons/fa';
 import Gallery from '../Gallery/Gallery';
 
 
-const Submissions = ({submission,onLike,selected}) => {
+const Submissions = ({submission,onLike,selected,onClick,i}) => {
 
     const onShare=()=>{
         navigator.share?.({
@@ -19,11 +19,13 @@ const Submissions = ({submission,onLike,selected}) => {
                 <p>{submission.user_name}</p>
             </div>
             <div className='sub-img-container'>
-             <img alt='' src={submission.photo_link} className='wrapper-img' />
+                <a onClick={onClick} className='img-btn'>
+                    <img alt='' src={submission.photo_link} className='wrapper-img'  />
+                </a>
             </div>
             <div className='vote-container'>
                 <a 
-                    onClick={onLike} 
+                    onClick={()=>onLike(i)} 
                     style={{color:selected?'black':'white'}} 
                     className='btn-vote'><AiFillLike 
                 /></a>
