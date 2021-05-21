@@ -5,6 +5,7 @@ import firebase from '../../firebase';
 import coins from '../../assets/coin.png'
 import { BiCoinStack } from 'react-icons/bi';
 import { GoSignOut } from 'react-icons/go';
+import {Link,NavLink} from 'react-router-dom';
 
 const db = firebase.firestore(); //getting firestore
 
@@ -51,61 +52,55 @@ const Nav = () => {
     if(!currentUser){
     return (
         <div className='nav-new'>
-              <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
+            <Link to='/' style={{display:'flex'}}>
+            <p className="logo-new">Challengemii</p>
+            </Link>
               <div className='nav-items'>
-                  <p className='item-text link desktop' onClick={() => {window.location = ('/all-competitions')}}>Competitions</p>
+                  <Link to='/all-competitions' style={{display:'flex'}}>
+                    <p className='item-text link desktop' onClick={() => {window.location = ('/all-competitions')}}>Competitions</p>
+                  </Link>
                   {/* Redirecting to sign-in page - LOGIN.JS */}
-                  <a href={()=>false} className='btn btn-signin' onClick={()=> {window.location = ('/sign-in')} }>Sign in</a>
+                  <a href={'/sign-in'} className='btn btn-signin'>Sign in</a>
           </div>
         </div>
     )
     }
     else{
         return(
-            // <div className='nav-new'>
-            //   <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
-            //   <div className='nav-mid'>
-            //     <p className='link' onClick={() => {window.location = '/all-competitions'}}>Competitons</p>
-            //     <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Buy Tickets</p>
-            //     <p className='link' onClick={() => {window.location = '/profile/manage-coins'}}>Redeem Coins</p>
-            //   </div>
-            //   <div className='nav-items'>
-            //       <img src={coins} alt='coins' className='coin-img'/>
-            //       <p className='item-text'>100 Points</p>
-            //       {
-            //         <div>
-            //           <div className='nav-profile-box' onClick={() => window.location.href = '/profile/edit-profile'}>
-            //             <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
-            //           </div>
-            //         </div>
-            //       }
-            //       <p className='item-text' style={{marginLeft: '10px', cursor:'pointer'}} onClick={() => {firebase.auth().signOut(); window.location.reload()}}>SIGN OUT</p>
-            //   </div>
-            //   </div>
             <div>
             <div className='nav-new'>
-                <p className="logo-new" onClick={() => {window.location ='/'}}>Challengemii</p>
+                <NavLink to='/' style={{display:'flex', color:'#fff'}}>
+                    <p className="logo-new">Challengemii</p>
+                </NavLink>
                 <div className='nav-items'>
                 <div className='desktop'>
-                  <p className='link' onClick={() => window.location.href = '/all-competitions'}>Competitions</p>
-                  <div className='link-box'>  
-                    <p className='link' onClick={() => window.location.href = '/manage-tickets'}>Buy Tickets</p>
-                    <p className='link' onClick={() => window.location.href = '/profile/manage-coins'}>Redeem Coins</p>
+                <Link to='/all-competitions' style={{display:'flex',color:'#fff'}}>
+                  <p className='link' >Competitions</p>
+                </Link>
+                  <div className='link-box'> 
+                  <Link to='/manage-tickets' style={{display:'flex',color:'#fff'}}>
+                    <p className='link'>Buy Tickets</p>
+                  </Link> 
+                  <Link to='/profile/manage-coins' style={{display:'flex',color:'#fff'}}>
+                    <p className='link'>Redeem Coins</p>
+                  </Link>
                   </div>
                     <div style={{display:'flex', alignItems:'center'}}>
                       <img src={coins} alt='coins' className='coin-img'/>
                       <p className='item-text'>{userData.coin} Coins</p>
                     </div>
-                    <div className='nav-profile-box' onClick={() => window.location.href = '/user/username'}>
-                            <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
-                    </div>
+                    <Link to='/user/username'>
+                        <div className='nav-profile-box'>
+                                <img src={currentUser.photoURL} alt='' className='nav-profile' onClick={()=>{setIsVisible(!isVisible)}} />
+                        </div>
+                    </Link>
                 </div>
                     <p 
                         className='item-text' 
                         style={{fontSize:'30px' ,marginLeft: '20px', cursor:'pointer', display:'block'}} 
                         onClick={() => {
                             firebase.auth().signOut(); 
-                            window.location = ('/')
+                            window.location.reload();
                         }}
                     >
                         <GoSignOut />

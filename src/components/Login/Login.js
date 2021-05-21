@@ -29,7 +29,7 @@ const Login = (props) => {
     return (
         <div className='login'>
             <div className='login-card'>
-                <a className='close-btn' onClick={() => console.log(props.history.goBack())}><GrClose /></a>
+                <a className='close-btn' onClick={() => props.history.goBack()}><GrClose /></a>
                 <h3 style={{color: '#333'}}>Login/SignUp</h3>
             <div style={{marginTop: '60px'}}>
                 <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/> 

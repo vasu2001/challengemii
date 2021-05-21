@@ -6,6 +6,7 @@ import calendar from '../../assets/calendar.png';
 import clock from '../../assets/clock.png';
 import money from '../../assets/money.png';
 import moment from 'moment';
+import {Link} from 'react-router-dom'
 
 const CardNew = (props) => {
     const competition = props.competition.data;
@@ -14,6 +15,7 @@ const CardNew = (props) => {
     if(competition){
         return(
             <div>
+            <Link to={`/competition/${competition_id}`}>
             <div className='card-new' onClick={()=>{window.location = '/competition/' + competition_id}}>
                 <div className='card-photo'>
                     <img src={competition.coverUrl}></img>
@@ -47,6 +49,7 @@ const CardNew = (props) => {
                 </div>
                 <a className={`btn-live ${competition.active?"live-style":""}`} href='34'>{competition.status}</a>
             </div>
+            </Link>
         </div>
         )
     }

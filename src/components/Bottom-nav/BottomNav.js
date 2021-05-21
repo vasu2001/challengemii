@@ -16,22 +16,30 @@ const BottomNav = () => {
     if(!currentUser || !user){
     return (
         <div className='bottom-nav'>
+            <Link to='/sign-in'>
             <div className='item-box'>
-                <img src={competitionImg} alt='' className='bottom-nav-icons' onClick={() => window.location.href = '/sign-in'}></img>
+                <img src={competitionImg} alt='' className='bottom-nav-icons'></img>
                 Competitions
             </div>
-            <div className='item-box'>
-                <img src={ticketImg} alt='' className='bottom-nav-icons' onClick={() => window.location.href = '/sign-in'}></img>
-                Buy
-            </div>
-            <div className='item-box' onClick={() => window.location.href = '/sign-in'}>
-                <img src={coinImg} alt='' className='bottom-nav-icons'></img>
-                Redeem
-            </div>
-            <div className='item-box' onClick={() => window.location.href = '/sign-in'}>
-                <img src={userImg} alt='' className='bottom-nav-icons'></img>
-                Profile
-            </div>
+            </Link>
+            <Link to='/sign-in'>
+                <div className='item-box'>
+                    <img src={ticketImg} alt='' className='bottom-nav-icons'></img>
+                    Buy
+                </div>
+            </Link>
+            <Link to='/sign-in'>
+                <div className='item-box'>
+                    <img src={coinImg} alt='' className='bottom-nav-icons'></img>
+                    Redeem
+                </div>
+            </Link>
+            <Link to='/sign-in'>
+                <div className='item-box'>
+                    <img src={userImg} alt='' className='bottom-nav-icons'></img>
+                    Profile
+                </div>
+            </Link>
         </div>
     )
     }
@@ -44,24 +52,30 @@ const BottomNav = () => {
                     Competitions
                 </div>
             </NavLink>
-            <div className='item-box ticket-container' onClick={() => window.location.href = '/profile/manage-coins'}>
-                <div className='tickets'>
-                    {user.tickets}
+            <NavLink to='/manage-tickets' >
+                <div className='item-box ticket-container'>
+                    <div className='tickets'>
+                        {user.tickets}
+                    </div>
+                    <img src={ticketImg} alt='' className='bottom-nav-icons'></img>
+                    Buy
                 </div>
-                <img src={ticketImg} alt='' className='bottom-nav-icons'></img>
-                Buy
-            </div>
-            <div className='item-box coin-container' onClick={() => window.location.href = '/profile/manage-coins'}>
-                <div className='coins'>
-                    {user.coin}
+            </NavLink>
+            <NavLink to='/profile/manage-coins' >
+                <div className='item-box coin-container'>
+                    <div className='coins'>
+                        {user.coin}
+                    </div>
+                    <img src={coinImg} alt='' className='bottom-nav-icons'></img>
+                    Redeem
                 </div>
-                <img src={coinImg} alt='' className='bottom-nav-icons'></img>
-                Redeem
-            </div>
-            <div className='item-box'>
-                <img src={currentUser.photoURL} alt='' className='bottom-nav-icons profile-icon' onClick={() => window.location.href = '/user/username'}></img>
-                Profile 
-            </div>
+            </NavLink>
+            <NavLink to='/user/username' >
+                <div className='item-box'>
+                    <img src={currentUser.photoURL} alt='' className='bottom-nav-icons profile-icon'></img>
+                    Profile 
+                </div>
+            </NavLink>
         </div>
         )
     }

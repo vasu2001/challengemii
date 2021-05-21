@@ -1,6 +1,6 @@
 import React from 'react'
 import './banner.css'
-
+import {NavLink} from 'react-router-dom';
 const Banner = (props) => {
 
     const user = props.user
@@ -11,9 +11,9 @@ const Banner = (props) => {
                 <div className='homenav-right'>
                     <a href='/all-competitions' className='nav-link'>Competitions</a>
                     {
-                      user?<a href='/profile/edit-profile' class='btn' style={{textTransform: 'none', color:'white'}}>{user.displayName}</a>:<div className='hamburger-container'>
-                              <p onClick={() => window.location.href = '/sign-in'}>Sign In</p>
-                            </div>
+                      user?<a href='/profile/edit-profile' class='btn' style={{textTransform: 'none', color:'white'}}>{user.displayName}</a>: <NavLink to='/sign-in'><div className='hamburger-container'>
+                             <p>Sign In</p>
+                            </div></NavLink>
                     }
                 </div>
             </div>
