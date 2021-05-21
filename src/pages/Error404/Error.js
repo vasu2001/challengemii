@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './error.css'
 
 const Error = () => {
     return (
         <div className='error-pg'>
-        <a href='/' className='back-home'>Back to hompage</a>
+        <Link to='/' className='back-home'>Back to hompage</Link>
   <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-12 mt-5 mb-5">

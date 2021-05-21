@@ -83,7 +83,7 @@ const AddPrize = () => {
             <textarea type='text' id='ques' onChange={handleChange} className='input-field prize-input ques-input' placeholder='Questions'></textarea>
             <p>Add Product Image:</p>
             <input id='choose-input' type='file' className='prize-input' onChange={handleUpload}></input><br/>
-            <a href={false} className='btn-add-product' onClick={onSubmit}>Add Product</a>
+            <a className='btn-add-product' onClick={onSubmit}>Add Product</a>
         </div>
     )
 }

@@ -11,12 +11,12 @@ import {Link} from 'react-router-dom'
 const CardNew = (props) => {
     const competition = props.competition.data;
     const competition_id = props.competition.id;
-    console.log(competition);
+    // console.log(competition);
     if(competition){
         return(
             <div>
             <Link to={`/competition/${competition_id}`}>
-            <div className='card-new' onClick={()=>{window.location = '/competition/' + competition_id}}>
+            <div className='card-new'>
                 <div className='card-photo'>
                     <img src={competition.coverUrl}></img>
                 </div>

@@ -10,6 +10,7 @@ import Footer from '../../components/Footer/Footer';
 import firebase from '../../firebase';
 import Submissions from '../../components/Submissions/Submissions';
 import { AuthContext } from '../../Auth';
+import { Link } from 'react-router-dom';
 
 const db = firebase.firestore();
 
@@ -67,10 +68,10 @@ const UserpNew = () => {
                 </div>
                 <div className='profile-content-new'>
                     {
-                        currentUser.uid===userId?<a href='/profile/edit-profile' className='btn-edit-profile'>Edit profile</a>:null   
+                        currentUser.uid===userId?<Link to='/profile/edit-profile' className='btn-edit-profile'>Edit profile</Link>:null   
                     }
                     {
-                        currentUser.uid===userId?<a href='/profile/edit-profile' className='btn-edit-profile-mob'><AiFillEdit /></a>:null   
+                        currentUser.uid===userId?<Link to='/profile/edit-profile' className='btn-edit-profile-mob'><AiFillEdit /></Link>:null   
                     }
                     <div className='content-top'>
                         <h3>{userData.name}</h3>

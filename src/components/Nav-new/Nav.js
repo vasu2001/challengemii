@@ -57,10 +57,10 @@ const Nav = () => {
             </Link>
               <div className='nav-items'>
                   <Link to='/all-competitions' style={{display:'flex'}}>
-                    <p className='item-text link desktop' onClick={() => {window.location = ('/all-competitions')}}>Competitions</p>
+                    <p className='item-text link desktop' >Competitions</p>
                   </Link>
                   {/* Redirecting to sign-in page - LOGIN.JS */}
-                  <a href={'/sign-in'} className='btn btn-signin'>Sign in</a>
+                  <Link to={'/sign-in'} className='btn btn-signin'>Sign in</Link>
           </div>
         </div>
     )
