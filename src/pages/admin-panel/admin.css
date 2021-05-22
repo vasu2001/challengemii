@@ -1,10 +1,10 @@
-.admin-container{
-    width: 1100px;
-    height: 100%;
-    background-color: #fff;
-    padding-bottom: 50px;
-    margin: 50px auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    display: flex;
-    font-family: 'Lato';
+.admin-container {
+   width: 1100px;
+   height: 100%;
+   background-color: #fff;
+   padding-bottom: 50px;
+   margin: 50px auto;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+   display: flex;
+   font-family: 'Lato';
 }

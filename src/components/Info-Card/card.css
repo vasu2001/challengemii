@@ -1,50 +1,54 @@
-.card-info{
-  background-color: rgba(255, 255, 255, 0.8);
-  font-size: 15px;
-  padding: 25px;
-  text-align: center;
-  width:300px;
-  height:350px;
-  border-radius: 3px;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-  transition: transform .3s; 
-  margin:20px 10px;
+.card-info {
+   background-color: rgba(255, 255, 255, 0.8);
+   font-size: 15px;
+   padding: 25px;
+   text-align: center;
+   width: 300px;
+   height: 350px;
+   border-radius: 3px;
+   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+   transition: transform 0.3s;
+   margin: 20px 10px;
 }
-.card-info:hover{
-  transform: translateY(-5px) scale(1.03);
+.card-info:hover {
+   transform: translateY(-5px) scale(1.03);
 }
-.card-info:nth-child(3){
-  padding: 25px 20px;
+.card-info:nth-child(3) {
+   padding: 25px 20px;
 }
-.info-title{
-    font-size: 22px;
-    margin: 20px 0;
-    text-transform: uppercase;
-    background-image: linear-gradient(to right bottom,rgba(75, 176, 176, 0.8), rgba(9, 120, 120, 0.845));
-    -webkit-background-clip: text;
-    color: transparent;
+.info-title {
+   font-size: 22px;
+   margin: 20px 0;
+   text-transform: uppercase;
+   background-image: linear-gradient(
+      to right bottom,
+      rgba(75, 176, 176, 0.8),
+      rgba(9, 120, 120, 0.845)
+   );
+   -webkit-background-clip: text;
+   color: transparent;
 }
-.para-container{
-    width:100%;
-    letter-spacing:1.2px;
-    line-height:1.5;
-    margin-top: 50px;
-    color: #777
-    /* height:100% */
+.para-container {
+   width: 100%;
+   letter-spacing: 1.2px;
+   line-height: 1.5;
+   margin-top: 50px;
+   color: #777;
+   /* height:100% */
 }
 
 @media only screen and (max-width: 350px) {
-    .card-info{
+   .card-info {
       padding: 25px 10px;
-    }
+   }
 }
 @media only screen and (max-width: 320px) {
-    .para-container{
+   .para-container {
       font-size: 14px;
-    }
+   }
 }
 @media only screen and (max-width: 300px) {
-    .para-container{
+   .para-container {
       font-size: 12px;
-    }
+   }
 }

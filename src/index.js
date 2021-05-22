@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
-import SimpleReactLightbox from 'simple-react-lightbox'
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import firebaseConfig from './firebase';
 
-
 ReactDOM.render(
-  <BrowserRouter>
-    <SimpleReactLightbox>
+   <BrowserRouter>
       <App />
-    </SimpleReactLightbox>
-  </BrowserRouter>,
-  document.getElementById('root')
-);   
-
+   </BrowserRouter>,
+   document.getElementById('root'),
+);

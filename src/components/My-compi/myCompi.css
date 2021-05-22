@@ -1,11 +1,11 @@
-.my-compi{
-    display: flex;
-    flex-wrap: wrap;
+.my-compi {
+   display: flex;
+   flex-wrap: wrap;
 }
-.my-compi-container{
-    transform: scale(0.9);
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.my-compi-container {
+   transform: scale(0.9);
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
 }

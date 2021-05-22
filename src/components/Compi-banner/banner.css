@@ -1,29 +1,35 @@
-.banner{
-    margin: 150px 100px;
-    background:#fff url(https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/banner/6079ea786e4a3_weave_the_web_l.png?d=1920x557) no-repeat center;
-    background-size: cover;
-    border-radius: 20px;
-    height: 70vh;
-    text-align: center;    
+.banner {
+   margin: 150px 100px;
+   background: #fff
+      url(https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/banner/6079ea786e4a3_weave_the_web_l.png?d=1920x557)
+      no-repeat center;
+   background-size: cover;
+   border-radius: 20px;
+   height: 70vh;
+   text-align: center;
 }
 
-@media only screen and (max-width:850px){
-    .banner{
-        margin: 150px 50px;
-        background:#fff url(https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/banner/6079ea786e4a3_weave_the_web_l.png?d=1920x557) no-repeat center;
-        background-size: cover;
-        border-radius: 20px;
-        height: 70vh;
-        text-align: center;    
-    }
+@media only screen and (max-width: 850px) {
+   .banner {
+      margin: 150px 50px;
+      background: #fff
+         url(https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/banner/6079ea786e4a3_weave_the_web_l.png?d=1920x557)
+         no-repeat center;
+      background-size: cover;
+      border-radius: 20px;
+      height: 70vh;
+      text-align: center;
+   }
 }
-@media only screen and (max-width:430px){
-    .banner{
-        margin: 150px 20px;
-        background:#fff url(https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/banner/6079ea786e4a3_weave_the_web_l.png?d=1920x557) no-repeat center;
-        background-size: cover;
-        border-radius: 20px;
-        height: 70vh;
-        text-align: center;    
-    }
+@media only screen and (max-width: 430px) {
+   .banner {
+      margin: 150px 20px;
+      background: #fff
+         url(https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/banner/6079ea786e4a3_weave_the_web_l.png?d=1920x557)
+         no-repeat center;
+      background-size: cover;
+      border-radius: 20px;
+      height: 70vh;
+      text-align: center;
+   }
 }

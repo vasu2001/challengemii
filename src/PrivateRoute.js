@@ -1,21 +1,21 @@
-import React, { useContext } from 'react'
-import {Route,Redirect} from 'react-router-dom';
-import {AuthContext} from './Auth';
+import React, { useContext } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { AuthContext } from './Auth';
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-    const {currentUser} = useContext(AuthContext);
-    return (
-        <Route
-        {...rest}
-        render={routeProps => 
+   const { currentUser } = useContext(AuthContext);
+   return (
+      <Route
+         {...rest}
+         render={(routeProps) =>
             !!currentUser ? (
-                <RouteComponent {...routeProps} />
+               <RouteComponent {...routeProps} />
             ) : (
-                <Redirect to={'/all-competitions'} />
+               <Redirect to={'/all-competitions'} />
             )
-        }
-        />
-    )
-}
+         }
+      />
+   );
+};
 
-export default PrivateRoute
+export default PrivateRoute;

@@ -1,58 +1,58 @@
-.prize-box{
-    width: 250px;
-    height: 320px;
-    /* box-shadow: 0 0 10px rgba(0,0,0,0.3); */
-    border-radius: 20px;
-    background-color: #fff;
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    margin-left: 20px;
-    border-radius: 0;
-    text-align: center;
-    padding: 20px 10px;
+.prize-box {
+   width: 250px;
+   height: 320px;
+   /* box-shadow: 0 0 10px rgba(0,0,0,0.3); */
+   border-radius: 20px;
+   background-color: #fff;
+   margin-top: 40px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   margin-left: 20px;
+   border-radius: 0;
+   text-align: center;
+   padding: 20px 10px;
 }
-.img-holder{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
+.img-holder {
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   overflow: hidden;
 }
-.img-holder img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.img-holder img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
 }
-.prize-info{
-    margin-top: 30px;
+.prize-info {
+   margin-top: 30px;
 }
-.prize-value{
-    width: 20px;
-    margin-right: 5px;
-    transform: translateY(-1px);
+.prize-value {
+   width: 20px;
+   margin-right: 5px;
+   transform: translateY(-1px);
 }
-.btn-add{
-    position: absolute;
-    bottom: 0;
-    padding: 10px 10px;
-    /* background-color: #fca311; */
-    width: 100%;
-    cursor: pointer;
-    color: #0099CC !important;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-weight: 600;
-    text-decoration: none !important;
-    border-top: 2px dashed #eee;
+.btn-add {
+   position: absolute;
+   bottom: 0;
+   padding: 10px 10px;
+   /* background-color: #fca311; */
+   width: 100%;
+   cursor: pointer;
+   color: #0099cc !important;
+   text-transform: uppercase;
+   letter-spacing: 4px;
+   font-weight: 600;
+   text-decoration: none !important;
+   border-top: 2px dashed #eee;
 }
-.circle{
-    left: 0;
-    top: 82%;
-    background-color: #eee;
-    border: none;
+.circle {
+   left: 0;
+   top: 82%;
+   background-color: #eee;
+   border: none;
 }
-.rightc{
-    left: 100%;
+.rightc {
+   left: 100%;
 }

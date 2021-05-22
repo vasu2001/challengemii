@@ -1,31 +1,30 @@
-.carousel-new{
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    z-index: 0;
+.carousel-new {
+   width: 100%;
+   margin: 0 auto;
+   position: relative;
+   z-index: 0;
 }
-.slide-1{
-    height: 70vh;
-    width: 100%;
-    background: url(../../assets/banner.jpg) no-repeat center;
-    background-size: cover;
+.slide-1 {
+   height: 70vh;
+   width: 100%;
+   background: url(../../assets/banner.jpg) no-repeat center;
+   background-size: cover;
 }
-.slide-2{
-    height: 70vh;
-    width: 100%;
-    background: url(../../assets/banner.jpg) no-repeat center;
-    background-size: cover;
+.slide-2 {
+   height: 70vh;
+   width: 100%;
+   background: url(../../assets/banner.jpg) no-repeat center;
+   background-size: cover;
 }
-.slide-3{
-    height: 70vh;
-    width: 100%;
-    background: url(../../assets/banner.jpg) no-repeat center;
-    background-size: cover;
+.slide-3 {
+   height: 70vh;
+   width: 100%;
+   background: url(../../assets/banner.jpg) no-repeat center;
+   background-size: cover;
 }
 
-
-@media only screen and (max-width:600px){
-    .carousel-new{
-        display:none;
-    }
+@media only screen and (max-width: 600px) {
+   .carousel-new {
+      display: none;
+   }
 }

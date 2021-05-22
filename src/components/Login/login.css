@@ -1,37 +1,37 @@
-.login{
-    width:100%;
-    height:100vh;
-    position:fixed;
-    top:0;
-    background-color: #14213d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9000;
+.login {
+   width: 100%;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   background-color: #14213d;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 9000;
 }
-.login-card{
-    width: 400px;
-    height: 350px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    animation: moveDown 0.5s;
-    position: relative;
-    text-align: center;
-    padding-top: 30px;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 10px;
+.login-card {
+   width: 400px;
+   height: 350px;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+   animation: moveDown 0.5s;
+   position: relative;
+   text-align: center;
+   padding-top: 30px;
+   font-family: 'Montserrat', sans-serif;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   margin: 10px;
 }
-.close{
-    opacity:0;
-    display: none;
+.close {
+   opacity: 0;
+   display: none;
 }
-.close-btn{
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    cursor: pointer;
-    font-size: 22px;
+.close-btn {
+   position: absolute;
+   top: 10px;
+   right: 25px;
+   cursor: pointer;
+   font-size: 22px;
 }
