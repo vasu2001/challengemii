@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Component } from 'react';
 import firebase from '../../firebase';
 import moment from 'moment'
+import RedeemDetails from '../Redeem-Details/RedeemDetails';
 
 const db = firebase.firestore();
 
 class Redeem extends Component {
 
     state = {
-        requests: []
+        requests: [],
+        display: false
+    }
+
+    setDisplay = () => {
+        this.setState({display: false});
     }
 
     componentDidMount(){
@@ -22,7 +28,10 @@ class Redeem extends Component {
     }
     render(){
     return (
-        <div>  
+        <div> 
+            {
+                this.state.display?<RedeemDetails setDisplay={this.setDisplay} />:null
+            } 
             <div className='redeem'>
             <table>
                 <thead>
@@ -30,7 +39,6 @@ class Redeem extends Component {
                     <th>Name</th>
                     <th>Date</th>
                     <th>Details</th>
-                    <th>status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,8 +50,7 @@ class Redeem extends Component {
                             <tr key={id}>
                                 <td data-column="Name">{name}</td>
                                 <td data-column="Paytm/UPI Id">{moment(date).format('DD/MM/YYYY, hh:mm a')}</td>
-                                <td data-column="details"><a href=''>Details</a></td>
-                                <td data-column="Amount"><a href=''>Done</a></td>
+                                <td data-column="details"><a className='' style={{cursor:'pointer'}} onClick={() => this.setState({display: true})}>Details</a></td>
                             </tr>
                         )
                     })
