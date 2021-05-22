@@ -102,7 +102,7 @@ const Participation = (props) => {
                     <input className={hidden?'hide':''} type='text' onChange={handleInput} placeholder='Youtube-link'></input>
                 </div>
                 </div>
-                <a href={false} className='btn-submit' onClick={(e) => {
+                <a className='btn-submit' onClick={(e) => {
                     if(photoUrl !== ''){
                         setLoading(true);
                         handleSubmit(e); 

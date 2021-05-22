@@ -8,6 +8,7 @@ import population from '../../assets/population.png';
 import calendar from '../../assets/calendar.png';
 import firebase from '../../firebase'
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const db = firebase.firestore();
 
@@ -56,7 +57,7 @@ const Card = (props) => {
             </div>
             <div></div>
             <div className='side-2'>
-                <a href={'/participation/'+props.id} className="btn btn-slide">Participate</a>
+                <Link to={'/participation/'+props.id} className="btn btn-slide">Participate</Link>
                 <div className="slide2-content">
                     <div className="slide2-item">
                         <img className='slideImg' alt="Prize" src={population}/>

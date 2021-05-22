@@ -71,7 +71,7 @@ const Competition = (props) => {
 
             await batch.commit()
             setSelectedSub([])
-            window.location.reload();
+            // window.location.reload();
         }else{
             toast.error('You must vote '+ VOTE_LIMIT + ' participants to submit')
         }

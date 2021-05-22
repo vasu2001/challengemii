@@ -79,7 +79,7 @@ class HostCompetiton extends Component {
                 <input id='choose-input' onChange={this.handleUpload} type='file'></input>
             </div>
             <div className='save'>
-                    <a href={()=>false} onClick={(e)=>{this.setState({loading:true});this.handleSubmit(e)}} className='btn-save'>Save</a>
+                    <a onClick={(e)=>{this.setState({loading:true});this.handleSubmit(e)}} className='btn-save'>Save</a>
             </div>
         </div>
     )
