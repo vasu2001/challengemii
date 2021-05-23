@@ -1,0 +1,183 @@
+.nav{
+    width: 100%;
+    height: 60px;
+    background-color: #14213d;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    justify-content: space-around;
+}
+.nav a{
+    color: #fff;
+}
+#nouser{
+    justify-content: space-between;
+    padding: 0 20px;
+}
+#nouser ul{
+    width: 300px;
+}
+#nouser li{
+    cursor: pointer;
+}
+.logo{
+    color: #fff;
+   text-transform: uppercase;
+   font-size: 24px;
+   font-family: 'Lato', sans-serif;
+   font-weight: 400;
+   letter-spacing: 5px;
+   /* margin: auto 50px; */
+   cursor: pointer;
+}
+.nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 600px;
+    margin-bottom: 0;
+    position: relative;
+    color: #fff;
+}
+
+.nav-ticket-img{
+    width: 30px;
+    margin-right: 5px;
+}
+.nav-coin-img{
+    width: 30px;
+    margin-right: 5px;
+}
+.drop-triangle{
+    display: none;
+}
+.drop-box{
+    position: absolute;
+    background-color: #14213d;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    width: 200px;
+    padding: 20px;
+    right: 0;
+    top: 60px;
+    z-index: 1000;
+}
+.upward-tri{
+    position: absolute;
+    top: -11px;
+    right: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #14213d;
+}
+.nav-profile {
+    width: 50px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 50%;
+ }
+.hide{
+    display: none;
+}
+.drop-box ul{
+    display: block;
+}
+#drop-buy{
+    display: none;
+}
+#drop-redeem{
+    display:none;
+}
+.btn-signin {
+    background-color: #fff;
+    color: #777;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Lato';
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+ }
+ .btn-signin:hover {
+    color: #777;
+    transform: translateY(-2px);
+ }
+ .btn-signin:active {
+    transform: translateY(0px);
+ }
+@media all and (max-width:850px){
+    .drop-triangle{
+        display: block;
+    }
+    .nav-profile{
+        display: none;
+    }
+    .nav ul{
+        width: 520px;
+    }
+}
+@media all and (max-width:760px) {
+    .nav ul{
+        width:400px
+    }
+    #drop-redeem{
+        display: block;
+    }
+    #redeem-navtext{
+        display: none;
+    }
+    .drop-box li:not(:last-child){
+        padding-bottom: 20px;
+    }
+}
+@media all and (max-width:686px){
+    #competitions-navtext{
+        display: none;
+    }
+    #buy-navtext{
+        display: none;
+    }
+    .nav ul{
+        width: auto
+    }
+    .ticket-text{
+        margin-right: 15px;
+    }
+    .drop-triangle{
+        display: none;
+    }
+}
+@media screen and (max-width:450px) {
+    .logo{
+        font-size: 20px;
+    }
+    .nav li{
+        font-size: 14px;
+    }
+    .nav ul img{
+        width:25px
+    }
+    .nav ul{
+        width:120px;
+    }
+}
+
+@media screen and (max-width:600px){
+    #nouser ul{
+        width: 200px;
+    }
+    .btn-signin{
+        font-size: 12px !important;
+    }
+}
+@media screen and (max-width: 500px) {
+    #nouser .logo{
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+    #nouser #competition-navtext{
+        display: none;
+    }
+    #nouser ul{
+        width: auto;
+    }
+}

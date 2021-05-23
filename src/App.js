@@ -13,7 +13,7 @@ import UserpNew from './pages/UserProfile-new/UserpNew';
 import Error from './pages/Error404/Error';
 import './firebase';
 import { AuthProvider } from './Auth';
-import Nav from './components/Nav-new/Nav';
+import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import BottomNav from './components/Bottom-nav/BottomNav';
 import 'react-toastify/dist/ReactToastify.css';

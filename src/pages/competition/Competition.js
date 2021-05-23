@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import Card from '../../components/Competition-info/Card';
+// import Card from '../../components/Competition-info/Card';
+import Card from '../../components/Card/Card';
 import Footer from '../../components/Footer/Footer';
 import Submissions from '../../components/Submissions/Submissions';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';

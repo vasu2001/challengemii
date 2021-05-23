@@ -21,11 +21,11 @@
    color: #fff !important;
    background-color: rgb(81, 106, 247);
 }
-.cards {
+/* .cards {
    display: flex;
    flex-wrap: wrap;
    justify-content: space-evenly;
-}
+} */
 .Toastify {
    z-index: 99999;
 }

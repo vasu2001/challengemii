@@ -6,11 +6,12 @@ import { AiFillEdit } from 'react-icons/ai';
 import { AiFillFacebook } from 'react-icons/ai';
 import { FaTwitter } from 'react-icons/fa';
 import { AiFillLinkedin } from 'react-icons/ai';
+import {GoSignOut} from 'react-icons/go';
 import Footer from '../../components/Footer/Footer';
 import firebase from '../../firebase';
 import Submissions from '../../components/Submissions/Submissions';
 import { AuthContext } from '../../Auth';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const db = firebase.firestore();
 
@@ -76,11 +77,17 @@ const UserpNew = () => {
                </div>
             </div>
             <div className="profile-content-new">
-               {currentUser.uid === userId ? (
-                  <Link to="/profile/edit-profile" className="btn-edit-profile">
-                     Edit profile
-                  </Link>
-               ) : null}
+               <div className='user-actions'>
+                  {currentUser.uid === userId ? (
+                     <Link to="/profile/edit-profile" className="btn-edit-profile">
+                        Edit profile
+                     </Link>
+                  ) : null}
+                  <GoSignOut className='btn-sign-out' onClick={() => {
+                        window.location.href = '/'
+                        firebase.auth().signOut();
+                  }} />
+               </div>
                {currentUser.uid === userId ? (
                   <Link
                      to="/profile/edit-profile"
