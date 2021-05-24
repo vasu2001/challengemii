@@ -1,6 +1,6 @@
 .competition-content {
    width: 80%;
-   background-color: #fff;
+   background-color: #f7f7f7;
    margin: 60px auto;
    border-radius: 30px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -28,10 +28,10 @@
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .section-submission {
-   width: 90%;
+   width: 100%;
    background-color: #f7f7f7;
-   padding: 100px 50px;
-   margin: 100px auto;
+   padding: 100px 30px;
+   margin: 50px 0 100px 0;
    border-radius: 30px;
    text-align: center;
 }
