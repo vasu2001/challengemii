@@ -10,7 +10,7 @@ const PrizeBox = ({ data, onRedeem }) => {
          </div>
          <div className="prize-info">
             <p>Flat discount</p>
-            <h1>{data.name}</h1>
+            <h1 className='prize-title'>{data.name}</h1>
             <p>on Headphones & Earphones</p>
          </div>
          <a className="btn-add" onClick={onRedeem}>

@@ -8,6 +8,7 @@ import { AuthContext } from '../../Auth';
 import QuestionModal from '../Question-modal/QuestionModal';
 import Loading from '../Loading/Loading';
 import moment from 'moment';
+import {BsSearch} from 'react-icons/bs'
 
 const db = firebase.firestore();
 
@@ -20,7 +21,6 @@ const ManageCoins = (props) => {
    const { userData: user, currentUser } = useContext(AuthContext);
    const [prizes, setPrizes] = useState([]);
 
-   const [dropdown, setDropdown] = useState(false);
 
    const onRedeem = (answers) => {
       const prize = prizes[modal];
@@ -72,12 +72,22 @@ const ManageCoins = (props) => {
    return (
       <div className="manage-coins">
          <div className="search-filter-container">
-            <input
-               type="text"
-               className="input-search"
-               placeholder="Search"
-            ></input>
-            <div class="wrapper">
+            <div className='search-box'>
+               <input
+                  type="text"
+                  className="input-search"
+                  placeholder="Search"
+               ></input>
+               <a className='btn-search'><BsSearch style={{fontSize: '18px', fontWeight: '900'}}/><p id='search-text'>Search</p></a>
+            </div>
+            <select className='filter-combo'>
+               <option disabled selected hidden>Filter</option>
+                  <optgroup label='Price:'>
+                  <option>Low to High</option>
+                  <option>High to Low</option>
+               </optgroup>
+            </select>
+            {/* <div class="wrapper">
                <input type="radio" name="select" id="option-1" checked></input>
                <input type="radio" name="select" id="option-2"></input>
                <label for="option-1" class="option option-1">
@@ -93,7 +103,7 @@ const ManageCoins = (props) => {
                     <div className={`dropdown-hide ${dropdown?'dropdown':null}`}>
                         <p id='low'>Price: Low to High</p>
                         <p id='high'>Price: High to Low</p>
-                    </div> */}
+                    </div> */} 
          </div>
          {modal > -1 ? (
             <QuestionModal

@@ -38,7 +38,7 @@ const QuestionModal = ({ ques, onRedeem, onClose }) => {
                <a className="question-close" onClick={onClose}>
                   <GrClose />
                </a>
-               <h4>{ques[i]}</h4>
+               <h4>Q.{i+1}) {ques[i]}</h4>
             </div>
             <div className="answer-textbox">
                <input

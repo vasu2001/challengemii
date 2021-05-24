@@ -1,7 +1,6 @@
 .prize-box {
    width: 250px;
    height: 320px;
-   /* box-shadow: 0 0 10px rgba(0,0,0,0.3); */
    border-radius: 20px;
    background-color: #fff;
    margin-top: 40px;
@@ -60,3 +59,161 @@
 .rightc {
    left: 96%;
 }
+
+
+@media only screen and (max-width:582px){
+   .prize-box{
+      width: 200px;
+      height: 270px;
+      padding: 10px;
+      margin-left: 5px;
+   }
+   .img-holder {
+      width: 50px;
+      height: 50px;
+   }
+   .prize-info {
+      margin-top: 20px;
+   }
+   .prize-title{
+      font-size: 35px;
+      margin-bottom: 10px;
+   }
+   .circle{
+      top: 80%;
+   }
+}
+
+@media only screen and (max-width:482px){
+   .prize-box{
+      width: 170px;
+      height: 270px;
+      padding: 10px;
+   }
+   .img-holder {
+      width: 50px;
+      height: 50px;
+   }
+   .prize-info {
+      margin-top: 20px;
+   }
+   .prize-title{
+      font-size: 35px;
+      margin-bottom: 10px;
+   }
+   .circle{
+      top: 80%;
+   }
+   .btn-add {
+      position: absolute;
+      bottom: 0;
+      padding: 10px 10px;
+      width: 100%;
+      font-size: 14px;
+      cursor: pointer;
+      color: #0099cc !important;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-decoration: none !important;
+      border-top: 2px dashed #eee;
+   }
+}
+
+@media only screen and (max-width:372px){
+   .prize-box{
+      width: 140px;
+      height: 200px;
+      padding: 10px;
+   }
+   .img-holder {
+      width: 40px;
+      height: 40px;
+   }
+   .prize-info {
+      margin-top: 10px;
+   }
+   .prize-info p{
+      font-size: 12px;
+   }
+   .prize-title{
+      font-size: 22px;
+      font-weight: 900;
+   }
+   .btn-add {
+      position: absolute;
+      bottom: 0;
+      padding: 10px 10px;
+      width: 100%;
+      font-size: 14px;
+      cursor: pointer;
+      color: #0099cc !important;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-weight: 600;
+      text-decoration: none !important;
+      border-top: 2px dashed #eee;
+   }
+   .circle {
+      left: -10px;
+      top: 73%;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #eee;
+      border: none;
+   }
+   .rightc{
+      left: 92%;
+   }
+}
+
+/* @media only screen and (max-width:582px) {
+   .prize-box{
+      min-width: 140px;
+      min-height: 200px;
+      padding: 10px;
+   }
+   .img-holder {
+      width: 40px;
+      height: 40px;
+   }
+   .prize-info {
+      margin-top: 10px;
+   }
+   .prize-info p{
+      font-size: 12px;
+   }
+   .prize-title{
+      font-size: 22px;
+      font-weight: 900;
+   }
+   .btn-add {
+      position: absolute;
+      bottom: 0;
+      padding: 10px 10px;
+      width: 100%;
+      font-size: 14px;
+      cursor: pointer;
+      color: #0099cc !important;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-weight: 600;
+      text-decoration: none !important;
+      border-top: 2px dashed #eee;
+   }
+   .circle {
+      left: -10px;
+      top: 73%;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #eee;
+      border: none;
+   }
+   .rightc{
+      left: 92%;
+   }
+} */
