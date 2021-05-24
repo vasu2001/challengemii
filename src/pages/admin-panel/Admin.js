@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Side from '../../components/Admin-side/Side';
-import Nav from '../../components/Nav-new/Nav';
+// import Nav from '../../components/Nav-new/Nav';
 import { Route, Switch } from 'react-router-dom';
 import './admin.css';
 import Top from '../../components/Profile-top/Top';

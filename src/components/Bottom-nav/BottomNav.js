@@ -62,7 +62,7 @@ const BottomNav = () => {
             </NavLink>
             <NavLink to="/manage-tickets">
                <div className="item-box ticket-container">
-                  <div className="tickets">{user.tickets}</div>
+                  {/* <div className="tickets">{user.tickets}</div> */}
                   <img
                      src={ticketImg}
                      alt=""
@@ -73,7 +73,7 @@ const BottomNav = () => {
             </NavLink>
             <NavLink to="/profile/manage-coins">
                <div className="item-box coin-container">
-                  <div className="coins">{user.coin}</div>
+                  {/* <div className="coins">{user.coin}</div> */}
                   <img src={coinImg} alt="" className="bottom-nav-icons"></img>
                   Redeem
                </div>

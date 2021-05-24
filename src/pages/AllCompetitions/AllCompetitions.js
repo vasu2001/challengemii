@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import Nav from '../../components/Nav-new/Nav';
+// import Nav from '../../components/Nav-new/Nav';
 import './allCompetitions.css';
 import Footer from '../../components/Footer/Footer';
 import CarouselNew from '../../components/Carousel-New/CarouselNew';

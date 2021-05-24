@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Nav from '../../components/Nav-new/Nav';
+// import Nav from '../../components/Nav-new/Nav';
 import './userpNew.css';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { AiFillEdit } from 'react-icons/ai';
 import { AiFillFacebook } from 'react-icons/ai';
 import { FaTwitter } from 'react-icons/fa';
 import { AiFillLinkedin } from 'react-icons/ai';
-import {GoSignOut} from 'react-icons/go';
+import { GoSignOut } from 'react-icons/go';
 import Footer from '../../components/Footer/Footer';
 import firebase from '../../firebase';
 import Submissions from '../../components/Submissions/Submissions';
@@ -77,16 +77,22 @@ const UserpNew = () => {
                </div>
             </div>
             <div className="profile-content-new">
-               <div className='user-actions'>
+               <div className="user-actions">
                   {currentUser.uid === userId ? (
-                     <Link to="/profile/edit-profile" className="btn-edit-profile">
+                     <Link
+                        to="/profile/edit-profile"
+                        className="btn-edit-profile"
+                     >
                         Edit profile
                      </Link>
                   ) : null}
-                  <GoSignOut className='btn-sign-out' onClick={() => {
-                        window.location.href = '/'
+                  <GoSignOut
+                     className="btn-sign-out"
+                     onClick={() => {
+                        window.location.href = '/';
                         firebase.auth().signOut();
-                  }} />
+                     }}
+                  />
                </div>
                {currentUser.uid === userId ? (
                   <Link
