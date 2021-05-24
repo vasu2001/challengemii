@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './manageCoins.css';
-import coins from '../../assets/coin.png';
 import firebase from '../../firebase';
 import PrizeBox from '../prize-box/PrizeBox';
 import { toast } from 'react-toastify';
@@ -20,7 +19,7 @@ const ManageCoins = (props) => {
 
    const { userData: user, currentUser } = useContext(AuthContext);
    const [prizes, setPrizes] = useState([]);
-
+   const [filter, setFilter] = useState('');
 
    const onRedeem = (answers) => {
       const prize = prizes[modal];
@@ -59,6 +58,10 @@ const ManageCoins = (props) => {
       setModal(i);
    };
 
+   const onSearch = (e) => {
+      setFilter(e.target.value);
+   }
+
    useEffect(() => {
       firebase
          .firestore()
@@ -68,7 +71,7 @@ const ManageCoins = (props) => {
             setPrizes(doc.docs.map((x) => ({ ...x.data(), id: x.id })));
          });
    }, []);
-
+   
    return (
       <div className="manage-coins">
          <div className="search-filter-container">
@@ -77,6 +80,7 @@ const ManageCoins = (props) => {
                   type="text"
                   className="input-search"
                   placeholder="Search"
+                  onChange={onSearch}
                ></input>
                <a className='btn-search'><BsSearch style={{fontSize: '18px', fontWeight: '900'}}/><p id='search-text'>Search</p></a>
             </div>
@@ -87,23 +91,6 @@ const ManageCoins = (props) => {
                   <option>High to Low</option>
                </optgroup>
             </select>
-            {/* <div class="wrapper">
-               <input type="radio" name="select" id="option-1" checked></input>
-               <input type="radio" name="select" id="option-2"></input>
-               <label for="option-1" class="option option-1">
-                  <div class="dot"></div>
-                  <span>Low-to-High</span>
-               </label>
-               <label for="option-2" class="option option-2">
-                  <div class="dot"></div>
-                  <span>High-to-Low</span>
-               </label>
-            </div>
-            {/* <a className='btn-filter' onClick={() => setDropdown(!dropdown)}>Filter</a>
-                    <div className={`dropdown-hide ${dropdown?'dropdown':null}`}>
-                        <p id='low'>Price: Low to High</p>
-                        <p id='high'>Price: High to Low</p>
-                    </div> */} 
          </div>
          {modal > -1 ? (
             <QuestionModal
@@ -113,7 +100,9 @@ const ManageCoins = (props) => {
             />
          ) : null}
          <div className="prizes">
-            {prizes.map((data, i) => (
+            {prizes
+            .filter(prize => prize.name.toLowerCase().includes(filter.toLowerCase()))
+            .map((data, i) => (
                <PrizeBox data={data} key={i} onRedeem={() => openModal(i)} />
             ))}
          </div>

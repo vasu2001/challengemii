@@ -23,7 +23,7 @@ const AllCompetitions = () => {
             );
          });
    }, []);
-   console.log(Date());
+   
    return (
       <div className="all-competitions">
          <CarouselNew />
