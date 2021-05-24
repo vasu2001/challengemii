@@ -48,11 +48,15 @@
    border-top: 2px dashed #eee;
 }
 .circle {
-   left: 0;
+   left: -10px;
    top: 82%;
+   position: absolute;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
    background-color: #eee;
    border: none;
 }
 .rightc {
-   left: 100%;
+   left: 96%;
 }
