@@ -138,6 +138,7 @@
         width: 100%;
     }
     .side2-info{
-        height: 120%;
+        height: 100%;
+        padding: 20px 0;
     }
 }
