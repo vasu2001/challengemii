@@ -55,7 +55,11 @@
    }
    .profile-icon {
       border-radius: 50%;
-      width: 30px;
+      width: 35px;
+      height: 35px;
+      background-repeat: no-repeat;
+      background-position: top;
+      background-size: cover;
    }
 }
 

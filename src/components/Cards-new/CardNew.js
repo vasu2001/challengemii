@@ -6,6 +6,7 @@ import calendar from '../../assets/calendar.png';
 import clock from '../../assets/clock.png';
 import money from '../../assets/money.png';
 import moment from 'moment';
+import ticket from '../../assets/ticket.png';
 import { Link } from 'react-router-dom';
 
 const CardNew = (props) => {
@@ -100,14 +101,10 @@ const CardNew = (props) => {
                         </div>
                      </div>
                   </div>
-                  <a
-                     className={`btn-live ${
-                        competition.active ? 'live-style' : ''
-                     }`}
-                     href="34"
-                  >
-                     {competition.status}
-                  </a>
+                  <div className="btn-live">
+                     <img src={ticket} style={{ width: '25px' }}></img>{' '}
+                     {competition.fees} tickets
+                  </div>
                </div>
             </Link>
          </div>

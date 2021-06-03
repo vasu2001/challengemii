@@ -1,0 +1,55 @@
+.dp_change_modal {
+   width: 100%;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.6);
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 999;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.dp_change_container {
+   width: 400px;
+   height: 500px;
+   background-color: #fff;
+   border-radius: 10px;
+   text-align: center;
+   padding: 20px 10px;
+   color: #333;
+}
+.dp_change_container h3 {
+   font-size: 22px;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+}
+.upload-img-container {
+   margin-top: 30px;
+   width: 100%;
+   height: 300px;
+   background-color: peachpuff;
+   position: relative;
+   z-index: 1;
+}
+.btn-dp-choose {
+   display: inline-block;
+   /* background-color: #fca311; */
+   color: blue;
+   /* padding: 10px 20px; */
+   /* border-radius: 10px; */
+   /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
+   cursor: pointer;
+   transition: all 0.3s;
+}
+.btn-choose {
+   display: inline-block;
+   background-color: #fca311;
+   color: #fff;
+   padding: 10px 20px;
+   border-radius: 10px;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+   cursor: pointer;
+   transition: all 0.3s;
+   margin-top: 20px;
+}

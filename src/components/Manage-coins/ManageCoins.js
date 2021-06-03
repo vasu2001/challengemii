@@ -7,13 +7,12 @@ import { AuthContext } from '../../Auth';
 import QuestionModal from '../Question-modal/QuestionModal';
 import Loading from '../Loading/Loading';
 import moment from 'moment';
-import {BsSearch} from 'react-icons/bs'
+import { BsSearch } from 'react-icons/bs';
+import PrizeDetails from '../PrizeDetails/PrizeDetails';
 
 const db = firebase.firestore();
 
 const ManageCoins = (props) => {
-   // const [active, setActive] = useState(false);
-   // const [paytm_upi, setPaytm_upi] = useState('');
    const [loading, setLoading] = useState(false);
    const [modal, setModal] = useState(-1);
 
@@ -60,7 +59,7 @@ const ManageCoins = (props) => {
 
    const onSearch = (e) => {
       setFilter(e.target.value);
-   }
+   };
 
    useEffect(() => {
       firebase
@@ -71,22 +70,26 @@ const ManageCoins = (props) => {
             setPrizes(doc.docs.map((x) => ({ ...x.data(), id: x.id })));
          });
    }, []);
-   
    return (
       <div className="manage-coins">
          <div className="search-filter-container">
-            <div className='search-box'>
+            <div className="search-box">
                <input
                   type="text"
                   className="input-search"
                   placeholder="Search"
                   onChange={onSearch}
                ></input>
-               <a className='btn-search'><BsSearch style={{fontSize: '18px', fontWeight: '900'}}/><p id='search-text'>Search</p></a>
+               <a className="btn-search">
+                  <BsSearch style={{ fontSize: '18px', fontWeight: '900' }} />
+                  <p id="search-text">Search</p>
+               </a>
             </div>
-            <select className='filter-combo'>
-               <option disabled selected hidden>Filter</option>
-                  <optgroup label='Price:'>
+            <select className="filter-combo">
+               <option disabled selected hidden>
+                  Filter
+               </option>
+               <optgroup label="Price:">
                   <option>Low to High</option>
                   <option>High to Low</option>
                </optgroup>
@@ -101,10 +104,12 @@ const ManageCoins = (props) => {
          ) : null}
          <div className="prizes">
             {prizes
-            .filter(prize => prize.name.toLowerCase().includes(filter.toLowerCase()))
-            .map((data, i) => (
-               <PrizeBox data={data} key={i} onRedeem={() => openModal(i)} />
-            ))}
+               .filter((prize) =>
+                  prize.name.toLowerCase().includes(filter.toLowerCase()),
+               )
+               .map((data, i) => (
+                  <PrizeBox data={data} key={i} onRedeem={() => openModal(i)} />
+               ))}
          </div>
          {loading ? <Loading /> : null}
       </div>

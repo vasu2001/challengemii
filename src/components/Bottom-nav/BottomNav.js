@@ -80,11 +80,10 @@ const BottomNav = () => {
             </NavLink>
             <NavLink to="/user/username">
                <div className="item-box">
-                  <img
-                     src={currentUser.photoURL}
-                     alt=""
+                  <div
                      className="bottom-nav-icons profile-icon"
-                  ></img>
+                     style={{ backgroundImage: `url(${user.photoURL})` }}
+                  ></div>
                   Profile
                </div>
             </NavLink>

@@ -19,7 +19,7 @@
    height: 100%;
    object-fit: cover;
 }
-.prizeImg{
+.prizeImg {
    width: 30px;
    height: 30px;
 }
@@ -62,21 +62,11 @@
    top: 10px;
    font-size: 14px;
    padding: 5px 10px;
-   background-color: rgb(225, 81, 81);
+   background-color: #7ed56f;
+   cursor: auto;
    border-radius: 5px;
    color: #fff;
    text-decoration: none !important;
-}
-.btn-live:hover {
-   color: #fff;
-   background-color: rgb(187, 60, 60);
-}
-.live-style {
-   background-color: #7ed56f !important;
-}
-.live-style:hover {
-   color: #fff;
-   background-color: #63ab57 !important;
 }
 .short-time {
    display: none;
@@ -171,7 +161,9 @@
       display: none;
    }
    .btn-live {
-      display: none;
+      background-color: #fff;
+      top: 7px;
+      color: #333;
    }
    .card-new-title {
       font-size: 16px !important;

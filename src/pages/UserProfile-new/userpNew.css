@@ -10,9 +10,22 @@
    border-radius: 50%;
    /* background-color: #fca311; */
    background-repeat: no-repeat;
-   background-position: center;
+   background-position: top;
    background-size: cover;
    margin: 0 auto;
+   overflow: hidden;
+   position: relative;
+}
+.edit-photo {
+   width: 100%;
+   height: 40px;
+   background-color: rgba(0, 0, 0, 0.6);
+   position: absolute;
+   bottom: 0;
+   color: #fff;
+   font-size: 22px;
+   text-align: center;
+   cursor: pointer;
 }
 .social-container-new {
    width: 250px;

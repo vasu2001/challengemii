@@ -100,11 +100,10 @@ const Nav = () => {
                   </li>
                </NavLink>
                <NavLink to="/user/username">
-                  <img
-                     src={currentUser.photoURL}
-                     alt=""
+                  <div
                      className="nav-profile"
-                  />
+                     style={{ backgroundImage: `url(${userData.photoURL})` }}
+                  ></div>
                </NavLink>
                <VscTriangleDown
                   className="drop-triangle"

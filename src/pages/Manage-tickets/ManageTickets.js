@@ -1,34 +1,29 @@
 import React from 'react';
+import TicketCard from '../../components/TicketCard/TicketCard';
 import './manageTickets.css';
 
 const ManageTickets = () => {
    return (
-      <div className="manage-tickets">
-         <div className="manage-tickets-card">
-            <h3 style={{ color: '#333' }}>Tickets</h3>
-            <div className="tickets-balance">
-               <h3>Balance: 3 tickets</h3>
+      <div className="buy-tickets">
+         <div className="buy_tickets_conatainer">
+            <div className="tickets_titlebox">
+               <h3>BUY TICKETS</h3>
             </div>
-            <div className="buy-tickets">
-               <h4>Buy more </h4>
-               <div
-                  style={{
-                     display: 'flex',
-                     justifyContent: 'center',
-                     alignItems: 'center',
-                  }}
-               >
-                  <input
-                     type="number"
-                     className="buy-more"
-                     placeholder="0"
-                  ></input>
-                  <p style={{ marginTop: '20px', marginLeft: '10px' }}>
-                     Tickets
-                  </p>
-               </div>
-               <a className="btn-buy-tickets">Buy tickets</a>
+            <div className="ticket_pre_container">
+               <TicketCard tickets="1" inr="100" />
+               <TicketCard tickets="5" inr="500" />
             </div>
+            <div className="ticket_pre_container">
+               <TicketCard tickets="10" inr="1000" />
+               <TicketCard tickets="15" inr="1500" />
+            </div>
+            <div className="ticket_pre_container">
+               <TicketCard tickets="20" inr="2000" />
+               <TicketCard tickets="25" inr="2500" />
+            </div>
+            <input type="number" className="buy-more" placeholder="0"></input>
+            <br />
+            <a className="btn-buy-tickets">Buy Ticket</a>
          </div>
       </div>
    );

@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './prizeBox.css';
 import coins from '../../assets/coin.png';
+import PrizeDetails from '../PrizeDetails/PrizeDetails';
 
 const PrizeBox = ({ data, onRedeem }) => {
+   const [display, setDisplay] = useState(false);
+
+   const closePrizeDetails = () => {
+      setDisplay(false);
+   };
    return (
       <div className="prize-box">
+         {display ? <PrizeDetails setDisplay={closePrizeDetails} /> : null}
          <div className="img-holder">
             <img src={data.image}></img>
          </div>
          <div className="prize-info">
             <p>Flat discount</p>
-            <h1 className='prize-title'>{data.name}</h1>
+            <h1 className="prize-title">{data.name}</h1>
             <p>on Headphones & Earphones</p>
+            <p
+               style={{
+                  color: '#4267B2',
+                  marginTop: '20px',
+                  cursor: 'pointer',
+               }}
+               onClick={() => setDisplay(true)}
+            >
+               Details
+            </p>
          </div>
          <a className="btn-add" onClick={onRedeem}>
             Redeem{' '}

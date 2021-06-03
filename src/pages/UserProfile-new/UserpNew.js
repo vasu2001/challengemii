@@ -10,6 +10,7 @@ import firebase from '../../firebase';
 import { AuthContext } from '../../Auth';
 import { Link } from 'react-router-dom';
 import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
+import DpChangeModal from '../../components/DpChangeModal/DpChangeModal';
 
 const db = firebase.firestore();
 
@@ -17,7 +18,7 @@ const UserpNew = () => {
    const { currentUser, userData } = useContext(AuthContext);
    const userId = currentUser.uid;
    const [submissions, setSubmissions] = useState([]);
-
+   const [display, setDisplay] = useState(false);
    useEffect(() => {
       if (currentUser) {
          db.collection('submissions')
@@ -40,11 +41,16 @@ const UserpNew = () => {
    }
    return (
       <div>
+         {display ? <DpChangeModal /> : null}
          <div className="user-profile-new">
             <div
                className="profile-dp-new"
-               style={{ backgroundImage: `url(${currentUser.photoURL})` }}
-            ></div>
+               style={{ backgroundImage: `url(${userData.photoURL})` }}
+            >
+               <div className="edit-photo">
+                  <AiFillEdit />
+               </div>
+            </div>
             <div className="social-container-new">
                <div className="social-link-new">
                   <a href={userData.instagram} target="_blank" rel="noreferrer">

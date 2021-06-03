@@ -1,0 +1,86 @@
+.ticket_card {
+   width: 100%;
+   height: 80px;
+   /* background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%); */
+   background-image: linear-gradient(
+         315deg,
+         rgba(0, 0, 0, 0.8) 0%,
+         rgb(65, 65, 65, 0.8) 74%
+      ),
+      url(../../assets/money-bg2.jpg);
+   background-position: center;
+   background-size: cover;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   margin-top: 10px;
+   display: flex;
+   overflow: hidden;
+   cursor: pointer;
+}
+.ticket_card:nth-child(even) {
+   margin-left: 10px;
+}
+.ticket_value {
+   width: 200px;
+   max-width: 200px;
+   transform: translateX(-25px);
+   background-color: #4c4177;
+   background-image: linear-gradient(315deg, #4c4177 0%, #2a5470 74%);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #fff;
+   border-radius: 40px;
+}
+.ticket_value img {
+   transform: translateY(1px);
+   margin-right: 10px;
+}
+.inr_value {
+   display: flex;
+   align-items: center;
+   color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+   .ticket_value {
+      width: 150px;
+   }
+   .ticket_card h5 {
+      font-size: 16px;
+   }
+   .ticket_value img {
+      display: none;
+   }
+}
+@media only screen and (max-width: 500px) {
+   .ticket_value {
+      width: 120px;
+   }
+   .ticket_card h5 {
+      font-size: 16px;
+      margin-left: 12px;
+   }
+   .inr_value h5 {
+      margin-left: -12px;
+   }
+   .ticket_value img {
+      display: none;
+   }
+}
+@media only screen and (max-width: 500px) {
+   .ticket_value {
+      width: 100px;
+   }
+   .ticket_card h5 {
+      font-size: 12px;
+      margin-left: 16px;
+   }
+   .inr_value h5 {
+      margin-left: -12px;
+   }
+   .ticket_value img {
+      display: none;
+   }
+}
