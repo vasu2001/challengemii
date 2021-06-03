@@ -16,7 +16,7 @@ const SubmissionCard = ({ submission, onLike, selected, onClick, i }) => {
    return (
       <div className="sub_box">
          <img
-            onClick={onClick}
+            onClick={() => onClick(i)}
             alt=""
             key={i}
             src={submission.photo_link}

@@ -18,9 +18,10 @@ const Competition = (props) => {
    const { currentUser } = useContext(AuthContext);
    const history = useHistory();
 
-   const [mySubs, setMySubs] = useState([]);
+   const [mySubs, setMySubs] = useState(null);
    const [selectedSub, setSelectedSub] = useState([]);
    const [gallery, setGallery] = useState(-1);
+
    useEffect(() => {
       window.addEventListener('scroll', showButton);
 
@@ -93,6 +94,9 @@ const Competition = (props) => {
          setSelectedSub([...selectedSub.filter((x) => x !== i)]);
       else setSelectedSub([...selectedSub, i]);
    };
+
+   const onReport = (i) => {};
+
    return (
       <div className={'competition-pg'}>
          <div className="competition-content">
@@ -108,7 +112,11 @@ const Competition = (props) => {
                <Leaderboard id={props.match.params.id} />
                <h2 className="submission-title">Submissions</h2>
                <div className="submissions">
-                  {mySubs.length === 0 ? (
+                  {!mySubs ? (
+                     <center>
+                        <p>Loading</p>
+                     </center>
+                  ) : mySubs.length === 0 ? (
                      <center>
                         <p>There is no submission yet.</p>
                      </center>
@@ -123,8 +131,9 @@ const Competition = (props) => {
                                     submission={submission}
                                     key={submission.id}
                                     selected={selectedSub.includes(i)}
-                                    onClick={() => setGallery(i)}
+                                    onClick={setGallery}
                                     onLike={onLike}
+                                    onReport={onReport}
                                     i={i}
                                  />
                               ))}
@@ -141,9 +150,10 @@ const Competition = (props) => {
          <Gallery
             display={gallery}
             setDisplay={setGallery}
-            data={mySubs}
+            data={mySubs ?? []}
             onLike={onLike}
             selected={selectedSub}
+            onReport={onReport}
          />
       </div>
    );

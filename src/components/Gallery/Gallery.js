@@ -5,7 +5,8 @@ import image2 from '../../assets/girl.jpg';
 import { BsChevronRight } from 'react-icons/bs';
 import { BsChevronLeft } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
-const Gallery = ({ display, setDisplay, data, onLike, selected }) => {
+
+const Gallery = ({ display, setDisplay, data, onLike, selected, onReport }) => {
    const [i, setI] = useState(0);
    const n = data.length;
    const voted = selected.includes(i);
@@ -41,6 +42,12 @@ const Gallery = ({ display, setDisplay, data, onLike, selected }) => {
             <a className="btn-gallery-share" onClick={onShare}>
                Share
             </a>
+            <a className="btn-gallery-vote" onClick={() => onReport(i)}>
+               Report
+            </a>
+         </div>
+         <div className="gallery-action-box box-2">
+            <a className="btn-gallery-share">Visit Profile</a>
          </div>
          <a className={`btn-left ${i === 0 ? 'close' : null}`} onClick={onPrev}>
             <BsChevronLeft />
