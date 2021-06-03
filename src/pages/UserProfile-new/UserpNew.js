@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import Nav from '../../components/Nav-new/Nav';
 import './userpNew.css';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { AiFillEdit } from 'react-icons/ai';
@@ -7,45 +6,31 @@ import { AiFillFacebook } from 'react-icons/ai';
 import { FaTwitter } from 'react-icons/fa';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { GoSignOut } from 'react-icons/go';
-import Footer from '../../components/Footer/Footer';
 import firebase from '../../firebase';
 import { AuthContext } from '../../Auth';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
 
 const db = firebase.firestore();
 
 const UserpNew = () => {
-   const { currentUser, setCurrentUser } = useContext(AuthContext);
-   const [userData, setUserData] = useState({});
-   const [userId, setUserId] = useState('');
+   const { currentUser, userData } = useContext(AuthContext);
+   const userId = currentUser.uid;
    const [submissions, setSubmissions] = useState([]);
 
    useEffect(() => {
       if (currentUser) {
-         db.collection('users')
-            .doc(currentUser.uid)
-            .get()
-            .then((doc) => {
-               if (doc.exists) {
-                  setUserData(doc.data());
-                  setUserId(doc.id);
-               } else {
-                  console.log('No such documents');
-               }
-            });
          db.collection('submissions')
             .where('user_id', '==', currentUser.uid)
             .get()
             .then((querySnap) => {
-               querySnap.forEach((doc) => {
-                  setSubmissions((prevState) => [...prevState, doc.data()]);
-               });
+               setSubmissions(querySnap.docs.map((doc) => doc.data()));
             });
       }
    }, [currentUser]);
-   console.log(currentUser);
-   console.log(userData);
+
+   console.log(submissions);
+
    if (!currentUser || !userData) {
       return (
          <center>
