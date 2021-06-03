@@ -12,7 +12,7 @@ const db = firebase.firestore();
 
 const AllCompetitions = () => {
    const [competitions, setCompetitions] = useState([]);
-   const [filter,setFilter] = useState(0); // 0 - ongoing 1 - upcoming
+   const [filter, setFilter] = useState(0); // 0 - ongoing 1 - upcoming
    // getting all competitions from firestore
    useEffect(() => {
       db.collection('competitions')
@@ -23,7 +23,7 @@ const AllCompetitions = () => {
             );
          });
    }, []);
-   
+
    return (
       <div className="all-competitions">
          <CarouselNew />
@@ -60,8 +60,12 @@ const AllCompetitions = () => {
                <div className="right-header">
                   <h2>Competitions</h2>
                   <div className="status">
-                     <div className="ongoing">Ongoing</div>
-                     <div className="upcoming">Upcoming</div>
+                     <div className="ongoing" onClick={() => setFilter(0)}>
+                        Ongoing
+                     </div>
+                     <div className="upcoming" onClick={() => setFilter(1)}>
+                        Upcoming
+                     </div>
                   </div>
                </div>
                {/* {competitions &&
@@ -73,27 +77,37 @@ const AllCompetitions = () => {
                         />
                      );
                   })} */}
-                  {
-                     filter===0?competitions && competitions
-                     .filter(competition => (new Date(competition.data.starts) < new Date()) === true )
-                     .map(filteredCompetition => {
-                        return (
-                        <CardNew
-                           competition={filteredCompetition}
-                           key={filteredCompetition.id}
-                        />
-                     );
-                     }):competitions && competitions
-                     .filter(competition => (new Date(competition.data.starts) > new Date() === true))
-                     .map(competition => {
-                        return (
-                        <CardNew
-                           competition={competition}
-                           key={competition.id}
-                        />
-                     );
-                     })
-                  }
+               {filter === 0
+                  ? competitions &&
+                    competitions
+                       .filter(
+                          (competition) =>
+                             new Date(competition.data.starts) < new Date() ===
+                             true,
+                       )
+                       .map((filteredCompetition) => {
+                          return (
+                             <CardNew
+                                competition={filteredCompetition}
+                                key={filteredCompetition.id}
+                             />
+                          );
+                       })
+                  : competitions &&
+                    competitions
+                       .filter(
+                          (competition) =>
+                             new Date(competition.data.starts) > new Date() ===
+                             true,
+                       )
+                       .map((competition) => {
+                          return (
+                             <CardNew
+                                competition={competition}
+                                key={competition.id}
+                             />
+                          );
+                       })}
             </div>
          </div>
       </div>

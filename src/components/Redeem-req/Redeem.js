@@ -28,6 +28,7 @@ class Redeem extends Component {
          });
    }
    render() {
+      console.log(this.state.requests);
       return (
          <div>
             {this.state.display ? (
@@ -38,16 +39,18 @@ class Redeem extends Component {
                   <thead>
                      <tr>
                         <th>Name</th>
+                        <th>UserId</th>
                         <th>Date</th>
                         <th>Details</th>
                      </tr>
                   </thead>
                   <tbody>
                      {this.state.requests.map((request, index) => {
-                        const { id, name, date } = request;
+                        const { id, name, date, user_id } = request;
                         return (
                            <tr key={id}>
                               <td data-column="Name">{name}</td>
+                              <td data-column="Name">{user_id}</td>
                               <td data-column="Paytm/UPI Id">
                                  {moment(date).format('DD/MM/YYYY, hh:mm a')}
                               </td>

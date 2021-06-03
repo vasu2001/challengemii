@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-// import Card from '../../components/Competition-info/Card';
 import Card from '../../components/Card/Card';
-import Footer from '../../components/Footer/Footer';
 import Submissions from '../../components/Submissions/Submissions';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import './competition.css';
@@ -10,27 +8,19 @@ import firebase from '../../firebase';
 import { AuthContext } from '../../Auth';
 import { toast } from 'react-toastify';
 import Gallery from '../../components/Gallery/Gallery';
+import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
 
 const db = firebase.firestore();
 
 const VOTE_LIMIT = 3;
 
 const Competition = (props) => {
-   const options = {
-      buttons: {
-         showAutoplayButton: false,
-         showDownloadButton: false,
-      },
-   };
-
    const { currentUser } = useContext(AuthContext);
-   // console.log({currentUser})
    const history = useHistory();
 
    const [mySubs, setMySubs] = useState([]);
    const [selectedSub, setSelectedSub] = useState([]);
    const [gallery, setGallery] = useState(-1);
-
    useEffect(() => {
       window.addEventListener('scroll', showButton);
 
@@ -98,13 +88,11 @@ const Competition = (props) => {
          element.style.right = '-200px';
       }
    };
-
    const onLike = (i) => {
       if (selectedSub.includes(i))
          setSelectedSub([...selectedSub.filter((x) => x !== i)]);
       else setSelectedSub([...selectedSub, i]);
    };
-
    return (
       <div className={'competition-pg'}>
          <div className="competition-content">
@@ -119,28 +107,14 @@ const Competition = (props) => {
                </Switch>
                <Leaderboard id={props.match.params.id} />
                <h2 className="submission-title">Submissions</h2>
-               {/* <SRLWrapper options={options}> */}
                <div className="submissions">
-                  {mySubs.length == 0 ? (
+                  {mySubs.length === 0 ? (
                      <center>
                         <p>There is no submission yet.</p>
                      </center>
                   ) : null}
-                  {mySubs &&
-                     mySubs.map((submission, i) => {
-                        return (
-                           <Submissions
-                              submission={submission}
-                              key={submission.id}
-                              selected={selectedSub.includes(i)}
-                              onClick={() => setGallery(i)}
-                              onLike={onLike}
-                              i={i}
-                           />
-                        );
-                     })}
+                  {<SubmissionCard submission={mySubs} />}
                </div>
-               {/* </SRLWrapper> */}
                <a onClick={onSubmit} className="submitButton" id="submit-vote">
                   Submit ({selectedSub.length}/{VOTE_LIMIT})
                </a>

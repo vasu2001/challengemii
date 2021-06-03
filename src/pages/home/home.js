@@ -5,7 +5,6 @@ import './home.css';
 import Banner from '../../components/Home-banner/Banner';
 import Info from '../../components/Info-Card/Card';
 import image1 from '../../assets/explore.png';
-import Footer from '../../components/Footer/Footer';
 import { AuthContext } from '../../Auth';
 
 const Home = () => {
