@@ -9,9 +9,9 @@ import { AiFillLinkedin } from 'react-icons/ai';
 import { GoSignOut } from 'react-icons/go';
 import Footer from '../../components/Footer/Footer';
 import firebase from '../../firebase';
-import Submissions from '../../components/Submissions/Submissions';
 import { AuthContext } from '../../Auth';
 import { Link, Redirect } from 'react-router-dom';
+import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
 
 const db = firebase.firestore();
 
@@ -129,7 +129,7 @@ const UserpNew = () => {
                      {submissions &&
                         submissions.map((submission) => {
                            return (
-                              <Submissions
+                              <SubmissionCard
                                  submission={submission}
                                  key={submission.id}
                               />

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Card from '../../components/Card/Card';
-import Submissions from '../../components/Submissions/Submissions';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import './competition.css';
 import firebase from '../../firebase';
@@ -9,6 +8,7 @@ import { AuthContext } from '../../Auth';
 import { toast } from 'react-toastify';
 import Gallery from '../../components/Gallery/Gallery';
 import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const db = firebase.firestore();
 
@@ -112,8 +112,26 @@ const Competition = (props) => {
                      <center>
                         <p>There is no submission yet.</p>
                      </center>
-                  ) : null}
-                  {<SubmissionCard submission={mySubs} />}
+                  ) : (
+                     <div className="submission_card">
+                        <ResponsiveMasonry
+                           columnsCountBreakPoints={{ 600: 2, 900: 3 }}
+                        >
+                           <Masonry gutter="10px">
+                              {mySubs.map((submission, i) => (
+                                 <SubmissionCard
+                                    submission={submission}
+                                    key={submission.id}
+                                    selected={selectedSub.includes(i)}
+                                    onClick={() => setGallery(i)}
+                                    onLike={onLike}
+                                    i={i}
+                                 />
+                              ))}
+                           </Masonry>
+                        </ResponsiveMasonry>
+                     </div>
+                  )}
                </div>
                <a onClick={onSubmit} className="submitButton" id="submit-vote">
                   Submit ({selectedSub.length}/{VOTE_LIMIT})

@@ -5,43 +5,48 @@ import { AiFillLike } from 'react-icons/ai';
 import { FaShareAlt } from 'react-icons/fa';
 import { MdReport } from 'react-icons/md';
 
-const SubmissionCard = ({ submission }) => {
-   const images = [];
-   submission.map((subs) => {
-      return images.push(subs.photo_link);
-   });
-   console.log(images);
+const SubmissionCard = ({ submission, onLike, selected, onClick, i }) => {
+   const onShare = () => {
+      navigator.share?.({
+         title: 'Share your submission with your friends!',
+         url: window.location.href,
+      });
+   };
+
    return (
-      <div className="submission_card">
-         <ResponsiveMasonry columnsCountBreakPoints={{ 600: 2, 900: 3 }}>
-            <Masonry gutter="10px">
-               {images.map((image, i) => (
-                  <div className="sub_box">
-                     <img
-                        alt=""
-                        key={i}
-                        src={image}
-                        className="sub_img"
-                        style={{ width: '100%', display: 'block' }}
-                     />
-                     <div className="label_box">
-                        <p>user_name</p>
-                     </div>
-                     <div className="sub_action">
-                        <div className="btn_holder">
-                           <AiFillLike />
-                        </div>
-                        <div className="btn_holder">
-                           <FaShareAlt />
-                        </div>
-                        <div className="btn_holder">
-                           <MdReport />
-                        </div>
-                     </div>
-                  </div>
-               ))}
-            </Masonry>
-         </ResponsiveMasonry>
+      <div className="sub_box">
+         <img
+            onClick={onClick}
+            alt=""
+            key={i}
+            src={submission.photo_link}
+            className="sub_img"
+            style={{ width: '100%', display: 'block' }}
+         />
+         <div className="label_box">
+            <a>
+               <p>{submission.user_name}</p>
+            </a>
+         </div>
+         <div className="sub_action">
+            <div className={`btn_holder ${selected ? 'btn_selected' : ''}`}>
+               <a onClick={() => onLike(i)}>
+                  <AiFillLike />
+               </a>
+            </div>
+
+            <div className="btn_holder">
+               <a onClick={onShare}>
+                  <FaShareAlt />
+               </a>
+            </div>
+
+            <div className="btn_holder">
+               <a>
+                  <MdReport />
+               </a>
+            </div>
+         </div>
       </div>
    );
 };
