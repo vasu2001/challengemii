@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './competitionStat.css';
 import firebase from '../../firebase';
 import VoteScreen from '../Vote-Screen/VoteScreen';
+import { Link } from 'react-router-dom';
 
 const db = firebase.firestore();
 
@@ -49,13 +50,9 @@ const CompetitionStat = () => {
                               </td>
                               <td data-column="Prize">{competition.prize}</td>
                               <td data-column="Votes">
-                                 <a
-                                    className=""
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setDisplay(true)}
-                                 >
-                                    Details
-                                 </a>
+                                 <Link to="/admin-panel/update-comp">
+                                    Update
+                                 </Link>
                               </td>
                            </tr>
                         );

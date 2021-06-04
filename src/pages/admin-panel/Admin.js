@@ -8,6 +8,7 @@ import HostCompetiton from '../../components/Host-competition/HostCompetiton';
 import CompetitionStat from '../../components/Competition-Stat/CompetitionStat';
 import Redeem from '../../components/Redeem-req/Redeem';
 import AddPrize from '../../components/Add-Prize/AddPrize';
+import UpdateCompetition from '../../components/UpdataCompetition/UpdateCompetition';
 
 const Admin = () => {
    return (
@@ -59,6 +60,18 @@ const Admin = () => {
                         <Fragment>
                            <Top title="Add Prize" />
                            <AddPrize />
+                        </Fragment>
+                     )}
+                  />
+               </Switch>
+               <Switch>
+                  <Route
+                     exact
+                     path="/admin-panel/update-comp"
+                     render={() => (
+                        <Fragment>
+                           <Top title="Update Competitions" />
+                           <UpdateCompetition />
                         </Fragment>
                      )}
                   />

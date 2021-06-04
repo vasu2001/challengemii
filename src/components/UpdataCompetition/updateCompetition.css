@@ -1,0 +1,29 @@
+.update_competition {
+   width: 100%;
+   padding: 20px;
+   padding-bottom: 100px;
+   text-align: center;
+   position: relative;
+}
+.info-update-container {
+   width: 70%;
+   margin: 0 auto;
+   text-align: left;
+}
+.info-update-container p {
+   margin-top: 10px;
+}
+.btn-update {
+   display: inline-block;
+   margin-top: 30px;
+   background-color: #fca311;
+   padding: 10px 20px;
+   color: #fff !important;
+   cursor: pointer;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   border-radius: 10px;
+}
+.info-update-container .action-container {
+   height: 0;
+   margin-bottom: 50px;
+}
