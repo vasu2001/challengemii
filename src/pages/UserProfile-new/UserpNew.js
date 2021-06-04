@@ -11,6 +11,7 @@ import { AuthContext } from '../../Auth';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import DpChangeModal from '../../components/DpChangeModal/DpChangeModal';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import userImg from '../../assets/user.png';
 
 const db = firebase.firestore();
 
@@ -64,16 +65,18 @@ const UserpNew = () => {
          </center>
       );
    }
-   const closechangeModal = () => {
-      setDisplay(false);
-   };
    return (
       <div>
          {display ? <DpChangeModal close={() => setDisplay(false)} /> : null}
          <div className="user-profile-new">
             <div
                className="profile-dp-new"
-               style={{ backgroundImage: `url(${userData.photoURL})` }}
+               // style={{ backgroundImage: `url(${userData.photoURL})` }}
+               style={{
+                  backgroundImage: `url(${
+                     userData.photoURL !== '' ? userData.photoURL : userImg
+                  })`,
+               }}
             >
                {id === 'me' ? (
                   <a onClick={() => setDisplay(true)}>
@@ -109,13 +112,15 @@ const UserpNew = () => {
                         Edit profile
                      </Link>
                   ) : null}
-                  <GoSignOut
-                     className="btn-sign-out"
-                     onClick={() => {
-                        window.location.href = '/';
-                        firebase.auth().signOut();
-                     }}
-                  />
+                  {id == 'me' ? (
+                     <GoSignOut
+                        className="btn-sign-out"
+                        onClick={() => {
+                           window.location.href = '/';
+                           firebase.auth().signOut();
+                        }}
+                     />
+                  ) : null}
                </div>
                {id === 'me' ? (
                   <Link

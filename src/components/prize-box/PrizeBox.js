@@ -19,16 +19,6 @@ const PrizeBox = ({ data, onRedeem }) => {
             <p>Flat discount</p>
             <h1 className="prize-title">{data.name}</h1>
             <p>on Headphones & Earphones</p>
-            <p
-               style={{
-                  color: '#4267B2',
-                  marginTop: '20px',
-                  cursor: 'pointer',
-               }}
-               onClick={() => setDisplay(true)}
-            >
-               Details
-            </p>
          </div>
          <a className="btn-add" onClick={onRedeem}>
             Redeem{' '}
