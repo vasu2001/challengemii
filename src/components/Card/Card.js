@@ -22,6 +22,26 @@ const Card = ({ competition, id }) => {
                   {moment(competition.starts).format('Do MMM, YYYY')} -{' '}
                   {moment(competition.ends).format('Do MMM, YYYY')}
                </p>
+               <div className="instruction-container">
+                  <h5>Instructions:</h5>
+                  <p>
+                     Lorem Ipsum is simply dummy text of the printing and
+                     typesetting industry. Lorem Ipsum has been the industry's
+                     standard dummy text ever since the 1500s, when an unknown
+                     printer took a galley of type and scrambled it to make a
+                     type specimen book.
+                  </p>
+               </div>
+               <div className="rules-container">
+                  <h5>Rules:</h5>
+                  <p>
+                     Lorem Ipsum is simply dummy text of the printing and
+                     typesetting industry. Lorem Ipsum has been the industry's
+                     standard dummy text ever since the 1500s, when an unknown
+                     printer took a galley of type and scrambled it to make a
+                     type specimen book.
+                  </p>
+               </div>
                <div className="extra-info">
                   <p>
                      <img className="img-extrainfo" src={trophy} alt=""></img>
@@ -54,14 +74,51 @@ const Card = ({ competition, id }) => {
                   <a id="btn-refer">Refer</a>
                </div>
                <div className="side2-info">
-                  <p>
+                  <p className="side2-registered">
                      <img src={population} alt="" className="img-side2"></img>
                      {competition.submissions} Registered
                   </p>
-                  <p>
+                  <p className="side2-time">
                      <img src={calendar} alt="" className="img-side2"></img>
                      {moment(competition.starts).fromNow()}
                   </p>
+                  <div className="side2-top">
+                     <p>
+                        <img
+                           className="img-extrainfo"
+                           src={trophy}
+                           alt=""
+                        ></img>
+                        <span>{competition.prize} coins</span>
+                     </p>
+                     <p>
+                        <img
+                           className="img-extrainfo"
+                           src={ticketImg}
+                           alt=""
+                        ></img>
+                        <span>{competition.fees} tickets</span>
+                     </p>
+                  </div>
+                  <div className="side2-bottom">
+                     <p>
+                        <img
+                           className="img-extrainfo"
+                           src={population}
+                           alt=""
+                           style={{ transform: 'translateY(-7px)' }}
+                        ></img>
+                        <span>Registered: {competition.submissions}</span>
+                     </p>
+                     <p>
+                        <img
+                           className="img-extrainfo"
+                           src={calendar}
+                           alt=""
+                        ></img>
+                        <span> {moment(competition.starts).fromNow()}</span>
+                     </p>
+                  </div>
                </div>
             </div>
          </div>

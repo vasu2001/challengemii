@@ -23,8 +23,8 @@
    background-size: cover;
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
    .carousel-new {
       display: none;
    }
-}
+} */
