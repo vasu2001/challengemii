@@ -51,13 +51,6 @@ const Basic = (props) => {
                <hr style={{ marginBottom: '50px' }} />
                <div className="social-info">
                   <p>Social Links:</p>
-                  <input
-                     type="text"
-                     className="input-field"
-                     id="website"
-                     onChange={handleChange}
-                     placeholder="Website (https:...)"
-                  ></input>
                   <div className="social-box">
                      <div className="social-title">
                         <p className="social-link-head">https:twitter.com/</p>

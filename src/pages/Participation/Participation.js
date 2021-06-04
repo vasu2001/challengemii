@@ -17,14 +17,26 @@ const Participation = (props) => {
    const [user_name, setUser_name] = useState('');
    const [competition_id, setCompetition_id] = useState('');
    const [loading, setLoading] = useState(false);
+   const [exists, setExists] = useState(false);
 
    useEffect(() => {
       if (currentUser) {
          setUser_id(currentUser.uid);
          setUser_name(currentUser.displayName);
          setCompetition_id(props.match.params.id);
+         db.collection('submissions')
+            .where('user_id', '==', currentUser.uid)
+            .where('competition_id', '==', competition_id)
+            .get()
+            .then((querySnap) => {
+               querySnap.forEach((doc) => {
+                  if (doc.exists) {
+                     setExists(true);
+                  }
+               });
+            });
       }
-   }, [currentUser]);
+   }, [currentUser, competition_id]);
 
    const defaultBtn = () => {
       const defaultBtn = document.querySelector('#choose-input');
@@ -106,52 +118,68 @@ const Participation = (props) => {
       <div className="participation-pg">
          {loading ? <Loading /> : null}
          <div className="participation-card">
-            <h3 className="card-title">Upload your submission</h3>
-            <div className="upload-img-container">
-               <img id="preview-img"></img>
-               <p>No file chosen, yet!</p>
-            </div>
-            <div className="action-container">
-               <input
-                  id="choose-input"
-                  onChange={(e) => {
-                     handleUpload(e);
-                     previewImg(e);
+            {exists ? (
+               <div
+                  style={{
+                     display: 'flex',
+                     justifyContent: 'center',
+                     alignItems: 'center',
+                     width: '100%',
+                     height: '100%',
                   }}
-                  type="file"
-                  hidden
-               ></input>
-               <a className="btn-choose" onClick={defaultBtn}>
-                  Choose File
-               </a>
-               <div style={{ marginTop: '30px' }}>
-                  <p
-                     className={`yt-link ${hidden ? '' : 'hide'}`}
-                     onClick={() => setHidden(!hidden)}
-                  >
-                     Add link to your youtube video
-                  </p>
-                  <input
-                     className={hidden ? 'hide' : ''}
-                     type="text"
-                     onChange={handleInput}
-                     placeholder="Youtube-link"
-                  ></input>
+               >
+                  <h4>Your response has already been submitted.</h4>
                </div>
-            </div>
-            <a
-               className="btn-submit"
-               onClick={(e) => {
-                  if (photoUrl !== '') {
-                     setLoading(true);
-                     handleSubmit(e);
-                  } else {
-                     toast.error('Choose a file to upload!');
-                  }
-               }}
-            >
-               Submit
-            </a>
+            ) : (
+               <div>
+                  <h3 className="card-title">Upload your submission</h3>
+                  <div className="upload-img-container">
+                     <img id="preview-img"></img>
+                     <p>No file chosen, yet!</p>
+                  </div>
+                  <div className="action-container">
+                     <input
+                        id="choose-input"
+                        onChange={(e) => {
+                           handleUpload(e);
+                           previewImg(e);
+                        }}
+                        type="file"
+                        hidden
+                     ></input>
+                     <a className="btn-choose" onClick={defaultBtn}>
+                        Choose File
+                     </a>
+                     <div style={{ marginTop: '30px' }}>
+                        <p
+                           className={`yt-link ${hidden ? '' : 'hide'}`}
+                           onClick={() => setHidden(!hidden)}
+                        >
+                           Add link to your youtube video
+                        </p>
+                        <input
+                           className={hidden ? 'hide' : ''}
+                           type="text"
+                           onChange={handleInput}
+                           placeholder="Youtube-link"
+                        ></input>
+                     </div>
+                  </div>
+                  <a
+                     className="btn-submit"
+                     onClick={(e) => {
+                        if (photoUrl !== '') {
+                           setLoading(true);
+                           handleSubmit(e);
+                        } else {
+                           toast.error('Choose a file to upload!');
+                        }
+                     }}
+                  >
+                     Submit
+                  </a>
+               </div>
+            )}
          </div>
       </div>
    );
