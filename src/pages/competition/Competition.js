@@ -18,6 +18,7 @@ const Competition = (props) => {
    const { currentUser } = useContext(AuthContext);
    const history = useHistory();
 
+   const [competition, setCompetitions] = useState({});
    const [mySubs, setMySubs] = useState(null);
    const [selectedSub, setSelectedSub] = useState([]);
    const [gallery, setGallery] = useState(-1);
@@ -47,6 +48,15 @@ const Competition = (props) => {
          })
          .catch((err) => {
             toast.error('Error getting competition.');
+         });
+
+      db.collection('competitions')
+         .doc(props.match.params.id)
+         .get()
+         .then((doc) => {
+            if (doc.exists) {
+               setCompetitions(doc.data());
+            }
          });
 
       return () => {
@@ -100,8 +110,8 @@ const Competition = (props) => {
    return (
       <div className={'competition-pg'}>
          <div className="competition-content">
-            <div className="cover-img"></div>
-            <Card id={props.match.params.id} />
+            <img className="cover-img" src={competition.coverUrl}></img>
+            <Card competition={competition} id={props.match.params.id} />
             <div className="competition-info-container">
                <h3>Instructions</h3>
                <p style={{ marginTop: '20px' }}>

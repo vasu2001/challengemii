@@ -11,20 +11,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const db = firebase.firestore();
 
-const Card = (props) => {
-   const [competition, setCompetitions] = useState({});
-
-   useEffect(() => {
-      db.collection('competitions')
-         .doc(props.id)
-         .get()
-         .then((doc) => {
-            if (doc.exists) {
-               setCompetitions(doc.data());
-            }
-         });
-   }, [props.id]);
-
+const Card = ({ competition, id }) => {
    if (competition) {
       return (
          <div className="cards">
@@ -32,8 +19,8 @@ const Card = (props) => {
                <h3>{competition.title}</h3>
                <h6 id="tagline">{competition.tagline}</h6>
                <p id="date-info">
-                  {moment(competition.starts).format('Do MMM, YYYY h:mm a')} -{' '}
-                  {moment(competition.ends).format('Do MMM, YYYY h:mm a')}
+                  {moment(competition.starts).format('Do MMM, YYYY')} -{' '}
+                  {moment(competition.ends).format('Do MMM, YYYY')}
                </p>
                <div className="extra-info">
                   <p>
@@ -61,7 +48,7 @@ const Card = (props) => {
             </div>
             <div className="card_side_2">
                <div className="side2-actions">
-                  <Link to={'/participation/' + props.id} id="btn-participate">
+                  <Link to={'/participation/' + id} id="btn-participate">
                      Participate
                   </Link>
                   <a id="btn-refer">Refer</a>
