@@ -109,6 +109,12 @@
 .side2-bottom {
    display: none;
 }
+.instruction-container {
+   display: none;
+}
+.rules-container {
+   display: none;
+}
 @media only screen and (max-width: 1000px) {
    #date-info {
       margin-top: 30px;
@@ -179,12 +185,14 @@
       align-items: center;
    }
    .instruction-container {
+      display: block;
       margin-top: 20px;
    }
    .instruction-container h5 {
       color: #333;
    }
    .rules-container {
+      display: block;
       margin: 20px 0;
    }
    .rules-container h5 {
