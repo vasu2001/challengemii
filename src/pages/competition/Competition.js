@@ -112,6 +112,16 @@ const Competition = (props) => {
          <div className="competition-content">
             <img className="cover-img" src={competition.coverUrl}></img>
             <Card competition={competition} id={props.match.params.id} />
+            <div className="competition-info-container">
+               <div>
+                  <h3>Instructions:</h3>
+                  <p style={{ marginTop: '20px' }}>
+                     {competition.instructions}
+                  </p>
+                  <h3 style={{ marginTop: '40px' }}>Rules:</h3>
+                  <p style={{ marginTop: '20px' }}>{competition.rules}</p>
+               </div>
+            </div>
             <section className="section-submission">
                <Switch>
                   <Route

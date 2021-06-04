@@ -7,7 +7,9 @@ const ManageTickets = () => {
       <div className="buy-tickets">
          <div className="buy_tickets_conatainer">
             <div className="tickets_titlebox">
-               <h3>BUY TICKETS</h3>
+               <h3 style={{ letterSpacing: '1.5px' }}>
+                  BUY TICKETS <span>=</span> <span>GET MORE</span>
+               </h3>
             </div>
             <div className="ticket_pre_container">
                <TicketCard tickets="1" inr="100" />
@@ -21,8 +23,16 @@ const ManageTickets = () => {
                <TicketCard tickets="20" inr="2000" />
                <TicketCard tickets="25" inr="2500" />
             </div>
-            <input type="number" className="buy-more" placeholder="0"></input>
+            <p>Enter the number of tickets you would like to buy?</p>
+            <input
+               type="number"
+               className="buy-more"
+               placeholder="Enter amount"
+            ></input>
             <br />
+            <div>
+               <p>Cost: INR. 500</p>
+            </div>
             <a className="btn-buy-tickets">Buy Ticket</a>
          </div>
       </div>

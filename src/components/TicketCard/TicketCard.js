@@ -14,8 +14,15 @@ const TicketCard = ({ tickets, inr }) => {
             </h5>
          </div>
          <div className="inr_value">
+            <h5 className="inr-mob">
+               <span>
+                  <img src={ticket}></img>
+               </span>
+               {tickets} Tickets
+            </h5>
             <h5>INR. {inr}</h5>
          </div>
+         <div className="discount">-10%</div>
       </div>
    );
 };

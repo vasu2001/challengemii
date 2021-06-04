@@ -59,8 +59,13 @@
 }
 .competition-info-container {
    width: 100%;
-   background-color: #fff;
-   padding: 100px 50px;
+   background-color: #e3e3e3;
+   padding: 100px 100px 100px 50px;
+   position: relative;
+}
+.competition-info-container div {
+   border-left: 1px solid #000;
+   padding-left: 50px;
 }
 @media only screen and (max-width: 780px) {
    .cover-dp {
@@ -74,6 +79,9 @@
    .submitButton {
       font-size: 12px;
       padding: 10px 15px;
+   }
+   .competition-info-container {
+      display: none;
    }
 }
 @media only screen and (max-width: 560px) {

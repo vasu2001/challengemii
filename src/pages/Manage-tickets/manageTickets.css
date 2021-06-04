@@ -1,6 +1,6 @@
 .buy-tickets {
    width: 100%;
-   height: 100vh;
+   padding: 50px 0;
    background-color: #14213d;
    display: flex;
    justify-content: center;
@@ -34,7 +34,9 @@
    text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
    border-radius: 10px;
 }
-
+.buy_tickets_conatainer p {
+   margin-top: 40px;
+}
 .ticket_pre_container {
    width: 100%;
    display: flex;
@@ -45,16 +47,30 @@
    border: 1px solid #8a92a3;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
    border-radius: 2px;
-   margin-top: 40px;
+   margin-top: 10px;
    padding-left: 10px;
    font-size: 16px;
 }
 .btn-buy-tickets {
    display: inline-block;
-   margin-top: 30px;
+   margin-top: 20px;
    padding: 10px 20px;
    background-color: #fca311;
    border-radius: 10px;
-   color: #fff;
+   color: #fff !important;
+   cursor: pointer;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 600px) {
+   .buy-tickets {
+      height: auto;
+      padding: 50px 0;
+   }
+   .tickets_titlebox h3 {
+      font-size: 20px;
+   }
+   .tickets_titlebox span {
+      display: block;
+   }
 }
