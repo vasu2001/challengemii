@@ -24,23 +24,11 @@ const Card = ({ competition, id }) => {
                </p>
                <div className="instruction-container">
                   <h5>Instructions:</h5>
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
+                  <p>{competition.instructions}</p>
                </div>
                <div className="rules-container">
                   <h5>Rules:</h5>
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
+                  <p>{competition.rules}</p>
                </div>
                <div className="extra-info">
                   <p>

@@ -13,6 +13,7 @@ const db = firebase.firestore();
 const AllCompetitions = () => {
    const [competitions, setCompetitions] = useState([]);
    const [filter, setFilter] = useState(0); // 0 - ongoing 1 - upcoming
+   const [color, setColor] = useState(0);
    // getting all competitions from firestore
    useEffect(() => {
       db.collection('competitions')
@@ -30,7 +31,17 @@ const AllCompetitions = () => {
          <div className="all-competitions-content">
             <div className="left-pane">
                <ul className="left-items">
-                  <li onClick={() => setFilter(0)}>
+                  <li
+                     onClick={() => {
+                        setFilter(0);
+                        setColor(0);
+                     }}
+                     style={{
+                        backgroundColor: `${
+                           color === 0 ? '#fca311' : '#e5e5e5'
+                        }`,
+                     }}
+                  >
                      <img
                         alt=""
                         src={ongoing}
@@ -42,7 +53,17 @@ const AllCompetitions = () => {
                      />
                      Ongoing
                   </li>
-                  <li onClick={() => setFilter(1)}>
+                  <li
+                     onClick={() => {
+                        setFilter(1);
+                        setColor(1);
+                     }}
+                     style={{
+                        backgroundColor: `${
+                           color === 1 ? '#fca311' : '#e5e5e5'
+                        }`,
+                     }}
+                  >
                      <img
                         alt=""
                         src={upcoming}

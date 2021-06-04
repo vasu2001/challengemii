@@ -14,6 +14,8 @@ class HostCompetiton extends Component {
       ends: '',
       prize: '',
       fees: '',
+      instructions: '',
+      rules: '',
       coverUrl: '',
       loading: false,
    };
@@ -48,12 +50,15 @@ class HostCompetiton extends Component {
                      ends: this.state.ends,
                      prize: this.state.prize,
                      fees: this.state.fees,
+                     instructions: this.state.instructions,
+                     rules: this.state.rules,
                      coverUrl: downloadUrl,
                      submissions: 0,
                   })
                   .then((docRef) => {
                      this.setState({ loading: false });
                      toast.success('Competition added successfully');
+                     window.location.reload();
                   })
                   .catch((err) => {
                      toast.error('Error adding document');
@@ -112,6 +117,22 @@ class HostCompetiton extends Component {
                   className="input-field host-field"
                   placeholder=""
                ></input>
+               <p>Instructions:</p>
+               <textarea
+                  type="text"
+                  onChange={this.handleChange}
+                  id="instructions"
+                  className="input-field host-field ques-input"
+                  placeholder=""
+               ></textarea>
+               <p>Rules:</p>
+               <textarea
+                  type="text"
+                  onChange={this.handleChange}
+                  id="rules"
+                  className="input-field host-field ques-input"
+                  placeholder=""
+               ></textarea>
                <p>Upload competition cover</p>
                <input
                   id="choose-input"
@@ -122,8 +143,12 @@ class HostCompetiton extends Component {
             <div className="save">
                <a
                   onClick={(e) => {
-                     this.setState({ loading: true });
-                     this.handleSubmit(e);
+                     if (this.state.title !== '') {
+                        this.setState({ loading: true });
+                        this.handleSubmit(e);
+                     } else {
+                        toast.error('Fill up all fields');
+                     }
                   }}
                   className="btn-save"
                >

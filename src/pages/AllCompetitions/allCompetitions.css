@@ -37,10 +37,6 @@
    cursor: pointer;
    text-transform: uppercase;
 }
-.left-items li:hover {
-   background-color: #fca311;
-   color: #fff;
-}
 .right-pane {
    width: 100%;
    height: 100%;
