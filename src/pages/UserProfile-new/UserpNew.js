@@ -39,15 +39,18 @@ const UserpNew = () => {
          </center>
       );
    }
+   const closechangeModal = () => {
+      setDisplay(false);
+   };
    return (
       <div>
-         {display ? <DpChangeModal /> : null}
+         {display ? <DpChangeModal setDisplay={closechangeModal} /> : null}
          <div className="user-profile-new">
             <div
                className="profile-dp-new"
                style={{ backgroundImage: `url(${userData.photoURL})` }}
             >
-               <div className="edit-photo">
+               <div className="edit-photo" onClick={() => setDisplay(true)}>
                   <AiFillEdit />
                </div>
             </div>

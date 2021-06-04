@@ -3,12 +3,15 @@ import './dpChangeModal.css';
 import firebase from '../../firebase';
 import { AuthContext } from '../../Auth';
 import { toast } from 'react-toastify';
+import { AiOutlineClose } from 'react-icons/ai';
+import Loading from '../../components/Loading/Loading';
 
 const db = firebase.firestore();
 
-const DpChangeModal = () => {
+const DpChangeModal = ({ setDisplay }) => {
    const [photoUrl, setPhotoUrl] = useState('');
    const { currentUser } = useContext(AuthContext);
+   const [loading, setLoading] = useState(false);
 
    const defaultBtn = () => {
       const defaultBtn = document.querySelector('#choose-input');
@@ -37,6 +40,7 @@ const DpChangeModal = () => {
             let progress =
                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Uploaded ', progress + '%');
+            setLoading(false);
          })
          .then(() => {
             storageRef.getDownloadURL().then((downloadUrl) => {
@@ -59,6 +63,7 @@ const DpChangeModal = () => {
 
    return (
       <div className="dp_change_modal">
+         {loading ? <Loading /> : null}
          <div className="dp_change_container">
             <h3>Change Profile Photo</h3>
             <div className="upload-img-container">
@@ -83,6 +88,7 @@ const DpChangeModal = () => {
                   className="btn-choose"
                   onClick={(e) => {
                      if (photoUrl !== '') {
+                        setLoading(true);
                         handleSubmit(e);
                      } else {
                         toast.error('Choose a file to upload.');
@@ -91,6 +97,9 @@ const DpChangeModal = () => {
                >
                   Submit
                </a>
+            </div>
+            <div className="btn-close" onClick={setDisplay}>
+               <AiOutlineClose />
             </div>
          </div>
       </div>
