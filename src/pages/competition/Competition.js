@@ -22,6 +22,7 @@ const Competition = (props) => {
    const [mySubs, setMySubs] = useState(null);
    const [selectedSub, setSelectedSub] = useState([]);
    const [gallery, setGallery] = useState(-1);
+   const [exists, setExists] = useState(false);
 
    useEffect(() => {
       const showButton = () => {
@@ -58,11 +59,23 @@ const Competition = (props) => {
                setCompetitions(doc.data());
             }
          });
-
+      if (currentUser) {
+         db.collection('submissions')
+            .where('user_id', '==', currentUser.uid)
+            .where('competition_id', '==', props.match.params.id)
+            .get()
+            .then((querySnap) => {
+               querySnap.forEach((doc) => {
+                  if (doc.exists) {
+                     setExists(true);
+                  }
+               });
+            });
+      }
       return () => {
          window.removeEventListener('scroll', showButton);
       };
-   }, []);
+   }, [currentUser, props.match.params.id]);
 
    const onSubmit = async () => {
       if (!currentUser) {
@@ -129,7 +142,7 @@ const Competition = (props) => {
                      component={Leaderboard}
                   />
                </Switch>
-               <Leaderboard id={props.match.params.id} />
+               {exists ? <Leaderboard id={props.match.params.id} /> : null}
                <h2 className="submission-title">Submissions</h2>
                <div className="submissions">
                   {!mySubs ? (
