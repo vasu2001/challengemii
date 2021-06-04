@@ -11,6 +11,7 @@ const AddPrize = () => {
       coins: '',
       image: '',
       ques: '',
+      description: '',
    });
    const [loading, setLoading] = useState(false);
 
@@ -29,7 +30,12 @@ const AddPrize = () => {
    };
 
    const onSubmit = async (e) => {
-      if (details.name === '' || details.coins === '' || details.image === '') {
+      if (
+         details.name === '' ||
+         details.coins === '' ||
+         details.image === '' ||
+         details.description === ''
+      ) {
          toast.error('Fill out all the fields');
          return;
       }
@@ -51,6 +57,7 @@ const AddPrize = () => {
                name: details.name,
                coins: details.coins,
                image: imageURL,
+               description: details.description,
                ques: details.ques
                   .split('\n')
                   .map((s) => s.trim())
@@ -64,6 +71,7 @@ const AddPrize = () => {
             coins: '',
             image: '',
             ques: '',
+            description: '',
          });
          document.querySelectorAll('.prize-input').forEach((x) => {
             x.value = '';
@@ -101,6 +109,14 @@ const AddPrize = () => {
             onChange={handleChange}
             className="input-field prize-input ques-input"
             placeholder="Questions"
+         ></textarea>
+         <p>Prize Description:</p>
+         <textarea
+            type="text"
+            id="description"
+            onChange={handleChange}
+            className="input-field prize-input ques-input"
+            placeholder="Description"
          ></textarea>
          <p>Add Product Image:</p>
          <input

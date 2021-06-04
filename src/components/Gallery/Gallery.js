@@ -5,6 +5,7 @@ import image2 from '../../assets/girl.jpg';
 import { BsChevronRight } from 'react-icons/bs';
 import { BsChevronLeft } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
+import { Link } from 'react-router-dom';
 
 const Gallery = ({ display, setDisplay, data, onLike, selected, onReport }) => {
    const [i, setI] = useState(0);
@@ -47,7 +48,12 @@ const Gallery = ({ display, setDisplay, data, onLike, selected, onReport }) => {
             </a>
          </div>
          <div className="gallery-action-box box-2">
-            <a className="btn-gallery-share">Visit Profile</a>
+            <Link
+               to={`/user/${data[i]?.user_id}`}
+               className="btn-gallery-share"
+            >
+               Visit Profile
+            </Link>
          </div>
          <a className={`btn-left ${i === 0 ? 'close' : null}`} onClick={onPrev}>
             <BsChevronLeft />

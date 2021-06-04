@@ -8,9 +8,9 @@ import Loading from '../../components/Loading/Loading';
 
 const db = firebase.firestore();
 
-const DpChangeModal = ({ setDisplay }) => {
+const DpChangeModal = ({ close }) => {
    const [photoUrl, setPhotoUrl] = useState('');
-   const { currentUser } = useContext(AuthContext);
+   const { currentUser, setUserData, userData } = useContext(AuthContext);
    const [loading, setLoading] = useState(false);
 
    const defaultBtn = () => {
@@ -31,34 +31,26 @@ const DpChangeModal = ({ setDisplay }) => {
       }
    };
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
-      const storageRef = firebase.storage().ref(`dp/${photoUrl.name}`);
-      storageRef
-         .put(photoUrl)
-         .then((snapshot) => {
-            let progress =
-               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Uploaded ', progress + '%');
-            setLoading(false);
-         })
-         .then(() => {
-            storageRef.getDownloadURL().then((downloadUrl) => {
-               db.collection('users')
-                  .doc(currentUser.uid)
-                  .update({
-                     photoURL: downloadUrl,
-                  })
-                  .then(() => {
-                     toast.success('Profile photo updated.');
-                  })
-                  .catch((err) => {
-                     toast.error(
-                        'Sorry! We encountered some error while procession your request.',
-                     );
-                  });
-            });
+
+      try {
+         const storageRef = firebase.storage().ref(`dp/${currentUser.uid}`);
+         await storageRef.put(photoUrl);
+         const downloadUrl = await storageRef.getDownloadURL();
+         await db.collection('users').doc(currentUser.uid).update({
+            photoURL: downloadUrl,
          });
+
+         toast.success('Profile photo updated.');
+         setUserData({ ...userData, photoURL: downloadUrl });
+         close();
+      } catch (err) {
+         console.log(err);
+         toast.error(
+            'Sorry! We encountered some error while procession your request.',
+         );
+      }
    };
 
    return (
@@ -98,7 +90,7 @@ const DpChangeModal = ({ setDisplay }) => {
                   Submit
                </a>
             </div>
-            <div className="btn-close" onClick={setDisplay}>
+            <div className="btn-close" onClick={close}>
                <AiOutlineClose />
             </div>
          </div>

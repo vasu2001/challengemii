@@ -23,6 +23,15 @@ const Competition = (props) => {
    const [gallery, setGallery] = useState(-1);
 
    useEffect(() => {
+      const showButton = () => {
+         const element = document.getElementById('submit-vote');
+         if (window.scrollY >= 1000) {
+            element.style.right = '0';
+         }
+         if (window.scrollY < 300) {
+            element.style.right = '-200px';
+         }
+      };
       window.addEventListener('scroll', showButton);
 
       db.collection('submissions')
@@ -80,15 +89,6 @@ const Competition = (props) => {
       }
    };
 
-   const showButton = () => {
-      const element = document.getElementById('submit-vote');
-      if (window.scrollY >= 1000) {
-         element.style.right = '0';
-      }
-      if (window.scrollY < 300) {
-         element.style.right = '-200px';
-      }
-   };
    const onLike = (i) => {
       if (selectedSub.includes(i))
          setSelectedSub([...selectedSub.filter((x) => x !== i)]);

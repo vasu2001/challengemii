@@ -78,7 +78,7 @@ const BottomNav = () => {
                   Redeem
                </div>
             </NavLink>
-            <NavLink to="/user/username">
+            <NavLink to="/user/me">
                <div className="item-box">
                   <div
                      className="bottom-nav-icons profile-icon"

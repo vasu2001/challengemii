@@ -15,6 +15,7 @@ const db = firebase.firestore();
 const ManageCoins = (props) => {
    const [loading, setLoading] = useState(false);
    const [modal, setModal] = useState(-1);
+   const [details, setDetails] = useState(-1);
 
    const { userData: user, currentUser } = useContext(AuthContext);
    const [prizes, setPrizes] = useState([]);
@@ -70,6 +71,10 @@ const ManageCoins = (props) => {
             setPrizes(doc.docs.map((x) => ({ ...x.data(), id: x.id })));
          });
    }, []);
+   console.log(prizes);
+
+   const filterData = prizes;
+
    return (
       <div className="manage-coins">
          <div className="search-filter-container">
@@ -95,23 +100,28 @@ const ManageCoins = (props) => {
                </optgroup>
             </select>
          </div>
+         <div className="prizes">
+            {filterData.map((data, i) => (
+               <PrizeBox data={data} key={i} onRedeem={() => setDetails(i)} />
+            ))}
+         </div>
          {modal > -1 ? (
             <QuestionModal
                onClose={() => setModal(-1)}
-               ques={prizes[modal].ques}
+               ques={filterData[modal].ques}
                onRedeem={onRedeem}
             />
          ) : null}
-         <div className="prizes">
-            {prizes
-               .filter((prize) =>
-                  prize.name.toLowerCase().includes(filter.toLowerCase()),
-               )
-               .map((data, i) => (
-                  <PrizeBox data={data} key={i} onRedeem={() => openModal(i)} />
-               ))}
-         </div>
          {loading ? <Loading /> : null}
+         {details > -1 ? (
+            <PrizeDetails
+               onRedeem={() => {
+                  openModal(details);
+               }}
+               close={() => setDetails(-1)}
+               data={filterData[details]}
+            />
+         ) : null}
       </div>
    );
 };
