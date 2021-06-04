@@ -1,0 +1,15 @@
+.admin-general {
+   width: 100%;
+   padding: 50px 20px;
+   padding-bottom: 100px;
+   position: relative;
+   text-align: center;
+}
+.all_compi_img_container {
+   width: 60%;
+   text-align: center;
+   margin: 0 auto;
+}
+.admin-general a {
+   margin: 0 auto;
+}

@@ -9,6 +9,9 @@ const Side = () => {
             <div className="admin-photo"></div>
             <h4 className="admin-name">Admin</h4>
             <ul className="admin-side-nav-items">
+               <Link to="/admin-panel/general">
+                  <li className="admin-side-nav-links">General</li>
+               </Link>
                <Link to="/admin-panel/host">
                   <li className="admin-side-nav-links">Host Competition</li>
                </Link>
