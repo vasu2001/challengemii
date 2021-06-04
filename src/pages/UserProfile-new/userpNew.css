@@ -87,9 +87,6 @@ a:focus {
    margin-bottom: 50px;
 }
 .submission-holder {
-   display: flex;
-   justify-content: space-around;
-   /* flex-wrap: wrap; */
    margin-top: 50px;
    padding: 0 50px 50px 50px;
    width: 100%;

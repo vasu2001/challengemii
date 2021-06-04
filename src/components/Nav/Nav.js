@@ -99,7 +99,7 @@ const Nav = () => {
                      <span>{userData.coin}</span>
                   </li>
                </NavLink>
-               <NavLink to="/user/username">
+               <NavLink to="/user/me">
                   <div
                      className="nav-profile"
                      style={{ backgroundImage: `url(${userData.photoURL})` }}

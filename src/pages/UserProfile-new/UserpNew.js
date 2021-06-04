@@ -8,31 +8,56 @@ import { AiFillLinkedin } from 'react-icons/ai';
 import { GoSignOut } from 'react-icons/go';
 import firebase from '../../firebase';
 import { AuthContext } from '../../Auth';
-import { Link } from 'react-router-dom';
-import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import DpChangeModal from '../../components/DpChangeModal/DpChangeModal';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const db = firebase.firestore();
 
 const UserpNew = () => {
-   const { currentUser, userData } = useContext(AuthContext);
-   const userId = currentUser.uid;
-   const [submissions, setSubmissions] = useState([]);
+   const { id } = useParams();
+   let userId = id;
+
+   const { currentUser, userData: myData } = useContext(AuthContext);
+   if (id === 'me' && currentUser) {
+      userId = currentUser.uid;
+   }
+
+   const [submissions, setSubmissions] = useState(null);
+   const [userData, setUserData] = useState(null);
    const [display, setDisplay] = useState(false);
+
+   const history = useHistory();
+
    useEffect(() => {
-      if (currentUser) {
-         db.collection('submissions')
-            .where('user_id', '==', currentUser.uid)
+      if (id === 'me') setUserData(myData);
+   }, [myData]);
+
+   useEffect(() => {
+      if (id !== 'me') {
+         db.collection('users')
+            .doc(userId)
             .get()
             .then((querySnap) => {
-               setSubmissions(querySnap.docs.map((doc) => doc.data()));
+               setUserData(querySnap.data());
             });
       }
-   }, [currentUser]);
 
-   console.log(submissions);
+      if (userId !== 'me') {
+         db.collection('submissions')
+            .where('user_id', '==', userId)
+            .get()
+            .then((querySnap) => {
+               setSubmissions(
+                  querySnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+               );
+            });
+      }
+   }, [userId]);
 
-   if (!currentUser || !userData) {
+   console.log({ submissions, userData });
+
+   if (userId === 'me' || !userData) {
       return (
          <center>
             <h3>Loading...</h3>
@@ -41,15 +66,19 @@ const UserpNew = () => {
    }
    return (
       <div>
-         {display ? <DpChangeModal /> : null}
+         {display ? <DpChangeModal close={() => setDisplay(false)} /> : null}
          <div className="user-profile-new">
             <div
                className="profile-dp-new"
                style={{ backgroundImage: `url(${userData.photoURL})` }}
             >
-               <div className="edit-photo">
-                  <AiFillEdit />
-               </div>
+               {id === 'me' ? (
+                  <a onClick={() => setDisplay(true)}>
+                     <div className="edit-photo">
+                        <AiFillEdit />
+                     </div>
+                  </a>
+               ) : null}
             </div>
             <div className="social-container-new">
                <div className="social-link-new">
@@ -69,7 +98,7 @@ const UserpNew = () => {
             </div>
             <div className="profile-content-new">
                <div className="user-actions">
-                  {currentUser.uid === userId ? (
+                  {id === 'me' ? (
                      <Link
                         to="/profile/edit-profile"
                         className="btn-edit-profile"
@@ -85,7 +114,7 @@ const UserpNew = () => {
                      }}
                   />
                </div>
-               {currentUser.uid === userId ? (
+               {id === 'me' ? (
                   <Link
                      to="/profile/edit-profile"
                      className="btn-edit-profile-mob"
@@ -117,20 +146,31 @@ const UserpNew = () => {
                <div className="content-submissions">
                   <h3>Submissions</h3>
                   <div className="submission-holder">
-                     {submissions &&
-                        submissions.map((submission) => {
-                           return (
-                              <SubmissionCard
-                                 submission={submission}
-                                 key={submission.id}
-                              />
-                           );
-                        })}
+                     <ResponsiveMasonry
+                        columnsCountBreakPoints={{ 600: 2, 900: 3 }}
+                     >
+                        <Masonry gutter="10px">
+                           {submissions?.map((submission, i) => (
+                              <div className="sub_box" key={submission.id}>
+                                 <img
+                                    alt=""
+                                    src={submission.photo_link}
+                                    className="sub_img"
+                                    style={{ width: '100%', display: 'block' }}
+                                    onClick={() =>
+                                       history.push(
+                                          `/competition/${submission.competition_id}`,
+                                       )
+                                    }
+                                 />
+                              </div>
+                           ))}
+                        </Masonry>
+                     </ResponsiveMasonry>
                   </div>
                </div>
             </div>
          </div>
-         {/* <Footer /> */}
       </div>
    );
 };

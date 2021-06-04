@@ -21,7 +21,7 @@ const MyCompi = (props) => {
          });
    }, []);
 
-   console.log(submissions);
+   // console.log(submissions);
    return (
       <div>
          <div className="my-compi">

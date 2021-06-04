@@ -47,7 +47,7 @@ const App = () => {
                />
                <Route path="/profile" component={Profile} />
                <Route path="/participation/:id" component={Participation} />
-               <Route path="/user/username" component={UserpNew} />
+               <Route path="/user/:id" component={UserpNew} />
                <Route path="/manage-tickets" component={ManageTickets} />
                <Route path="/admin" component={AdminLogin} />
                <Route path="/admin-panel" component={Admin} />

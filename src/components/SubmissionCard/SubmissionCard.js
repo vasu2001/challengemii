@@ -4,6 +4,7 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { AiFillLike } from 'react-icons/ai';
 import { FaShareAlt } from 'react-icons/fa';
 import { MdReport } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const SubmissionCard = ({ submission, onLike, selected, onClick, i }) => {
    const onShare = () => {
@@ -24,9 +25,9 @@ const SubmissionCard = ({ submission, onLike, selected, onClick, i }) => {
             style={{ width: '100%', display: 'block' }}
          />
          <div className="label_box">
-            <a>
+            <Link to={`/user/${submission.user_id}`}>
                <p>{submission.user_name}</p>
-            </a>
+            </Link>
          </div>
          <div className="sub_action">
             <div className={`btn_holder ${selected ? 'btn_selected' : ''}`}>

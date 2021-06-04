@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 
 const db = firebase.firestore();
 
-const DpChangeModal = () => {
+const DpChangeModal = ({ close }) => {
    const [photoUrl, setPhotoUrl] = useState('');
-   const { currentUser } = useContext(AuthContext);
+   const { currentUser, setUserData, userData } = useContext(AuthContext);
 
    const defaultBtn = () => {
       const defaultBtn = document.querySelector('#choose-input');
@@ -28,33 +28,26 @@ const DpChangeModal = () => {
       }
    };
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
-      const storageRef = firebase.storage().ref(`dp/${photoUrl.name}`);
-      storageRef
-         .put(photoUrl)
-         .then((snapshot) => {
-            let progress =
-               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Uploaded ', progress + '%');
-         })
-         .then(() => {
-            storageRef.getDownloadURL().then((downloadUrl) => {
-               db.collection('users')
-                  .doc(currentUser.uid)
-                  .update({
-                     photoURL: downloadUrl,
-                  })
-                  .then(() => {
-                     toast.success('Profile photo updated.');
-                  })
-                  .catch((err) => {
-                     toast.error(
-                        'Sorry! We encountered some error while procession your request.',
-                     );
-                  });
-            });
+
+      try {
+         const storageRef = firebase.storage().ref(`dp/${currentUser.uid}`);
+         await storageRef.put(photoUrl);
+         const downloadUrl = await storageRef.getDownloadURL();
+         await db.collection('users').doc(currentUser.uid).update({
+            photoURL: downloadUrl,
          });
+
+         toast.success('Profile photo updated.');
+         setUserData({ ...userData, photoURL: downloadUrl });
+         close();
+      } catch (err) {
+         console.log(err);
+         toast.error(
+            'Sorry! We encountered some error while procession your request.',
+         );
+      }
    };
 
    return (
