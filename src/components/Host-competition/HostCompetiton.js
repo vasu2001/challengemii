@@ -3,22 +3,27 @@ import './hostCompetition.css';
 import firebase from '../../firebase';
 import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
+import { v4 as uuid4 } from 'uuid';
 
 const db = firebase.firestore();
 
+const initState = {
+   title: '',
+   tagline: '',
+   starts: '',
+   ends: '',
+   prize: '',
+   fees: '',
+   desc: '',
+   coverUrl: '',
+   photoUrl: '',
+   preregis: '',
+   loading: false,
+};
+
 class HostCompetiton extends Component {
-   state = {
-      title: '',
-      tagline: '',
-      starts: '',
-      ends: '',
-      prize: '',
-      fees: '',
-      instructions: '',
-      rules: '',
-      coverUrl: '',
-      loading: false,
-   };
+   state = initState;
+
    handleChange = (e) => {
       this.setState({
          [e.target.id]: e.target.value,
@@ -26,45 +31,45 @@ class HostCompetiton extends Component {
    };
    handleUpload = (e) => {
       this.setState({
-         coverUrl: e.target.files[0],
+         [e.target.id]: e.target.files[0],
       });
    };
 
-   handleSubmit = (e) => {
+   handleSubmit = async (e) => {
       e.preventDefault();
-      const storageRef = firebase
-         .storage()
-         .ref(`compi-covers/${this.state.coverUrl.name}`);
-      storageRef
-         .put(this.state.coverUrl)
-         .then((snapshot) => {
-            console.log('Uploaded');
-         })
-         .then(() => {
-            storageRef.getDownloadURL().then((downloadUrl) => {
-               db.collection('competitions')
-                  .add({
-                     title: this.state.title,
-                     tagline: this.state.tagline,
-                     starts: this.state.starts,
-                     ends: this.state.ends,
-                     prize: this.state.prize,
-                     fees: this.state.fees,
-                     instructions: this.state.instructions,
-                     rules: this.state.rules,
-                     coverUrl: downloadUrl,
-                     submissions: 0,
-                  })
-                  .then((docRef) => {
-                     this.setState({ loading: false });
-                     toast.success('Competition added successfully');
-                     window.location.reload();
-                  })
-                  .catch((err) => {
-                     toast.error('Error adding document');
-                  });
-            });
+      this.setState({ loading: true });
+
+      try {
+         const coverRef = firebase.storage().ref(`compi-covers/${uuid4()}`);
+         const photoRef = firebase.storage().ref(`compi-covers/${uuid4()}`);
+
+         await coverRef.put(this.state.coverUrl);
+         await photoRef.put(this.state.photoUrl);
+
+         const coverUrl = await coverRef.getDownloadURL();
+         const photoUrl = await photoRef.getDownloadURL();
+
+         await db.collection('competitions').add({
+            title: this.state.title,
+            tagline: this.state.tagline,
+            starts: this.state.starts,
+            ends: this.state.ends,
+            prize: this.state.prize,
+            fees: this.state.fees,
+            preregis: this.state.preregis,
+            desc: this.state.desc,
+            coverUrl,
+            photoUrl,
+            submissions: 0,
          });
+
+         toast.success('Competition added successfully');
+         this.setState({ ...initState });
+      } catch (err) {
+         console.log(err);
+         toast.error('Error adding document');
+         this.setState({ loading: false });
+      }
    };
    render() {
       return (
@@ -79,6 +84,7 @@ class HostCompetiton extends Component {
                   className="input-field host-field"
                   placeholder="Title"
                ></input>
+
                <p>Competition Tagline:</p>
                <input
                   type="text"
@@ -87,6 +93,7 @@ class HostCompetiton extends Component {
                   className="input-field host-field"
                   placeholder="Tagline"
                ></input>
+
                <p>Starts at:</p>
                <input
                   type="datetime-local"
@@ -94,6 +101,7 @@ class HostCompetiton extends Component {
                   id="starts"
                   className="input-field host-field"
                ></input>
+
                <p>End at:</p>
                <input
                   type="datetime-local"
@@ -101,6 +109,7 @@ class HostCompetiton extends Component {
                   id="ends"
                   className="input-field host-field"
                ></input>
+
                <p>Winning prize:</p>
                <input
                   type="number"
@@ -109,6 +118,7 @@ class HostCompetiton extends Component {
                   className="input-field host-field"
                   placeholder=""
                ></input>
+
                <p>Entry fees:</p>
                <input
                   type="number"
@@ -117,25 +127,35 @@ class HostCompetiton extends Component {
                   className="input-field host-field"
                   placeholder=""
                ></input>
-               <p>Instructions:</p>
+
+               <p>Pre-registration Entry fees:</p>
+               <input
+                  type="number"
+                  onChange={this.handleChange}
+                  id="preregis"
+                  className="input-field host-field"
+                  placeholder=""
+               ></input>
+
+               <p>Description:</p>
                <textarea
                   type="text"
                   onChange={this.handleChange}
-                  id="instructions"
+                  id="desc"
                   className="input-field host-field ques-input"
-                  placeholder=""
+                  placeholder="Description"
                ></textarea>
-               <p>Rules:</p>
-               <textarea
-                  type="text"
-                  onChange={this.handleChange}
-                  id="rules"
-                  className="input-field host-field ques-input"
-                  placeholder=""
-               ></textarea>
+
                <p>Upload competition cover</p>
                <input
-                  id="choose-input"
+                  id="coverUrl"
+                  onChange={this.handleUpload}
+                  type="file"
+               ></input>
+
+               <p>Upload competition photo</p>
+               <input
+                  id="photoUrl"
                   onChange={this.handleUpload}
                   type="file"
                ></input>

@@ -3,6 +3,12 @@
    border-radius: 10px;
    overflow: hidden;
 }
+.highlight {
+   border: #fca311 5px;
+   border-style: solid;
+   padding: 3px;
+}
+
 .sub_action {
    width: 100%;
    padding: 10px;

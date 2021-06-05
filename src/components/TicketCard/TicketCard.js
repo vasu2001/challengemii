@@ -2,7 +2,7 @@ import React from 'react';
 import './ticketCard.css';
 import ticket from '../../assets/ticket.png';
 
-const TicketCard = ({ tickets, inr }) => {
+const TicketCard = ({ tickets, inr, discount }) => {
    return (
       <div className="ticket_card">
          <div className="ticket_value">
@@ -22,7 +22,7 @@ const TicketCard = ({ tickets, inr }) => {
             </h5>
             <h5>INR. {inr}</h5>
          </div>
-         <div className="discount">-10%</div>
+         <div className="discount">{discount}%</div>
       </div>
    );
 };

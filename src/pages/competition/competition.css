@@ -60,13 +60,11 @@
 .competition-info-container {
    width: 100%;
    background-color: #e3e3e3;
-   padding: 100px 100px 100px 50px;
+   padding: 25px;
    position: relative;
-}
-.competition-info-container div {
-   border-left: 1px solid #000;
    padding-left: 50px;
 }
+
 @media only screen and (max-width: 780px) {
    .cover-dp {
       display: none;

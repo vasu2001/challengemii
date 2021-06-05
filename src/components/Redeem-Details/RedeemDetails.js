@@ -3,11 +3,11 @@ import './redeemDetails.css';
 import { BsArrowRight } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 
-const RedeemDetails = (props) => {
+const RedeemDetails = ({ close }) => {
    return (
       <div className="redeem-details">
          <div className="redeem-details-card">
-            <a className="redeem-details-close" onClick={props.setDisplay}>
+            <a className="redeem-details-close" onClick={close}>
                <GrClose />
             </a>
             <h3>Prize Details</h3>

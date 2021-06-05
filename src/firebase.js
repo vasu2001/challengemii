@@ -18,3 +18,8 @@ firebase.firestore();
 firebase.storage();
 
 export default firebase;
+
+export const firebaseEndpoints = {
+   initializePayment:
+      'http://localhost:5001/challengemii-website/asia-south1/initiatePayment',
+};

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import Card from '../../components/Card/Card';
 import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import './competition.css';
@@ -14,9 +14,11 @@ const db = firebase.firestore();
 
 const VOTE_LIMIT = 3;
 
-const Competition = (props) => {
+const Competition = () => {
    const { currentUser } = useContext(AuthContext);
    const history = useHistory();
+   const locationState = useLocation().state;
+   const { id } = useParams();
 
    const [competition, setCompetitions] = useState({});
    const [mySubs, setMySubs] = useState(null);
@@ -37,45 +39,57 @@ const Competition = (props) => {
       window.addEventListener('scroll', showButton);
 
       db.collection('submissions')
-         .where('competition_id', '==', props.match.params.id)
+         .where('competition_id', '==', id)
          .get()
          .then((querySnap) => {
-            setMySubs(
-               querySnap.docs.map((doc) => ({
-                  ...doc.data(),
-                  id: doc.id,
-               })),
-            );
+            const submissions = querySnap.docs.map((doc) => ({
+               ...doc.data(),
+               id: doc.id,
+            }));
+            setMySubs(submissions);
+
+            if (currentUser)
+               submissions.find((e) => {
+                  if (e.user_id === currentUser.uid) {
+                     setExists(true);
+                     return true;
+                  }
+                  return false;
+               });
          })
          .catch((err) => {
+            console.log(err);
             toast.error('Error getting competition.');
          });
 
-      db.collection('competitions')
-         .doc(props.match.params.id)
-         .get()
-         .then((doc) => {
-            if (doc.exists) {
-               setCompetitions(doc.data());
-            }
-         });
-      if (currentUser) {
-         db.collection('submissions')
-            .where('user_id', '==', currentUser.uid)
-            .where('competition_id', '==', props.match.params.id)
+      if (locationState) setCompetitions(locationState);
+      else
+         db.collection('competitions')
+            .doc(id)
             .get()
-            .then((querySnap) => {
-               querySnap.forEach((doc) => {
-                  if (doc.exists) {
-                     setExists(true);
-                  }
-               });
+            .then((doc) => {
+               if (doc.exists) {
+                  setCompetitions(doc.data());
+               }
             });
-      }
+
+      // if (currentUser) {
+      //    db.collection('submissions')
+      //       .where('user_id', '==', currentUser.uid)
+      //       .where('competition_id', '==', id)
+      //       .get()
+      //       .then((querySnap) => {
+      //          querySnap.forEach((doc) => {
+      //             if (doc.exists) {
+      //                setExists(true);
+      //             }
+      //          });
+      //       });
+      // }
       return () => {
          window.removeEventListener('scroll', showButton);
       };
-   }, [currentUser, props.match.params.id]);
+   }, [currentUser, id]);
 
    const onSubmit = async () => {
       if (!currentUser) {
@@ -124,25 +138,18 @@ const Competition = (props) => {
       <div className={'competition-pg'}>
          <div className="competition-content">
             <img className="cover-img" src={competition.coverUrl}></img>
-            <Card competition={competition} id={props.match.params.id} />
+            <Card competition={competition} id={id} />
             <div className="competition-info-container">
-               <div>
-                  <h3>Instructions:</h3>
-                  <p style={{ marginTop: '20px' }}>
-                     {competition.instructions}
-                  </p>
-                  <h3 style={{ marginTop: '40px' }}>Rules:</h3>
-                  <p style={{ marginTop: '20px' }}>{competition.rules}</p>
-               </div>
+               <p>{competition.desc}</p>
             </div>
             <section className="section-submission">
-               <Switch>
+               {/* <Switch>
                   <Route
                      path="/competition/participant"
                      component={Leaderboard}
                   />
-               </Switch>
-               {exists ? <Leaderboard id={props.match.params.id} /> : null}
+               </Switch> */}
+               {exists ? <Leaderboard id={id} /> : null}
                <h2 className="submission-title">Submissions</h2>
                <div className="submissions">
                   {!mySubs ? (
@@ -168,6 +175,9 @@ const Competition = (props) => {
                                     onLike={onLike}
                                     onReport={onReport}
                                     i={i}
+                                    highlight={
+                                       submission.user_id === currentUser?.uid
+                                    }
                                  />
                               ))}
                            </Masonry>

@@ -23,12 +23,7 @@ const Card = ({ competition, id }) => {
                   {moment(competition.ends).format('Do MMM, YYYY')}
                </p>
                <div className="instruction-container">
-                  <h5>Instructions:</h5>
-                  <p>{competition.instructions}</p>
-               </div>
-               <div className="rules-container">
-                  <h5>Rules:</h5>
-                  <p>{competition.rules}</p>
+                  <p>{competition.desc}</p>
                </div>
                <div className="extra-info">
                   <p>

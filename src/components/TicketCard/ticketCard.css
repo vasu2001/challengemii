@@ -44,16 +44,17 @@
    color: #fff;
 }
 .discount {
-   width: 150px;
-   height: 60px;
+   width: 120px;
+   height: 50px;
    background-color: red;
    position: absolute;
    right: -60px;
-   padding-top: 22px;
-   padding-right: 20px;
+   padding-top: 27px;
+   padding-right: 30px;
    transform: rotate(45deg);
    font-weight: 600;
    color: #fff;
+   font-size: 13px;
 }
 .inr-mob {
    display: none;

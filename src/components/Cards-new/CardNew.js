@@ -16,10 +16,15 @@ const CardNew = (props) => {
    if (competition) {
       return (
          <div>
-            <Link to={`/competition/${competition_id}`}>
+            <Link
+               to={{
+                  pathname: `/competition/${competition_id}`,
+                  state: competition,
+               }}
+            >
                <div className="card-new">
                   <div className="card-photo">
-                     <img src={competition.coverUrl}></img>
+                     <img src={competition.photoUrl}></img>
                   </div>
                   <div className="card-new-container">
                      <h3 className="card-new-title">{competition.title}</h3>

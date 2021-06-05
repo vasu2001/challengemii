@@ -20,7 +20,7 @@ const Redeem = () => {
 
    return (
       <div>
-         {display ? <RedeemDetails setDisplay={setDisplay} /> : null}
+         {display ? <RedeemDetails close={() => setDisplay(false)} /> : null}
          <div className="redeem">
             <table>
                <thead>
