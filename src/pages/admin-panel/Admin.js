@@ -67,8 +67,7 @@ const Admin = () => {
                </Switch>
                <Switch>
                   <Route
-                     exact
-                     path="/admin-panel/update-comp"
+                     path="/admin-panel/update-comp/:id"
                      render={() => (
                         <Fragment>
                            <Top title="Update Competitions" />

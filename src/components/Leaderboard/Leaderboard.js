@@ -18,9 +18,8 @@ const Leaderboard = (props) => {
             });
          });
    }, []);
-   console.log(mySubs);
    return (
-      <div className='leaderboard-ct'>
+      <div className="leaderboard-ct">
          <h2 className="submission-title">LEADERBOARD</h2>
          <div className="leaderboard">
             <ol>
@@ -30,16 +29,17 @@ const Leaderboard = (props) => {
                   </center>
                ) : null}
                {mySubs &&
-                  mySubs.map((mySub,key) => {
+                  mySubs.map((mySub, key) => {
                      return (
                         <li
                            style={{
                               display: 'flex',
                               justifyContent: 'space-between',
                            }}
-                        ><span>{key+1}</span>
+                        >
+                           <span>{key + 1}</span>
                            {mySub.user_name}{' '}
-                           <span style={{ marginRight: '10px'}}>
+                           <span style={{ marginRight: '10px' }}>
                               {mySub.vote}
                            </span>
                         </li>

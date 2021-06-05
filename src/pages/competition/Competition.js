@@ -72,20 +72,6 @@ const Competition = () => {
                   setCompetitions(doc.data());
                }
             });
-
-      // if (currentUser) {
-      //    db.collection('submissions')
-      //       .where('user_id', '==', currentUser.uid)
-      //       .where('competition_id', '==', id)
-      //       .get()
-      //       .then((querySnap) => {
-      //          querySnap.forEach((doc) => {
-      //             if (doc.exists) {
-      //                setExists(true);
-      //             }
-      //          });
-      //       });
-      // }
       return () => {
          window.removeEventListener('scroll', showButton);
       };
@@ -143,12 +129,6 @@ const Competition = () => {
                <p>{competition.desc}</p>
             </div>
             <section className="section-submission">
-               {/* <Switch>
-                  <Route
-                     path="/competition/participant"
-                     component={Leaderboard}
-                  />
-               </Switch> */}
                {exists ? <Leaderboard id={id} /> : null}
                <h2 className="submission-title">Submissions</h2>
                <div className="submissions">

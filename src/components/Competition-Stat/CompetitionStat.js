@@ -14,14 +14,18 @@ const CompetitionStat = () => {
       db.collection('competitions')
          .get()
          .then((querySnap) => {
-            setCompetitions(querySnap.docs.map((doc) => doc.data()));
+            setCompetitions(
+               querySnap.docs.map((doc) => ({
+                  data: doc.data(),
+                  id: doc.id,
+               })),
+            );
          });
    }, []);
 
    const displayState = () => {
       setDisplay(false);
    };
-
    return (
       <div>
          <div className="competition-stat">
@@ -34,23 +38,26 @@ const CompetitionStat = () => {
                      <th>Ends</th>
                      <th>Participants</th>
                      <th>Prize</th>
-                     <th>Votes</th>
+                     <th></th>
                   </tr>
                </thead>
                <tbody>
                   {competitions &&
                      competitions.map((competition) => {
+                        const comp = competition.data;
                         return (
-                           <tr key={competition.id}>
-                              <td data-column="Title">{competition.title}</td>
-                              <td data-column="Starts">{competition.starts}</td>
-                              <td data-column="Ends">{competition.ends}</td>
+                           <tr key={comp.id}>
+                              <td data-column="Title">{comp.title}</td>
+                              <td data-column="Starts">{comp.starts}</td>
+                              <td data-column="Ends">{comp.ends}</td>
                               <td data-column="Participants">
-                                 {competition.submissions}
+                                 {comp.submissions}
                               </td>
-                              <td data-column="Prize">{competition.prize}</td>
+                              <td data-column="Prize">{comp.prize}</td>
                               <td data-column="Votes">
-                                 <Link to="/admin-panel/update-comp">
+                                 <Link
+                                    to={`/admin-panel/update-comp/${competition.id}`}
+                                 >
                                     Update
                                  </Link>
                               </td>
