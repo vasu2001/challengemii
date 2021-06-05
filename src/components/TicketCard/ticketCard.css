@@ -59,6 +59,17 @@
 .inr-mob {
    display: none;
 }
+.o-tickets {
+   text-decoration: line-through;
+   text-decoration-thickness: 2px;
+   font-size: 14px;
+   margin-right: 2px;
+}
+.tickets {
+   font-size: 14px;
+   margin-left: 4px;
+}
+
 @media only screen and (max-width: 750px) {
    .ticket_value {
       width: 150px;

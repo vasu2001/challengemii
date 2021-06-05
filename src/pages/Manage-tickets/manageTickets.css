@@ -34,7 +34,19 @@
    text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
    border-radius: 10px;
 }
+.tickets_titlebox h5 {
+   letter-spacing: '1.5px';
+   margin-top: 20px;
+}
+.error {
+   color: red;
+}
+
 .buy_tickets_conatainer p {
+   margin-bottom: 10px;
+}
+
+.ticket-ques {
    margin-top: 40px;
 }
 .ticket_pre_container {
