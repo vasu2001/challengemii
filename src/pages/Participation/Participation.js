@@ -6,25 +6,25 @@ import { AuthContext } from '../../Auth';
 import Loading from '../../components/Loading/Loading';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
+import { useLocation, useParams } from 'react-router';
 
 const db = firebase.firestore();
 
 const Participation = (props) => {
-   const { currentUser, setCurrentUser } = useContext(AuthContext);
-   const [hidden, setHidden] = useState(true);
+   const { currentUser } = useContext(AuthContext);
    const [photoUrl, setPhotoUrl] = useState('');
-   const [videoLink, setVideoLink] = useState('');
-   const [user_id, setUser_id] = useState('');
-   const [user_name, setUser_name] = useState('');
-   const [competition_id, setCompetition_id] = useState('');
    const [loading, setLoading] = useState(false);
    const [exists, setExists] = useState(false);
 
+   const competition_id = useParams().id;
+   const user_id = currentUser?.uid;
+   const user_name = currentUser?.displayName;
+
+   let { referBy } = useLocation().state;
+   if (referBy === user_id) referBy = undefined;
+
    useEffect(() => {
       if (currentUser) {
-         setUser_id(currentUser.uid);
-         setUser_name(currentUser.displayName);
-         setCompetition_id(props.match.params.id);
          db.collection('submissions')
             .where('user_id', '==', currentUser.uid)
             .where('competition_id', '==', competition_id)
@@ -52,9 +52,9 @@ const Participation = (props) => {
       }
    };
 
-   const handleInput = (e) => {
-      setVideoLink(e.target.value);
-   };
+   // const handleInput = (e) => {
+   //    setVideoLink(e.target.value);
+   // };
 
    const handleUpload = (e) => {
       if (e.target.files[0]) {
@@ -81,9 +81,9 @@ const Participation = (props) => {
                      photo_link: downloadUrl,
                      user_id,
                      user_name,
-                     video_link: videoLink,
                      vote: 0,
                      voters: [],
+                     referBy,
                   })
                   .then((docRef) => {
                      toast.success(
@@ -157,7 +157,7 @@ const Participation = (props) => {
                         <a className="btn-choose" onClick={defaultBtn}>
                            Choose File
                         </a>
-                        <div style={{ marginTop: '30px' }}>
+                        {/* <div style={{ marginTop: '30px' }}>
                            <p
                               className={`yt-link ${hidden ? '' : 'hide'}`}
                               onClick={() => setHidden(!hidden)}
@@ -170,7 +170,7 @@ const Participation = (props) => {
                               onChange={handleInput}
                               placeholder="Youtube-link"
                            ></input>
-                        </div>
+                        </div> */}
                      </div>
                      <a
                         className="btn-submit"

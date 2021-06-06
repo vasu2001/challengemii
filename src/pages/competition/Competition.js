@@ -13,13 +13,16 @@ import { motion } from 'framer-motion';
 import ReportModal from '../../components/ReportModal/ReportModal';
 import moment from 'moment';
 
+const queryString = require('query-string');
+
 const db = firebase.firestore();
 
 const Competition = () => {
    const { currentUser } = useContext(AuthContext);
    const history = useHistory();
-   const locationState = useLocation().state;
+   const { state: locationState, search } = useLocation();
    const { id } = useParams();
+   const { referBy } = queryString.parse(search);
 
    const [competition, setCompetitions] = useState({});
    const [mySubs, setMySubs] = useState(null);
@@ -166,7 +169,7 @@ const Competition = () => {
          <div className={'competition-pg'}>
             <div className="competition-content">
                <img className="cover-img" src={competition.coverUrl}></img>
-               <Card competition={competition} id={id} />
+               <Card competition={competition} id={id} referBy={referBy} />
                <div className="competition-info-container">
                   <p>{competition.desc}</p>
                </div>

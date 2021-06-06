@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './card.css';
 import skills from '../../assets/skills.png';
 import trophy from '../../assets/trophy.png';
@@ -9,9 +9,30 @@ import firebase from '../../firebase';
 import moment from 'moment';
 import { Link, NavLink } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../Auth';
 const db = firebase.firestore();
 
-const Card = ({ competition, id }) => {
+const Card = ({ competition, id, referBy }) => {
+   const { currentUser } = useContext(AuthContext);
+
+   const onRefer = async () => {
+      try {
+         const shareUrl = window.location + '?referBy=' + currentUser.uid;
+         if (navigator.share) {
+            await navigator.share({
+               url: shareUrl,
+               title: 'Share with your friends to earn tickets',
+            });
+         } else {
+            await navigator.clipboard.writeText(shareUrl);
+            toast.success('Share URL copied to clipboard');
+         }
+      } catch (err) {
+         toast.error('Something went wrong');
+      }
+   };
+
    if (competition) {
       return (
          <Fade bottom>
@@ -56,10 +77,16 @@ const Card = ({ competition, id }) => {
                </div>
                <div className="card_side_2">
                   <div className="side2-actions">
-                     <Link to={'/participation/' + id} id="btn-participate">
+                     <Link
+                        to={{
+                           pathname: '/participation/' + id,
+                           state: { referBy },
+                        }}
+                        id="btn-participate"
+                     >
                         Participate
                      </Link>
-                     <a id="btn-refer">
+                     <a id="btn-refer" onClick={onRefer}>
                         Refer <br />
                         <span>to get {competition.refer} Tickets</span>
                      </a>
