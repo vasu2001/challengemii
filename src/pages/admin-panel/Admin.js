@@ -11,6 +11,8 @@ import AddPrize from '../../components/Add-Prize/AddPrize';
 import UpdateCompetition from '../../components/UpdataCompetition/UpdateCompetition';
 import AdminGeneral from '../../components/AdminGeneral/AdminGeneral';
 import { motion } from 'framer-motion';
+import ReportedSubs from '../../components/ReportedSubs/ReportedSubs';
+import UpdateUserInfo from '../../components/UpdateUserInfo/UpdateUserInfo';
 
 const Admin = () => {
    return (
@@ -91,6 +93,30 @@ const Admin = () => {
                            <Fragment>
                               <Top title="General Updations" />
                               <AdminGeneral />
+                           </Fragment>
+                        )}
+                     />
+                  </Switch>
+                  <Switch>
+                     <Route
+                        exact
+                        path="/admin-panel/reported-subs"
+                        render={() => (
+                           <Fragment>
+                              <Top title="Reported Submissions" />
+                              <ReportedSubs />
+                           </Fragment>
+                        )}
+                     />
+                  </Switch>
+                  <Switch>
+                     <Route
+                        exact
+                        path="/admin-panel/update-user"
+                        render={() => (
+                           <Fragment>
+                              <Top title="Update User Info" />
+                              <UpdateUserInfo />
                            </Fragment>
                         )}
                      />

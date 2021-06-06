@@ -133,7 +133,9 @@ const Competition = () => {
                <img className="cover-img" src={competition.coverUrl}></img>
                <Card competition={competition} id={id} />
                <div className="competition-info-container">
-                  <p>{competition.desc}</p>
+                  <div className="competition-info-text">
+                     <p>{competition.desc}</p>
+                  </div>
                </div>
                <section className="section-submission">
                   {exists ? <Leaderboard id={id} /> : null}
