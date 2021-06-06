@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './voteScreen.css';
 import firebase from '../../firebase';
 import Loading from '../Loading/Loading';
+import { toast } from 'react-toastify';
 
 const VoteScreen = ({ comp_id }) => {
    const [subs, setSubs] = useState([]);
@@ -29,9 +30,14 @@ const VoteScreen = ({ comp_id }) => {
          .get()
          .then((querySnap) => {
             querySnap.forEach((doc) => {
-               doc.ref.update({
-                  vote,
-               });
+               doc.ref
+                  .update({
+                     vote,
+                  })
+                  .then(toast.success('Updated successfully !'))
+                  .catch((err) => {
+                     toast.error('Error updating votes.');
+                  });
             });
          });
    };

@@ -14,7 +14,9 @@ const Redeem = () => {
       db.collection('redeem_req')
          .get()
          .then((querySnap) => {
-            setRequests(querySnap.docs.map((x) => ({ id: x.id, ...x.data() })));
+            setRequests(
+               querySnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+            );
          });
    }, []);
 
@@ -35,7 +37,7 @@ const Redeem = () => {
                   {requests.map((request, index) => {
                      const { id, name, date, user_id } = request;
                      return (
-                        <tr key={id}>
+                        <tr key={index}>
                            <td data-column="Name">{name}</td>
                            <td data-column="UserId">{user_id}</td>
                            <td data-column="Date">

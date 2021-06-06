@@ -6,6 +6,18 @@ import firebase from '../../firebase';
 const ReportedSubs = () => {
    const [subs, setSubs] = useState([]);
 
+   useEffect(() => {
+      firebase
+         .firestore()
+         .collection('reports')
+         .get()
+         .then((querySnap) => {
+            setSubs(
+               querySnap.docs.map((doc) => ({ data: doc.data(), id: doc.id })),
+            );
+         });
+   }, []);
+
    console.log(subs);
    return (
       <div className="reported_subs">
@@ -33,6 +45,11 @@ const ReportedSubs = () => {
                         defaultValue="2"
                         className="vote-update-input"
                      ></input>
+                  </td>
+                  <td>
+                     <a className="" style={{ cursor: 'pointer' }}>
+                        Delete
+                     </a>
                   </td>
                </tr>
             </tbody>
