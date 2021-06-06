@@ -14,6 +14,7 @@ const SubmissionCard = ({
    onClick,
    i,
    highlight,
+   onReport,
 }) => {
    const onShare = () => {
       navigator.share?.({
@@ -52,7 +53,7 @@ const SubmissionCard = ({
                </div>
 
                <div className="btn_holder">
-                  <a>
+                  <a onClick={() => onReport(i)}>
                      <MdReport />
                   </a>
                </div>

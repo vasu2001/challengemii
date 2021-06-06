@@ -9,7 +9,7 @@ import VoteScreen from '../Vote-Screen/VoteScreen';
 const db = firebase.firestore();
 
 const UpdateCompetition = () => {
-   const [competition, setCompetition] = useState({});
+   const [competition, setCompetition] = useState({}); //original data
    const { id } = useParams();
    const [data, setData] = useState({
       title: '',
@@ -32,21 +32,11 @@ const UpdateCompetition = () => {
          .then((doc) => {
             if (doc.exists) {
                setCompetition(doc.data());
+               setData(doc.data());
             }
          });
-      setData({
-         title: competition.title,
-         tagline: competition.tagline,
-         starts: competition.starts,
-         ends: competition.ends,
-         prize: competition.prize,
-         fees: competition.fees,
-         desc: competition.desc,
-         preregis: competition.preregis,
-         coverUrl: competition.coverUrl,
-         photoUrl: competition.photoUrl,
-      });
-   }, [id, competition.desc]);
+      console.log('aa');
+   }, [id]);
 
    const coverBtn = () => {
       const defaultBtn = document.querySelector('#coverUrl');
@@ -80,6 +70,7 @@ const UpdateCompetition = () => {
 
    const handleUpload = (e) => {
       setData({
+         ...data,
          [e.target.id]: e.target.files[0],
       });
    };
@@ -88,35 +79,34 @@ const UpdateCompetition = () => {
       setLoading(true);
       e.preventDefault();
       try {
-         const photoName = firebase
-            .storage()
-            .refFromURL(competition.photoUrl).name;
-         const coverName = firebase
-            .storage()
-            .refFromURL(competition.coverUrl).name;
+         const newCompetition = data;
 
-         const photoRef = firebase.storage().ref(`compi-covers/${photoName}`);
-         const coverRef = firebase.storage().ref(`compi-covers/${coverName}`);
+         if (data.photoUrl !== competition.photoUrl) {
+            const photoName = firebase
+               .storage()
+               .refFromURL(competition.photoUrl).name;
+            const photoRef = firebase
+               .storage()
+               .ref(`compi-covers/${photoName}`);
+            await photoRef.put(data.photoUrl);
+            const photoUrl = await photoRef.getDownloadURL();
+            newCompetition.photoUrl = photoUrl;
+         }
 
-         await photoRef.put(data.photoUrl);
-         await coverRef.put(data.coverUrl);
+         if (data.coverUrl !== competition.coverUrl) {
+            const coverName = firebase
+               .storage()
+               .refFromURL(competition.coverUrl).name;
+            const coverRef = firebase
+               .storage()
+               .ref(`compi-covers/${coverName}`);
+            await coverRef.put(data.coverUrl);
+            const coverUrl = await coverRef.getDownloadURL();
+            newCompetition.coverUrl = coverUrl;
+         }
 
-         const photoUrl = await photoRef.getDownloadURL();
-         const coverUrl = await coverRef.getDownloadURL();
+         await db.collection('competitions').doc(id).update(newCompetition);
 
-         console.log(coverUrl);
-
-         await db.collection('competitions').doc(id).update({
-            title: data.title,
-            tagline: data.tagline,
-            starts: data.starts,
-            ends: data.ends,
-            prize: data.prize,
-            fees: data.fees,
-            desc: data.desc,
-            coverUrl,
-            photoUrl,
-         });
          setLoading(false);
          toast.success('Success updated.');
       } catch (err) {
@@ -125,7 +115,8 @@ const UpdateCompetition = () => {
          toast.error('Error updating document.');
       }
    };
-   console.log(data);
+
+   // console.log('data', data);
    return (
       <div className="update_competition">
          {loading ? <Loading /> : null}
@@ -140,6 +131,7 @@ const UpdateCompetition = () => {
                placeholder="Title"
                defaultValue={competition.title}
             ></input>
+
             <p>Tagline:</p>
             <input
                type="text"
@@ -148,22 +140,25 @@ const UpdateCompetition = () => {
                defaultValue={competition.tagline}
                className="input-field host-field"
             ></input>
+
             <p>Starts at:</p>
             <input
-               type="datetime-local"
+               type="date"
                id="starts"
                onChange={(e) => handleChange(e)}
                defaultValue={competition.starts}
                className="input-field host-field"
             ></input>
+
             <p>End at:</p>
             <input
-               type="datetime-local"
+               type="date"
                id="ends"
                onChange={(e) => handleChange(e)}
                defaultValue={competition.ends}
                className="input-field host-field"
             ></input>
+
             <p>Winning prize:</p>
             <input
                type="number"
@@ -173,6 +168,7 @@ const UpdateCompetition = () => {
                className="input-field host-field"
                placeholder=""
             ></input>
+
             <p>Entry fees:</p>
             <input
                type="number"
@@ -182,6 +178,7 @@ const UpdateCompetition = () => {
                className="input-field host-field"
                placeholder=""
             ></input>
+
             <p>Pre registration:</p>
             <input
                type="number"
@@ -191,6 +188,7 @@ const UpdateCompetition = () => {
                className="input-field host-field"
                placeholder=""
             ></input>
+
             <p>Description:</p>
             <textarea
                type="text"
@@ -200,6 +198,7 @@ const UpdateCompetition = () => {
                className="input-field host-field ques-input"
                placeholder=""
             ></textarea>
+
             <h5 style={{ marginTop: '20px' }}>Upload competition cover</h5>
             <div className="upload-img-container">
                <img id="preview-img" src={competition.coverUrl}></img>
@@ -219,6 +218,7 @@ const UpdateCompetition = () => {
                   Choose File
                </a>
             </div>
+
             <h5 style={{ marginTop: '20px' }}>Upload competition photo</h5>
             <div className="upload-img-container">
                <img id="preview-photo" src={competition.photoUrl}></img>
