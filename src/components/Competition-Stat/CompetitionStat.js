@@ -3,6 +3,8 @@ import './competitionStat.css';
 import firebase from '../../firebase';
 import VoteScreen from '../Vote-Screen/VoteScreen';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 const db = firebase.firestore();
 
@@ -26,6 +28,17 @@ const CompetitionStat = () => {
    const displayState = () => {
       setDisplay(false);
    };
+
+   const deleteComp = async (comp_id) => {
+      try {
+         await db.collection('competitions').doc(comp_id).delete();
+         toast.success('Competition successfully deleted.');
+      } catch (err) {
+         console.log(err);
+         toast.error('Error deleting competition');
+      }
+   };
+
    return (
       <div>
          <div className="competition-stat">
@@ -39,6 +52,7 @@ const CompetitionStat = () => {
                      <th>Participants</th>
                      <th>Prize</th>
                      <th></th>
+                     <th></th>
                   </tr>
                </thead>
                <tbody>
@@ -48,8 +62,13 @@ const CompetitionStat = () => {
                         return (
                            <tr key={comp.id}>
                               <td data-column="Title">{comp.title}</td>
-                              <td data-column="Starts">{comp.starts}</td>
-                              <td data-column="Ends">{comp.ends}</td>
+                              <td data-column="Starts">
+                                 {' '}
+                                 {moment(comp.starts).format('DD/MM/YYYY')}
+                              </td>
+                              <td data-column="Ends">
+                                 {moment(comp.ends).format('DD/MM/YYYY')}
+                              </td>
                               <td data-column="Participants">
                                  {comp.submissions}
                               </td>
@@ -60,6 +79,17 @@ const CompetitionStat = () => {
                                  >
                                     Update
                                  </Link>
+                              </td>
+                              <td>
+                                 <a
+                                    className=""
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={(comp_id) =>
+                                       deleteComp(competition.id)
+                                    }
+                                 >
+                                    Delete
+                                 </a>
                               </td>
                            </tr>
                         );

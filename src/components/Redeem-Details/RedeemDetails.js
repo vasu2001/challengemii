@@ -2,6 +2,7 @@ import React from 'react';
 import './redeemDetails.css';
 import { BsArrowRight } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
+import Fade from 'react-reveal/Fade';
 
 const RedeemDetails = ({ close }) => {
    return (

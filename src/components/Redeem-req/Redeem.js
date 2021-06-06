@@ -37,8 +37,8 @@ const Redeem = () => {
                      return (
                         <tr key={id}>
                            <td data-column="Name">{name}</td>
-                           <td data-column="Name">{user_id}</td>
-                           <td data-column="Paytm/UPI Id">
+                           <td data-column="UserId">{user_id}</td>
+                           <td data-column="Date">
                               {moment(date).format('DD/MM/YYYY, hh:mm a')}
                            </td>
                            <td data-column="details">
