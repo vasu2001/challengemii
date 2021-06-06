@@ -111,7 +111,7 @@ const Card = ({ competition, id }) => {
                               src={calendar}
                               alt=""
                            ></img>
-                           <span> {moment(competition.starts).fromNow()}</span>
+                           <span> {moment(competition.ends).fromNow()}</span>
                         </p>
                      </div>
                   </div>
