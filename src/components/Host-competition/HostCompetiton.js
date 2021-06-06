@@ -21,6 +21,7 @@ const initState = {
    loading: false,
    voterPrize: '',
    refer: '',
+   votes: 3,
 };
 
 class HostCompetiton extends Component {
@@ -62,6 +63,7 @@ class HostCompetiton extends Component {
             desc: this.state.desc,
             voterPrize: this.state.voterPrize,
             refer: this.state.refer,
+            votes: this.state.votes,
             coverUrl,
             photoUrl,
             submissions: 0,
@@ -155,6 +157,15 @@ class HostCompetiton extends Component {
                   type="number"
                   onChange={this.handleChange}
                   id="refer"
+                  className="input-field host-field"
+                  placeholder=""
+               ></input>
+
+               <p>Votes:</p>
+               <input
+                  type="number"
+                  onChange={this.handleChange}
+                  id="votes"
                   className="input-field host-field"
                   placeholder=""
                ></input>

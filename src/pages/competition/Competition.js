@@ -13,8 +13,6 @@ import { motion } from 'framer-motion';
 
 const db = firebase.firestore();
 
-const VOTE_LIMIT = 3;
-
 const Competition = () => {
    const { currentUser } = useContext(AuthContext);
    const history = useHistory();
@@ -26,6 +24,8 @@ const Competition = () => {
    const [selectedSub, setSelectedSub] = useState([]);
    const [gallery, setGallery] = useState(-1);
    const [exists, setExists] = useState(false);
+
+   const VOTE_LIMIT = competition?.votes ?? 3;
 
    useEffect(() => {
       const showButton = () => {

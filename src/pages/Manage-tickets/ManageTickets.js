@@ -36,7 +36,7 @@ const ManageTickets = () => {
       console.log(CHECKSUM);
 
       postForm({
-         action: `https://securegw-stage.paytm.in/theia/api/v1/`,
+         action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?MID=${process.env.MERCHANT_ID}&orderId=${orderId}`,
          params: {
             mid: process.env.MERCHANT_ID,
             orderId,
