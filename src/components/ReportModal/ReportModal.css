@@ -1,0 +1,28 @@
+.modal-backdrop {
+   background-color: rgba(22, 21, 25, 0.6);
+   position: fixed;
+   inset: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.modal-content {
+   width: 50vw;
+   padding: 20px;
+}
+
+.modal-content div {
+   display: flex;
+   justify-content: space-evenly;
+   margin-top: 10px;
+}
+.modal-content a {
+   cursor: pointer;
+   padding: 5px 15px;
+}
+.btn-yes {
+   background-color: #fca311;
+   color: #fff;
+   border-radius: 5px;
+}

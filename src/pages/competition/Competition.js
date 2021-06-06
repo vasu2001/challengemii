@@ -10,6 +10,8 @@ import Gallery from '../../components/Gallery/Gallery';
 import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { motion } from 'framer-motion';
+import ReportModal from '../../components/ReportModal/ReportModal';
+import moment from 'moment';
 
 const db = firebase.firestore();
 
@@ -24,6 +26,7 @@ const Competition = () => {
    const [selectedSub, setSelectedSub] = useState([]);
    const [gallery, setGallery] = useState(-1);
    const [exists, setExists] = useState(false);
+   const [reportModal, setReportModal] = useState(-1);
 
    const VOTE_LIMIT = competition?.votes ?? 3;
 
@@ -119,7 +122,39 @@ const Competition = () => {
       else setSelectedSub([...selectedSub, i]);
    };
 
-   const onReport = (i) => {};
+   const onReport = async () => {
+      try {
+         const id = mySubs[reportModal].id;
+         const dbRef = db.collection('reports').doc(id);
+         const userId = currentUser.uid;
+
+         const doc = await dbRef.get();
+         if (doc.exists) {
+            const data = doc.data();
+
+            if (data.reportedBy.includes(userId)) {
+               toast.error('You can only report once');
+               setReportModal(-1);
+               return;
+            }
+
+            data.reportedBy.push(userId);
+            data.lastReported = moment().toString();
+            await dbRef.set(data);
+         } else {
+            await dbRef.set({
+               reportedBy: [userId],
+               lastReported: moment().toString(),
+            });
+         }
+
+         toast.success('Submission reported');
+      } catch (err) {
+         console.log(err);
+         toast.error('Something went wrong');
+      }
+      setReportModal(-1);
+   };
 
    return (
       <motion.div
@@ -160,7 +195,7 @@ const Competition = () => {
                                        selected={selectedSub.includes(i)}
                                        onClick={setGallery}
                                        onLike={onLike}
-                                       onReport={onReport}
+                                       onReport={setReportModal}
                                        i={i}
                                        highlight={
                                           submission.user_id ===
@@ -188,9 +223,13 @@ const Competition = () => {
                data={mySubs ?? []}
                onLike={onLike}
                selected={selectedSub}
-               onReport={onReport}
+               onReport={setReportModal}
             />
          </div>
+
+         {reportModal > -1 && (
+            <ReportModal onYes={onReport} onNo={() => setReportModal(-1)} />
+         )}
       </motion.div>
    );
 };
