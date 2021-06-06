@@ -5,6 +5,7 @@ import { v4 as uuid4 } from 'uuid';
 import { firebaseEndpoints } from '../../firebase';
 import postForm from '../../postForm';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const calcDiscount = (amount) => {
    if (amount < 100) return 0;
@@ -45,53 +46,60 @@ const ManageTickets = () => {
    };
 
    return (
-      <div className="buy-tickets">
-         <div className="buy_tickets_conatainer">
-            <div className="tickets_titlebox">
-               <h2>BUY TICKETS</h2>
-               <h5>
-                  BUY MORE <span>=</span> <span>GET MORE</span>
-               </h5>
+      <motion.div
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{ opacity: 0 }}
+         transition={{ duration: 0.5 }}
+      >
+         <div className="buy-tickets">
+            <div className="buy_tickets_conatainer">
+               <div className="tickets_titlebox">
+                  <h2>BUY TICKETS</h2>
+                  <h5>
+                     BUY MORE <span>=</span> <span>GET MORE</span>
+                  </h5>
+               </div>
+               <div className="ticket_pre_container">
+                  <TicketCard inr={100} discount={5} />
+                  <TicketCard inr={500} discount={10} />
+               </div>
+               <div className="ticket_pre_container">
+                  <TicketCard inr={1000} discount={10} />
+                  <TicketCard inr={1500} discount={15} />
+               </div>
+               <div className="ticket_pre_container">
+                  <TicketCard inr={2000} discount={15} />
+                  <TicketCard inr={2500} discount={20} />
+               </div>
+               <p className="ticket-ques">
+                  Enter the amount for which you would like to buy tickets for?
+               </p>
+               <p>1 Ticket = Rs. 5</p>
+               <input
+                  type="number"
+                  className="buy-more"
+                  placeholder="Enter amount"
+                  onChange={(e) => setAmount(e.target.value)}
+               ></input>
+               <div>
+                  {amount % 5 == 0 ? (
+                     <p>
+                        Tickets = {amount / 5}{' '}
+                        {discount > 0 ? ` + ${discount}% = ${tickets}` : ''}
+                     </p>
+                  ) : (
+                     <p className="error">
+                        Please enter amount in the multiples of 5!
+                     </p>
+                  )}
+               </div>
+               <a className="btn-buy-tickets" onClick={buyTicket}>
+                  Buy Ticket
+               </a>
             </div>
-            <div className="ticket_pre_container">
-               <TicketCard inr={100} discount={5} />
-               <TicketCard inr={500} discount={10} />
-            </div>
-            <div className="ticket_pre_container">
-               <TicketCard inr={1000} discount={10} />
-               <TicketCard inr={1500} discount={15} />
-            </div>
-            <div className="ticket_pre_container">
-               <TicketCard inr={2000} discount={15} />
-               <TicketCard inr={2500} discount={20} />
-            </div>
-            <p className="ticket-ques">
-               Enter the amount for which you would like to buy tickets for?
-            </p>
-            <p>1 Ticket = Rs. 5</p>
-            <input
-               type="number"
-               className="amount"
-               placeholder="Enter amount"
-               onChange={(e) => setAmount(e.target.value)}
-            ></input>
-            <div>
-               {amount % 5 == 0 ? (
-                  <p>
-                     Tickets = {amount / 5}{' '}
-                     {discount > 0 ? ` + ${discount}% = ${tickets}` : ''}
-                  </p>
-               ) : (
-                  <p className="error">
-                     Please enter amount in the multiples of 5!
-                  </p>
-               )}
-            </div>
-            <a className="btn-buy-tickets" onClick={buyTicket}>
-               Buy Ticket
-            </a>
          </div>
-      </div>
+      </motion.div>
    );
 };
 

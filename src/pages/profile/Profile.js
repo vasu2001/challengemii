@@ -7,6 +7,7 @@ import ManageCoins from '../../components/Manage-coins/ManageCoins';
 import firebase from '../../firebase';
 import { useContext } from 'react';
 import { AuthContext } from '../../Auth';
+import { motion } from 'framer-motion';
 
 const db = firebase.firestore();
 
@@ -22,43 +23,50 @@ const Profile = (props) => {
       );
    }
    return (
-      <div className="profile">
-         <div className="profile-container">
-            <div className="nav-main">
-               <Switch>
-                  <Route
-                     exact
-                     path="/profile/edit-profile"
-                     render={() => (
-                        <Fragment>
-                           <Top
-                              title="Public profile"
-                              subtitle="Add information about yourself."
-                           />
-                           <Basic user={user} />
-                        </Fragment>
-                     )}
-                  />
-               </Switch>
-               <Switch>
-                  <Route
-                     exact
-                     path="/profile/manage-coins"
-                     render={() => (
-                        <Fragment>
-                           <Top
-                              title="Redeem Coins"
-                              subtitle="Get cash or exciting prizes "
-                           />
-                           <ManageCoins />
-                        </Fragment>
-                     )}
-                  />
-               </Switch>
+      <motion.div
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{ opacity: 0 }}
+         transition={{ duration: 0.5 }}
+      >
+         <div className="profile">
+            <div className="profile-container">
+               <div className="nav-main">
+                  <Switch>
+                     <Route
+                        exact
+                        path="/profile/edit-profile"
+                        render={() => (
+                           <Fragment>
+                              <Top
+                                 title="Public profile"
+                                 subtitle="Add information about yourself."
+                              />
+                              <Basic user={user} />
+                           </Fragment>
+                        )}
+                     />
+                  </Switch>
+                  <Switch>
+                     <Route
+                        exact
+                        path="/profile/manage-coins"
+                        render={() => (
+                           <Fragment>
+                              <Top
+                                 title="Redeem Coins"
+                                 subtitle="Get cash or exciting prizes "
+                              />
+                              <ManageCoins />
+                           </Fragment>
+                        )}
+                     />
+                  </Switch>
+               </div>
             </div>
+            {/* <Footer /> */}
          </div>
-         {/* <Footer /> */}
-      </div>
+      </motion.div>
    );
 };
 

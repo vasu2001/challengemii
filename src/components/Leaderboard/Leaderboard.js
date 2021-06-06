@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './leaderboard.css';
 import firebase from '../../firebase';
+import Fade from 'react-reveal/Fade';
 
 const db = firebase.firestore();
 

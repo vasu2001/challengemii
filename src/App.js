@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Competition from './pages/competition/Competition';
 import Home from './pages/home/home';
 import Profile from './pages/profile/Profile';
@@ -19,6 +19,8 @@ import BottomNav from './components/Bottom-nav/BottomNav';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import ManageTickets from './pages/Manage-tickets/ManageTickets';
+import ScrollToTop from './ScrollToTop';
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
    return (
@@ -36,23 +38,26 @@ const App = () => {
                pauseOnHover
             />
             <Nav />
-            <Switch>
-               <Route exact path="/" component={Home} />
-               <Route path="/competition/:id" component={Competition} />
-               <Route path="/sign-in" component={Login} />
-               <Route
-                  exact
-                  path="/all-competitions"
-                  component={AllCompetitions}
-               />
-               <Route path="/profile" component={Profile} />
-               <Route path="/participation/:id" component={Participation} />
-               <Route path="/user/:id" component={UserpNew} />
-               <Route path="/manage-tickets" component={ManageTickets} />
-               <Route path="/admin" component={AdminLogin} />
-               <Route path="/admin-panel" component={Admin} />
-               <Route path="*" component={Error} />
-            </Switch>
+            <ScrollToTop />
+            <AnimatePresence exitBeforeEnter initial={false}>
+               <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/competition/:id" component={Competition} />
+                  <Route path="/sign-in" component={Login} />
+                  <Route
+                     exact
+                     path="/all-competitions"
+                     component={AllCompetitions}
+                  />
+                  <Route path="/profile" component={Profile} />
+                  <Route path="/participation/:id" component={Participation} />
+                  <Route path="/user/:id" component={UserpNew} />
+                  <Route path="/manage-tickets" component={ManageTickets} />
+                  <Route path="/admin" component={AdminLogin} />
+                  <Route path="/admin-panel" component={Admin} />
+                  <Route path="*" component={Error} />
+               </Switch>
+            </AnimatePresence>
             <BottomNav />
             <Footer />
          </div>
