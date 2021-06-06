@@ -19,6 +19,8 @@ const initState = {
    photoUrl: '',
    preregis: '',
    loading: false,
+   voterPrize: '',
+   refer: '',
 };
 
 class HostCompetiton extends Component {
@@ -58,6 +60,8 @@ class HostCompetiton extends Component {
             fees: this.state.fees,
             preregis: this.state.preregis,
             desc: this.state.desc,
+            voterPrize: this.state.voterPrize,
+            refer: this.state.refer,
             coverUrl,
             photoUrl,
             submissions: 0,
@@ -96,7 +100,7 @@ class HostCompetiton extends Component {
 
                <p>Starts at:</p>
                <input
-                  type="datetime-local"
+                  type="date"
                   onChange={this.handleChange}
                   id="starts"
                   className="input-field host-field"
@@ -104,7 +108,7 @@ class HostCompetiton extends Component {
 
                <p>End at:</p>
                <input
-                  type="datetime-local"
+                  type="date"
                   onChange={this.handleChange}
                   id="ends"
                   className="input-field host-field"
@@ -133,6 +137,24 @@ class HostCompetiton extends Component {
                   type="number"
                   onChange={this.handleChange}
                   id="preregis"
+                  className="input-field host-field"
+                  placeholder=""
+               ></input>
+
+               <p>Voter's Prize:</p>
+               <input
+                  type="number"
+                  onChange={this.handleChange}
+                  id="voterPrize"
+                  className="input-field host-field"
+                  placeholder=""
+               ></input>
+
+               <p>Refer Prize:</p>
+               <input
+                  type="number"
+                  onChange={this.handleChange}
+                  id="refer"
                   className="input-field host-field"
                   placeholder=""
                ></input>

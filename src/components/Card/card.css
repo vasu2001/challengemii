@@ -43,6 +43,8 @@
    width: 420px;
    padding: 20px 10px;
    position: relative;
+   display: flex;
+   flex-direction: column;
 }
 .card_side_2::before {
    content: '';
@@ -54,7 +56,6 @@
    top: 20px;
 }
 .side2-actions {
-   width: 100%;
    display: flex;
 }
 #btn-participate {
@@ -64,7 +65,7 @@
     background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%); */
    background-color: #fca311;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-   padding: 10px 0;
+   padding: 20px 0;
    color: #fff;
    text-align: center;
    cursor: pointer;
@@ -80,9 +81,11 @@
    text-align: center;
    cursor: pointer;
 }
+#btn-refer span {
+   font-size: 12px;
+}
 .side2-info {
-   width: 100%;
-   height: 75%;
+   flex: 1;
    background-color: #fbab7e;
    background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
    border-radius: 10px;

@@ -5,14 +5,17 @@ import { v4 as uuid4 } from 'uuid';
 import firebase from '../../firebase';
 import Loading from '../Loading/Loading';
 
+const initDetails = {
+   name: '',
+   coins: '',
+   image: '',
+   ques: '',
+   description: '',
+   tags: '',
+};
+
 const AddPrize = () => {
-   const [details, setDetails] = useState({
-      name: '',
-      coins: '',
-      image: '',
-      ques: '',
-      description: '',
-   });
+   const [details, setDetails] = useState(initDetails);
    const [loading, setLoading] = useState(false);
 
    const handleChange = (e) => {
@@ -62,17 +65,12 @@ const AddPrize = () => {
                   .split('\n')
                   .map((s) => s.trim())
                   .filter((s) => s.length > 0),
+               tags: details.tags.split(',').map((x) => x.trim().toLowerCase()),
             });
          setLoading(false);
          toast.success('Prize Uploaded Successfully!');
 
-         setDetails({
-            name: '',
-            coins: '',
-            image: '',
-            ques: '',
-            description: '',
-         });
+         setDetails({ ...initDetails });
          document.querySelectorAll('.prize-input').forEach((x) => {
             x.value = '';
          });
@@ -117,6 +115,14 @@ const AddPrize = () => {
             onChange={handleChange}
             className="input-field prize-input ques-input"
             placeholder="Description"
+         ></textarea>{' '}
+         <p>Prize Tags (Comma seperated) :</p>
+         <textarea
+            type="text"
+            id="tags"
+            onChange={handleChange}
+            className="input-field prize-input ques-input"
+            placeholder="Tags"
          ></textarea>
          <p>Add Product Image:</p>
          <input

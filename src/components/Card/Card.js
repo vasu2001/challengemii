@@ -59,7 +59,10 @@ const Card = ({ competition, id }) => {
                      <Link to={'/participation/' + id} id="btn-participate">
                         Participate
                      </Link>
-                     <a id="btn-refer">Refer</a>
+                     <a id="btn-refer">
+                        Refer <br />
+                        <span>to get {competition.refer} Tickets</span>
+                     </a>
                   </div>
                   <div className="side2-info">
                      <p className="side2-registered">

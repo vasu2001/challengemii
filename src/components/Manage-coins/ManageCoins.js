@@ -71,9 +71,14 @@ const ManageCoins = (props) => {
             setPrizes(doc.docs.map((x) => ({ ...x.data(), id: x.id })));
          });
    }, []);
-   console.log(prizes);
+   // console.log(prizes);
 
-   const filterData = prizes;
+   let filterData = prizes.filter(({ name, tags }) => {
+      return (
+         name.toLowerCase().includes(filter.toLowerCase()) ||
+         tags?.findIndex((tag) => tag.includes(filter.toLowerCase())) > -1
+      );
+   });
 
    return (
       <div className="manage-coins">
@@ -95,6 +100,7 @@ const ManageCoins = (props) => {
                   Filter
                </option>
                <optgroup label="Price:">
+                  <option>Default</option>
                   <option>Low to High</option>
                   <option>High to Low</option>
                </optgroup>

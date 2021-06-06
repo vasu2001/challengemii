@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Competition from './pages/competition/Competition';
 import Home from './pages/home/home';
 import Profile from './pages/profile/Profile';
