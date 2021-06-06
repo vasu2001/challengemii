@@ -48,15 +48,25 @@ const UpdateCompetition = () => {
       });
    }, [id, competition.desc]);
 
-   const defaultBtn = () => {
-      const defaultBtn = document.querySelector('#choose-input');
+   const coverBtn = () => {
+      const defaultBtn = document.querySelector('#coverUrl');
       defaultBtn.click();
    };
-
+   const photoBtn = () => {
+      const defaultBtn = document.querySelector('#photoUrl');
+      defaultBtn.click();
+   };
    const previewImg = (e) => {
       if (e.target.files.length > 0) {
          var src = URL.createObjectURL(e.target.files[0]);
          var preview = document.getElementById('preview-img');
+         preview.src = src;
+      }
+   };
+   const previewPhoto = (e) => {
+      if (e.target.files.length > 0) {
+         var src = URL.createObjectURL(e.target.files[0]);
+         var preview = document.getElementById('preview-photo');
          preview.src = src;
       }
    };
@@ -68,10 +78,34 @@ const UpdateCompetition = () => {
       });
    };
 
+   const handleUpload = (e) => {
+      setData({
+         [e.target.id]: e.target.files[0],
+      });
+   };
+
    const submitUpdate = async (e) => {
       setLoading(true);
       e.preventDefault();
       try {
+         const photoName = firebase
+            .storage()
+            .refFromURL(competition.photoUrl).name;
+         const coverName = firebase
+            .storage()
+            .refFromURL(competition.coverUrl).name;
+
+         const photoRef = firebase.storage().ref(`compi-covers/${photoName}`);
+         const coverRef = firebase.storage().ref(`compi-covers/${coverName}`);
+
+         await photoRef.put(data.photoUrl);
+         await coverRef.put(data.coverUrl);
+
+         const photoUrl = await photoRef.getDownloadURL();
+         const coverUrl = await coverRef.getDownloadURL();
+
+         console.log(coverUrl);
+
          await db.collection('competitions').doc(id).update({
             title: data.title,
             tagline: data.tagline,
@@ -80,15 +114,17 @@ const UpdateCompetition = () => {
             prize: data.prize,
             fees: data.fees,
             desc: data.desc,
+            coverUrl,
+            photoUrl,
          });
          setLoading(false);
          toast.success('Success updated.');
       } catch (err) {
          console.log(err);
+         setLoading(false);
          toast.error('Error updating document.');
       }
    };
-
    console.log(data);
    return (
       <div className="update_competition">
@@ -171,32 +207,34 @@ const UpdateCompetition = () => {
             </div>
             <div className="action-container">
                <input
-                  id="choose-input"
+                  id="coverUrl"
                   onChange={(e) => {
                      previewImg(e);
+                     handleUpload(e);
                   }}
                   type="file"
                   hidden
                ></input>
-               <a className="btn-dp-choose" onClick={defaultBtn}>
+               <a className="btn-dp-choose" onClick={coverBtn}>
                   Choose File
                </a>
             </div>
             <h5 style={{ marginTop: '20px' }}>Upload competition photo</h5>
             <div className="upload-img-container">
-               <img id="preview-img" src={competition.photoUrl}></img>
+               <img id="preview-photo" src={competition.photoUrl}></img>
                <p>No file chosen, yet!</p>
             </div>
             <div className="action-container">
                <input
-                  id="choose-input"
+                  id="photoUrl"
                   onChange={(e) => {
-                     previewImg(e);
+                     previewPhoto(e);
+                     handleUpload(e);
                   }}
                   type="file"
                   hidden
                ></input>
-               <a className="btn-dp-choose" onClick={defaultBtn}>
+               <a className="btn-dp-choose" onClick={photoBtn}>
                   Choose File
                </a>
             </div>
