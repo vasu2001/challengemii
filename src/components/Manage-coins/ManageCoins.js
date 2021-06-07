@@ -29,6 +29,7 @@ const ManageCoins = (props) => {
          .add({
             user_id: currentUser.uid,
             name: user.name,
+            title: prize.name,
             answers,
             coins: prize.coins,
             prize_id: prize.id,
@@ -37,7 +38,7 @@ const ManageCoins = (props) => {
          })
          .then((docRef) => {
             console.log('Request sent');
-            toast('Redeem Request Sent!');
+            toast.success('Redeem Request Sent!');
             setLoading(false);
             setModal(-1);
          })
@@ -71,7 +72,6 @@ const ManageCoins = (props) => {
             setPrizes(doc.docs.map((x) => ({ ...x.data(), id: x.id })));
          });
    }, []);
-   // console.log(prizes);
 
    let filterData = prizes.filter(({ name, tags }) => {
       return (

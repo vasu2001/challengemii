@@ -14,19 +14,7 @@ export const AdminLogin = () => {
    const updatePassword = (e) => {
       setPassword(e.target.value);
    };
-
-   const handleLogin = () => {
-      firebase
-         .auth()
-         .signInWithEmailAndPassword(username, password)
-         .then((userCreds) => {
-            setAdmin(userCreds.user);
-            console.log(admin);
-         })
-         .catch((err) => {
-            console.log(err.code, err.message);
-         });
-   };
+   const handleLogin = () => {};
 
    return (
       <div>

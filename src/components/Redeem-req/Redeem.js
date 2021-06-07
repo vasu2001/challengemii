@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../../firebase';
 import moment from 'moment';
 import RedeemDetails from '../Redeem-Details/RedeemDetails';
+import { toast } from 'react-toastify';
 
 const db = firebase.firestore();
 
@@ -9,6 +10,7 @@ const Redeem = () => {
    // console.log(this.state.requests);
    const [display, setDisplay] = useState(false);
    const [requests, setRequests] = useState([]);
+   const [details, setDetails] = useState(-1);
 
    useEffect(() => {
       db.collection('redeem_req')
@@ -19,6 +21,16 @@ const Redeem = () => {
             );
          });
    }, []);
+
+   const done = async (req_id) => {
+      try {
+         await db.collection('redeem_req').doc(req_id).delete();
+         toast.success('Record deleted from database !');
+      } catch (err) {
+         console.log(err);
+         toast.error('Unable to proccess the request !');
+      }
+   };
 
    return (
       <div>
@@ -31,6 +43,7 @@ const Redeem = () => {
                      <th>UserId</th>
                      <th>Date</th>
                      <th>Details</th>
+                     <th></th>
                   </tr>
                </thead>
                <tbody>
@@ -47,14 +60,29 @@ const Redeem = () => {
                               <a
                                  className=""
                                  style={{ cursor: 'pointer' }}
-                                 onClick={() => setDisplay(true)}
+                                 onClick={() => setDetails(index)}
                               >
                                  Details
+                              </a>
+                           </td>
+                           <td data-column="details">
+                              <a
+                                 onClick={(req_id) => done(id)}
+                                 className=""
+                                 style={{ cursor: 'pointer' }}
+                              >
+                                 Done
                               </a>
                            </td>
                         </tr>
                      );
                   })}
+                  {details > -1 ? (
+                     <RedeemDetails
+                        close={setDetails}
+                        data={requests[details]}
+                     />
+                  ) : null}
                </tbody>
             </table>
          </div>
