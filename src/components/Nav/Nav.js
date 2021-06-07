@@ -96,7 +96,7 @@ const Nav = () => {
                <NavLink to="/profile/manage-coins">
                   <li className="coin-text">
                      <img src={coinImg} className="nav-coin-img" alt=""></img>
-                     <span>{userData.coin}</span>
+                     <span>{userData.coins}</span>
                   </li>
                </NavLink>
                <NavLink to="/user/me">

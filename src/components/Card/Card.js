@@ -20,7 +20,7 @@ const Card = ({ competition, id, referBy }) => {
       try {
          const shareUrl = window.location + '?referBy=' + currentUser.uid;
          if (navigator.share) {
-            await navigator.share({
+            navigator.share({
                url: shareUrl,
                title: 'Share with your friends to earn tickets',
             });
@@ -33,6 +33,7 @@ const Card = ({ competition, id, referBy }) => {
       }
    };
 
+   console.log(competition);
    if (competition) {
       return (
          <Fade bottom>
@@ -54,7 +55,10 @@ const Card = ({ competition, id, referBy }) => {
                            src={trophy}
                            alt=""
                         ></img>
-                        <span>Prize: {competition.prize} coins</span>
+                        <span>
+                           Prize: {competition.prize?.reduce((a, b) => a + b)}{' '}
+                           coins
+                        </span>
                      </p>
                      <p>
                         <img
@@ -88,7 +92,9 @@ const Card = ({ competition, id, referBy }) => {
                      </Link>
                      <a id="btn-refer" onClick={onRefer}>
                         Refer <br />
-                        <span>to get {competition.refer} Tickets</span>
+                        <span>
+                           to get {competition.refer} <img src={ticketImg} />
+                        </span>
                      </a>
                   </div>
                   <div className="side2-info">

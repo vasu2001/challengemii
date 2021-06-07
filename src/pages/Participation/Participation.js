@@ -64,7 +64,9 @@ const Participation = (props) => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      const storageRef = firebase.storage().ref(`images/${photoUrl.name}`);
+      const storageRef = firebase
+         .storage()
+         .ref(`images/${competition_id}/${user_id}`);
       storageRef
          .put(photoUrl)
          .then((snapshot) => {
@@ -83,7 +85,7 @@ const Participation = (props) => {
                      user_name,
                      vote: 0,
                      voters: [],
-                     referBy,
+                     referBy: referBy ?? null,
                   })
                   .then((docRef) => {
                      toast.success(

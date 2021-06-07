@@ -50,7 +50,7 @@ const ManageCoins = (props) => {
    const openModal = (i) => {
       const { coins } = prizes[i];
 
-      if (parseInt(user.coin) < parseInt(coins)) {
+      if (parseInt(user.coins) < parseInt(coins)) {
          toast.error('Insufficient coins');
          return;
       }

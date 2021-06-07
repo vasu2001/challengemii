@@ -57,7 +57,7 @@ class HostCompetiton extends Component {
             tagline: this.state.tagline,
             starts: this.state.starts,
             ends: this.state.ends,
-            prize: this.state.prize,
+            prize: this.state.prize.split(',').map((x) => parseInt(x.trim())),
             fees: this.state.fees,
             preregis: this.state.preregis,
             desc: this.state.desc,
@@ -116,9 +116,8 @@ class HostCompetiton extends Component {
                   className="input-field host-field"
                ></input>
 
-               <p>Winning prize:</p>
+               <p>Winning prize (comma seperated nos) :</p>
                <input
-                  type="number"
                   onChange={this.handleChange}
                   id="prize"
                   className="input-field host-field"

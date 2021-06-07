@@ -12,6 +12,7 @@ var config = {
    appId: process.env.REACT_APP_FIREBASE_APP_ID,
    measurementId: process.env.REACT_APP_MEASURMENT_ID,
 };
+// console.log(process.env);
 
 firebase.initializeApp(config);
 firebase.firestore();

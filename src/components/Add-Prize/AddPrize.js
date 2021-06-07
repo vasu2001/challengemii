@@ -100,7 +100,7 @@ const AddPrize = () => {
             className="input-field prize-input"
             placeholder="Coins"
          ></input>
-         <p>Prize Questions:</p>
+         <p>Prize Questions (Enter seperated) :</p>
          <textarea
             type="text"
             id="ques"
