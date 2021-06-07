@@ -45,22 +45,16 @@ const CardNew = (props) => {
                               }}
                            />
                            <p>
-                              {moment(competition.starts).format(
-                                 'Do MMM,YYYY h:mm a',
-                              )}{' '}
-                              -{' '}
-                              {moment(competition.ends).format(
-                                 'Do MMM,YYYY h:mm a',
-                              )}
+                              {moment(competition.starts).format('Do MMM,YYYY')}{' '}
+                              - {moment(competition.ends).format('Do MMM,YYYY')}
                            </p>
                         </div>
                         <p className="short-time" style={{ marginTop: '10px' }}>
                            Starts:{' '}
-                           {moment(competition.starts).format('Do, MMM h:mm a')}
+                           {moment(competition.starts).format('Do, MMM')}
                         </p>
                         <p className="short-time">
-                           Ends:{' '}
-                           {moment(competition.ends).format('Do, MMM h:mm a')}
+                           Ends: {moment(competition.ends).format('Do, MMM')}
                         </p>
                         <div
                            className="card-main-container entry-sec"
@@ -86,7 +80,9 @@ const CardNew = (props) => {
                                  src={trophy}
                                  style={{ marginRight: '8px' }}
                               />
-                              <p>: {competition.prize}</p>
+                              <p>
+                                 : {competition.prize.reduce((a, b) => a + b)}
+                              </p>
                            </div>
                            <div className="bottom-container registered-sec">
                               <img

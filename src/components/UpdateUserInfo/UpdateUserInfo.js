@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './updateUserInfo.css';
 import firebase from '../../firebase';
 import { toast } from 'react-toastify';
 
 const UpdateUserInfo = () => {
    const [users, setUsers] = useState([]);
-   const [details, setDetails] = useState({
-      coins: '',
-      tickets: '',
-   });
+   const [search, setSearch] = useState('');
+
    useEffect(() => {
       firebase
          .firestore()
@@ -24,25 +22,29 @@ const UpdateUserInfo = () => {
          });
    }, []);
 
-   const handleChange = (e) => {
-      setDetails({
-         ...details,
-         [e.target.id]: e.target.value,
-      });
+   const handleChange = (e, userId) => {
+      const newUsers = [...users];
+      const i = newUsers.findIndex((x) => x.id == userId);
+      newUsers[i] = {
+         ...users[i],
+         data: {
+            ...users[i].data,
+            [e.target.id]: e.target.value,
+         },
+      };
+      setUsers(newUsers);
    };
 
-   const submitUpdate = async (user_id) => {
-      if (details.coins !== '' && details.tickets !== '') {
+   const submitUpdate = async (user) => {
+      // console.log(user);
+      const { coins, tickets } = user.data;
+      if (coins !== '' && tickets !== '') {
          try {
-            await firebase
-               .firestore()
-               .collection('users')
-               .doc(user_id)
-               .update({
-                  coins: details.coins,
-                  tickets: details.tickets,
-               })
-               .then(toast.success('Updated successfully.'));
+            await firebase.firestore().collection('users').doc(user.id).update({
+               coins,
+               tickets,
+            });
+            toast.success('Updated successfully.');
          } catch (err) {
             console.log(err);
             toast.error('Error updating document.');
@@ -52,9 +54,21 @@ const UpdateUserInfo = () => {
       }
    };
 
-   console.log(details);
+   // console.log(details);
+
+   const filterUsers = users.filter((user) => {
+      return (
+         user.id === search ||
+         user.data.name?.toLowerCase().includes(search.toLowerCase()) ||
+         user.data.email?.toLowerCase().includes(search.toLowerCase())
+      );
+   });
    return (
       <div className="update-user-info">
+         <input
+            placeholder="Search"
+            onChange={(e) => setSearch(e.target.value)}
+         />
          <table>
             <thead>
                <tr>
@@ -67,41 +81,40 @@ const UpdateUserInfo = () => {
                </tr>
             </thead>
             <tbody>
-               {users &&
-                  users.map((user, i) => {
-                     return (
-                        <tr key={i}>
-                           <td data-column="Name">{user.data.name}</td>
-                           <td data-column="UserId">{user.id}</td>
-                           <td data-column="Email">krishnasaxena@gmail.com</td>
-                           <td data-column="Coins">
-                              <input
-                                 id="coins"
-                                 defaultValue={user.data.coins}
-                                 onChange={(e) => handleChange(e)}
-                                 className="vote-update-input"
-                              ></input>
-                           </td>
-                           <td data-column="Tickets">
-                              <input
-                                 id="tickets"
-                                 onChange={(e) => handleChange(e)}
-                                 defaultValue={user.data.tickets}
-                                 className="vote-update-input"
-                              ></input>
-                           </td>
-                           <td data-column="Votes">
-                              <a
-                                 className=""
-                                 style={{ cursor: 'pointer' }}
-                                 onClick={(user_id) => submitUpdate(user.id)}
-                              >
-                                 Update
-                              </a>
-                           </td>
-                        </tr>
-                     );
-                  })}
+               {filterUsers.map((user, i) => {
+                  return (
+                     <tr key={i}>
+                        <td data-column="Name">{user.data.name}</td>
+                        <td data-column="UserId">{user.id}</td>
+                        <td data-column="Email">krishnasaxena@gmail.com</td>
+                        <td data-column="Coins">
+                           <input
+                              id="coins"
+                              defaultValue={user.data.coins}
+                              onChange={(e) => handleChange(e, user.id)}
+                              className="vote-update-input"
+                           ></input>
+                        </td>
+                        <td data-column="Tickets">
+                           <input
+                              id="tickets"
+                              onChange={(e) => handleChange(e, user.id)}
+                              defaultValue={user.data.tickets}
+                              className="vote-update-input"
+                           ></input>
+                        </td>
+                        <td data-column="Votes">
+                           <a
+                              className=""
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => submitUpdate(user)}
+                           >
+                              Update
+                           </a>
+                        </td>
+                     </tr>
+                  );
+               })}
             </tbody>
          </table>
       </div>

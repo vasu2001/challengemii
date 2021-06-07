@@ -33,12 +33,12 @@ const ManageTickets = () => {
          value,
          orderId,
       });
-      console.log(CHECKSUM);
+      // console.log(CHECKSUM);
 
       postForm({
-         action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?MID=${process.env.MERCHANT_ID}&orderId=${orderId}`,
+         action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage`, //?MID=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}
          params: {
-            mid: process.env.MERCHANT_ID,
+            mid: process.env.REACT_APP_PAYTM_MERCHANT_ID,
             orderId,
             txnToken: CHECKSUM,
          },

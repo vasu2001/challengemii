@@ -31,7 +31,26 @@ const CompetitionStat = () => {
 
    const deleteComp = async (comp_id) => {
       try {
+         const dbBatch = db.batch();
+         const storageRef = firebase
+            .storage()
+            .ref()
+            .child('images')
+            .child(comp_id);
+
+         const submissions = await db
+            .collection('submissions')
+            .where('competition_id', '==', comp_id)
+            .get();
+
+         for (const doc of submissions.docs) {
+            dbBatch.delete(doc.ref);
+            await storageRef.child(doc.data().user_id).delete();
+         }
+
+         await dbBatch.commit();
          await db.collection('competitions').doc(comp_id).delete();
+
          toast.success('Competition successfully deleted.');
       } catch (err) {
          console.log(err);
