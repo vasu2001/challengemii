@@ -4,8 +4,11 @@ import img from '../../assets/second.jpg';
 import firebase from '../../firebase';
 
 const ReportedSubs = () => {
-   const [reports, setReports] = useState([]);
+   // const [reports, setReports] = useState([]);
+   // const [reportIds,setReportIds] = useState([]);
    const [subs, setSubs] = useState([]);
+
+   const [data, setData] = useState([]);
 
    useEffect(() => {
       firebase
@@ -13,26 +16,23 @@ const ReportedSubs = () => {
          .collection('reports')
          .get()
          .then((querySnap) => {
-            setReports(
-               querySnap.docs.map((doc) => ({ data: doc.data(), id: doc.id })),
-            );
-            firebase
-               .firestore()
-               .collection('submissions')
-               .where(
-                  'uid',
-                  '==',
-                  reports.map((report) => report.id),
-               )
-               .get()
-               .then((querySnap) => {
-                  querySnap.docs.map((doc) => {
-                     console.log(doc.data());
+            querySnap.docs.map((doc) => {
+               let reports = { id: doc.id, data: doc.data() };
+               console.log(reports);
+               firebase
+                  .firestore()
+                  .collection('submissions')
+                  .doc(reports.id)
+                  .get()
+                  .then((docs) => {
+                     let subs = { sub_id: docs.id, sub_data: docs.data() };
                   });
-               });
+            });
          });
    }, []);
-   console.log(reports.map((report) => report.id));
+
+   console.log(data);
+
    return (
       <div className="reported_subs">
          <table>
