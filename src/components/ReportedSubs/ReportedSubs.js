@@ -4,6 +4,7 @@ import img from '../../assets/second.jpg';
 import firebase from '../../firebase';
 
 const ReportedSubs = () => {
+   const [reports, setReports] = useState([]);
    const [subs, setSubs] = useState([]);
 
    useEffect(() => {
@@ -12,13 +13,26 @@ const ReportedSubs = () => {
          .collection('reports')
          .get()
          .then((querySnap) => {
-            setSubs(
+            setReports(
                querySnap.docs.map((doc) => ({ data: doc.data(), id: doc.id })),
             );
+            firebase
+               .firestore()
+               .collection('submissions')
+               .where(
+                  'uid',
+                  '==',
+                  reports.map((report) => report.id),
+               )
+               .get()
+               .then((querySnap) => {
+                  querySnap.docs.map((doc) => {
+                     console.log(doc.data());
+                  });
+               });
          });
    }, []);
-
-   console.log(subs);
+   console.log(reports.map((report) => report.id));
    return (
       <div className="reported_subs">
          <table>
