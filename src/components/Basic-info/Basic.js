@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './basic.css';
+import firebase from '../../firebase';
+import { toast } from 'react-toastify';
+import Loading from '../Loading/Loading';
 
-const Basic = (props) => {
-   const userData = props.user;
-
+const Basic = ({ user, currentUser }) => {
    const [userDetails, setUserDetails] = useState({
-      name: userData.name,
-      desc: '',
-      website: '',
-      twitter: '',
-      instagram: '',
-      facebook: '',
-      linkedin: '',
+      name: user.name,
+      desc: user.desc,
+      twitter: user.twitter,
+      instagram: user.instagram,
+      facebook: user.facebook,
+      linkedin: user.linkedin,
    });
+   const [loading, setLoading] = useState(false);
 
    const handleChange = (e) => {
       setUserDetails({
@@ -22,13 +23,29 @@ const Basic = (props) => {
    };
 
    const handleSubmit = (e) => {
+      setLoading(true);
       e.preventDefault();
+      firebase
+         .firestore()
+         .collection('users')
+         .doc(currentUser.uid)
+         .update(userDetails)
+         .then(() => {
+            setLoading(false);
+            toast.success('Profile updated successfully !');
+         })
+         .catch((err) => {
+            setLoading(false);
+            toast.error('Error updating profile !');
+         });
    };
 
-   if (userData) {
-      console.log(userDetails);
+   console.log(userDetails);
+
+   if (user) {
       return (
          <div>
+            {loading ? <Loading /> : null}
             <div className="main-container">
                <div className="basic-info">
                   <p>Basics:</p>
@@ -38,13 +55,14 @@ const Basic = (props) => {
                      id="name"
                      onChange={handleChange}
                      placeholder="Full Name"
-                     defaultValue={userData.name}
+                     defaultValue={user.name}
                   ></input>
                   <textarea
                      className="input-description"
                      id="desc"
                      onChange={handleChange}
                      rows="15"
+                     defaultValue={user.desc}
                      placeholder="Tell something about yourself"
                   ></textarea>
                </div>
@@ -62,6 +80,7 @@ const Basic = (props) => {
                         id="twitter"
                         onChange={handleChange}
                         placeholder="Twitter Profile"
+                        defaultValue={user.twitter}
                      ></input>
                   </div>
                   <label for="twitter-link" className="input-label">
@@ -78,7 +97,7 @@ const Basic = (props) => {
                         id="instagram"
                         onChange={handleChange}
                         placeholder="Instagram Profile"
-                        value={userData.instagram}
+                        defaultValue={user.instagram}
                      ></input>
                   </div>
                   <label for="insta-link" className="input-label">
@@ -97,6 +116,7 @@ const Basic = (props) => {
                         id="facebook"
                         onChange={handleChange}
                         placeholder="Facebook Profile"
+                        defaultValue={user.facebook}
                      ></input>
                   </div>
                   <label for="fb-link" className="input-label">
@@ -113,6 +133,7 @@ const Basic = (props) => {
                         id="linkedin"
                         onChange={handleChange}
                         placeholder="LinkedIn Profile"
+                        defaultValue={user.linkedin}
                      ></input>
                   </div>
                   <label for="linkedin-link" className="input-label">
@@ -120,7 +141,11 @@ const Basic = (props) => {
                   </label>
                </div>
                <div className="save">
-                  <a href={() => false} className="btn-save">
+                  <a
+                     href={() => false}
+                     className="btn-save"
+                     onClick={(e) => handleSubmit(e)}
+                  >
                      Save
                   </a>
                </div>
