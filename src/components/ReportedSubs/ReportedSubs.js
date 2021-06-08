@@ -4,43 +4,46 @@ import img from '../../assets/second.jpg';
 import firebase from '../../firebase';
 
 const ReportedSubs = () => {
-   // const [reports, setReports] = useState([]);
-   // const [reportIds,setReportIds] = useState([]);
-   const [subs, setSubs] = useState([]);
-
    const [data, setData] = useState([]);
 
    useEffect(() => {
-      firebase
-         .firestore()
-         .collection('reports')
-         .get()
-         .then((querySnap) => {
-            querySnap.docs.map((doc) => {
-               let reports = { id: doc.id, data: doc.data() };
-               console.log(reports);
-               firebase
-                  .firestore()
-                  .collection('submissions')
-                  .doc(reports.id)
-                  .get()
-                  .then((docs) => {
-                     let subs = { sub_id: docs.id, sub_data: docs.data() };
-                  });
-            });
-         });
+      fetchData();
    }, []);
 
-   console.log(data);
+   const fetchData = async () => {
+      const newData = [];
+
+      const querySnap = await firebase.firestore().collection('reports').get();
+
+      for (const doc of querySnap.docs) {
+         const report = doc.data();
+         const submissionId = doc.id;
+
+         const subDoc = (
+            await firebase
+               .firestore()
+               .collection('submissions')
+               .doc(submissionId)
+               .get()
+         ).data();
+
+         newData.push({
+            submissionId,
+            lastReported: report.lastReported,
+            no: report.reportedBy.length,
+            photo: subDoc.photo_link,
+            userId: subDoc.user_id,
+         });
+      }
+      setData(newData);
+   };
 
    return (
       <div className="reported_subs">
          <table>
             <thead>
                <tr>
-                  <th>Name</th>
                   <th>UserId</th>
-                  <th>Email</th>
                   <th>Image</th>
                   <th>Reports</th>
                   <th></th>
@@ -48,9 +51,7 @@ const ReportedSubs = () => {
             </thead>
             <tbody>
                <tr>
-                  <td data-column="Name">Krishna</td>
                   <td data-column="UserId">123KDFKJEI3421</td>
-                  <td data-column="Email">krishnasaxena@gmail.com</td>
                   <td data-column="Image">
                      <img src={img} style={{ width: '150px' }}></img>
                   </td>

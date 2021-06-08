@@ -29,7 +29,7 @@ const UpdateUserInfo = () => {
          ...users[i],
          data: {
             ...users[i].data,
-            [e.target.id]: e.target.value,
+            [e.target.id]: parseInt(e.target.value),
          },
       };
       setUsers(newUsers);

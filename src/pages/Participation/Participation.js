@@ -62,60 +62,45 @@ const Participation = (props) => {
       }
    };
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
-      const storageRef = firebase
-         .storage()
-         .ref(`images/${competition_id}/${user_id}`);
-      storageRef
-         .put(photoUrl)
-         .then((snapshot) => {
-            let progress =
-               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Uploaded ', progress + '%');
-            setLoading(false);
-         })
-         .then(() => {
-            storageRef.getDownloadURL().then((downloadUrl) => {
-               db.collection('submissions')
-                  .add({
-                     competition_id,
-                     photo_link: downloadUrl,
-                     user_id,
-                     user_name,
-                     vote: 0,
-                     voters: [],
-                     referBy: referBy ?? null,
-                  })
-                  .then((docRef) => {
-                     toast.success(
-                        'Congrats! Your submission has been successfully uploaded.',
-                     );
-                     setTimeout(() => {
-                        props.history.goBack();
-                     }, 3000);
-                  })
-                  .catch((error) => {
-                     toast.error(
-                        'Sorry! We encountered some error uploading your submission.',
-                     );
-                  });
-            });
-            db.collection('competitions')
-               .doc(competition_id)
-               .set(
-                  {
-                     submissions: firebase.firestore.FieldValue.increment(1),
-                  },
-                  { merge: true },
-               )
-               .then(() => {
-                  console.log('Document written');
-               })
-               .catch((err) => {
-                  console.log(err);
-               });
+
+      try {
+         const storageRef = firebase
+            .storage()
+            .ref(`images/${competition_id}/${user_id}`);
+
+         await storageRef.put(photoUrl);
+         const downloadUrl = await storageRef.getDownloadURL();
+
+         await db.collection('submissions').add({
+            competition_id,
+            photo_link: downloadUrl,
+            user_id,
+            user_name,
+            vote: 0,
+            voters: [],
+            referBy: referBy ?? null,
          });
+
+         await db
+            .collection('competitions')
+            .doc(competition_id)
+            .set(
+               {
+                  submissions: firebase.firestore.FieldValue.increment(1),
+               },
+               { merge: true },
+            );
+         setLoading(false);
+         toast.success(
+            'Congrats! Your submission has been successfully uploaded.',
+         );
+      } catch (error) {
+         toast.error(
+            'Sorry! We encountered some error uploading your submission.',
+         );
+      }
    };
    return (
       <motion.div

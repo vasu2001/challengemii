@@ -7,14 +7,21 @@ import population from '../../assets/population.png';
 import calendar from '../../assets/calendar.png';
 import firebase from '../../firebase';
 import moment from 'moment';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Auth';
 const db = firebase.firestore();
 
 const Card = ({ competition, id, referBy }) => {
-   const { currentUser } = useContext(AuthContext);
+   const { currentUser, userData } = useContext(AuthContext);
+   const history = useHistory();
+
+   const compFees = parseInt(
+      moment().diff(moment(competition.starts)) > 0
+         ? competition.fees
+         : competition.preregis,
+   );
 
    const onRefer = async () => {
       try {
@@ -81,15 +88,19 @@ const Card = ({ competition, id, referBy }) => {
                </div>
                <div className="card_side_2">
                   <div className="side2-actions">
-                     <Link
-                        to={{
-                           pathname: '/participation/' + id,
-                           state: { referBy },
+                     <a
+                        onClick={() => {
+                           if (parseInt(userData?.tickets) >= compFees)
+                              history.push({
+                                 pathname: '/participation/' + id,
+                                 state: { referBy },
+                              });
+                           else toast.error('Not enough tickets');
                         }}
                         id="btn-participate"
                      >
                         Participate
-                     </Link>
+                     </a>
                      <a id="btn-refer" onClick={onRefer}>
                         Refer <br />
                         <span>
