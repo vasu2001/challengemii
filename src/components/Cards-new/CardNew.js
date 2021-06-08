@@ -13,7 +13,7 @@ import Fade from 'react-reveal/Fade';
 const CardNew = (props) => {
    const competition = props.competition.data;
    const competition_id = props.competition.id;
-   // console.log(competition);
+
    if (competition) {
       return (
          <Fade bottom>
@@ -100,7 +100,12 @@ const CardNew = (props) => {
                                  src={calendar}
                                  style={{ marginRight: '8px' }}
                               />
-                              <p>:{moment(competition.starts).fromNow()}</p>
+                              <p>
+                                 :
+                                 {moment().diff(competition.starts) > 0
+                                    ? 'Started'
+                                    : moment(competition.starts).fromNow()}
+                              </p>
                            </div>
                         </div>
                      </div>

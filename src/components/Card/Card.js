@@ -87,27 +87,35 @@ const Card = ({ competition, id, referBy }) => {
                   </div>
                </div>
                <div className="card_side_2">
-                  <div className="side2-actions">
-                     <a
-                        onClick={() => {
-                           if (parseInt(userData?.tickets) >= compFees)
-                              history.push({
-                                 pathname: '/participation/' + id,
-                                 state: { referBy, compFees },
-                              });
-                           else toast.error('Not enough tickets');
-                        }}
-                        id="btn-participate"
-                     >
-                        Participate
-                     </a>
-                     <a id="btn-refer" onClick={onRefer}>
-                        Refer <br />
-                        <span>
-                           to get {competition.refer} <img src={ticketImg} />
-                        </span>
-                     </a>
-                  </div>
+                  {moment().diff(competition.ends) > 0 ? (
+                     <center>
+                        <h5 style={{ letterSpacing: '1px', marginTop: '10px' }}>
+                           COMPETITION HAS ENDED
+                        </h5>
+                     </center>
+                  ) : (
+                     <div className="side2-actions">
+                        <a
+                           onClick={() => {
+                              if (parseInt(userData?.tickets) >= compFees)
+                                 history.push({
+                                    pathname: '/participation/' + id,
+                                    state: { referBy, compFees },
+                                 });
+                              else toast.error('Not enough tickets');
+                           }}
+                           id="btn-participate"
+                        >
+                           Participate
+                        </a>
+                        <a id="btn-refer" onClick={onRefer}>
+                           Refer <br />
+                           <span>
+                              to get {competition.refer} <img src={ticketImg} />
+                           </span>
+                        </a>
+                     </div>
+                  )}
                   <div className="side2-info">
                      <p className="side2-registered">
                         <img
@@ -115,11 +123,19 @@ const Card = ({ competition, id, referBy }) => {
                            alt=""
                            className="img-side2"
                         ></img>
-                        {competition.submissions} Registered
+                        {competition.submissions}{' '}
+                        {moment().diff(competition.ends) > 0
+                           ? 'Participated'
+                           : 'Registered'}
                      </p>
                      <p className="side2-time">
                         <img src={calendar} alt="" className="img-side2"></img>
-                        {moment(competition.starts).fromNow()}
+                        {moment().diff(competition.starts) > 0 &&
+                        moment().diff(competition.ends) > 0
+                           ? 'Ended'
+                           : moment().diff(competition.starts) > 0
+                           ? 'Started'
+                           : moment(competition.starts).fromNow()}
                      </p>
                      <div className="side2-top">
                         <p>
@@ -155,7 +171,12 @@ const Card = ({ competition, id, referBy }) => {
                               src={calendar}
                               alt=""
                            ></img>
-                           <span> {moment(competition.ends).fromNow()}</span>
+                           <span>
+                              {' '}
+                              {moment().diff(competition.starts) > 0
+                                 ? 'Started'
+                                 : moment(competition.ends).fromNow()}
+                           </span>
                         </p>
                      </div>
                   </div>
