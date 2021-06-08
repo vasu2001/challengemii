@@ -21,6 +21,7 @@ import { ToastContainer } from 'react-toastify';
 import ManageTickets from './pages/Manage-tickets/ManageTickets';
 import ScrollToTop from './ScrollToTop';
 import { AnimatePresence } from 'framer-motion';
+import Winners from './pages/Winners/Winners';
 
 const App = () => {
    return (
@@ -39,7 +40,7 @@ const App = () => {
             />
             <Nav />
             <ScrollToTop />
-            <AnimatePresence exitBeforeEnter initial={false}>
+            <AnimatePresence exitBeforeEnter>
                <Switch>
                   <Route exact path="/" component={Home} />
                   <Route path="/competition/:id" component={Competition} />
@@ -49,6 +50,7 @@ const App = () => {
                      path="/all-competitions"
                      component={AllCompetitions}
                   />
+                  <Route exact path="/winners" component={Winners} />
                   <Route path="/profile" component={Profile} />
                   <Route path="/participation/:id" component={Participation} />
                   <Route path="/user/:id" component={UserpNew} />

@@ -26,6 +26,7 @@
    }
    .bottom-nav-icons {
       width: 30px;
+      height: 30px;
    }
    .coin-container {
       position: relative;
@@ -66,6 +67,7 @@
 @media only screen and (max-width: 450px) {
    .bottom-nav-icons {
       width: 30px;
+      height: 30px;
    }
    .item-box {
       font-size: 12px;
@@ -81,6 +83,7 @@
 @media only screen and (max-width: 300px) {
    .bottom-nav-icons {
       width: 25px;
+      height: 25px;
    }
    .item-box {
       font-size: 10px;

@@ -4,6 +4,7 @@ import userImg from '../../assets/user.png';
 import coinImg from '../../assets/coins.png';
 import ticketImg from '../../assets/ticket.png';
 import competitionImg from '../../assets/competition.png';
+import medal from '../../assets/gold-medal.png';
 import { AuthContext } from '../../Auth';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -17,7 +18,7 @@ const BottomNav = () => {
    if (!currentUser || !user) {
       return (
          <div className="bottom-nav">
-            <Link to="/sign-in">
+            <Link to="/all-competitions">
                <div className="item-box">
                   <img
                      src={competitionImg}
@@ -25,6 +26,12 @@ const BottomNav = () => {
                      className="bottom-nav-icons"
                   ></img>
                   Competitions
+               </div>
+            </Link>
+            <Link to="/winners">
+               <div className="item-box">
+                  <img src={medal} alt="" className="bottom-nav-icons"></img>
+                  Winners
                </div>
             </Link>
             <Link to="/sign-in">
@@ -58,6 +65,12 @@ const BottomNav = () => {
                <div className="item-box">
                   <img src={competitionImg} className="bottom-nav-icons"></img>
                   Competitions
+               </div>
+            </NavLink>
+            <NavLink to="/winners">
+               <div className="item-box">
+                  <img src={medal} className="bottom-nav-icons"></img>
+                  Winners
                </div>
             </NavLink>
             <NavLink to="/manage-tickets">

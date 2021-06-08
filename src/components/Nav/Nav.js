@@ -77,6 +77,9 @@ const Nav = () => {
                <NavLink to="/all-competitions">
                   <li id="competitions-navtext">Competitions</li>
                </NavLink>
+               <NavLink to="/winners">
+                  <li id="competitions-navtext">Winners</li>
+               </NavLink>
                <NavLink to="/manage-tickets">
                   <li id="buy-navtext">Buy Tickets</li>
                </NavLink>

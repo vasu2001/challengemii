@@ -21,6 +21,9 @@ const Side = () => {
                <Link to="/admin-panel/redeem-req">
                   <li className="admin-side-nav-links">Redeem requests</li>
                </Link>
+               <Link to="/admin-panel/coins-req">
+                  <li className="admin-side-nav-links">Coins Req</li>
+               </Link>
                <Link to="/admin-panel/add-prize">
                   <li className="admin-side-nav-links">Add prize</li>
                </Link>

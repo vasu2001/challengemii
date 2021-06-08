@@ -13,6 +13,7 @@ import AdminGeneral from '../../components/AdminGeneral/AdminGeneral';
 import { motion } from 'framer-motion';
 import ReportedSubs from '../../components/ReportedSubs/ReportedSubs';
 import UpdateUserInfo from '../../components/UpdateUserInfo/UpdateUserInfo';
+import CoinsReq from '../../components/CoinsReq/CoinsReq';
 
 const Admin = () => {
    return (
@@ -58,6 +59,18 @@ const Admin = () => {
                            <Fragment>
                               <Top title="Redeem Requests" />
                               <Redeem />
+                           </Fragment>
+                        )}
+                     />
+                  </Switch>
+                  <Switch>
+                     <Route
+                        exact
+                        path="/admin-panel/coins-req"
+                        render={() => (
+                           <Fragment>
+                              <Top title="Coins Requests" />
+                              <CoinsReq />
                            </Fragment>
                         )}
                      />

@@ -13,6 +13,7 @@ import DpChangeModal from '../../components/DpChangeModal/DpChangeModal';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import userImg from '../../assets/user.png';
 import { motion } from 'framer-motion';
+import Fade from 'react-reveal/Fade';
 
 const db = firebase.firestore();
 
@@ -71,7 +72,7 @@ const UserpNew = () => {
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          exit={{ opacity: 0 }}
-         transition={{ duration: 0.5 }}
+         transition={{ duration: 1 }}
       >
          <div>
             {display ? <DpChangeModal close={() => setDisplay(false)} /> : null}
@@ -143,12 +144,14 @@ const UserpNew = () => {
                         <AiFillEdit />
                      </Link>
                   ) : null}
-                  <div className="content-top">
-                     <h3>{userData.name}</h3>
-                     <div className="about-para-new">
-                        <p>{userData.desc}</p>
+                  <Fade bottom>
+                     <div className="content-top">
+                        <h3>{userData.name}</h3>
+                        <div className="about-para-new">
+                           <p>{userData.desc}</p>
+                        </div>
                      </div>
-                  </div>
+                  </Fade>
                   <div className="content-submissions">
                      <h3>Submissions</h3>
                      <div className="submission-holder">
@@ -157,22 +160,27 @@ const UserpNew = () => {
                         >
                            <Masonry gutter="10px">
                               {submissions?.map((submission, i) => (
-                                 <div className="sub_box" key={submission.id}>
-                                    <img
-                                       alt=""
-                                       src={submission.photo_link}
-                                       className="sub_img"
-                                       style={{
-                                          width: '100%',
-                                          display: 'block',
-                                       }}
-                                       onClick={() =>
-                                          history.push(
-                                             `/competition/${submission.competition_id}`,
-                                          )
-                                       }
-                                    />
-                                 </div>
+                                 <Fade bottom>
+                                    <div
+                                       className="sub_box"
+                                       key={submission.id}
+                                    >
+                                       <img
+                                          alt=""
+                                          src={submission.photo_link}
+                                          className="sub_img"
+                                          style={{
+                                             width: '100%',
+                                             display: 'block',
+                                          }}
+                                          onClick={() =>
+                                             history.push(
+                                                `/competition/${submission.competition_id}`,
+                                             )
+                                          }
+                                       />
+                                    </div>
+                                 </Fade>
                               ))}
                            </Masonry>
                         </ResponsiveMasonry>

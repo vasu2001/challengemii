@@ -1,0 +1,36 @@
+.winner-pg {
+   background-color: #14213d;
+   width: 100%;
+   height: 100%;
+   padding-bottom: 100px;
+   overflow: auto;
+}
+.winner-cover {
+   width: 100%;
+   height: 70vh;
+}
+.winner-cover img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: center bottom;
+}
+.winner-content {
+   width: 900px;
+   padding: 60px 30px;
+   margin: -60px auto 0 auto;
+   background-color: #fff;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+   overflow: hidden;
+   z-index: 100;
+   position: relative;
+   border-radius: 30px;
+   color: #666;
+   text-align: center;
+}
+.winner-content h2 {
+   margin: 0 auto;
+   margin-bottom: 50px;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+}

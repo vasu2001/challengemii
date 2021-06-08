@@ -6,7 +6,7 @@ import Flip from 'react-reveal/Flip';
 const TicketCard = ({ inr, discount }) => {
    const tickets = inr / 5;
    return (
-      <Flip bottom>
+      <Flip bottom delay={500}>
          <div className="ticket_card">
             <div className="ticket_value">
                <h5>
