@@ -93,7 +93,7 @@ const Card = ({ competition, id, referBy }) => {
                            if (parseInt(userData?.tickets) >= compFees)
                               history.push({
                                  pathname: '/participation/' + id,
-                                 state: { referBy },
+                                 state: { referBy, compFees },
                               });
                            else toast.error('Not enough tickets');
                         }}

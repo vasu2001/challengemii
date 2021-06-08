@@ -6,12 +6,12 @@ import { AuthContext } from '../../Auth';
 import Loading from '../../components/Loading/Loading';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
-import { useLocation, useParams } from 'react-router';
+import { useHistory, useLocation, useParams } from 'react-router';
 
 const db = firebase.firestore();
 
-const Participation = (props) => {
-   const { currentUser } = useContext(AuthContext);
+const Participation = () => {
+   const { currentUser, setCurrentUser } = useContext(AuthContext);
    const [photoUrl, setPhotoUrl] = useState('');
    const [loading, setLoading] = useState(false);
    const [exists, setExists] = useState(false);
@@ -20,7 +20,9 @@ const Participation = (props) => {
    const user_id = currentUser?.uid;
    const user_name = currentUser?.displayName;
 
-   let { referBy } = useLocation().state;
+   const history = useHistory();
+
+   let { referBy, compFees } = useLocation().state;
    if (referBy === user_id) referBy = undefined;
 
    useEffect(() => {
@@ -51,10 +53,6 @@ const Participation = (props) => {
          preview.src = src;
       }
    };
-
-   // const handleInput = (e) => {
-   //    setVideoLink(e.target.value);
-   // };
 
    const handleUpload = (e) => {
       if (e.target.files[0]) {
@@ -92,10 +90,16 @@ const Participation = (props) => {
                },
                { merge: true },
             );
+
+         setCurrentUser({
+            ...currentUser,
+            tickets: currentUser.tickets - compFees,
+         });
          setLoading(false);
          toast.success(
             'Congrats! Your submission has been successfully uploaded.',
          );
+         history.goBack();
       } catch (error) {
          toast.error(
             'Sorry! We encountered some error uploading your submission.',

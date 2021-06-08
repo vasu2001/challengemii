@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 
 const VoteScreen = ({ comp_id }) => {
    const [subs, setSubs] = useState([]);
-   const [vote, setVote] = useState(0);
 
    useEffect(() => {
       firebase
@@ -16,34 +15,32 @@ const VoteScreen = ({ comp_id }) => {
          .orderBy('vote', 'desc')
          .get()
          .then((querySnap) => {
-            setSubs(querySnap.docs.map((doc) => doc.data()));
+            setSubs(
+               querySnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+            );
          });
    }, [comp_id]);
    console.log(subs);
 
-   const updateBtn = (user_id) => {
+   const updateBtn = (i) => {
       firebase
          .firestore()
          .collection('submissions')
-         .where('competition_id', '==', comp_id)
-         .where('user_id', '==', user_id)
-         .get()
-         .then((querySnap) => {
-            querySnap.forEach((doc) => {
-               doc.ref
-                  .update({
-                     vote,
-                  })
-                  .then(toast.success('Updated successfully !'))
-                  .catch((err) => {
-                     toast.error('Error updating votes.');
-                  });
-            });
+         .doc(subs[i].id)
+         .update({
+            vote: subs[i].vote,
+         })
+         .then(() => toast.success('Updated successfully !'))
+         .catch((err) => {
+            toast.error('Error updating votes.');
          });
    };
 
-   const handleChange = (e) => {
-      setVote(e.target.value);
+   const handleChange = (e, i) => {
+      const newSubs = [...subs];
+      newSubs[i] = { ...subs[i] };
+      newSubs[i].vote = parseInt(e.target.value ?? 0);
+      setSubs(newSubs);
    };
 
    return (
@@ -70,7 +67,7 @@ const VoteScreen = ({ comp_id }) => {
                            {/* <td data-column="Votes">{sub.vote}</td> */}
                            <td data-column="Votes">
                               <input
-                                 onChange={(e) => handleChange(e)}
+                                 onChange={(e) => handleChange(e, key)}
                                  defaultValue={sub.vote}
                                  className="vote-update-input"
                               ></input>
@@ -79,7 +76,7 @@ const VoteScreen = ({ comp_id }) => {
                               <a
                                  className=""
                                  style={{ cursor: 'pointer' }}
-                                 onClick={(user_id) => updateBtn(sub.user_id)}
+                                 onClick={() => updateBtn(key)}
                               >
                                  Update
                               </a>

@@ -62,9 +62,12 @@ const UpdateCompetition = () => {
    };
 
    const handleChange = (e) => {
+      let { value, type } = e.target;
+      if (type === 'number') value = parseInt(value);
+
       setData({
          ...data,
-         [e.target.id]: e.target.value,
+         [e.target.id]: value,
       });
    };
 
@@ -72,6 +75,14 @@ const UpdateCompetition = () => {
       setData({
          ...data,
          [e.target.id]: e.target.files[0],
+      });
+   };
+
+   const handlePrize = (e) => {
+      const { value } = e.target;
+      setData({
+         ...data,
+         prize: value.split(',').map((x) => parseInt(x.trim())),
       });
    };
 
@@ -106,14 +117,13 @@ const UpdateCompetition = () => {
          }
 
          await db.collection('competitions').doc(id).update(newCompetition);
-
-         setLoading(false);
          toast.success('Success updated.');
       } catch (err) {
          console.log(err);
-         setLoading(false);
          toast.error('Error updating document.');
       }
+
+      setLoading(false);
    };
 
    // console.log('data', data);
@@ -159,12 +169,11 @@ const UpdateCompetition = () => {
                className="input-field host-field"
             ></input>
 
-            <p>Winning prize:</p>
+            <p>Winning prize (Comma seperated) :</p>
             <input
-               type="number"
                id="prize"
-               onChange={(e) => handleChange(e)}
-               defaultValue={competition.prize}
+               onChange={(e) => handlePrize(e)}
+               defaultValue={competition.prize?.join(', ')}
                className="input-field host-field"
                placeholder=""
             ></input>
