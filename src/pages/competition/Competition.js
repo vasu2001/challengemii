@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import Card from '../../components/Card/Card';
-import Leaderboard from '../../components/Leaderboard/Leaderboard';
+// import Leaderboard from '../../components/Leaderboard/Leaderboard';
+import Leaderboard from '../../components/Leaderboard-new/Leaderboard';
 import './competition.css';
 import firebase from '../../firebase';
 import { AuthContext } from '../../Auth';
@@ -12,6 +13,7 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { motion } from 'framer-motion';
 import ReportModal from '../../components/ReportModal/ReportModal';
 import moment from 'moment';
+import LeaderboardCard from '../../components/LeaderboardCard/LeaderboardCard';
 
 const queryString = require('query-string');
 
@@ -177,7 +179,8 @@ const Competition = () => {
                   </div>
                </div>
                <section className="section-submission">
-                  {exists ? <Leaderboard id={id} /> : null}
+                  {/* {exists ? <Leaderboard id={id} /> : null} */}
+                  <Leaderboard />
                   <h2 className="submission-title">Submissions</h2>
                   <div className="submissions">
                      {!mySubs ? (

@@ -1,0 +1,125 @@
+.ld-new {
+   width: 100%;
+   height: 100vh;
+   background-color: rgb(249, 244, 254);
+   margin-bottom: 200px;
+   overflow: auto;
+   border-radius: 30px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.ld-new-top-container {
+   width: 100%;
+   background-color: #333;
+   padding: 50px 20px;
+   padding-bottom: 100px;
+   border-bottom-left-radius: 80px;
+   border-bottom-right-radius: 80px;
+   background: url(../../assets/ld-bg4.jpg) no-repeat center;
+   background-size: cover;
+}
+.ld-new-top-container h2 {
+   margin-bottom: 40px;
+}
+.ld-new-top-container p {
+   font-weight: 600;
+}
+.ld-winners-container {
+   width: 580px;
+   height: 200px;
+   margin: 0 auto;
+   display: flex;
+   color: #fff;
+}
+.winner-pos-1 {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.winner-pos-2 {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   flex-direction: column;
+   transform: translateY(10px);
+}
+.winner-pos-3 {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   flex-direction: column;
+   transform: translateY(10px);
+}
+.runnerUp-img {
+   width: 120px;
+   height: 120px;
+   border-radius: 50%;
+   background-color: grey;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   margin-bottom: 10px;
+   border: 4px solid rgb(102, 195, 247);
+}
+.last-pos {
+   border: 4px solid rgb(117, 211, 183);
+}
+.winner-img {
+   width: 150px;
+   height: 150px;
+   object-fit: cover;
+   border-radius: 50%;
+   background-color: green;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+   transform: translateY(-10px);
+   border: 3px solid #fca311;
+}
+.ld-new-bottom-container {
+   width: 100%;
+   height: 100%;
+   margin-top: -40px;
+   padding: 0 10px;
+}
+.ld-list {
+   max-width: 700px;
+   margin: 0 auto;
+}
+.ld-list li {
+   background-color: #fff;
+   height: 80px;
+   margin-bottom: 10px;
+   border-radius: 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 30px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.ld-list li:nth-child(1) {
+   background-color: #fca311;
+   color: #fff;
+}
+.ld-list li:nth-child(2) {
+   background-color: rgb(102, 195, 247);
+   color: #fff;
+}
+.ld-list li:nth-child(3) {
+   background-color: rgb(117, 211, 183);
+   color: #fff;
+}
+.ld-list li div {
+   display: flex;
+   align-items: center;
+}
+.ld-list li div img {
+   margin-left: 20px;
+}
+.li-name {
+   font-size: 18px;
+   letter-spacing: 1px;
+}
