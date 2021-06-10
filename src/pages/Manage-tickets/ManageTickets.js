@@ -23,24 +23,24 @@ const ManageTickets = () => {
    const buyTicket = async (e) => {
       e.preventDefault();
       const value = '100.00';
-      const orderId = uuid4();
+      const orderId = '12345678';
 
       console.log(orderId);
 
       const {
-         data: { CHECKSUM },
+         data: { checksum },
       } = await axios.post(firebaseEndpoints.initializePayment, {
          value,
          orderId,
       });
-      // console.log(CHECKSUM);
+      console.log(checksum);
 
       postForm({
          action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage`, //?MID=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}
          params: {
             mid: process.env.REACT_APP_PAYTM_MERCHANT_ID,
             orderId,
-            txnToken: CHECKSUM,
+            txnToken: checksum,
          },
       });
    };

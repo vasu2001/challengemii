@@ -91,7 +91,9 @@ const CompetitionStat = () => {
                               <td data-column="Participants">
                                  {comp.submissions}
                               </td>
-                              <td data-column="Prize">{comp.prize}</td>
+                              <td data-column="Prize">
+                                 {comp.prize?.reduce((a, b) => a + b)}
+                              </td>
                               <td data-column="Votes">
                                  <Link
                                     to={`/admin-panel/update-comp/${competition.id}`}

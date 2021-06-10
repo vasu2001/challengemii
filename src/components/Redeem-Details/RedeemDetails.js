@@ -7,6 +7,7 @@ import firebase from '../../firebase';
 
 const RedeemDetails = ({ close, data }) => {
    const [questions, setQuestion] = useState([]);
+   const { answers } = data;
 
    useEffect(() => {
       firebase
@@ -33,7 +34,7 @@ const RedeemDetails = ({ close, data }) => {
                   Name:<span>{data.name}</span>
                </p>
                <p>
-                  Prize Title:<span>{data.title}</span>
+                  Prize Title:<span>{questions.name}</span>
                </p>
                <p>
                   Prize coins:<span>{data.coins}</span>
@@ -42,22 +43,18 @@ const RedeemDetails = ({ close, data }) => {
             <h4>Questions</h4>
             <div className="quest-box">
                <ul>
-                  {questions.ques &&
-                     questions.ques.map((question, i) => {
-                        let answers = data.answers;
-                        return (
-                           <li className="quest">
-                              <span>Q.1)</span>
-                              {question}
-                              <li className="ans">
-                                 <span>
-                                    <BsArrowRight />
-                                 </span>
-                                 {answers[i]}
-                              </li>
-                           </li>
-                        );
-                     })}
+                  {questions.ques?.map((question, i) => (
+                     <li className="quest">
+                        <span>Q.{i + 1})</span>
+                        {question}
+                        <li className="ans">
+                           <span>
+                              <BsArrowRight />
+                           </span>
+                           {answers[i]}
+                        </li>
+                     </li>
+                  ))}
                </ul>
             </div>
          </div>

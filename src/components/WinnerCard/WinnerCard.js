@@ -11,6 +11,7 @@ import firebase from '../../firebase';
 
 const WinnerCard = ({ data }) => {
    const [photoUrl, setPhotoUrl] = useState('');
+   console.log(data);
 
    useEffect(() => {
       firebase

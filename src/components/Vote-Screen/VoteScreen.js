@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import './voteScreen.css';
 import firebase from '../../firebase';
 import Loading from '../Loading/Loading';
@@ -20,7 +20,7 @@ const VoteScreen = ({ comp_id }) => {
             );
          });
    }, [comp_id]);
-   console.log(subs);
+   // console.log(subs);
 
    const updateBtn = (i) => {
       firebase
@@ -90,4 +90,4 @@ const VoteScreen = ({ comp_id }) => {
    );
 };
 
-export default VoteScreen;
+export default memo(VoteScreen);

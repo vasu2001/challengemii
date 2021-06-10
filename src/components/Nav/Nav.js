@@ -25,14 +25,19 @@ const Nav = () => {
             if (userDoc.exists) {
                setUserData(userDoc.data());
             } else {
+               const imgFetch = await fetch(user.photoURL);
+               const imgBlob = await imgFetch.blob();
+               const imgRef = firebase.storage().ref(`users/${user.uid}`);
+               await imgRef.put(imgBlob);
+               const photoURL = await imgRef.getDownloadURL();
+
                // saving user in database if no user exists with the same uid.
                const newUserData = {
                   name: user.displayName,
-                  photoURL: user.photoURL,
+                  photoURL,
                   coins: 0,
                   tickets: 0,
                   desc: '',
-                  website: '',
                   twitter: '',
                   instagram: '',
                   facebook: '',

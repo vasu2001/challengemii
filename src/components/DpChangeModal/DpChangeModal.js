@@ -35,7 +35,7 @@ const DpChangeModal = ({ close }) => {
       e.preventDefault();
 
       try {
-         const storageRef = firebase.storage().ref(`dp/${currentUser.uid}`);
+         const storageRef = firebase.storage().ref(`users/${currentUser.uid}`);
          await storageRef.put(photoUrl);
          const downloadUrl = await storageRef.getDownloadURL();
          await db.collection('users').doc(currentUser.uid).update({

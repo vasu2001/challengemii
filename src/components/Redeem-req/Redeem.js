@@ -17,15 +17,19 @@ const Redeem = () => {
          .get()
          .then((querySnap) => {
             setRequests(
-               querySnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+               querySnap.docs
+                  .map((doc) => ({ id: doc.id, ...doc.data() }))
+                  .filter((x) => !x.completed),
             );
          });
    }, []);
 
    const done = async (req_id) => {
       try {
-         await db.collection('redeem_req').doc(req_id).delete();
-         toast.success('Record deleted from database !');
+         await db.collection('redeem_req').doc(req_id).update({
+            completed: true,
+         });
+         toast.success('Record marked as completed in database !');
       } catch (err) {
          console.log(err);
          toast.error('Unable to proccess the request !');
