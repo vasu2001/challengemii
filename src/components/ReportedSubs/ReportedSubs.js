@@ -48,15 +48,22 @@ const ReportedSubs = () => {
    );
 
    const deleteSub = async (comp_id, user_id, sub_id) => {
-      // const storageRef = firebase.storage().ref(`images/${comp_id}/${user_id}`);
-      // await storageRef.delete()
-      // firebase.firestore().collection('submission').doc(sub_id).delete()
-      // .then(() => {
-      //    toast.success('Succefully deleted');
-      // }).catch(err => {
-      //    toast.error('Error deleting document');
-      // })
-      console.log('clicked');
+      try {
+         const storageRef = firebase
+            .storage()
+            .ref(`images/${comp_id}/${user_id}`);
+         await storageRef.delete();
+         await firebase
+            .firestore()
+            .collection('submission')
+            .doc(sub_id)
+            .delete();
+         await firebase.firestore().collection('reports').doc(sub_id).delete();
+         toast.success('Successfully deleted');
+      } catch (err) {
+         console.log(err);
+         toast.error('Error updating document');
+      }
    };
 
    console.log(sortedData);
@@ -92,7 +99,7 @@ const ReportedSubs = () => {
                            <a
                               className=""
                               style={{ cursor: 'pointer' }}
-                              onclick={(comp_id, user_id, sub_id) => {
+                              onClick={(comp_id, user_id, sub_id) => {
                                  deleteSub(
                                     data.compId,
                                     data.userId,

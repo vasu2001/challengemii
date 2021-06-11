@@ -50,6 +50,7 @@ const Competition = () => {
 
       db.collection('submissions')
          .where('competition_id', '==', id)
+         .orderBy('vote', 'desc')
          .get()
          .then((querySnap) => {
             const submissions = querySnap.docs.map((doc) => ({
@@ -185,7 +186,7 @@ const Competition = () => {
                </div>
                <section className="section-submission">
                   {/* {exists ? <Leaderboard id={id} /> : null} */}
-                  <Leaderboard id={id} />
+                  <Leaderboard data={mySubs} />
                   <h2 className="submission-title">Submissions</h2>
                   <div className="submissions">
                      {!mySubs ? (

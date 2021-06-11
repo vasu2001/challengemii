@@ -123,7 +123,14 @@
    font-size: 18px;
    letter-spacing: 1px;
 }
-
+.nd-ld-container {
+   background-color: #e5e5e5;
+   height: 150px;
+   margin-bottom: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
 @media only screen and (max-width: 660px) {
    .ld-winners-container {
       width: 480px;

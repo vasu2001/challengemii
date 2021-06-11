@@ -7,29 +7,15 @@ import firebase from '../../firebase';
 
 const db = firebase.firestore();
 
-const Leaderboard = ({ id }) => {
-   const [subs, setSubs] = useState([]);
-
-   useEffect(() => {
-      db.collection('submissions')
-         .where('competition_id', '==', id)
-         .orderBy('vote', 'desc')
-         .get()
-         .then((querySnap) => {
-            querySnap.forEach((doc) => {
-               setSubs((prevState) => [...prevState, doc.data()]);
-            });
-         });
-   }, []);
-
+const Leaderboard = ({ data }) => {
    const fetchDp = (id) => {
       return firebase.storage().ref(`dp/${id}`).getDownloadURL();
    };
 
-   if (subs.length === 0) {
+   if (!data || data.length < 3) {
       return (
-         <div className="">
-            <h3>There is no submissions yet.</h3>
+         <div className="nd-ld-container">
+            <h4>Leaderboard will be revealed after atleast 3 submissions.</h4>
          </div>
       );
    } else {
@@ -41,26 +27,29 @@ const Leaderboard = ({ id }) => {
                </h2>
                <div className="ld-winners-container">
                   <div className="winner-pos-2">
-                     <img src={prof} class="runnerUp-img"></img>
-                     {/* <p>{subs[1].user_name.replace(/[^a-z]/gi,' ')}</p> */}
-                     {/* <p>{subs[1].vote}</p> */}
+                     <img src={data[1].photo_link} class="runnerUp-img"></img>
+                     <p>{data[1].user_name.replace(/[^a-z]/gi, ' ')}</p>
+                     <p>{data[1].vote}</p>
                   </div>
                   <div className="winner-pos-1">
-                     <img src={girl} class="winner-img"></img>
-                     {/* <p>{subs[0].user_name.replace(/[^a-z]/gi,' ')}</p> */}
-                     {/* <p>{subs[0].vote}</p> */}
+                     <img src={data[0].photo_link} class="winner-img"></img>
+                     <p>{data[0].user_name.replace(/[^a-z]/gi, ' ')}</p>
+                     <p>{data[0].vote}</p>
                   </div>
                   <div className="winner-pos-3">
-                     <img src={prof} class="runnerUp-img last-pos"></img>
-                     {/* <p>{subs[2].user_name.replace(/[^a-z]/gi,' ')}</p> */}
-                     {/* <p>{subs[2].vote}</p> */}
+                     <img
+                        src={data[2].photo_link}
+                        class="runnerUp-img last-pos"
+                     ></img>
+                     <p>{data[2].user_name.replace(/[^a-z]/gi, ' ')}</p>
+                     <p>{data[2].vote}</p>
                   </div>
                </div>
             </div>
             <div className="ld-new-bottom-container">
                <ul className="ld-list">
-                  {subs &&
-                     subs.map((sub, key) => {
+                  {data &&
+                     data.map((sub, key) => {
                         return (
                            <li>
                               <div>
