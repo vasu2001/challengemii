@@ -48,13 +48,14 @@ const Nav = () => {
                      linkedin: '',
                   };
                   await db.collection('users').doc(user.uid).set(newUserData);
-
-                  if (!currentUser) history.goBack();
                   setUserData(newUserData);
                }
 
+               if (history.location.pathname === '/sign-in') history.goBack();
                setCurrentUser(user); // updating currentUser state of Auth context
-            } else console.log('no user found');
+            } else {
+               console.log('no user found');
+            }
          } catch (err) {
             console.log(err);
             toast.error('Some error occured');

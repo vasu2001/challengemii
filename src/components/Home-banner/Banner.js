@@ -16,7 +16,7 @@ const Banner = (props) => {
                {user ? (
                   <Link
                      to="/user/me"
-                     class="btn"
+                     className="btn"
                      style={{ textTransform: 'none', color: 'white' }}
                   >
                      {user.displayName}

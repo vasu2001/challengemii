@@ -22,7 +22,7 @@ const Admin = () => {
    const history = useHistory();
 
    if (currentUser?.providerId !== 'firebase') {
-      firebase.auth().signOut();
+      if (currentUser) firebase.auth().signOut();
       history.push('/admin');
    }
 

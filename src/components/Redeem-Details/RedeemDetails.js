@@ -6,7 +6,7 @@ import Fade from 'react-reveal/Fade';
 import firebase from '../../firebase';
 
 const RedeemDetails = ({ close, data }) => {
-   const [questions, setQuestion] = useState([]);
+   const [questions, setQuestion] = useState({});
    const { answers } = data;
 
    useEffect(() => {
@@ -20,7 +20,7 @@ const RedeemDetails = ({ close, data }) => {
          });
    }, []);
 
-   console.log(questions.ques);
+   // console.log(questions);
 
    return (
       <div className="redeem-details">

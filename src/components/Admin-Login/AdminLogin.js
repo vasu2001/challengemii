@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './adminLogin.css';
 import firebase from '../../firebase';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../Auth';
+import { useHistory } from 'react-router';
 
 export const AdminLogin = () => {
    const [username, setUsername] = useState('');
@@ -22,6 +24,10 @@ export const AdminLogin = () => {
             toast.error('Wrong email/pass');
          });
    };
+
+   const { currentUser } = useContext(AuthContext);
+   const history = useHistory();
+   if (currentUser?.providerId === 'firebase') history.goBack();
 
    return (
       <div>
