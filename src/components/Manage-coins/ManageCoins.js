@@ -20,6 +20,7 @@ const ManageCoins = (props) => {
    const { userData: user, currentUser, setUserData } = useContext(AuthContext);
    const [prizes, setPrizes] = useState([]);
    const [filter, setFilter] = useState('');
+   const [sort, setSort] = useState(1); //1-default 2-low 3-high
 
    const onRedeem = (answers) => {
       const prize = prizes[modal];
@@ -77,18 +78,16 @@ const ManageCoins = (props) => {
          });
    }, []);
 
-   let filterData = prizes.filter(({ name, tags }) => {
+   const filterData = prizes.filter(({ name, tags }) => {
       return (
          name.toLowerCase().includes(filter.toLowerCase()) ||
          tags?.findIndex((tag) => tag.includes(filter.toLowerCase())) > -1
       );
    });
 
-   const lowToHigh = () => {
-      setPrizes(prizes.sort((a, b) => a.coins - b.coins));
-      console.log('after sorting', prizes);
-   };
-   console.log(prizes);
+   if (sort !== 1)
+      filterData.sort((a, b) => (sort === 2 ? 1 : -1) * (a.coins - b.coins));
+
    return (
       <div className="manage-coins">
          <div className="search-filter-container">
@@ -107,9 +106,7 @@ const ManageCoins = (props) => {
             <select
                className="filter-combo"
                onChange={(e) => {
-                  if (e.target.value === 'Low to High') {
-                     lowToHigh();
-                  }
+                  setSort(e.target.selectedIndex);
                }}
             >
                <option disabled selected hidden>
@@ -117,13 +114,7 @@ const ManageCoins = (props) => {
                </option>
                <optgroup label="Price:">
                   <option>Default</option>
-                  <option
-                     onClick={() => {
-                        lowToHigh();
-                     }}
-                  >
-                     Low to High
-                  </option>
+                  <option>Low to High</option>
                   <option>High to Low</option>
                </optgroup>
             </select>

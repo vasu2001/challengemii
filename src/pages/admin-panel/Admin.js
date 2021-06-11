@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Side from '../../components/Admin-side/Side';
 // import Nav from '../../components/Nav-new/Nav';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import './admin.css';
 import Top from '../../components/Profile-top/Top';
 import HostCompetiton from '../../components/Host-competition/HostCompetiton';
@@ -14,8 +14,18 @@ import { motion } from 'framer-motion';
 import ReportedSubs from '../../components/ReportedSubs/ReportedSubs';
 import UpdateUserInfo from '../../components/UpdateUserInfo/UpdateUserInfo';
 import CoinsReq from '../../components/CoinsReq/CoinsReq';
+import { AuthContext } from '../../Auth';
+import firebase from '../../firebase';
 
 const Admin = () => {
+   const { currentUser } = useContext(AuthContext);
+   const history = useHistory();
+
+   if (currentUser?.providerId !== 'firebase') {
+      firebase.auth().signOut();
+      history.push('/admin');
+   }
+
    return (
       <motion.div
          initial={{ opacity: 0 }}

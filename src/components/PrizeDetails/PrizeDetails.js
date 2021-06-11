@@ -16,7 +16,7 @@ const PrizeDetails = ({ onRedeem, close, data }) => {
             </div>
             <h5>{data.description}</h5>
             <div className="details_action_box">
-               <h6>Do you want to redeem coins for this coupons?</h6>
+               <h6>Do you want to redeem coins for this item?</h6>
                <p>Coins once redeemed will not be refunded.</p>
                <a className="btn_detail_redeem" onClick={onRedeem}>
                   Redeem For{' '}
