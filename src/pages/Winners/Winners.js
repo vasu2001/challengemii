@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './winner.css';
 import img from '../../assets/winner-1.jpg';
-import WinnerCard from '../../components/WinnerCard/WinnerCard';
+import WinnerCard from '../../components/WinnerCard-new/WinnerCard';
 import firebase from '../../firebase';
 import { motion } from 'framer-motion';
 const Winners = () => {
