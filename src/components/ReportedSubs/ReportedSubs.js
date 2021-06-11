@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './reportedSubs.css';
 import img from '../../assets/second.jpg';
 import firebase from '../../firebase';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 const ReportedSubs = () => {
    const [data, setData] = useState([]);
@@ -33,10 +35,31 @@ const ReportedSubs = () => {
             no: report.reportedBy.length,
             photo: subDoc.photo_link,
             userId: subDoc.user_id,
+            compId: subDoc.competition_id,
          });
       }
       setData(newData);
    };
+
+   const sortedData = data.sort(
+      (a, b) =>
+         moment(b.lastReported).format('YYYYMMDD') -
+         moment(a.lastReported).format('YYYYMMDD'),
+   );
+
+   const deleteSub = async (comp_id, user_id, sub_id) => {
+      // const storageRef = firebase.storage().ref(`images/${comp_id}/${user_id}`);
+      // await storageRef.delete()
+      // firebase.firestore().collection('submission').doc(sub_id).delete()
+      // .then(() => {
+      //    toast.success('Succefully deleted');
+      // }).catch(err => {
+      //    toast.error('Error deleting document');
+      // })
+      console.log('clicked');
+   };
+
+   console.log(sortedData);
 
    return (
       <div className="reported_subs">
@@ -44,26 +67,45 @@ const ReportedSubs = () => {
             <thead>
                <tr>
                   <th>UserId</th>
+                  <th>SubId</th>
                   <th>Image</th>
                   <th>Reports</th>
                   <th></th>
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td data-column="UserId">123KDFKJEI3421</td>
-                  <td data-column="Image">
-                     <img src={img} style={{ width: '150px' }}></img>
-                  </td>
-                  <td data-column="Reports">
-                     <p>2</p>
-                  </td>
-                  <td>
-                     <a className="" style={{ cursor: 'pointer' }}>
-                        Delete
-                     </a>
-                  </td>
-               </tr>
+               {sortedData.map((data) => {
+                  return (
+                     <tr>
+                        <td data-column="UserId">{data.userId}</td>
+                        <td data-column="SubId">{data.submissionId}</td>
+                        <td data-column="Image">
+                           <img
+                              src={data.photo}
+                              style={{ width: '150px' }}
+                           ></img>
+                        </td>
+                        <td data-column="Reports">
+                           <p>{data.no}</p>
+                        </td>
+                        <td>
+                           <a
+                              className=""
+                              style={{ cursor: 'pointer' }}
+                              onclick={(comp_id, user_id, sub_id) => {
+                                 deleteSub(
+                                    data.compId,
+                                    data.userId,
+                                    data.submissionId,
+                                 );
+                              }}
+                           >
+                              Delete
+                           </a>
+                        </td>
+                     </tr>
+                  );
+               })}
             </tbody>
          </table>
       </div>
