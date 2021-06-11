@@ -58,7 +58,7 @@ const AddPrize = () => {
             .doc(uid)
             .set({
                name: details.name,
-               coins: details.coins,
+               coins: parseInt(details.coins),
                image: imageURL,
                description: details.description,
                ques: details.ques

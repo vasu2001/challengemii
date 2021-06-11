@@ -17,7 +17,7 @@ const ManageCoins = (props) => {
    const [modal, setModal] = useState(-1);
    const [details, setDetails] = useState(-1);
 
-   const { userData: user, currentUser } = useContext(AuthContext);
+   const { userData: user, currentUser, setUserData } = useContext(AuthContext);
    const [prizes, setPrizes] = useState([]);
    const [filter, setFilter] = useState('');
 
@@ -41,6 +41,10 @@ const ManageCoins = (props) => {
             toast.success('Redeem Request Sent!');
             setLoading(false);
             setModal(-1);
+            setUserData({
+               ...user,
+               coins: user.coins - prize.coins,
+            });
          })
          .catch((err) => {
             console.log('Error sending request');
