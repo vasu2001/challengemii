@@ -56,10 +56,7 @@ const ReportedSubs = () => {
                      <img src={img} style={{ width: '150px' }}></img>
                   </td>
                   <td data-column="Reports">
-                     <input
-                        defaultValue="2"
-                        className="vote-update-input"
-                     ></input>
+                     <p>2</p>
                   </td>
                   <td>
                      <a className="" style={{ cursor: 'pointer' }}>

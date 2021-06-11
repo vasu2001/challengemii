@@ -42,7 +42,7 @@ const Profile = (props) => {
                                  title="Public profile"
                                  subtitle="Add information about yourself."
                               />
-                              <Basic user={user} currentUser={currentUser} />
+                              <Basic />
                            </Fragment>
                         )}
                      />

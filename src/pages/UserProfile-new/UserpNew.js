@@ -95,26 +95,40 @@ const UserpNew = () => {
                   ) : null}
                </div>
                <div className="social-container-new">
-                  <div className="social-link-new">
-                     <a
-                        href={userData.instagram}
-                        target="_blank"
-                        rel="noreferrer"
-                     >
+                  <a
+                     href={'https://instagram.com/' + userData.instagram}
+                     target="_blank"
+                  >
+                     <div className="social-link-new">
                         <AiOutlineInstagram
                            style={{ transform: 'scale(1.5)' }}
                         />
-                     </a>
-                  </div>
-                  <div className="social-link-new">
-                     <AiFillFacebook style={{ transform: 'scale(1.8)' }} />
-                  </div>
-                  <div className="social-link-new">
-                     <FaTwitter style={{ transform: 'scale(1.5)' }} />
-                  </div>
-                  <div className="social-link-new">
-                     <AiFillLinkedin style={{ transform: 'scale(1.5)' }} />
-                  </div>
+                     </div>
+                  </a>
+                  <a
+                     href={'https://facebook.com/' + userData.facebook}
+                     target="_blank"
+                  >
+                     <div className="social-link-new">
+                        <AiFillFacebook style={{ transform: 'scale(1.8)' }} />
+                     </div>
+                  </a>
+                  <a
+                     href={'https://twitter.com/' + userData.twitter}
+                     target="_blank"
+                  >
+                     <div className="social-link-new">
+                        <FaTwitter style={{ transform: 'scale(1.5)' }} />
+                     </div>
+                  </a>
+                  <a
+                     href={'https://linkedin.com/' + userData.linkedin}
+                     target="_blank"
+                  >
+                     <div className="social-link-new">
+                        <AiFillLinkedin style={{ transform: 'scale(1.5)' }} />
+                     </div>
+                  </a>
                </div>
                <div className="profile-content-new">
                   <div className="user-actions">

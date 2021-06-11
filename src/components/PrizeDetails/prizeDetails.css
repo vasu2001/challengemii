@@ -54,6 +54,9 @@
    margin-left: 10px;
    font-weight: 400;
 }
+.prize_details_container h5 {
+   white-space: pre-wrap;
+}
 .details_action_box {
    width: 100%;
    text-align: center;

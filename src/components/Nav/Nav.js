@@ -2,54 +2,62 @@ import React, { useState, useEffect, useContext } from 'react';
 import './nav.css';
 import coinImg from '../../assets/coins.png';
 import ticketImg from '../../assets/ticket.png';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { VscTriangleDown } from 'react-icons/vsc';
 import { BsFillTriangleFill } from 'react-icons/bs';
 import { AuthContext } from '../../Auth';
 import firebase from '../../firebase';
+import { toast } from 'react-toastify';
 const db = firebase.firestore(); //getting firestore
 
 const Nav = () => {
    const { currentUser, setCurrentUser, setUserData, userData } =
       useContext(AuthContext);
    const [display, setDisplay] = useState(false);
+   const history = useHistory();
 
    useEffect(() => {
       const unsubsribe = firebase.auth().onAuthStateChanged(async (user) => {
-         if (user) {
-            const userDoc = await firebase
-               .firestore()
-               .collection('users')
-               .doc(user.uid)
-               .get();
-            if (userDoc.exists) {
-               setUserData(userDoc.data());
-            } else {
-               const imgFetch = await fetch(user.photoURL);
-               const imgBlob = await imgFetch.blob();
-               const imgRef = firebase.storage().ref(`users/${user.uid}`);
-               await imgRef.put(imgBlob);
-               const photoURL = await imgRef.getDownloadURL();
+         try {
+            if (user) {
+               const userDoc = await firebase
+                  .firestore()
+                  .collection('users')
+                  .doc(user.uid)
+                  .get();
+               if (userDoc.exists) {
+                  setUserData(userDoc.data());
+               } else {
+                  const imgFetch = await fetch(user.photoURL);
+                  const imgBlob = await imgFetch.blob();
+                  const imgRef = firebase.storage().ref(`users/${user.uid}`);
+                  await imgRef.put(imgBlob);
+                  const photoURL = await imgRef.getDownloadURL();
 
-               // saving user in database if no user exists with the same uid.
-               const newUserData = {
-                  name: user.displayName,
-                  email: user.email,
-                  photoURL,
-                  coins: 0,
-                  tickets: 0,
-                  desc: '',
-                  twitter: '',
-                  instagram: '',
-                  facebook: '',
-                  linkedin: '',
-               };
-               await db.collection('users').doc(user.uid).set(newUserData);
-               setUserData(newUserData);
-            }
+                  // saving user in database if no user exists with the same uid.
+                  const newUserData = {
+                     name: user.displayName,
+                     email: user.email,
+                     photoURL,
+                     coins: 0,
+                     tickets: 0,
+                     desc: '',
+                     twitter: '',
+                     instagram: '',
+                     facebook: '',
+                     linkedin: '',
+                  };
+                  await db.collection('users').doc(user.uid).set(newUserData);
+                  setUserData(newUserData);
+               }
 
-            setCurrentUser(user); // updating currentUser state of Auth context
-         } else console.log('no user found');
+               setCurrentUser(user); // updating currentUser state of Auth context
+               history.goBack();
+            } else console.log('no user found');
+         } catch (err) {
+            console.log(err);
+            toast.error('Some error occured');
+         }
       });
 
       return () => {

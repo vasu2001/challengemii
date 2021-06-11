@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './adminLogin.css';
 import firebase from '../../firebase';
+import { toast } from 'react-toastify';
 
 export const AdminLogin = () => {
-   const [admin, setAdmin] = useState('');
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
 
@@ -14,7 +14,14 @@ export const AdminLogin = () => {
    const updatePassword = (e) => {
       setPassword(e.target.value);
    };
-   const handleLogin = () => {};
+   const handleLogin = () => {
+      firebase
+         .auth()
+         .signInWithEmailAndPassword(username, password)
+         .catch((err) => {
+            toast.error('Wrong email/pass');
+         });
+   };
 
    return (
       <div>

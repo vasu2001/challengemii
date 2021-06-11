@@ -28,21 +28,21 @@ const ManageTickets = () => {
       console.log(orderId);
 
       const {
-         data: { checksum },
+         data: { txnToken },
       } = await axios.post(firebaseEndpoints.initializePayment, {
          value,
          orderId,
       });
-      console.log(checksum);
+      console.log(txnToken);
 
-      postForm({
-         action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage`, //?MID=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}
-         params: {
-            mid: process.env.REACT_APP_PAYTM_MERCHANT_ID,
-            orderId,
-            txnToken: checksum,
-         },
-      });
+      // postForm({
+      //    action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage`, //?MID=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}
+      //    params: {
+      //       mid: process.env.REACT_APP_PAYTM_MERCHANT_ID,
+      //       orderId,
+      //       txnToken,
+      //    },
+      // });
    };
 
    return (
