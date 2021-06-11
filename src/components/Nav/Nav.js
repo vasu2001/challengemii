@@ -34,6 +34,7 @@ const Nav = () => {
                // saving user in database if no user exists with the same uid.
                const newUserData = {
                   name: user.displayName,
+                  email: user.email,
                   photoURL,
                   coins: 0,
                   tickets: 0,
@@ -55,7 +56,6 @@ const Nav = () => {
          unsubsribe();
       };
    }, []);
-
    if (!currentUser) {
       return (
          <div className="nav" id="nouser">

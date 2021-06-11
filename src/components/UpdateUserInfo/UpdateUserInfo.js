@@ -36,7 +36,6 @@ const UpdateUserInfo = () => {
    };
 
    const submitUpdate = async (user) => {
-      // console.log(user);
       const { coins, tickets } = user.data;
       if (coins !== '' && tickets !== '') {
          try {
@@ -54,8 +53,6 @@ const UpdateUserInfo = () => {
       }
    };
 
-   // console.log(details);
-
    const filterUsers = users.filter((user) => {
       return (
          user.id === search ||
@@ -63,12 +60,17 @@ const UpdateUserInfo = () => {
          user.data.email?.toLowerCase().includes(search.toLowerCase())
       );
    });
+   console.log(users);
+   console.log(users.map((user) => user.data.email));
    return (
       <div className="update-user-info">
          <input
             placeholder="Search"
             onChange={(e) => setSearch(e.target.value)}
          />
+         <p style={{ marginTop: '10px' }}>
+            No. of users :- <span>{users.length}</span>
+         </p>
          <table>
             <thead>
                <tr>
@@ -86,7 +88,7 @@ const UpdateUserInfo = () => {
                      <tr key={i}>
                         <td data-column="Name">{user.data.name}</td>
                         <td data-column="UserId">{user.id}</td>
-                        <td data-column="Email">krishnasaxena@gmail.com</td>
+                        <td data-column="Email">{user.data.email}</td>
                         <td data-column="Coins">
                            <input
                               id="coins"
