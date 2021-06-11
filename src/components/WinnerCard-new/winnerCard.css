@@ -35,4 +35,8 @@
       width: 90px;
       height: 90px;
    }
+   .wc h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+   }
 }
