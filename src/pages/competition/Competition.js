@@ -13,7 +13,6 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { motion } from 'framer-motion';
 import ReportModal from '../../components/ReportModal/ReportModal';
 import moment from 'moment';
-import LeaderboardCard from '../../components/LeaderboardCard/LeaderboardCard';
 
 const queryString = require('query-string');
 
@@ -180,7 +179,7 @@ const Competition = () => {
                </div>
                <section className="section-submission">
                   {/* {exists ? <Leaderboard id={id} /> : null} */}
-                  <Leaderboard />
+                  <Leaderboard id={id} />
                   <h2 className="submission-title">Submissions</h2>
                   <div className="submissions">
                      {!mySubs ? (

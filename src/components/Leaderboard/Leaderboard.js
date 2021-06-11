@@ -19,6 +19,7 @@ const Leaderboard = (props) => {
             });
          });
    }, []);
+
    return (
       <div className="leaderboard-ct">
          <h2 className="submission-title">LEADERBOARD</h2>
