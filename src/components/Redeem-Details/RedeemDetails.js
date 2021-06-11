@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './redeemDetails.css';
 import { BsArrowRight } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
-import Fade from 'react-reveal/Fade';
 import firebase from '../../firebase';
 
 const RedeemDetails = ({ close, data }) => {

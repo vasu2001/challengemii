@@ -3,11 +3,13 @@ import './coinsReq.css';
 import moment from 'moment';
 import firebase from '../../firebase';
 import { toast } from 'react-toastify';
+import CoinsReqModal from '../CoinsReqModal/CoinsReqModal';
 
 const db = firebase.firestore();
 
 const CoinsReq = () => {
    const [competitions, setCompetitions] = useState([]);
+   const [details, setDetails] = useState(-1);
 
    useEffect(() => {
       db.collection('competitions')
@@ -23,6 +25,8 @@ const CoinsReq = () => {
                   return { id: doc.id, data: doc.data() };
                });
 
+            console.log('newComp', newComp);
+
             for (const i in newComp) {
                const doc = newComp[i];
 
@@ -34,10 +38,9 @@ const CoinsReq = () => {
                   id: x.id,
                   ...x.data(),
                }));
-               subData.sort((a, b) => a.vote - b.vote);
+               subData.sort((a, b) => b.vote - a.vote);
                newComp[i].submissions = subData;
             }
-
             setCompetitions(newComp);
          });
    }, []);
@@ -83,7 +86,7 @@ const CoinsReq = () => {
       }
    };
 
-   console.log(competitions);
+   console.log(details);
 
    return (
       <div className="coins-req">
@@ -119,13 +122,23 @@ const CoinsReq = () => {
                               {comp.prize?.reduce((a, b) => a + b)}
                            </td>
                            <td>
-                              <a className="" style={{ cursor: 'pointer' }}>
+                              <a
+                                 className=""
+                                 style={{ cursor: 'pointer' }}
+                                 onClick={() => setDetails(i)}
+                              >
                                  Details
                               </a>
                            </td>
                         </tr>
                      );
                   })}
+               {details > -1 ? (
+                  <CoinsReqModal
+                     data={competitions[details]}
+                     close={setDetails}
+                  />
+               ) : null}
             </tbody>
          </table>
       </div>

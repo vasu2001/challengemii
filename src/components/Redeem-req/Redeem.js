@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 const db = firebase.firestore();
 
 const Redeem = () => {
-   // console.log(this.state.requests);
    const [display, setDisplay] = useState(false);
    const [requests, setRequests] = useState([]);
    const [details, setDetails] = useState(-1);

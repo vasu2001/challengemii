@@ -1,0 +1,40 @@
+.coins-req-modal {
+   width: 100%;
+   height: 100vh;
+   background-color: rgba(22, 21, 25, 0.6);
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 11000;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Monteserrat', sans-serif;
+}
+.cr-md-box {
+   width: 550px;
+   height: 400px;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   color: #444;
+   padding: 20px;
+   overflow: auto;
+   text-align: center;
+   position: relative;
+}
+.cr-md-box table {
+   width: 500px;
+   margin: 10px auto;
+}
+.btn-payN {
+   background-color: #fca311;
+   display: inline-block;
+   padding: 10px 15px;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   margin-top: 10px;
+   color: #fff !important;
+   text-decoration: none !important;
+   cursor: pointer;
+}
