@@ -23,7 +23,7 @@ const Leaderboard = ({ id }) => {
    }, []);
 
    const fetchDp = (id) => {
-      return firebase.storage().ref(`dp/${id}`).getDownloadURL();
+      return firebase.storage().ref(`users/${id}`).getDownloadURL();
    };
 
    if (subs.length === 0) {

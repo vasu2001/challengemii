@@ -97,7 +97,7 @@ const Card = ({ competition, id, referBy }) => {
                      <div className="side2-actions">
                         <a
                            onClick={() => {
-                              if (parseInt(userData?.tickets) >= compFees)
+                              if (parseInt(userData.tickets) >= compFees)
                                  history.push({
                                     pathname: '/participation/' + id,
                                     state: { referBy, compFees },

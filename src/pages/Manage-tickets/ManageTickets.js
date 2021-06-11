@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import TicketCard from '../../components/TicketCard/TicketCard';
 import './manageTickets.css';
 import { v4 as uuid4 } from 'uuid';
@@ -6,6 +6,10 @@ import { firebaseEndpoints } from '../../firebase';
 import postForm from '../../postForm';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { AuthContext } from '../../Auth';
+import { toast } from 'react-toastify';
+
+const TICKET_VALUE = 5;
 
 const calcDiscount = (amount) => {
    if (amount < 100) return 0;
@@ -18,31 +22,49 @@ const calcDiscount = (amount) => {
 const ManageTickets = () => {
    const [amount, setAmount] = useState(0);
    const discount = calcDiscount(amount);
-   const tickets = Math.floor(((amount / 5) * (100 + discount)) / 100);
+   const tickets = Math.floor(
+      ((amount / TICKET_VALUE) * (100 + discount)) / 100,
+   );
+   const { currentUser } = useContext(AuthContext);
 
-   const buyTicket = async (e) => {
+   const handleBuy = (e) => {
       e.preventDefault();
-      const value = '100.00';
-      const orderId = '12345678';
+      return buyTicket(amount);
+   };
 
-      console.log(orderId);
+   const buyTicket = async (amt) => {
+      if (amt === 0 || amt % TICKET_VALUE !== 0) {
+         toast.error('Enter amount in the multiples of ' + TICKET_VALUE);
+         return;
+      }
 
-      const {
-         data: { txnToken },
-      } = await axios.post(firebaseEndpoints.initializePayment, {
-         value,
-         orderId,
-      });
-      console.log(txnToken);
+      try {
+         const value = amt.toFixed(2);
+         const orderId = uuid4();
+         const { uid } = currentUser;
 
-      // postForm({
-      //    action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage`, //?MID=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}
-      //    params: {
-      //       mid: process.env.REACT_APP_PAYTM_MERCHANT_ID,
-      //       orderId,
-      //       txnToken,
-      //    },
-      // });
+         const { data } = await axios.post(
+            firebaseEndpoints.initializePayment,
+            {
+               value,
+               orderId,
+               uid,
+            },
+         );
+         const { txnToken } = data.body;
+
+         postForm({
+            action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage`,
+            params: {
+               mid: process.env.REACT_APP_PAYTM_MERCHANT_ID,
+               orderId,
+               txnToken,
+            },
+         });
+      } catch (err) {
+         console.log(err);
+         toast.error('Some error occured');
+      }
    };
 
    return (
@@ -61,40 +83,40 @@ const ManageTickets = () => {
                   </h5>
                </div>
                <div className="ticket_pre_container">
-                  <TicketCard inr={100} discount={5} />
-                  <TicketCard inr={500} discount={10} />
+                  <TicketCard inr={100} discount={5} buyTicket={buyTicket} />
+                  <TicketCard inr={500} discount={10} buyTicket={buyTicket} />
                </div>
                <div className="ticket_pre_container">
-                  <TicketCard inr={1000} discount={10} />
-                  <TicketCard inr={1500} discount={15} />
+                  <TicketCard inr={1000} discount={10} buyTicket={buyTicket} />
+                  <TicketCard inr={1500} discount={15} buyTicket={buyTicket} />
                </div>
                <div className="ticket_pre_container">
-                  <TicketCard inr={2000} discount={15} />
-                  <TicketCard inr={2500} discount={20} />
+                  <TicketCard inr={2000} discount={15} buyTicket={buyTicket} />
+                  <TicketCard inr={2500} discount={20} buyTicket={buyTicket} />
                </div>
                <p className="ticket-ques">
                   Enter the amount for which you would like to buy tickets for?
                </p>
-               <p>1 Ticket = Rs. 5</p>
+               <p>1 Ticket = Rs. {TICKET_VALUE}</p>
                <input
                   type="number"
                   className="buy-more"
                   placeholder="Enter amount"
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={(e) => setAmount(parseInt(e.target.value))}
                ></input>
                <div>
-                  {amount % 5 == 0 ? (
+                  {amount % TICKET_VALUE == 0 ? (
                      <p>
-                        Tickets = {amount / 5}{' '}
+                        Tickets = {amount / TICKET_VALUE}{' '}
                         {discount > 0 ? ` + ${discount}% = ${tickets}` : ''}
                      </p>
                   ) : (
                      <p className="error">
-                        Please enter amount in the multiples of 5!
+                        Please enter amount in the multiples of {TICKET_VALUE}!
                      </p>
                   )}
                </div>
-               <a className="btn-buy-tickets" onClick={buyTicket}>
+               <a className="btn-buy-tickets" onClick={handleBuy}>
                   Buy Ticket
                </a>
             </div>

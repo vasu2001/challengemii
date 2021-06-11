@@ -3,11 +3,11 @@ import './ticketCard.css';
 import ticket from '../../assets/ticket.png';
 import Flip from 'react-reveal/Flip';
 
-const TicketCard = ({ inr, discount }) => {
+const TicketCard = ({ inr, discount, buyTicket }) => {
    const tickets = inr / 5;
    return (
       <Flip bottom delay={500}>
-         <div className="ticket_card">
+         <a className="ticket_card" onClick={() => buyTicket(inr)}>
             <div className="ticket_value">
                <h5>
                   <span>
@@ -28,7 +28,7 @@ const TicketCard = ({ inr, discount }) => {
                <h5>INR. {inr}</h5>
             </div>
             <div className="discount">{discount}%</div>
-         </div>
+         </a>
       </Flip>
    );
 };

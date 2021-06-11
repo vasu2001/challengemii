@@ -47,11 +47,12 @@ const Nav = () => {
                      linkedin: '',
                   };
                   await db.collection('users').doc(user.uid).set(newUserData);
+
+                  if (!currentUser) history.goBack();
                   setUserData(newUserData);
                }
 
                setCurrentUser(user); // updating currentUser state of Auth context
-               history.goBack();
             } else console.log('no user found');
          } catch (err) {
             console.log(err);

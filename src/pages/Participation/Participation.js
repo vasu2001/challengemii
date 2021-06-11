@@ -84,12 +84,9 @@ const Participation = () => {
          await db
             .collection('competitions')
             .doc(competition_id)
-            .set(
-               {
-                  submissions: firebase.firestore.FieldValue.increment(1),
-               },
-               { merge: true },
-            );
+            .update({
+               submissions: firebase.firestore.FieldValue.increment(1),
+            });
 
          setCurrentUser({
             ...currentUser,

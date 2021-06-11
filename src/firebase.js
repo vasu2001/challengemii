@@ -22,5 +22,5 @@ export default firebase;
 
 export const firebaseEndpoints = {
    initializePayment:
-      'http://localhost:5001/challengemii-website/asia-south1/initiatePayment',
+      'https://asia-south1-challengemii-website.cloudfunctions.net/initiatePayment',
 };
