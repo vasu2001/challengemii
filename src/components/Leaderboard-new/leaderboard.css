@@ -123,3 +123,69 @@
    font-size: 18px;
    letter-spacing: 1px;
 }
+
+@media only screen and (max-width: 660px) {
+   .ld-winners-container {
+      width: 480px;
+      height: 200px;
+   }
+}
+@media only screen and (max-width: 560px) {
+   .ld-winners-container {
+      width: 380px;
+      height: 200px;
+   }
+   .runnerUp-img {
+      width: 90px;
+      height: 90px;
+   }
+   .winner-img {
+      width: 120px;
+      height: 120px;
+   }
+   .ld-new-top-container p {
+      font-size: 14px;
+   }
+}
+@media only screen and (max-width: 450px) {
+   .ld-winners-container {
+      width: 320px;
+      height: 200px;
+   }
+   .runnerUp-img {
+      width: 70px;
+      height: 70px;
+   }
+   .winner-img {
+      width: 100px;
+      height: 100px;
+   }
+   .ld-new-top-container p {
+      font-size: 14px;
+   }
+   .li-name {
+      font-size: 12px;
+      letter-spacing: 1px;
+   }
+   .ld-list li {
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+   }
+   .ld-list img {
+      width: 40px;
+      height: 40px;
+   }
+   .ld-list li div p {
+      font-size: 12px;
+   }
+   .ld-list li div img {
+      width: 20px;
+   }
+}
+@media only screen and (max-width: 360px) {
+   .ld-winners-container {
+      width: 300px;
+      height: 200px;
+      transform: translateX(-10px);
+   }
+}

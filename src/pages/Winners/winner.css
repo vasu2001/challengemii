@@ -16,7 +16,7 @@
    object-position: center bottom;
 }
 .winner-content {
-   width: 900px;
+   max-width: 900px;
    padding: 60px 30px;
    margin: -60px auto 0 auto;
    background-color: #fff;
@@ -33,4 +33,10 @@
    margin-bottom: 50px;
    text-transform: uppercase;
    letter-spacing: 2px;
+}
+
+@media only screen and (max-width: 600px) {
+   .winner-content {
+      padding: 60px 10px;
+   }
 }

@@ -84,6 +84,11 @@ const ManageCoins = (props) => {
       );
    });
 
+   const lowToHigh = () => {
+      setPrizes(prizes.sort((a, b) => a.coins - b.coins));
+      console.log('after sorting', prizes);
+   };
+   console.log(prizes);
    return (
       <div className="manage-coins">
          <div className="search-filter-container">
@@ -99,13 +104,26 @@ const ManageCoins = (props) => {
                   <p id="search-text">Search</p>
                </a>
             </div>
-            <select className="filter-combo">
+            <select
+               className="filter-combo"
+               onChange={(e) => {
+                  if (e.target.value === 'Low to High') {
+                     lowToHigh();
+                  }
+               }}
+            >
                <option disabled selected hidden>
                   Filter
                </option>
                <optgroup label="Price:">
                   <option>Default</option>
-                  <option>Low to High</option>
+                  <option
+                     onClick={() => {
+                        lowToHigh();
+                     }}
+                  >
+                     Low to High
+                  </option>
                   <option>High to Low</option>
                </optgroup>
             </select>

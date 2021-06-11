@@ -12,8 +12,8 @@ import SubmissionCard from '../../components/SubmissionCard/SubmissionCard';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { motion } from 'framer-motion';
 import ReportModal from '../../components/ReportModal/ReportModal';
+import Loading from '../../components/Loading/Loading';
 import moment from 'moment';
-import LeaderboardCard from '../../components/LeaderboardCard/LeaderboardCard';
 
 const queryString = require('query-string');
 
@@ -32,6 +32,7 @@ const Competition = () => {
    const [gallery, setGallery] = useState(-1);
    const [exists, setExists] = useState(false);
    const [reportModal, setReportModal] = useState(-1);
+   const [loading, setLoading] = useState(false);
 
    const VOTE_LIMIT = competition?.votes ?? 3;
 
@@ -104,6 +105,7 @@ const Competition = () => {
       const dbRef = firebase.firestore().collection('submissions');
 
       try {
+         setLoading(true);
          selectedSub.forEach((i) => {
             const data = mySubs[i];
             if (data.vote === '') data.vote = '0';
@@ -117,6 +119,8 @@ const Competition = () => {
 
          await batch.commit();
          setSelectedSub([]);
+         setLoading(false);
+         toast.success('Votes successfully submitted.');
       } catch (err) {
          console.log(err);
          toast.error('Some error occured');
@@ -170,6 +174,7 @@ const Competition = () => {
          transition={{ duration: 1 }}
       >
          <div className={'competition-pg'}>
+            {loading ? <Loading /> : null}
             <div className="competition-content">
                <img className="cover-img" src={competition.coverUrl}></img>
                <Card competition={competition} id={id} referBy={referBy} />
@@ -180,7 +185,7 @@ const Competition = () => {
                </div>
                <section className="section-submission">
                   {/* {exists ? <Leaderboard id={id} /> : null} */}
-                  <Leaderboard />
+                  <Leaderboard id={id} />
                   <h2 className="submission-title">Submissions</h2>
                   <div className="submissions">
                      {!mySubs ? (
