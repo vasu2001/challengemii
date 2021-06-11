@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './basic.css';
 import firebase from '../../firebase';
 import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
+import { AuthContext } from '../../Auth';
 
-const Basic = ({ user, currentUser }) => {
-   const [userDetails, setUserDetails] = useState({
-      name: user.name,
-      desc: user.desc,
-      twitter: user.twitter,
-      instagram: user.instagram,
-      facebook: user.facebook,
-      linkedin: user.linkedin,
-   });
+const Basic = () => {
+   const { userData: user, currentUser, setUserData } = useContext(AuthContext);
+
+   const [userDetails, setUserDetails] = useState(user);
    const [loading, setLoading] = useState(false);
 
    const handleChange = (e) => {
@@ -33,6 +29,7 @@ const Basic = ({ user, currentUser }) => {
          .then(() => {
             setLoading(false);
             toast.success('Profile updated successfully !');
+            setUserData({ ...userDetails });
          })
          .catch((err) => {
             setLoading(false);
