@@ -151,6 +151,16 @@
       transition: all 0.3s;
    }
 }
+@media screen and (max-width: 850px) {
+   .homenav-right .nav-profile {
+      display: block;
+   }
+}
+@media only screen and (max-width: 686px) {
+   .nav-link {
+      display: none;
+   }
+}
 @media only screen and (max-width: 590px) {
    .hamburger-container {
       padding: 15px 15px;
@@ -201,6 +211,9 @@
    }
 }
 @media only screen and (max-width: 372px) {
+   .banner-titlebox {
+      margin-top: 30px;
+   }
    .title-heading {
       font-size: 22px;
       margin: 0 20px;

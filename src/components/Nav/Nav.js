@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './nav.css';
 import coinImg from '../../assets/coins.png';
 import ticketImg from '../../assets/ticket.png';
+import profDp from '../../assets/user.png';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { VscTriangleDown } from 'react-icons/vsc';
 import { BsFillTriangleFill } from 'react-icons/bs';
@@ -126,7 +127,9 @@ const Nav = () => {
                <NavLink to="/user/me">
                   <div
                      className="nav-profile"
-                     style={{ backgroundImage: `url(${userData.photoURL})` }}
+                     style={{
+                        backgroundImage: `url(${userData.photoURL || profDp})`,
+                     }}
                   ></div>
                </NavLink>
                <VscTriangleDown

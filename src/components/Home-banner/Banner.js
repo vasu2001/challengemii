@@ -1,5 +1,6 @@
 import React from 'react';
 import './banner.css';
+import profDp from '../../assets/user.png';
 import { Link, NavLink } from 'react-router-dom';
 const Banner = (props) => {
    const user = props.user;
@@ -11,16 +12,22 @@ const Banner = (props) => {
             </h1>
             <div className="homenav-right">
                <Link to="/all-competitions" className="nav-link">
+                  Winners
+               </Link>
+               <Link to="/all-competitions" className="nav-link">
                   Competitions
                </Link>
                {user ? (
-                  <Link
-                     to="/user/me"
-                     className="btn"
-                     style={{ textTransform: 'none', color: 'white' }}
-                  >
-                     {user.displayName}
-                  </Link>
+                  <NavLink to="/user/me">
+                     <div
+                        className="nav-profile"
+                        style={{
+                           backgroundImage: `url(${user.photoURL || profDp})`,
+                           boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+                           border: '2px solid #fff',
+                        }}
+                     ></div>
+                  </NavLink>
                ) : (
                   <NavLink to="/sign-in">
                      <div className="hamburger-container">
