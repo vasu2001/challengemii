@@ -30,7 +30,6 @@ const Competition = () => {
    const [mySubs, setMySubs] = useState(null);
    const [selectedSub, setSelectedSub] = useState([]);
    const [gallery, setGallery] = useState(-1);
-   const [exists, setExists] = useState(false);
    const [reportModal, setReportModal] = useState(-1);
    const [loading, setLoading] = useState(false);
 
@@ -58,15 +57,6 @@ const Competition = () => {
                id: doc.id,
             }));
             setMySubs(submissions);
-
-            if (currentUser)
-               submissions.find((e) => {
-                  if (e.user_id === currentUser.uid) {
-                     setExists(true);
-                     return true;
-                  }
-                  return false;
-               });
          })
          .catch((err) => {
             console.log(err);
@@ -186,7 +176,8 @@ const Competition = () => {
                </div>
                <section className="section-submission">
                   {/* {exists ? <Leaderboard id={id} /> : null} */}
-                  <Leaderboard data={mySubs} />
+
+                  {<Leaderboard data={mySubs} />}
                   <h2 className="submission-title">Submissions</h2>
                   <div className="submissions">
                      {!mySubs ? (

@@ -70,6 +70,9 @@
    text-align: center;
    cursor: pointer;
 }
+#btn-participate span {
+   font-size: 12px;
+}
 #btn-refer {
    width: 40%;
    margin-left: 5px;

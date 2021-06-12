@@ -23,9 +23,9 @@ const uiConfig = {
 const Login = (props) => {
    const { currentUser } = useContext(AuthContext);
 
-   if (currentUser) {
-      return <Redirect to={props.history.goBack()} />; //if user is signed in, redirecting to homepage.
-   }
+   // if (currentUser) {
+   //    return <Redirect to={props.history.goBack()} />; //if user is signed in, redirecting to homepage.
+   // }
    return (
       <div className="login">
          <div className="login-card">

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Side from '../../components/Admin-side/Side';
 // import Nav from '../../components/Nav-new/Nav';
 import { Route, Switch, useHistory } from 'react-router-dom';
@@ -21,12 +21,33 @@ const Admin = () => {
    const { currentUser } = useContext(AuthContext);
    const history = useHistory();
 
-   if (currentUser?.providerId !== 'firebase') {
-      if (currentUser) firebase.auth().signOut();
-      history.push('/admin');
-   }
+   const [allow, setAllow] = useState(false);
 
-   return (
+   useEffect(() => {
+      if (!currentUser) {
+         history.push('/admin');
+      } else {
+         currentUser.getIdTokenResult().then((idTokenResult) => {
+            if (!!idTokenResult.claims.admin) {
+               setAllow(true);
+            } else {
+               firebase.auth().signOut();
+            }
+         });
+      }
+   }, [currentUser]);
+
+   // if (currentUser?.providerId !== 'firebase') {
+   //    // if (currentUser)
+   //    firebase
+   //       .auth()
+   //       .signOut()
+   //       .then(() => {
+   //          history.push('/admin');
+   //       });
+   // }
+
+   return allow ? (
       <motion.div
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
@@ -148,6 +169,8 @@ const Admin = () => {
             </div>
          </div>
       </motion.div>
+   ) : (
+      <p>loading</p>
    );
 };
 

@@ -17,11 +17,8 @@ const Card = ({ competition, id, referBy }) => {
    const { currentUser, userData } = useContext(AuthContext);
    const history = useHistory();
 
-   const compFees = parseInt(
-      moment().diff(moment(competition.starts)) > 0
-         ? competition.fees
-         : competition.preregis,
-   );
+   const started = moment().diff(moment(competition.starts)) > 0;
+   const compFees = parseInt(started ? competition.fees : competition.preregis);
 
    const onRefer = async () => {
       try {
@@ -106,7 +103,13 @@ const Card = ({ competition, id, referBy }) => {
                            }}
                            id="btn-participate"
                         >
-                           Participate
+                           {started ? 'Participate' : 'Pre Register'} <br />
+                           {!started && (
+                              <span>
+                                 to save {competition.fees - compFees}{' '}
+                                 <img src={ticketImg} />
+                              </span>
+                           )}
                         </a>
                         <a id="btn-refer" onClick={onRefer}>
                            Refer <br />
@@ -144,7 +147,9 @@ const Card = ({ competition, id, referBy }) => {
                               src={trophy}
                               alt=""
                            ></img>
-                           <span>{competition.prize} coins</span>
+                           <span>
+                              {competition.prize?.reduce((a, b) => a + b)} coins
+                           </span>
                         </p>
                         <p>
                            <img

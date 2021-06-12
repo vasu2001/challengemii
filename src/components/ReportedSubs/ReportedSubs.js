@@ -49,16 +49,24 @@ const ReportedSubs = () => {
 
    const deleteSub = async (comp_id, user_id, sub_id) => {
       try {
-         const storageRef = firebase
+         const storagePromise = firebase
             .storage()
-            .ref(`images/${comp_id}/${user_id}`);
-         await storageRef.delete();
-         await firebase
+            .ref(`images/${comp_id}/${user_id}`)
+            .delete();
+
+         const subPromise = firebase
             .firestore()
             .collection('submission')
             .doc(sub_id)
             .delete();
-         await firebase.firestore().collection('reports').doc(sub_id).delete();
+
+         const repPromise = firebase
+            .firestore()
+            .collection('reports')
+            .doc(sub_id)
+            .delete();
+
+         await Promise.all([storagePromise, subPromise, repPromise]);
          toast.success('Successfully deleted');
       } catch (err) {
          console.log(err);
@@ -99,7 +107,7 @@ const ReportedSubs = () => {
                            <a
                               className=""
                               style={{ cursor: 'pointer' }}
-                              onClick={(comp_id, user_id, sub_id) => {
+                              onClick={() => {
                                  deleteSub(
                                     data.compId,
                                     data.userId,

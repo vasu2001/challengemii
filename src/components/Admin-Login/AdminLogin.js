@@ -27,7 +27,6 @@ export const AdminLogin = () => {
 
    const { currentUser } = useContext(AuthContext);
    const history = useHistory();
-   if (currentUser?.providerId === 'firebase') history.goBack();
 
    return (
       <div>

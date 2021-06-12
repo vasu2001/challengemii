@@ -51,10 +51,16 @@ const Nav = () => {
                   setUserData(newUserData);
                }
 
-               if (history.location.pathname === '/sign-in') history.goBack();
+               if (
+                  history.location.pathname === '/sign-in' ||
+                  history.location.pathname === '/admin'
+               )
+                  history.goBack();
                setCurrentUser(user); // updating currentUser state of Auth context
             } else {
                console.log('no user found');
+               setUserData(null);
+               setCurrentUser(null);
             }
          } catch (err) {
             console.log(err);
@@ -66,7 +72,7 @@ const Nav = () => {
          unsubsribe();
       };
    }, []);
-   if (!currentUser) {
+   if (!currentUser || !userData) {
       return (
          <div className="nav" id="nouser">
             <Link to="/">
