@@ -16,15 +16,10 @@ const CoinsReq = () => {
          .get()
          .then(async (querySnap) => {
             const newComp = querySnap.docs
+               .map((doc) => ({ id: doc.id, ...doc.data() }))
                .filter(
-                  (doc) =>
-                     moment().diff(moment(doc.data().ends)) > 0 &&
-                     !doc.data().ended,
-               )
-               .map((doc) => {
-                  return { id: doc.id, data: doc.data() };
-               });
-
+                  (doc) => moment().diff(moment(doc.ends)) > 0 && !doc.ended,
+               );
             console.log('newComp', newComp);
 
             for (const i in newComp) {
@@ -47,8 +42,9 @@ const CoinsReq = () => {
 
    const onPay = async (e, i) => {
       e.preventDefault();
-      const competition = competitions[i];
+      if (i < 0) return;
 
+      const competition = competitions[i];
       try {
          const compPromise = db
             .collection('competitions')
@@ -78,15 +74,43 @@ const CoinsReq = () => {
             end_date: competition.ends,
          });
 
-         await Promise.all([compPromise, winnerPromise, ...prizePromise]);
+         let voters = competition.submissions[0].voters;
+         competition.prize.forEach((_, i) => {
+            voters = voters.filter((x) =>
+               competition.submissions[i].voters.includes(x),
+            );
+         });
+
+         let voterPromise = [];
+         if (voters.length > 0) {
+            const voterShare = parseInt(competition.voterPrize) / voters.length;
+
+            voterPromise = voters.map((voter_id) =>
+               db
+                  .collection('users')
+                  .doc(voter_id)
+                  .update({
+                     coins: firebase.firestore.FieldValue.increment(voterShare),
+                  }),
+            );
+         }
+         await Promise.all([
+            compPromise,
+            winnerPromise,
+            ...prizePromise,
+            ...voterPromise,
+         ]);
+
          toast.success('competition ended');
+         setDetails(-1);
+         setCompetitions(competitions.filter((_, idx) => i !== idx));
       } catch (err) {
          console.log(err);
          toast.error('Some error occured');
       }
    };
 
-   console.log(details);
+   // console.log(details);
 
    return (
       <div className="coins-req">
@@ -102,41 +126,41 @@ const CoinsReq = () => {
                </tr>
             </thead>
             <tbody>
-               {competitions &&
-                  competitions.map((competition, i) => {
-                     const comp = competition.data;
-                     return (
-                        <tr key={i}>
-                           <td data-column="Title">{comp.title}</td>
-                           <td data-column="Starts">
-                              {' '}
-                              {moment(comp.starts).format('DD/MM/YYYY')}
-                           </td>
-                           <td data-column="Ends">
-                              {moment(comp.ends).format('DD/MM/YYYY')}
-                           </td>
-                           <td data-column="Participants">
-                              {comp.submissions}
-                           </td>
-                           <td data-column="Prize">
-                              {comp.prize?.reduce((a, b) => a + b)}
-                           </td>
-                           <td>
-                              <a
-                                 className=""
-                                 style={{ cursor: 'pointer' }}
-                                 onClick={() => setDetails(i)}
-                              >
-                                 Details
-                              </a>
-                           </td>
-                        </tr>
-                     );
-                  })}
+               {competitions?.map((competition, i) => {
+                  const comp = competition;
+                  return (
+                     <tr key={i}>
+                        <td data-column="Title">{comp.title}</td>
+                        <td data-column="Starts">
+                           {' '}
+                           {moment(comp.starts).format('DD/MM/YYYY')}
+                        </td>
+                        <td data-column="Ends">
+                           {moment(comp.ends).format('DD/MM/YYYY')}
+                        </td>
+                        <td data-column="Participants">
+                           {comp.submissions.length}
+                        </td>
+                        <td data-column="Prize">
+                           {comp.prize?.reduce((a, b) => a + b)}
+                        </td>
+                        <td>
+                           <a
+                              className=""
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setDetails(i)}
+                           >
+                              Details
+                           </a>
+                        </td>
+                     </tr>
+                  );
+               })}
                {details > -1 ? (
                   <CoinsReqModal
                      data={competitions[details]}
-                     close={setDetails}
+                     close={() => setDetails(-1)}
+                     onPay={(e) => onPay(e, details)}
                   />
                ) : null}
             </tbody>
