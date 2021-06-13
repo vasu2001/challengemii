@@ -9,8 +9,7 @@ import { AuthContext } from '../../Auth';
 import { motion } from 'framer-motion';
 
 const Home = () => {
-   const { currentUser, setCurrentUser } = useContext(AuthContext);
-
+   const { userData, setUserData } = useContext(AuthContext);
    return (
       <motion.div
          initial={{ opacity: 0 }}
@@ -19,7 +18,7 @@ const Home = () => {
          transition={{ duration: 0.5 }}
       >
          <div className="homepage">
-            <Banner user={currentUser} />
+            <Banner user={userData} />
             <section className="section-about">
                <div className="about-text-container">
                   <div className="about-text">

@@ -13,3 +13,7 @@
 .admin-general a {
    margin: 0 auto;
 }
+.admin-general th,
+td {
+   text-align: center;
+}
