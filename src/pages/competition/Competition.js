@@ -35,19 +35,9 @@ const Competition = () => {
 
    const VOTE_LIMIT = competition?.votes ?? 3;
 
-   useEffect(() => {
-      const showButton = () => {
-         const element = document.getElementById('submit-vote');
-         if (window.scrollY >= 1000) {
-            element.style.right = '0';
-         }
-         if (window.scrollY < 300) {
-            element.style.right = '-200px';
-         }
-      };
-      window.addEventListener('scroll', showButton);
-
-      db.collection('submissions')
+   const fetchSubs = () =>
+      db
+         .collection('submissions')
          .where('competition_id', '==', id)
          .orderBy('vote', 'desc')
          .get()
@@ -63,6 +53,7 @@ const Competition = () => {
             toast.error('Error getting competition.');
          });
 
+   const fetchComp = () => {
       if (locationState) setCompetitions(locationState);
       else
          db.collection('competitions')
@@ -74,7 +65,28 @@ const Competition = () => {
                } else {
                   history.push('/error');
                }
+            })
+            .catch((err) => {
+               console.log(err);
+               toast.error('Error getting competition.');
             });
+   };
+
+   useEffect(() => {
+      const showButton = () => {
+         const element = document.getElementById('submit-vote');
+         if (window.scrollY >= 1000) {
+            element.style.right = '0';
+         }
+         if (window.scrollY < 300) {
+            element.style.right = '-200px';
+         }
+      };
+      window.addEventListener('scroll', showButton);
+
+      fetchSubs();
+      fetchComp();
+
       return () => {
          window.removeEventListener('scroll', showButton);
       };
@@ -92,6 +104,20 @@ const Competition = () => {
          return;
       }
 
+      if (mySubs.map(({ user_id }) => user_id).includes(currentUser.uid)) {
+         toast.error('Participants cannot vote');
+         return;
+      }
+
+      if (
+         mySubs
+            ?.map((sub) => sub.voters?.includes(currentUser.uid))
+            .reduce((a, b) => a || b)
+      ) {
+         toast.error('Can only vote once');
+         return;
+      }
+
       const batch = firebase.firestore().batch();
       const dbRef = firebase.firestore().collection('submissions');
 
@@ -99,7 +125,7 @@ const Competition = () => {
          setLoading(true);
          selectedSub.forEach((i) => {
             const data = mySubs[i];
-            if (data.vote === '') data.vote = '0';
+            if (data.vote === '') data.vote = 0;
             if (!data.voters) data.voters = [];
 
             batch.update(dbRef.doc(data.id), {
@@ -111,6 +137,7 @@ const Competition = () => {
          await batch.commit();
          setSelectedSub([]);
          setLoading(false);
+         await fetchSubs();
          toast.success('Votes successfully submitted.');
       } catch (err) {
          console.log(err);
