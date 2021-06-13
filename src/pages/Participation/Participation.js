@@ -7,6 +7,7 @@ import Loading from '../../components/Loading/Loading';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { useHistory, useLocation, useParams } from 'react-router';
+import { Redirect } from 'react-router-dom';
 
 const db = firebase.firestore();
 
@@ -147,20 +148,6 @@ const Participation = () => {
                         <a className="btn-choose" onClick={defaultBtn}>
                            Choose File
                         </a>
-                        {/* <div style={{ marginTop: '30px' }}>
-                           <p
-                              className={`yt-link ${hidden ? '' : 'hide'}`}
-                              onClick={() => setHidden(!hidden)}
-                           >
-                              Add link to your youtube video
-                           </p>
-                           <input
-                              className={hidden ? 'hide' : ''}
-                              type="text"
-                              onChange={handleInput}
-                              placeholder="Youtube-link"
-                           ></input>
-                        </div> */}
                      </div>
                      <a
                         className="btn-submit"

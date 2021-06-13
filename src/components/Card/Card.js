@@ -7,7 +7,7 @@ import population from '../../assets/population.png';
 import calendar from '../../assets/calendar.png';
 import firebase from '../../firebase';
 import moment from 'moment';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, Redirect, useHistory } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Auth';
@@ -21,6 +21,10 @@ const Card = ({ competition, id, referBy }) => {
    const compFees = parseInt(started ? competition.fees : competition.preregis);
 
    const onRefer = async () => {
+      if (!currentUser) {
+         toast.error('You must be logged in');
+         return history.push('/sign-in');
+      }
       try {
          const shareUrl = window.location + '?referBy=' + currentUser.uid;
          if (navigator.share) {
@@ -94,6 +98,10 @@ const Card = ({ competition, id, referBy }) => {
                      <div className="side2-actions">
                         <a
                            onClick={() => {
+                              if (!currentUser) {
+                                 toast.error('You must be logged in');
+                                 return history.push('/sign-in');
+                              }
                               if (parseInt(userData.tickets) >= compFees)
                                  history.push({
                                     pathname: '/participation/' + id,

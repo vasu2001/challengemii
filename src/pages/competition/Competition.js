@@ -148,12 +148,20 @@ const Competition = () => {
    };
 
    const onLike = (i) => {
+      if (!currentUser) {
+         toast.error('You must be logged in');
+         return history.push('/sign-in');
+      }
       if (selectedSub.includes(i))
          setSelectedSub([...selectedSub.filter((x) => x !== i)]);
       else setSelectedSub([...selectedSub, i]);
    };
 
    const onReport = async () => {
+      if (!currentUser) {
+         toast.error('You must be logged in');
+         return history.push('/sign-in');
+      }
       try {
          const id = mySubs[reportModal].id;
          const dbRef = db.collection('reports').doc(id);
