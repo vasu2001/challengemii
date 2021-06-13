@@ -14,7 +14,13 @@ const PrizeDetails = ({ onRedeem, close, data }) => {
                   <p>{data.name}</p>
                </div>
             </div>
-            <h5>{data.description}</h5>
+            {/* <div style={{width: '100%', marginBottom: '20px', overflow:'auto'}}>
+               <p>;laskdjf;laskdjf;laskdjf;laskdjf;lasdkjf;saldkjf;laksdjf;lksadjflksajdfl;sakjfioklasjdfaksdjfhasifehoalfhjaslkdjfaiwksjhfdaioskdjhfwaeiksujhoaifljaslkfjal</p>
+            </div>
+            <div style={{width: '100%', justifyContent: 'center', display: 'flex'}}>
+               <img src={data.image} style={{width:'250px', margin: '10px auto'}}>
+               </img>
+            </div>
             <div className="details_action_box">
                <h6>Do you want to redeem coins for this item?</h6>
                <p>Coins once redeemed will not be refunded.</p>
@@ -25,6 +31,36 @@ const PrizeDetails = ({ onRedeem, close, data }) => {
                   </span>
                   {data.coins}
                </a>
+            </div>
+            <div className="btn-close" onClick={close}>
+               <AiOutlineClose />
+            </div> */}
+            <div style={{ maxHeight: '463px', overflow: 'auto' }}>
+               <div className="pd-content">
+                  <div className="pd-ct-left">
+                     <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book.
+                     </p>
+                  </div>
+                  <div className="pd-ct-right">
+                     <img src={data.image} style={{ width: '250px' }}></img>
+                  </div>
+               </div>
+               <div className="pd-actions">
+                  <h6>Do you want to redeem coins for this item?</h6>
+                  <p>Coins once redeemed will not be refunded.</p>
+                  <a className="btn_detail_redeem" onClick={onRedeem}>
+                     Redeem For{' '}
+                     <span>
+                        <img src={coins}></img>
+                     </span>
+                     {data.coins}
+                  </a>
+               </div>
             </div>
             <div className="btn-close" onClick={close}>
                <AiOutlineClose />

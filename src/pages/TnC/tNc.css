@@ -1,0 +1,53 @@
+.tnc-pg {
+   width: 100%;
+   position: relative;
+   height: 100vh;
+   background: linear-gradient(153deg, rgb(152, 210, 202) 50%, #fca311 50%);
+   margin-top: -60px;
+   z-index: 1;
+}
+.tnc-container {
+   position: absolute;
+   width: 700px;
+   max-height: 700px;
+   height: 600px;
+   max-height: 600px;
+   border-radius: 20px;
+   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+   background-color: #fff;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   text-align: center;
+   padding: 50px 30px;
+}
+.tnc-container h4 {
+   color: rgb(116, 169, 161);
+}
+.tnc-content {
+   width: 100%;
+   height: 85%;
+   padding: 50px 10px;
+   overflow: auto;
+   text-align: justify;
+   color: #777;
+   margin-bottom: 30px;
+}
+.tnc-content span {
+   font-weight: 600;
+}
+.tnc-content p {
+   margin-top: 20px;
+   font-size: 14px;
+}
+.tnc-content p span {
+   font-weight: 600;
+   font-size: 16px;
+}
+#btn-accept {
+   background-color: rgb(116, 169, 161);
+   padding: 10px 50px;
+   color: #fff;
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

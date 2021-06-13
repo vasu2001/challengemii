@@ -13,9 +13,10 @@
 }
 .prize_details_container {
    width: 1000px;
+   max-height: 550px;
    margin: 0 20px;
-   min-height: 300px;
-   padding: 60px 30px 20px 30px;
+   padding: 60px 30px;
+   padding-bottom: 20px;
    background-color: #fff;
    border-top-left-radius: 30px;
    border-top-right-radius: 30px;
@@ -45,7 +46,35 @@
 .details_head_box p:first-child {
    font-weight: 600;
 }
-
+.pd-content {
+   width: 100%;
+   max-height: 328px;
+   display: flex;
+   align-items: center;
+}
+.pd-ct-left {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+}
+.pd-ct-right {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+}
+.pd-actions {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-top: 20px;
+}
+.pd-actions h6 {
+   font-weight: 600;
+}
 .prize_details h5 {
    font-weight: 600;
    margin-bottom: 20px;
@@ -97,13 +126,29 @@ span img {
    cursor: pointer;
 }
 
-@media only screen and (max-width: 600px) {
-   .prize_details h5 {
-      font-size: 16px;
-   }
-}
 @media only screen and (max-width: 686px) {
    .prize_details_container {
       margin-bottom: 70px;
+   }
+   .pd-content {
+      flex-direction: column;
+   }
+   .pd-ct-right {
+      order: 1;
+      justify-content: center;
+      margin-bottom: 20px;
+   }
+   .pd-ct-left {
+      order: 2;
+      text-align: center;
+   }
+}
+@media only screen and (max-width: 400px) {
+   .prize_details_container {
+      padding-left: 10px;
+      padding-right: 10px;
+   }
+   .pd-content {
+      margin-bottom: 20px;
    }
 }

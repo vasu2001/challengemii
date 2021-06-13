@@ -22,6 +22,7 @@ import ManageTickets from './pages/Manage-tickets/ManageTickets';
 import ScrollToTop from './ScrollToTop';
 import { AnimatePresence } from 'framer-motion';
 import Winners from './pages/Winners/Winners';
+import TnC from './pages/TnC/TnC';
 
 const App = () => {
    return (
@@ -55,6 +56,7 @@ const App = () => {
                   <Route path="/participation/:id" component={Participation} />
                   <Route path="/user/:id" component={UserpNew} />
                   <Route path="/manage-tickets" component={ManageTickets} />
+                  <Route path="/tnc" component={TnC} />
                   <Route path="/admin" component={AdminLogin} />
                   <Route path="/admin-panel" component={Admin} />
                   <Route path="*" component={Error} />
