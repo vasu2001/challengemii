@@ -69,8 +69,13 @@ const CoinsReq = () => {
             prize: competition.prize,
             winners: competition.submissions
                .slice(0, competition.prize.length)
-               .map((sub) => ({ name: sub.user_name, submission_id: sub.id })),
-            winner_photo: competition.submissions[0]?.photo_link,
+               .map((sub) => ({
+                  name: sub.user_name,
+                  submission_id: sub.id,
+                  photo: sub.photo_link,
+                  user_id: sub.user_id,
+               })),
+            // winner_photo: competition.submissions[0]?.photo_link,
             end_date: competition.ends,
          });
 

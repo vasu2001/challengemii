@@ -12,25 +12,13 @@ const db = firebase.firestore();
 const WinnerCard = ({ data }) => {
    const [photoUrl, setPhotoUrl] = useState([]);
    console.log(data);
+   // const photoUrl = data.winners.map((x) => x.photo);
 
    useEffect(() => {
-      let sub_ids = [];
-      let photoLink = [];
-      data.winners.map((winner) => {
-         sub_ids.push(winner.submission_id);
-      });
-      for (var i = 0; i < sub_ids.length; i++) {
-         console.log(sub_ids[i]);
-         db.collection('submissions')
-            .doc(sub_ids[i])
-            .get()
-            .then((doc) => {
-               setPhotoUrl((prevState) => [
-                  ...prevState,
-                  doc.data().photo_link,
-               ]);
-            });
-      }
+      const photoPromise = data.winners.map(({ user_id }) =>
+         firebase.storage().ref(`users/${user_id}`).getDownloadURL(),
+      );
+      Promise.all(photoPromise).then((res) => setPhotoUrl(res));
    }, []);
 
    console.log(photoUrl);
@@ -59,7 +47,7 @@ const WinnerCard = ({ data }) => {
             </div>
             <div className="winner-pos-3">
                <img src={photoUrl[2]} class="runnerUp-img last-pos"></img>
-               <p>{data.winners[2].name}</p>
+               <p>{data.winners[2]?.name}</p>
                <p style={{ marginTop: '5px' }} className="wc-wins">
                   <img src={third} class="wc-icons"></img>
                   {data.prize[2]}

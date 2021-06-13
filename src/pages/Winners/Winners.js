@@ -4,6 +4,8 @@ import img from '../../assets/winner-1.jpg';
 import WinnerCard from '../../components/WinnerCard-new/WinnerCard';
 import firebase from '../../firebase';
 import { motion } from 'framer-motion';
+import moment from 'moment';
+
 const Winners = () => {
    const [data, setData] = useState();
 
@@ -13,7 +15,11 @@ const Winners = () => {
          .collection('winners')
          .get()
          .then((querySnapshot) => {
-            setData(querySnapshot.docs.map((doc) => doc.data()));
+            setData(
+               querySnapshot.docs
+                  .map((doc) => doc.data())
+                  .sort((a, b) => moment(a.end_date).diff(moment(b.end_date))),
+            );
          });
    }, []);
 
