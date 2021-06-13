@@ -16,7 +16,6 @@ const AllCompetitions = () => {
    const [filter, setFilter] = useState(0); // 0 - ongoing 1 - upcoming
    const [color, setColor] = useState(0);
    document.title = 'ChallengeMii - Competitions';
-   // getting all competitions from firestore
    useEffect(() => {
       db.collection('competitions')
          .get()
@@ -24,18 +23,6 @@ const AllCompetitions = () => {
             setCompetitions(
                querySnap.docs.map((x) => ({ data: x.data(), id: x.id })),
             );
-            // querySnap.docs.map(doc => {
-            //    console.log(doc.data().ends);
-            //    let newDate = moment(moment(doc.data().ends).add(2, 'days')).format('DD/MM/YYYY');
-            //    let ogDate = doc.data().ends;
-            //    console.log(moment(newDate).diff(ogDate,'days'));
-            //    if(moment(ogDate).diff(newDate) < 0){
-            //       setCompetitions(prevState => [...prevState, {
-            //          id: doc.id,
-            //          data: doc.data()
-            //       }])
-            //    }
-            // })
          });
    }, []);
 

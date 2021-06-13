@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './carouselNew.css';
 import Carousel from 'react-bootstrap/Carousel';
-
+import firebase from '../../firebase';
 const CarouselNew = () => {
    const [index, setIndex] = useState(0);
 

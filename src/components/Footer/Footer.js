@@ -9,28 +9,45 @@ const Footer = () => {
                Challenge<span style={{ color: 'red' }}>mii</span>
             </p>
          </div>
-         <ul>
-            <li>
-               <Link className="link-tg" to="/tnc">
+         <div className="ft-links-ct">
+            <div>
+               <a className="link-tg" href="">
                   Feedback
-               </Link>
-            </li>
-            <li>
-               <Link className="link-tg" to="/tnc">
+               </a>
+            </div>
+            <div>
+               <a
+                  className="link-tg"
+                  target="_blank"
+                  href="https://forms.gle/2a9eooGNLK9FAzk2A"
+               >
                   Affiliate Program
-               </Link>
-            </li>
-            <li>
-               <Link className="link-tg" to="/tnc">
+               </a>
+            </div>
+            <div>
+               <a
+                  className="link-tg"
+                  target="_blank"
+                  href="https://forms.gle/twDFeqsbXNdBeBXk9"
+               >
                   Help & Support
-               </Link>
-            </li>
-            <li>
+               </a>
+            </div>
+            <div>
+               <a
+                  className="link-tg"
+                  target="_blank"
+                  href="/https://forms.gle/a6fyaq9krgPAkZGL9"
+               >
+                  Contact Us
+               </a>
+            </div>
+            <div>
                <Link className="link-tg" to="/tnc">
                   Terms & Conditions
                </Link>
-            </li>
-         </ul>
+            </div>
+         </div>
       </div>
    );
 };

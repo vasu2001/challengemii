@@ -4,6 +4,9 @@
    overflow: hidden;
    margin-top: -60px;
 }
+.homepage span {
+   font-weight: 600;
+}
 .about-text {
    width: 80%;
 }
@@ -130,7 +133,14 @@
    flex-wrap: wrap;
    justify-content: space-evenly;
 }
-
+.section-faq {
+   width: 100%;
+   background-color: #f7f7f7;
+   padding: 50px;
+   padding-top: 80px;
+   color: #333;
+   text-align: center;
+}
 @media only screen and (max-width: 1030px) {
    .about-title {
       font-size: 32px;

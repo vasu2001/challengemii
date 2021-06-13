@@ -77,11 +77,14 @@ const Competition = () => {
    useEffect(() => {
       const showButton = () => {
          const element = document.getElementById('submit-vote');
-         if (window.scrollY >= 1000) {
-            element.style.right = '0';
-         }
-         if (window.scrollY < 300) {
-            element.style.right = '-200px';
+         if (element) {
+            if (window.scrollY >= 1000) {
+               element.style.right = '0';
+            }
+            if (window.scrollY < 300) {
+               element.style.right = '-200px';
+            }
+            return;
          }
       };
       window.addEventListener('scroll', showButton);
@@ -257,13 +260,16 @@ const Competition = () => {
                         </div>
                      )}
                   </div>
-                  <a
-                     onClick={onSubmit}
-                     className="submitButton"
-                     id="submit-vote"
-                  >
-                     Submit ({selectedSub.length}/{VOTE_LIMIT})
-                  </a>
+                  {moment().diff(competition.ends) > 0 ||
+                  moment().diff(competition.starts) < 0 ? null : (
+                     <a
+                        onClick={onSubmit}
+                        className="submitButton"
+                        id="submit-vote"
+                     >
+                        Submit ({selectedSub.length}/{VOTE_LIMIT})
+                     </a>
+                  )}
                </section>
             </div>
             <Gallery

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './submissionCard.css';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { AiFillLike } from 'react-icons/ai';
 import { FaShareAlt } from 'react-icons/fa';
 import { MdReport } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
+import { AuthContext } from '../../Auth';
+import { toast } from 'react-toastify';
 
 const SubmissionCard = ({
    submission,
@@ -16,7 +18,14 @@ const SubmissionCard = ({
    highlight,
    onReport,
 }) => {
+   const history = useHistory();
+   const { currentUser } = useContext(AuthContext);
+
    const onShare = () => {
+      if (!currentUser) {
+         toast.error('You must be logged in.');
+         return history.push('/sign-in');
+      }
       navigator.share?.({
          title: 'Share your submission with your friends!',
          url: window.location.href,
