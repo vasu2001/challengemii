@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './error.css';
 
 const Error = () => {
+   document.title = 'ChallengeMii - Error';
    return (
       <div className="error-pg">
          <Link to="/" className="back-home">

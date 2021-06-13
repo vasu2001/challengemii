@@ -4,6 +4,7 @@ import './tNc.css';
 
 const TnC = () => {
    const history = useHistory();
+   document.title = 'ChallengeMii - Terms & Conditions';
    return (
       <div className="tnc-pg">
          <div className="tnc-container">

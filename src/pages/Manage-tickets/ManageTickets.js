@@ -27,6 +27,8 @@ const ManageTickets = () => {
    );
    const { currentUser } = useContext(AuthContext);
 
+   document.title = 'ChallengeMii - Buy Tickets';
+
    const handleBuy = (e) => {
       e.preventDefault();
       return buyTicket(amount);

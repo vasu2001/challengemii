@@ -16,7 +16,7 @@ const ManageCoins = (props) => {
    const [loading, setLoading] = useState(false);
    const [modal, setModal] = useState(-1);
    const [details, setDetails] = useState(-1);
-
+   document.title = 'ChallengeMii - Redeem Coins';
    const { userData: user, currentUser, setUserData } = useContext(AuthContext);
    const [prizes, setPrizes] = useState([]);
    const [filter, setFilter] = useState('');

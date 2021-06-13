@@ -21,6 +21,7 @@ const Winners = () => {
                   .sort((a, b) => moment(a.end_date).diff(moment(b.end_date))),
             );
          });
+      document.title = 'ChallengeMii - Winners';
    }, []);
 
    return (

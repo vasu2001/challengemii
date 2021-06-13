@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './home.css';
 // import Nav from '../../components/Nav/Nav'
 // import Card from '../../components/Cards/cards';
@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 
 const Home = () => {
    const { userData, setUserData } = useContext(AuthContext);
+   document.title = 'ChallengeMii';
    return (
       <motion.div
          initial={{ opacity: 0 }}

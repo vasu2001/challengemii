@@ -31,6 +31,7 @@ const UserpNew = () => {
    const [display, setDisplay] = useState(false);
 
    const history = useHistory();
+   document.title = 'ChallengeMii - Profile';
 
    useEffect(() => {
       if (id === 'me') setUserData(myData);

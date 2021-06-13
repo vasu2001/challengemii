@@ -15,6 +15,7 @@ const AllCompetitions = () => {
    const [competitions, setCompetitions] = useState([]);
    const [filter, setFilter] = useState(0); // 0 - ongoing 1 - upcoming
    const [color, setColor] = useState(0);
+   document.title = 'ChallengeMii - Competitions';
    // getting all competitions from firestore
    useEffect(() => {
       db.collection('competitions')

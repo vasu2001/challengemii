@@ -11,7 +11,7 @@ const Banner = (props) => {
                Challenge<span className="logo-secondary-part">mii</span>
             </h1>
             <div className="homenav-right">
-               <Link to="/all-competitions" className="nav-link">
+               <Link to="/winners" className="nav-link">
                   Winners
                </Link>
                <Link to="/all-competitions" className="nav-link">

@@ -25,6 +25,8 @@ const Participation = () => {
    let { referBy, compFees } = useLocation().state;
    if (referBy === user_id) referBy = undefined;
 
+   document.title = 'ChallengeMii - Participate';
+
    useEffect(() => {
       if (currentUser) {
          db.collection('submissions')

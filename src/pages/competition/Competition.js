@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import Card from '../../components/Card/Card';
-// import Leaderboard from '../../components/Leaderboard/Leaderboard';
 import Leaderboard from '../../components/Leaderboard-new/Leaderboard';
 import './competition.css';
 import firebase from '../../firebase';
@@ -54,14 +53,17 @@ const Competition = () => {
          });
 
    const fetchComp = () => {
-      if (locationState) setCompetitions(locationState);
-      else
+      if (locationState) {
+         setCompetitions(locationState);
+         document.title = 'ChallengeMii - ' + locationState.title;
+      } else
          db.collection('competitions')
             .doc(id)
             .get()
             .then((doc) => {
                if (doc.exists) {
                   setCompetitions(doc.data());
+                  document.title = 'ChallengeMii - ' + doc.data().title;
                } else {
                   history.push('/error');
                }
@@ -202,9 +204,15 @@ const Competition = () => {
                   </div>
                </div>
                <section className="section-submission">
-                  {/* {exists ? <Leaderboard id={id} /> : null} */}
-
-                  {<Leaderboard data={mySubs} />}
+                  {moment().diff(competition.ends) > 0 ? (
+                     <Leaderboard data={mySubs} />
+                  ) : (
+                     <div className="nd-ld-container">
+                        <h4>
+                           Leaderboard will be revealed after competition ends.
+                        </h4>
+                     </div>
+                  )}
                   <h2 className="submission-title">Submissions</h2>
                   <div className="submissions">
                      {!mySubs ? (
