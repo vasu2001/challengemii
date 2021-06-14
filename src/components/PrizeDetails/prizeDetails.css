@@ -73,7 +73,11 @@
    padding-top: 20px;
 }
 .pd-actions h6 {
+   font-size: 14px;
    font-weight: 600;
+}
+.pd-actions p {
+   font-size: 14px;
 }
 .prize_details h5 {
    font-weight: 600;
@@ -102,6 +106,7 @@
    color: #777;
 }
 .btn_detail_redeem {
+   font-size: 14px;
    padding: 10px;
    background-color: #4267b2;
    color: #fff !important;

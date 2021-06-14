@@ -14,6 +14,7 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import userImg from '../../assets/user.png';
 import { motion } from 'framer-motion';
 import Fade from 'react-reveal/Fade';
+import { toast } from 'react-toastify';
 
 const db = firebase.firestore();
 
@@ -96,40 +97,110 @@ const UserpNew = () => {
                   ) : null}
                </div>
                <div className="social-container-new">
-                  <a
-                     href={'https://instagram.com/' + userData.instagram}
-                     target="_blank"
-                  >
-                     <div className="social-link-new">
-                        <AiOutlineInstagram
-                           style={{ transform: 'scale(1.5)' }}
-                        />
-                     </div>
-                  </a>
-                  <a
-                     href={'https://facebook.com/' + userData.facebook}
-                     target="_blank"
-                  >
-                     <div className="social-link-new">
-                        <AiFillFacebook style={{ transform: 'scale(1.8)' }} />
-                     </div>
-                  </a>
-                  <a
-                     href={'https://twitter.com/' + userData.twitter}
-                     target="_blank"
-                  >
-                     <div className="social-link-new">
-                        <FaTwitter style={{ transform: 'scale(1.5)' }} />
-                     </div>
-                  </a>
-                  <a
-                     href={'https://linkedin.com/' + userData.linkedin}
-                     target="_blank"
-                  >
-                     <div className="social-link-new">
-                        <AiFillLinkedin style={{ transform: 'scale(1.5)' }} />
-                     </div>
-                  </a>
+                  {userData.instagram == '' ? (
+                     <a
+                        onClick={() => {
+                           toast.info(
+                              'Link to instagram profile is not added yet.',
+                           );
+                        }}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <AiOutlineInstagram
+                              style={{ transform: 'scale(1.5)' }}
+                           />
+                        </div>
+                     </a>
+                  ) : (
+                     <a
+                        href={'https://instagram.com/' + userData.instagram}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <AiOutlineInstagram
+                              style={{ transform: 'scale(1.5)' }}
+                           />
+                        </div>
+                     </a>
+                  )}
+                  {userData.facebook == '' ? (
+                     <a
+                        onClick={() => {
+                           toast.info(
+                              'Link to facebook profile is not added yet.',
+                           );
+                        }}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <AiFillFacebook
+                              style={{ transform: 'scale(1.8)' }}
+                           />
+                        </div>
+                     </a>
+                  ) : (
+                     <a
+                        href={'https://facebook.com/' + userData.facebook}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <AiFillFacebook
+                              style={{ transform: 'scale(1.8)' }}
+                           />
+                        </div>
+                     </a>
+                  )}
+                  {userData.twitter == '' ? (
+                     <a
+                        onClick={() => {
+                           toast.info(
+                              'Link to twitter profile is not added yet.',
+                           );
+                        }}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <FaTwitter style={{ transform: 'scale(1.5)' }} />
+                        </div>
+                     </a>
+                  ) : (
+                     <a
+                        href={'https://twitter.com/' + userData.twitter}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <FaTwitter style={{ transform: 'scale(1.5)' }} />
+                        </div>
+                     </a>
+                  )}
+                  {userData.twitter == '' ? (
+                     <a
+                        onClick={() => {
+                           toast.info(
+                              'Link to LinkedIn profile is not added yet.',
+                           );
+                        }}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <AiFillLinkedin
+                              style={{ transform: 'scale(1.5)' }}
+                           />
+                        </div>
+                     </a>
+                  ) : (
+                     <a
+                        href={'https://linkedin.com/' + userData.linkedin}
+                        target="_blank"
+                     >
+                        <div className="social-link-new">
+                           <AiFillLinkedin
+                              style={{ transform: 'scale(1.5)' }}
+                           />
+                        </div>
+                     </a>
+                  )}
                </div>
                <div className="profile-content-new">
                   <div className="user-actions">
@@ -163,7 +234,22 @@ const UserpNew = () => {
                      <div className="content-top">
                         <h3>{userData.name}</h3>
                         <div className="about-para-new">
-                           <p>{userData.desc}</p>
+                           {userData.desc == '' ? (
+                              id === 'me' ? (
+                                 <center>
+                                    <p>Tell us something about yourself.</p>
+                                 </center>
+                              ) : (
+                                 <center>
+                                    <p>
+                                       User does not wish to share any
+                                       information about himself/herself.
+                                    </p>
+                                 </center>
+                              )
+                           ) : (
+                              <p>{userData.desc}</p>
+                           )}
                         </div>
                      </div>
                   </Fade>

@@ -220,8 +220,14 @@ const Competition = () => {
                   ) : (
                      <div className="nd-ld-container">
                         <h4>
-                           Leaderboard will be revealed after competition ends.
+                           Voters can earn coins and various exciting rewards
+                           for choosign the right and deserving winners for
+                           free.
                         </h4>
+                        <p>
+                           (Leaderboard will be revealed after the winners are
+                           declared.)
+                        </p>
                      </div>
                   )}
                   <h2 className="submission-title">Submissions</h2>
