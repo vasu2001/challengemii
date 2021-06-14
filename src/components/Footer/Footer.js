@@ -15,7 +15,7 @@ const Footer = () => {
                   className="link-tg"
                   target="_blank"
                   rel="noreferrer"
-                  href="https://forms.gle/zwPnBNtotwbY4WW68"
+                  href="https://forms.gle/AJ7C12bVnjwN2p486"
                >
                   Feedback
                </a>
@@ -41,7 +41,7 @@ const Footer = () => {
                   className="link-tg"
                   target="_blank"
                   rel="noreferrer"
-                  href="https://forms.gle/2a9eooGNLK9FAzk2A"
+                  href="https://forms.gle/zwPnBNtotwbY4WW68"
                >
                   Winner verification
                </a>
@@ -51,7 +51,7 @@ const Footer = () => {
                   className="link-tg"
                   target="_blank"
                   rel="noreferrer"
-                  href="/https://forms.gle/a6fyaq9krgPAkZGL9"
+                  href="https://forms.gle/a6fyaq9krgPAkZGL9"
                >
                   Contact Us
                </a>
