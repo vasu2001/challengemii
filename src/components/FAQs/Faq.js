@@ -54,7 +54,7 @@ const Faq = () => {
             <li>Where can I view my previous competition entries ?</li>
             <li>
                <BsArrowRight />
-               You can see your precious competition entries in your profile .
+               You can see your previous competition entries in your profile .
             </li>
          </ul>
          <ul>
