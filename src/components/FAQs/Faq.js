@@ -27,10 +27,12 @@ const Faq = () => {
                on signup button to sign up . You currently have 2 options:{' '}
                <br />
                <br />
-               1. Register using your Facebook I'd. When you choose the Facebook
+               1. Register using gmail/google account. When you choose gmail
+               option, your gmail credentials is used for registration. 2.
+               Register using your Facebook I'd. When you choose the Facebook
                option, your Facebook credentials is used for registration.{' '}
                <br />
-               2. Register using your Twitter . When you choose the Twitter
+               3. Register using your Twitter . When you choose the Twitter
                option , your Twitter credentials is used for registration.{' '}
                <br />
             </li>

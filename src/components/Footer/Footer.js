@@ -10,39 +10,51 @@ const Footer = () => {
             </p>
          </div>
          <div className="ft-links-ct">
-            <div>
-               <a className="link-tg" href="">
-                  Feedback
-               </a>
-            </div>
-            <div>
+            <div className="ft-link-column">
                <a
                   className="link-tg"
                   target="_blank"
+                  rel="noreferrer"
+                  href="https://forms.gle/zwPnBNtotwbY4WW68"
+               >
+                  Feedback
+               </a>
+               <a
+                  className="link-tg"
+                  target="_blank"
+                  rel="noreferrer"
                   href="https://forms.gle/2a9eooGNLK9FAzk2A"
                >
                   Affiliate Program
                </a>
             </div>
-            <div>
+            <div className="ft-link-column">
                <a
                   className="link-tg"
                   target="_blank"
+                  rel="noreferrer"
                   href="https://forms.gle/twDFeqsbXNdBeBXk9"
                >
                   Help & Support
                </a>
-            </div>
-            <div>
                <a
                   className="link-tg"
                   target="_blank"
+                  rel="noreferrer"
+                  href="https://forms.gle/2a9eooGNLK9FAzk2A"
+               >
+                  Winner verification
+               </a>
+            </div>
+            <div className="ft-link-column">
+               <a
+                  className="link-tg"
+                  target="_blank"
+                  rel="noreferrer"
                   href="/https://forms.gle/a6fyaq9krgPAkZGL9"
                >
                   Contact Us
                </a>
-            </div>
-            <div>
                <Link className="link-tg" to="/tnc">
                   Terms & Conditions
                </Link>

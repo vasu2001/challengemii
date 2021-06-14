@@ -65,7 +65,7 @@
 .section-info {
    width: 100%;
    padding: 180px 50px;
-   background-color: teal;
+   background-color: #fca311;
    display: flex;
    flex-wrap: wrap;
    justify-content: space-evenly;

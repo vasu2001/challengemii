@@ -5,6 +5,7 @@ import './home.css';
 import Banner from '../../components/Home-banner/Banner';
 import Info from '../../components/Info-Card/Card';
 import image1 from '../../assets/explore.png';
+import img from '../../assets/8500.png';
 import { AuthContext } from '../../Auth';
 import { motion } from 'framer-motion';
 import Faq from '../../components/FAQs/Faq';
@@ -64,7 +65,10 @@ const Home = () => {
                   title="Vote"
                   para="Vote your friends, family, acquaintances or your favourite contestant and help them win. Also get a chance to win exciting prizes and money by predicting the winner. "
                />
-               <Info title="Affiliate Program" />
+               <Info
+                  title="Affiliate Program"
+                  para="Join our affiliate program. Earn unlimited commision by referring competitions to unlimited participants by promoting it on social media handles ."
+               />
                <Info
                   title="Refer to friends"
                   para="Refer competitions to your friends and give them chance to compete in various talent categories. Also earn various prizes and money on every successful referral."
