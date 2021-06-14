@@ -34,7 +34,7 @@ const BottomNav = () => {
                   Winners
                </div>
             </Link>
-            <Link to="/sign-in">
+            <Link to="/manage-tickets">
                <div className="item-box">
                   <img
                      src={ticketImg}
@@ -44,7 +44,7 @@ const BottomNav = () => {
                   Buy
                </div>
             </Link>
-            <Link to="/sign-in">
+            <Link to="/manage-coins">
                <div className="item-box">
                   <img src={coinImg} alt="" className="bottom-nav-icons"></img>
                   Redeem
