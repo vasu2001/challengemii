@@ -44,7 +44,7 @@ const BottomNav = () => {
                   Buy
                </div>
             </Link>
-            <Link to="/manage-coins">
+            <Link to="/profile/manage-coins">
                <div className="item-box">
                   <img src={coinImg} alt="" className="bottom-nav-icons"></img>
                   Redeem
