@@ -6,7 +6,6 @@ import CardNew from '../../components/Cards-new/CardNew';
 import firebase from '../../firebase';
 import ongoing from '../../assets/gift-box.png';
 import upcoming from '../../assets/check-in.png';
-import moment from 'moment';
 import { motion } from 'framer-motion';
 
 const db = firebase.firestore();
@@ -14,7 +13,6 @@ const db = firebase.firestore();
 const AllCompetitions = () => {
    const [competitions, setCompetitions] = useState([]);
    const [filter, setFilter] = useState(0); // 0 - ongoing 1 - upcoming
-   const [color, setColor] = useState(0);
    document.title = 'ChallengeMii - Competitions';
    useEffect(() => {
       db.collection('competitions')
@@ -41,11 +39,10 @@ const AllCompetitions = () => {
                      <li
                         onClick={() => {
                            setFilter(0);
-                           setColor(0);
                         }}
                         style={{
                            backgroundColor: `${
-                              color === 0 ? '#fca311' : '#e5e5e5'
+                              filter === 0 ? '#fca311' : '#e5e5e5'
                            }`,
                         }}
                      >
@@ -63,11 +60,10 @@ const AllCompetitions = () => {
                      <li
                         onClick={() => {
                            setFilter(1);
-                           setColor(1);
                         }}
                         style={{
                            backgroundColor: `${
-                              color === 1 ? '#fca311' : '#e5e5e5'
+                              filter === 1 ? '#fca311' : '#e5e5e5'
                            }`,
                         }}
                      >

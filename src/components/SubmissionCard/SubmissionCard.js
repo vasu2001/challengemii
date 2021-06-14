@@ -17,6 +17,7 @@ const SubmissionCard = ({
    i,
    highlight,
    onReport,
+   votingEnd,
 }) => {
    const history = useHistory();
    const { currentUser } = useContext(AuthContext);
@@ -34,7 +35,19 @@ const SubmissionCard = ({
 
    return (
       <Fade bottom>
-         <div className={`sub_box ${highlight ? 'highlight' : ''}`}>
+         <div
+            className={`sub_box ${highlight ? 'highlight' : ''}  ${
+               votingEnd
+                  ? i == 0
+                     ? 'golden-border'
+                     : i == 1
+                     ? 'silver-border'
+                     : i == 3
+                     ? 'bronze-border'
+                     : ''
+                  : ''
+            }`}
+         >
             <img
                onClick={() => onClick(i)}
                alt=""

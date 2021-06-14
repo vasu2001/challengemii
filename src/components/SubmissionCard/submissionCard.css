@@ -3,8 +3,25 @@
    border-radius: 10px;
    overflow: hidden;
 }
+
 .highlight {
-   border: #fca311 5px;
+   border: rgb(48, 111, 215) 5px;
+   border-style: solid;
+   padding: 3px;
+}
+
+.golden-border {
+   border: #ffc000 5px;
+   border-style: solid;
+   padding: 3px;
+}
+.silver-border {
+   border: #c0c0c0 5px;
+   border-style: solid;
+   padding: 3px;
+}
+.bronze-border {
+   border: #cd7f32 5px;
    border-style: solid;
    padding: 3px;
 }

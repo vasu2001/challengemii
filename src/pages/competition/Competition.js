@@ -33,6 +33,7 @@ const Competition = () => {
    const [loading, setLoading] = useState(false);
 
    const VOTE_LIMIT = competition?.votes ?? 3;
+   const votingEnd = moment().diff(competition.ends) > 0;
 
    const fetchSubs = () =>
       db
@@ -215,7 +216,7 @@ const Competition = () => {
                   </div>
                </div>
                <section className="section-submission">
-                  {moment().diff(competition.ends) > 0 ? (
+                  {votingEnd ? (
                      <Leaderboard data={mySubs} />
                   ) : (
                      <div className="nd-ld-container">
@@ -225,8 +226,8 @@ const Competition = () => {
                            free.
                         </h4>
                         <p>
-                           (Leaderboard will be revealed after the winners are
-                           declared.)
+                           (Leaderboard will be revealed after voting is
+                           closed.)
                         </p>
                      </div>
                   )}
@@ -259,6 +260,7 @@ const Competition = () => {
                                           submission.user_id ===
                                           currentUser?.uid
                                        }
+                                       votingEnd={votingEnd}
                                     />
                                  ))}
                               </Masonry>
@@ -266,8 +268,7 @@ const Competition = () => {
                         </div>
                      )}
                   </div>
-                  {moment().diff(competition.ends) > 0 ||
-                  moment().diff(competition.starts) < 0 ? null : (
+                  {votingEnd || moment().diff(competition.starts) < 0 ? null : (
                      <a
                         onClick={onSubmit}
                         className="submitButton"

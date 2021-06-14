@@ -29,14 +29,8 @@ const AdminGeneral = () => {
          const imgRef = firebase.storage().ref(`all-competitions/img${i}`);
          await imgRef.put(holder);
          const imgUrl = await imgRef.getDownloadURL();
-         console.log(imgUrl);
-         await firebase
-            .firestore()
-            .collection('all-competitions')
-            .doc('carousel')
-            .set({
-               img1: imgUrl,
-            });
+         // console.log(imgUrl);
+
          toast.success('Succefully uploaded !');
       } catch (err) {
          toast.error('Error uploading document');

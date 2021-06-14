@@ -36,7 +36,7 @@ const UserpNew = () => {
 
    useEffect(() => {
       if (id === 'me') setUserData(myData);
-   }, [myData]);
+   }, [myData, id]);
 
    useEffect(() => {
       if (id !== 'me') {
