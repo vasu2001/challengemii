@@ -4,13 +4,12 @@
    position: relative;
    z-index: 0;
 }
-.slide-1 {
+.slide {
    height: 70vh;
    width: 100%;
-   background: url(../../assets/banner.jpg) no-repeat center;
-   background-size: cover;
+   object-fit: cover;
 }
-.slide-2 {
+/* .slide-2 {
    height: 70vh;
    width: 100%;
    background: url(../../assets/banner.jpg) no-repeat center;
@@ -21,7 +20,7 @@
    width: 100%;
    background: url(../../assets/banner.jpg) no-repeat center;
    background-size: cover;
-}
+} */
 
 /* @media only screen and (max-width: 600px) {
    .carousel-new {

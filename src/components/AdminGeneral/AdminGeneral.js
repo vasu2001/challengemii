@@ -84,7 +84,7 @@ const AdminGeneral = () => {
                      <a
                         className=""
                         onClick={() => {
-                           uploadImage(0);
+                           uploadImage(1);
                         }}
                      >
                         Update
@@ -115,7 +115,14 @@ const AdminGeneral = () => {
                      ></img>
                   </td>
                   <td>
-                     <a className="">Update</a>
+                     <a
+                        className=""
+                        onClick={() => {
+                           uploadImage(2);
+                        }}
+                     >
+                        Update
+                     </a>
                   </td>
                </tr>
                <tr>
@@ -142,7 +149,14 @@ const AdminGeneral = () => {
                      ></img>
                   </td>
                   <td>
-                     <a className="">Update</a>
+                     <a
+                        className=""
+                        onClick={() => {
+                           uploadImage(3);
+                        }}
+                     >
+                        Update
+                     </a>
                   </td>
                </tr>
                <tr>
@@ -169,7 +183,14 @@ const AdminGeneral = () => {
                      ></img>
                   </td>
                   <td>
-                     <a className="">Update</a>
+                     <a
+                        className=""
+                        onClick={() => {
+                           uploadImage(4);
+                        }}
+                     >
+                        Update
+                     </a>
                   </td>
                </tr>
                <tr>
@@ -196,7 +217,14 @@ const AdminGeneral = () => {
                      ></img>
                   </td>
                   <td>
-                     <a className="">Update</a>
+                     <a
+                        className=""
+                        onClick={() => {
+                           uploadImage(5);
+                        }}
+                     >
+                        Update
+                     </a>
                   </td>
                </tr>
             </tbody>
