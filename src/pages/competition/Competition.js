@@ -110,10 +110,10 @@ const Competition = () => {
          return;
       }
 
-      if (mySubs.map(({ user_id }) => user_id).includes(currentUser.uid)) {
-         toast.error('Participants cannot vote');
-         return;
-      }
+      // if (mySubs.map(({ user_id }) => user_id).includes(currentUser.uid)) {
+      //    toast.error('Participants cannot vote');
+      //    return;
+      // }
 
       if (
          mySubs
@@ -152,10 +152,15 @@ const Competition = () => {
    };
 
    const onLike = (i) => {
-      if (!currentUser) {
-         toast.error('You must be logged in');
-         return history.push('/sign-in');
+      // if (!currentUser) {
+      //    toast.error('You must be logged in');
+      //    return history.push('/sign-in');
+      // }
+      if (selectedSub.length === VOTE_LIMIT) {
+         toast.error(`Can only vote ${VOTE_LIMIT} submissions`);
+         return;
       }
+
       if (selectedSub.includes(i))
          setSelectedSub([...selectedSub.filter((x) => x !== i)]);
       else setSelectedSub([...selectedSub, i]);
