@@ -9,6 +9,7 @@ import Loading from '../Loading/Loading';
 import moment from 'moment';
 import { BsSearch } from 'react-icons/bs';
 import PrizeDetails from '../PrizeDetails/PrizeDetails';
+import { useHistory } from 'react-router-dom';
 
 const db = firebase.firestore();
 
@@ -21,6 +22,7 @@ const ManageCoins = (props) => {
    const [prizes, setPrizes] = useState([]);
    const [filter, setFilter] = useState('');
    const [sort, setSort] = useState(1); //1-default 2-low 3-high
+   const history = useHistory();
 
    const onRedeem = (answers) => {
       const prize = prizes[modal];
@@ -54,13 +56,16 @@ const ManageCoins = (props) => {
    };
 
    const openModal = (i) => {
+      if (!currentUser) {
+         toast.error('You must be logged in.');
+         return history.push('/sign-in');
+      }
       const { coins } = prizes[i];
 
       if (parseInt(user.coins) < parseInt(coins)) {
          toast.error('Insufficient coins');
          return;
       }
-
       setModal(i);
    };
 

@@ -15,13 +15,6 @@ const Profile = (props) => {
    const { currentUser, userData: user } = useContext(AuthContext); // to get the id of current user
    // const [user,setUser] = useState({}); // to hold the data of user stored in firestore database
 
-   if (!currentUser || !user) {
-      return (
-         <center>
-            <h3>Loading...</h3>
-         </center>
-      );
-   }
    return (
       <motion.div
          initial={{ opacity: 0 }}

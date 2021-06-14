@@ -8,6 +8,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../../Auth';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 const TICKET_VALUE = 5;
 
@@ -26,6 +27,7 @@ const ManageTickets = () => {
       ((amount / TICKET_VALUE) * (100 + discount)) / 100,
    );
    const { currentUser } = useContext(AuthContext);
+   const history = useHistory();
 
    document.title = 'ChallengeMii - Buy Tickets';
 
@@ -35,6 +37,10 @@ const ManageTickets = () => {
    };
 
    const buyTicket = async (amt) => {
+      if (!currentUser) {
+         toast.error('You must be logged in.');
+         return history.push('/sign-in');
+      }
       if (amt === 0 || amt % TICKET_VALUE !== 0) {
          toast.error('Enter amount in the multiples of ' + TICKET_VALUE);
          return;

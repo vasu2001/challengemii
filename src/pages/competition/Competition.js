@@ -227,7 +227,7 @@ const Competition = () => {
                      <div className="nd-ld-container">
                         <h4>
                            Voters can earn coins and various exciting rewards
-                           for choosign the right and deserving winners for
+                           for choosing the right and deserving winners for
                            free.
                         </h4>
                         <p>

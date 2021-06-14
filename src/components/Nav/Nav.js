@@ -84,10 +84,10 @@ const Nav = () => {
                   <li id="competition-navtext">Competitions</li>
                </NavLink>
                <NavLink to="/winners">
-                  <li id="competition-navtext">Winners</li>
+                  <li id="nu-winners-navtext">Winners</li>
                </NavLink>
                <NavLink to="/manage-tickets">
-                  <li id="buy-navtext">Buy Tickets</li>
+                  <li id="nu-buy-navtext">Buy Tickets</li>
                </NavLink>
                <NavLink to="/profile/manage-coins">
                   <li id="redeem-navtext">Redeem Coins</li>

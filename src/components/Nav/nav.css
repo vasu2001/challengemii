@@ -119,6 +119,17 @@
       width: 520px;
    }
 }
+@media only screen and (max-width: 786px) {
+   #nouser ul {
+      width: 350px;
+   }
+   #competition-navtext {
+      display: none;
+   }
+   #winners-navtext {
+      display: none;
+   }
+}
 @media all and (max-width: 760px) {
    .nav ul {
       width: 400px;
@@ -147,6 +158,12 @@
       margin-right: 15px;
    }
    .drop-triangle {
+      display: none;
+   }
+   #nu-winners-navtext {
+      display: none;
+   }
+   #nu-buy-navtext {
       display: none;
    }
 }
