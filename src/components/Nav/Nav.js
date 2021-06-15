@@ -77,7 +77,9 @@ const Nav = () => {
       return (
          <div className="nav" id="nouser">
             <Link to="/">
-               <p className="logo">Challengemii</p>
+               <p className="logo">
+                  Challenge<span style={{ color: 'red' }}>mii</span>
+               </p>
             </Link>
             <ul>
                <NavLink to="/all-competitions">
@@ -102,7 +104,9 @@ const Nav = () => {
       return (
          <div className="nav">
             <Link to="/">
-               <p className="logo">Challengemii</p>
+               <p className="logo">
+                  Challenge<span style={{ color: 'red' }}>mii</span>
+               </p>
             </Link>
             <ul>
                <NavLink to="/all-competitions">

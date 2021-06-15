@@ -24,7 +24,7 @@ const Basic = () => {
 
       const updateValues = {};
       Object.keys(user).forEach((key) => {
-         if (user[key] != userDetails[key])
+         if (user[key] != userDetails[key] && userDetails[key].length > 0)
             updateValues[key] = userDetails[key];
       });
 
