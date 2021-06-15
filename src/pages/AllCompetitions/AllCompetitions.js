@@ -95,15 +95,6 @@ const AllCompetitions = () => {
                         </div>
                      </div>
                   </div>
-                  {/* {competitions &&
-                  competitions.map((competition) => {
-                     return (
-                        <CardNew
-                           competition={competition}
-                           key={competition.id}
-                        />
-                     );
-                  })} */}
                   {filter === 0
                      ? competitions &&
                        competitions

@@ -16,6 +16,7 @@ import UpdateUserInfo from '../../components/UpdateUserInfo/UpdateUserInfo';
 import CoinsReq from '../../components/CoinsReq/CoinsReq';
 import { AuthContext } from '../../Auth';
 import firebase from '../../firebase';
+import DelPrize from '../../components/DelPrize/DelPrize';
 
 const Admin = () => {
    const { currentUser } = useContext(AuthContext);
@@ -161,6 +162,18 @@ const Admin = () => {
                            <Fragment>
                               <Top title="Update User Info" />
                               <UpdateUserInfo />
+                           </Fragment>
+                        )}
+                     />
+                  </Switch>
+                  <Switch>
+                     <Route
+                        exact
+                        path="/admin-panel/delete-prize"
+                        render={() => (
+                           <Fragment>
+                              <Top title="Delete Prize" />
+                              <DelPrize />
                            </Fragment>
                         )}
                      />

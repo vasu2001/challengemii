@@ -11,7 +11,7 @@
    margin-left: 20px;
    border-radius: 0;
    text-align: center;
-   padding: 20px 10px;
+   padding: 40px 20px;
 }
 .img-holder {
    width: 60px;
@@ -23,6 +23,9 @@
    width: 100%;
    height: 100%;
    object-fit: cover;
+}
+.prize-title {
+   margin-bottom: 10px;
 }
 .prize-info {
    margin-top: 30px;
@@ -74,17 +77,17 @@
       height: 270px;
       padding: 10px;
       margin-left: 5px;
+      padding-top: 30px;
    }
    .img-holder {
       width: 50px;
       height: 50px;
    }
+   .prize-title {
+      font-size: 22px;
+   }
    .prize-info {
       margin-top: 20px;
-   }
-   .prize-title {
-      font-size: 35px;
-      margin-bottom: 10px;
    }
    .circle {
       top: 80%;
@@ -103,10 +106,6 @@
    }
    .prize-info {
       margin-top: 20px;
-   }
-   .prize-title {
-      font-size: 35px;
-      margin-bottom: 10px;
    }
    .circle {
       top: 80%;
@@ -142,10 +141,6 @@
    }
    .prize-info p {
       font-size: 12px;
-   }
-   .prize-title {
-      font-size: 22px;
-      font-weight: 900;
    }
    .btn-add {
       position: absolute;

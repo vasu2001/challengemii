@@ -27,6 +27,9 @@ const Side = () => {
                <Link to="/admin-panel/add-prize">
                   <li className="admin-side-nav-links">Add prize</li>
                </Link>
+               <Link to="/admin-panel/delete-prize">
+                  <li className="admin-side-nav-links">Delete prize</li>
+               </Link>
                <Link to="/admin-panel/reported-subs">
                   <li className="admin-side-nav-links">Reports</li>
                </Link>
