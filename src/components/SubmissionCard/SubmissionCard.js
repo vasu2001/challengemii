@@ -27,15 +27,21 @@ const SubmissionCard = ({
          toast.error('You must be logged in.');
          return history.push('/sign-in');
       }
-      navigator.share?.({
-         title: 'Share your submission with your friends!',
-         url: window.location.href,
-      });
+      if (navigator.share)
+         navigator.share({
+            title: 'Share your submission with your friends!',
+            url: window.location.href,
+         });
+      else
+         navigator.clipboard
+            .writeText(window.location.href)
+            .then(() => toast.success('Share URL copied to clipboard'));
    };
 
    return (
       <Fade bottom>
          <div
+            id={submission.id}
             className={`sub_box ${highlight ? 'highlight' : ''}  ${
                votingEnd
                   ? i == 0

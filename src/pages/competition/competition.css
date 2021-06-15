@@ -27,7 +27,13 @@
    font-family: 'Lato';
    letter-spacing: 5px;
    color: rgb(48, 111, 215);
-   margin-bottom: 70px;
+   margin-bottom: 20px;
+}
+.border-info {
+   margin-bottom: 50px;
+   color: gray;
+   font-size: 14px;
+   line-height: 15px;
 }
 .submissions {
    display: flex;

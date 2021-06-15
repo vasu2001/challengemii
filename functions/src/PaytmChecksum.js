@@ -1,48 +1,49 @@
-"use strict";
+'use strict';
 
-var crypto = require("crypto");
+const crypto = require('crypto');
+const functions = require('firebase-functions');
 
 class PaytmChecksum {
    static encrypt(input, key) {
-      var cipher = crypto.createCipheriv("AES-128-CBC", key, PaytmChecksum.iv);
-      var encrypted = cipher.update(input, "binary", "base64");
-      encrypted += cipher.final("base64");
+      var cipher = crypto.createCipheriv('AES-128-CBC', key, PaytmChecksum.iv);
+      var encrypted = cipher.update(input, 'binary', 'base64');
+      encrypted += cipher.final('base64');
       return encrypted;
    }
    static decrypt(encrypted, key) {
       var decipher = crypto.createDecipheriv(
-         "AES-128-CBC",
+         'AES-128-CBC',
          key,
          PaytmChecksum.iv,
       );
-      var decrypted = decipher.update(encrypted, "base64", "binary");
+      var decrypted = decipher.update(encrypted, 'base64', 'binary');
       try {
-         decrypted += decipher.final("binary");
+         decrypted += decipher.final('binary');
       } catch (e) {
-         console.log(e);
+         functions.logger.error(e);
       }
       return decrypted;
    }
    static generateSignature(params, key) {
-      if (typeof params !== "object" && typeof params !== "string") {
-         var error = "string or object expected, " + typeof params + " given.";
+      if (typeof params !== 'object' && typeof params !== 'string') {
+         var error = 'string or object expected, ' + typeof params + ' given.';
          return Promise.reject(error);
       }
-      if (typeof params !== "string") {
+      if (typeof params !== 'string') {
          params = PaytmChecksum.getStringByParams(params);
       }
       return PaytmChecksum.generateSignatureByString(params, key);
    }
 
    static verifySignature(params, key, checksum) {
-      if (typeof params !== "object" && typeof params !== "string") {
-         var error = "string or object expected, " + typeof params + " given.";
+      if (typeof params !== 'object' && typeof params !== 'string') {
+         var error = 'string or object expected, ' + typeof params + ' given.';
          return Promise.reject(error);
       }
-      if (params.hasOwnProperty("CHECKSUMHASH")) {
+      if (params.hasOwnProperty('CHECKSUMHASH')) {
          delete params.CHECKSUMHASH;
       }
-      if (typeof params !== "string") {
+      if (typeof params !== 'string') {
          params = PaytmChecksum.getStringByParams(params);
       }
       return PaytmChecksum.verifySignatureByString(params, key, checksum);
@@ -63,10 +64,12 @@ class PaytmChecksum {
       return new Promise(function (resolve, reject) {
          crypto.randomBytes((length * 3.0) / 4.0, function (err, buf) {
             if (!err) {
-               var salt = buf.toString("base64");
+               var salt = buf.toString('base64');
                resolve(salt);
             } else {
-               console.log("error occurred in generateRandomString: " + err);
+               functions.logger.error(
+                  'error occurred in generateRandomString: ' + err,
+               );
                reject(err);
             }
          });
@@ -79,17 +82,17 @@ class PaytmChecksum {
          .sort()
          .forEach(function (key, value) {
             data[key] =
-               params[key] !== null && params[key].toLowerCase() !== "null"
+               params[key] !== null && params[key].toLowerCase() !== 'null'
                   ? params[key]
-                  : "";
+                  : '';
          });
-      return Object.values(data).join("|");
+      return Object.values(data).join('|');
    }
 
    static calculateHash(params, salt) {
-      var finalString = params + "|" + salt;
+      var finalString = params + '|' + salt;
       return (
-         crypto.createHash("sha256").update(finalString).digest("hex") + salt
+         crypto.createHash('sha256').update(finalString).digest('hex') + salt
       );
    }
    static calculateChecksum(params, key, salt) {
@@ -97,5 +100,5 @@ class PaytmChecksum {
       return PaytmChecksum.encrypt(hashString, key);
    }
 }
-PaytmChecksum.iv = "@@@@&&&&####$$$$";
+PaytmChecksum.iv = '@@@@&&&&####$$$$';
 module.exports = PaytmChecksum;

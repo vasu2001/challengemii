@@ -5,7 +5,7 @@ import coins from '../../assets/coins.png';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const PrizeDetails = ({ onRedeem, close, data }) => {
-   console.log(data);
+   // console.log(data);
 
    return (
       <div className="prize_details">
@@ -16,7 +16,7 @@ const PrizeDetails = ({ onRedeem, close, data }) => {
                   <p>{data.name}</p>
                </div>
             </div>
-            <div style={{ maxHeight: '463px', overflow: 'auto' }}>
+            <div className="pd-content-container">
                <div className="pd-content">
                   <div className="pd-ct-left">
                      <p>{data.description}</p>

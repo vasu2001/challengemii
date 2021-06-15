@@ -12,7 +12,7 @@ const AdminGeneral = () => {
       defaultBtn.click();
    };
    const previewImg = (e, str) => {
-      console.log(e.target.files);
+      // console.log(e.target.files);
       if (e.target.files.length > 0) {
          var src = URL.createObjectURL(e.target.files[0]);
          var preview = document.getElementById(str);
@@ -37,7 +37,7 @@ const AdminGeneral = () => {
       }
    };
 
-   console.log(holder);
+   // console.log(holder);
    return (
       <div className="admin-general">
          <h5>All Competition Page Image:</h5>

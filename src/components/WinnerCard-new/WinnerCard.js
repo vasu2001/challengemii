@@ -10,7 +10,7 @@ const db = firebase.firestore();
 
 const WinnerCard = ({ data }) => {
    const [photoUrl, setPhotoUrl] = useState([]);
-   console.log(data);
+   // console.log(data);
    // const photoUrl = data.winners.map((x) => x.photo);
 
    useEffect(() => {

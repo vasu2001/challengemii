@@ -40,7 +40,7 @@ const ManageCoins = (props) => {
             date: moment().toString(),
          })
          .then((docRef) => {
-            console.log('Request sent');
+            // console.log('Request sent');
             toast.success('Redeem Request Sent!');
             setLoading(false);
             setModal(-1);
@@ -50,7 +50,7 @@ const ManageCoins = (props) => {
             });
          })
          .catch((err) => {
-            console.log('Error sending request');
+            console.log(err);
             setLoading(false);
          });
    };

@@ -35,7 +35,7 @@ const UpdateCompetition = () => {
                setData(doc.data());
             }
          });
-      console.log('aa');
+      // console.log('aa');
    }, [id]);
 
    const coverBtn = () => {

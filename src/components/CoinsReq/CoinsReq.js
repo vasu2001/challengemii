@@ -20,7 +20,7 @@ const CoinsReq = () => {
                .filter(
                   (doc) => moment().diff(moment(doc.ends)) > 0 && !doc.ended,
                );
-            console.log('newComp', newComp);
+            // console.log('newComp', newComp);
 
             for (const i in newComp) {
                const doc = newComp[i];

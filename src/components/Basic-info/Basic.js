@@ -21,11 +21,18 @@ const Basic = () => {
    const handleSubmit = (e) => {
       setLoading(true);
       e.preventDefault();
+
+      const updateValues = {};
+      Object.keys(user).forEach((key) => {
+         if (user[key] != userDetails[key])
+            updateValues[key] = userDetails[key];
+      });
+
       firebase
          .firestore()
          .collection('users')
          .doc(currentUser.uid)
-         .update(userDetails)
+         .update(updateValues)
          .then(() => {
             setLoading(false);
             toast.success('Profile updated successfully !');
@@ -33,11 +40,12 @@ const Basic = () => {
          })
          .catch((err) => {
             setLoading(false);
+            console.log(err);
             toast.error('Error updating profile !');
          });
    };
 
-   console.log(userDetails);
+   // console.log(userDetails);
 
    if (user) {
       return (
