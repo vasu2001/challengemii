@@ -20,20 +20,23 @@ const PrizeDetails = ({ onRedeem, close, data }) => {
                      <p>{data.description}</p>
                   </div>
                   <div className="pd-ct-right">
-                     <img src={data.image} style={{ width: '250px' }}></img>
+                     <img
+                        src={data.image}
+                        style={{ width: '250px', height: '250px' }}
+                     ></img>
                   </div>
                </div>
-               <div className="pd-actions">
-                  <h6>Do you want to redeem coins for this item?</h6>
-                  <p>Coins once redeemed will not be refunded.</p>
-                  <a className="btn_detail_redeem" onClick={onRedeem}>
-                     Redeem For{' '}
-                     <span>
-                        <img src={coins}></img>
-                     </span>
-                     {data.coins}
-                  </a>
-               </div>
+            </div>
+            <div className="pd-actions">
+               <h6>Do you want to redeem coins for this item?</h6>
+               <p>Coins once redeemed will not be refunded.</p>
+               <a className="btn_detail_redeem" onClick={onRedeem}>
+                  Redeem For{' '}
+                  <span>
+                     <img src={coins}></img>
+                  </span>
+                  {data.coins}
+               </a>
             </div>
             <div className="btn-close" onClick={close}>
                <AiOutlineClose />

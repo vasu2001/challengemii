@@ -40,6 +40,7 @@
 .details_head_box img {
    width: 50px;
    height: 50px;
+   object-fit: cover;
    border-radius: 50%;
    margin-right: 15px;
 }
@@ -64,6 +65,8 @@
    display: flex;
    align-items: center;
    justify-content: flex-end;
+}
+.pd-ct-right img {
 }
 .pd-actions {
    width: 100%;
@@ -146,6 +149,7 @@ span img {
    .pd-ct-left {
       order: 2;
       text-align: center;
+      justify-content: center;
    }
 }
 @media only screen and (max-width: 400px) {
