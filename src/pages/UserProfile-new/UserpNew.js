@@ -60,7 +60,7 @@ const UserpNew = () => {
       }
    }, [userId]);
 
-   console.log({ submissions, userData });
+   // console.log({ submissions, userData });
 
    if (userId === 'me' || !userData) {
       return (

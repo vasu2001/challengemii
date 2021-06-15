@@ -14,12 +14,15 @@ const AllCompetitions = () => {
    const [competitions, setCompetitions] = useState([]);
    const [filter, setFilter] = useState(0); // 0 - ongoing 1 - upcoming
    document.title = 'ChallengeMii - Competitions';
+
    useEffect(() => {
       db.collection('competitions')
          .get()
          .then((querySnap) => {
             setCompetitions(
-               querySnap.docs.map((x) => ({ data: x.data(), id: x.id })),
+               querySnap.docs
+                  .map((x) => ({ data: x.data(), id: x.id }))
+                  .filter((item) => new Date() <= new Date(item.data.ends)),
             );
          });
    }, []);
@@ -106,9 +109,7 @@ const AllCompetitions = () => {
                        competitions
                           .filter(
                              (competition) =>
-                                new Date(competition.data.starts) <
-                                   new Date() ===
-                                true,
+                                new Date(competition.data.starts) < new Date(),
                           )
                           .map((filteredCompetition) => {
                              return (

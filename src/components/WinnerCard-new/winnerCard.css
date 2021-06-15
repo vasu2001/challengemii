@@ -4,7 +4,7 @@
    border-radius: 30px;
    padding: 30px;
    padding-bottom: 40px;
-   margin-bottom: 20px;
+   cursor: pointer;
 }
 .wc h2 {
    margin-bottom: 50px;
@@ -12,6 +12,10 @@
 .wc-icons {
    width: 30px;
    margin-right: 5px;
+}
+
+.wc-link {
+   margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 550px) {

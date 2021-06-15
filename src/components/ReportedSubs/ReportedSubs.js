@@ -74,7 +74,7 @@ const ReportedSubs = () => {
       }
    };
 
-   console.log(sortedData);
+   // console.log(sortedData);
 
    return (
       <div className="reported_subs">

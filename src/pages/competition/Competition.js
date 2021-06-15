@@ -50,7 +50,7 @@ const Competition = () => {
          })
          .catch((err) => {
             console.log(err);
-            toast.error('Error getting competition.');
+            toast.error('Error getting submissions.');
          });
 
    const fetchComp = () => {
@@ -237,6 +237,15 @@ const Competition = () => {
                      </div>
                   )}
                   <h2 className="submission-title">Submissions</h2>
+                  <p className="border-info">
+                     Blue border indicates your submission.
+                     <br />
+                     Golden border is for the winner.
+                     <br />
+                     Silver border is for 1st runner up.
+                     <br />
+                     Bronze border is for 2nd runner up.
+                  </p>
                   <div className="submissions">
                      {!mySubs ? (
                         <center>

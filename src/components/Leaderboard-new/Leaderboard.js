@@ -12,6 +12,12 @@ const Leaderboard = ({ data }) => {
       return firebase.storage().ref(`users/${id}`).getDownloadURL();
    };
 
+   const [dp, setDp] = useState([]);
+   useEffect(() => {
+      if (data)
+         Promise.all(data.map((sub) => fetchDp(sub.user_id))).then(setDp);
+   }, [data]);
+
    if (!data || data.length < 3) {
       return (
          <div className="nd-ld-container">
@@ -27,21 +33,18 @@ const Leaderboard = ({ data }) => {
                </h2>
                <div className="ld-winners-container">
                   <div className="winner-pos-2">
-                     <img src={data[1].photo_link} class="runnerUp-img"></img>
-                     <p>{data[1].user_name.replace(/[^a-z]/gi, ' ')}</p>
+                     <img src={dp[1]} class="runnerUp-img"></img>
+                     <p>{data[1].user_name}</p>
                      <p>{data[1].vote}</p>
                   </div>
                   <div className="winner-pos-1">
-                     <img src={data[0].photo_link} class="winner-img"></img>
-                     <p>{data[0].user_name.replace(/[^a-z]/gi, ' ')}</p>
+                     <img src={dp[0]} class="winner-img"></img>
+                     <p>{data[0].user_name}</p>
                      <p>{data[0].vote}</p>
                   </div>
                   <div className="winner-pos-3">
-                     <img
-                        src={data[2].photo_link}
-                        class="runnerUp-img last-pos"
-                     ></img>
-                     <p>{data[2].user_name.replace(/[^a-z]/gi, ' ')}</p>
+                     <img src={dp[2]} class="runnerUp-img last-pos"></img>
+                     <p>{data[2].user_name}</p>
                      <p>{data[2].vote}</p>
                   </div>
                </div>
@@ -55,7 +58,7 @@ const Leaderboard = ({ data }) => {
                               <div>
                                  <p>{key + 1}</p>
                                  <img
-                                    src={fetchDp(sub.user_id)}
+                                    src={dp[key]}
                                     style={{
                                        width: '50px',
                                        height: '50px',
@@ -63,9 +66,7 @@ const Leaderboard = ({ data }) => {
                                     }}
                                  ></img>
                               </div>
-                              <p class="li-name">
-                                 {sub.user_name.replace(/[^a-z]/gi, ' ')}
-                              </p>
+                              <p class="li-name">{sub.user_name}</p>
                               <div>
                                  <p>{sub.vote}</p>
                                  <img

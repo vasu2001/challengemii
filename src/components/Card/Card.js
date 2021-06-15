@@ -41,7 +41,7 @@ const Card = ({ competition, id, referBy }) => {
       }
    };
 
-   console.log(competition);
+   // console.log(competition);
    if (competition) {
       return (
          <Fade bottom>

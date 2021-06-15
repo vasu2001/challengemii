@@ -60,8 +60,8 @@ const UpdateUserInfo = () => {
          user.data.email?.toLowerCase().includes(search.toLowerCase())
       );
    });
-   console.log(users);
-   console.log(users.map((user) => user.data.email));
+   // console.log(users);
+   // console.log(users.map((user) => user.data.email));
    return (
       <div className="update-user-info">
          <input
