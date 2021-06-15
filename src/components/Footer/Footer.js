@@ -60,6 +60,11 @@ const Footer = () => {
                </Link>
             </div>
          </div>
+         <div id="privacy">
+            <Link className="link-tg" to="/privacy-policy">
+               Privacy Policy
+            </Link>
+         </div>
       </div>
    );
 };

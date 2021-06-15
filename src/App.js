@@ -23,6 +23,7 @@ import ScrollToTop from './ScrollToTop';
 import { AnimatePresence } from 'framer-motion';
 import Winners from './pages/Winners/Winners';
 import TnC from './pages/TnC/TnC';
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 
 const App = () => {
    return (
@@ -57,6 +58,7 @@ const App = () => {
                   <Route path="/user/:id" component={UserpNew} />
                   <Route path="/manage-tickets" component={ManageTickets} />
                   <Route path="/tnc" component={TnC} />
+                  <Route path="/privacy-policy" component={PrivacyPolicy} />
                   <Route path="/admin" component={AdminLogin} />
                   <Route path="/admin-panel" component={Admin} />
                   <Route path="*" component={Error} />
