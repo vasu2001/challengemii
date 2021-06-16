@@ -94,7 +94,7 @@
       justify-content: space-around;
       flex-direction: column;
    }
-   .ft-links-ct div {
+   .ft-link-column {
       margin-bottom: 5px;
    }
 }
