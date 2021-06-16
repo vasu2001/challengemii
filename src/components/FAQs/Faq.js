@@ -24,12 +24,13 @@ const Faq = () => {
             <li>
                <BsArrowRight /> Registering to Challengemii is very easy. You
                can view competitions details without registering .You can click
-               on signup button to sign up . You currently have 2 options:{' '}
+               on signup button to sign up . You currently have 3 options:{' '}
                <br />
                <br />
                1. Register using gmail/google account. When you choose gmail
-               option, your gmail credentials is used for registration. 2.
-               Register using your Facebook I'd. When you choose the Facebook
+               option, your gmail credentials is used for registration.
+               <br></br>
+               2.Register using your Facebook I'd. When you choose the Facebook
                option, your Facebook credentials is used for registration.{' '}
                <br />
                3. Register using your Twitter . When you choose the Twitter

@@ -61,9 +61,6 @@
    align-items: center;
    flex-direction: column;
 }
-#privacy {
-   transform: translateX(-10px);
-}
 @media only screen and (max-width: 686px) {
    .logo-footer {
       transform: translateY(-30px);
@@ -94,13 +91,11 @@
       width: 200px;
       font-size: 14px;
       align-items: center;
+      justify-content: space-around;
       flex-direction: column;
    }
    .ft-links-ct div {
       margin-bottom: 5px;
-   }
-   #privacy {
-      transform: translateX(0);
    }
 }
 @media only screen and (max-width: 390px) {

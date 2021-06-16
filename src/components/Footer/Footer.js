@@ -47,23 +47,13 @@ const Footer = () => {
                </a>
             </div>
             <div className="ft-link-column">
-               <a
-                  className="link-tg"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://forms.gle/a6fyaq9krgPAkZGL9"
-               >
-                  Contact Us
-               </a>
+               <Link className="link-tg" to="/privacy-policy">
+                  Privacy Policy
+               </Link>
                <Link className="link-tg" to="/tnc">
                   Terms & Conditions
                </Link>
             </div>
-         </div>
-         <div id="privacy">
-            <Link className="link-tg" to="/privacy-policy">
-               Privacy Policy
-            </Link>
          </div>
       </div>
    );

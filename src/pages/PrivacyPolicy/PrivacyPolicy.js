@@ -335,7 +335,8 @@ const PrivacyPolicy = () => {
                   If you would like to contact us to understand more about this
                   Policy or wish to contact us concerning any matter relating to
                   individual rights and your Personal Information, you may send
-                  an email to Challengeemii@gmai.com <br></br>
+                  an email to <b>challengemii.official@gmail.com</b>
+                  <br></br>
                </p>
             </div>
             <a id="btn-accept" onClick={(e) => history.goBack()}>
