@@ -156,13 +156,11 @@ const Competition = () => {
       //    toast.error('You must be logged in');
       //    return history.push('/sign-in');
       // }
-      if (selectedSub.length === VOTE_LIMIT) {
-         toast.error(`Can only vote ${VOTE_LIMIT} submissions`);
-         return;
-      }
 
       if (selectedSub.includes(i))
          setSelectedSub([...selectedSub.filter((x) => x !== i)]);
+      else if (selectedSub.length === VOTE_LIMIT)
+         toast.error(`Can only vote ${VOTE_LIMIT} submissions`);
       else setSelectedSub([...selectedSub, i]);
    };
 
