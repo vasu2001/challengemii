@@ -4,12 +4,14 @@ import moment from 'moment';
 import firebase from '../../firebase';
 import { toast } from 'react-toastify';
 import CoinsReqModal from '../CoinsReqModal/CoinsReqModal';
+import Loading from '../Loading/Loading';
 
 const db = firebase.firestore();
 
 const CoinsReq = () => {
    const [competitions, setCompetitions] = useState([]);
    const [details, setDetails] = useState(-1);
+   const [loading, setLoading] = useState(false);
 
    useEffect(() => {
       db.collection('competitions')
@@ -44,6 +46,7 @@ const CoinsReq = () => {
       e.preventDefault();
       if (i < 0) return;
 
+      setLoading(true);
       const competition = competitions[i];
       try {
          const compPromise = db
@@ -113,6 +116,7 @@ const CoinsReq = () => {
          console.log(err);
          toast.error('Some error occured');
       }
+      setLoading(false);
    };
 
    // console.log(details);
@@ -170,6 +174,7 @@ const CoinsReq = () => {
                ) : null}
             </tbody>
          </table>
+         {loading && <Loading />}
       </div>
    );
 };
