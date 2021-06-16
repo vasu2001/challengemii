@@ -1,37 +1,44 @@
-const PaytmChecksum = require("./PaytmChecksum");
-const env = require("../env");
-const cors = require("cors")({ origin: true });
-const https = require("https");
-const functions = require("firebase-functions");
-const { firestore } = require("firebase-admin");
+const PaytmChecksum = require('./PaytmChecksum');
+const env = require('../env');
+const cors = require('cors')({ origin: true });
+const https = require('https');
+const functions = require('firebase-functions');
+const { firestore } = require('firebase-admin');
 
 module.exports = (req, res) => {
    cors(req, res, async () => {
       const { orderId, value, uid } = req.body;
-      if (!orderId || !value || !uid) res.send({ error: "some error occured" });
+      if (!orderId || !value || !uid) res.send({ error: 'some error occured' });
 
       var paytmParams = {};
       paytmParams.body = {
-         requestType: "Payment",
+         requestType: 'Payment',
          mid: env.MERCHANT_ID,
-         websiteName: "WEBSTAGING",
+         websiteName: 'WEBSTAGING',
          orderId,
          callbackUrl:
-            "https://asia-south1-challengemii-website.cloudfunctions.net/completePayment",
+            'https://asia-south1-challengemii-website.cloudfunctions.net/completePayment',
          txnAmount: {
             value,
-            currency: "INR",
+            currency: 'INR',
          },
          userInfo: {
             custId: uid,
          },
+         enablePaymentMode: [
+            { mode: 'UPI', channels: ['UPI'] },
+            { mode: 'BALANCE' },
+            { mode: 'PPBL' },
+            { mode: 'DEBIT_CARD' },
+            { mode: 'NET_BANKING' },
+         ],
       };
 
       try {
-         await firestore().collection("payments").doc(orderId).set({
+         await firestore().collection('payments').doc(orderId).set({
             user_id: uid,
             amount: value,
-            status: "STARTED",
+            status: 'STARTED',
             date: new Date().toISOString(),
          });
 
@@ -44,25 +51,26 @@ module.exports = (req, res) => {
             signature: checksum,
          };
 
+         // functions.logger.info(paytmParams);
          const post_data = JSON.stringify(paytmParams);
 
          const options = {
             hostname: env.HOST_NAME,
             path: `/theia/api/v1/initiateTransaction?mid=${env.MERCHANT_ID}&orderId=${orderId}`,
-            method: "POST",
+            method: 'POST',
             headers: {
-               "Content-Type": "application/json",
-               "Content-Length": post_data.length,
+               'Content-Type': 'application/json',
+               'Content-Length': post_data.length,
             },
          };
 
-         var response = "";
+         var response = '';
          var post_req = https.request(options, function (post_res) {
-            post_res.on("data", function (chunk) {
+            post_res.on('data', function (chunk) {
                response += chunk;
             });
 
-            post_res.on("end", function () {
+            post_res.on('end', function () {
                // functions.logger.info(JSON.parse(response));
                res.send(response);
             });
@@ -71,8 +79,8 @@ module.exports = (req, res) => {
          post_req.write(post_data);
          post_req.end();
       } catch (err) {
-         res.send({ error: "some error occured" });
-         functions.logger.error("Error ", err);
+         res.send({ error: 'some error occured' });
+         functions.logger.error('Error ', err);
       }
    });
 };
