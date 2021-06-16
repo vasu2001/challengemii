@@ -336,8 +336,8 @@ const PrivacyPolicy = () => {
                   Policy or wish to contact us concerning any matter relating to
                   individual rights and your Personal Information, you may send
                   an email to{' '}
-                  <a href={`mailto:Challengeemii@gmail.com`}>
-                     Challengeemii@gmail.com
+                  <a href={`mailto:challengeemii.official@gmail.com`}>
+                     challengeemii.official@gmail.com
                   </a>{' '}
                   <br></br>
                </p>

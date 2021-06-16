@@ -196,6 +196,7 @@
    }
    .instruction-container p {
       color: #ffffffa0;
+      white-space: pre-wrap;
    }
    .rules-container {
       display: block;
