@@ -60,6 +60,7 @@ const ManageTickets = () => {
             },
          );
          const { txnToken } = data.body;
+         console.log(data);
 
          postForm({
             action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}`,

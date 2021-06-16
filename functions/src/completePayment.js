@@ -1,8 +1,8 @@
-const PaytmChecksum = require("./PaytmChecksum");
-const env = require("../env");
-const cors = require("cors")({ origin: true });
-const functions = require("firebase-functions");
-const { firestore } = require("firebase-admin");
+const PaytmChecksum = require('./PaytmChecksum');
+const env = require('../env');
+const cors = require('cors')({ origin: true });
+const functions = require('firebase-functions');
+const { firestore } = require('firebase-admin');
 
 const TICKET_VALUE = 5;
 
@@ -32,8 +32,8 @@ module.exports = (req, res) => {
             CHECKSUMHASH,
          );
          if (!isVerifySignature) {
-            firestore().collection("payments").doc(ORDERID).update({
-               status: "CHECKSUM_FAILED",
+            firestore().collection('payments').doc(ORDERID).update({
+               status: 'CHECKSUM_FAILED',
                date: new Date().toISOString(),
             });
             res.redirect(env.REDIRECT_URL);
@@ -41,21 +41,21 @@ module.exports = (req, res) => {
          }
 
          const paymentInfo = (
-            await firestore().collection("payments").doc(ORDERID).get()
+            await firestore().collection('payments').doc(ORDERID).get()
          ).data();
 
-         firestore().collection("payments").doc(ORDERID).update({
+         firestore().collection('payments').doc(ORDERID).update({
             status: STATUS,
             date: new Date().toISOString(),
          });
 
-         if (STATUS !== "TXN_SUCCESS") {
+         if (STATUS !== 'TXN_SUCCESS') {
             res.redirect(env.REDIRECT_URL);
             return;
          }
 
          firestore()
-            .collection("users")
+            .collection('users')
             .doc(paymentInfo.user_id)
             .update({
                tickets: firestore.FieldValue.increment(tickets),
@@ -63,8 +63,8 @@ module.exports = (req, res) => {
 
          res.redirect(env.REDIRECT_URL);
       } catch (err) {
-         res.send({ error: "some error occured" });
-         functions.logger.error("Error ", err);
+         res.send({ error: 'some error occured' });
+         functions.logger.error('Error ', err);
       }
    });
 };

@@ -29,14 +29,14 @@ const DelPrize = () => {
             .ref()
             .child('prize-covers')
             .child(prize_id);
-         await db.collection('prizes').doc(prize_id).delete();
 
          await storageRef.delete();
+         await db.collection('prizes').doc(prize_id).delete();
 
-         toast.success('Competition successfully deleted.');
+         toast.success('Prize successfully deleted.');
       } catch (err) {
          console.log(err);
-         toast.error('Error deleting competition');
+         toast.error('Error deleting prize');
       }
    };
 
