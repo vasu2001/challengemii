@@ -82,16 +82,23 @@ const CoinsReq = () => {
             end_date: competition.ends,
          });
 
-         let voters = competition.submissions[0].voters;
-         competition.prize.forEach((_, i) => {
-            voters = voters.filter((x) =>
-               competition.submissions[i].voters.includes(x),
-            );
-         });
+         // let voters = competition.submissions[0].voters;
+         // competition.prize.forEach((_, i) => {
+         //    voters = voters.filter((x) =>
+         //       competition.submissions[i].voters.includes(x),
+         //    );
+         // });
+
+         const voters = competition.submissions
+            .slice(0, competition.votes)
+            .map((x) => x.voters)
+            .reduce((a, b) => a.filter((x) => b.includes(x)));
 
          let voterPromise = [];
          if (voters.length > 0) {
-            const voterShare = parseInt(competition.voterPrize) / voters.length;
+            const voterShare = Math.floor(
+               parseInt(competition.voterPrize) / voters.length,
+            );
 
             voterPromise = voters.map((voter_id) =>
                db
@@ -102,6 +109,7 @@ const CoinsReq = () => {
                   }),
             );
          }
+
          await Promise.all([
             compPromise,
             winnerPromise,
