@@ -6,8 +6,6 @@ import second from '../../assets/second-prize.png';
 import third from '../../assets/third-prize.png';
 import firebase from '../../firebase';
 
-const db = firebase.firestore();
-
 const WinnerCard = ({ data }) => {
    const [photoUrl, setPhotoUrl] = useState([]);
    // console.log(data);
@@ -23,15 +21,15 @@ const WinnerCard = ({ data }) => {
    // console.log(photoUrl);
 
    return (
-      <Link className="wc-link" to={`/competition/${data.comp_id}`}>
-         <div className="ld-new-top-container wc">
+      <div className="ld-new-top-container wc">
+         <Link className="wc-link" to={`/competition/${data.comp_id}`}>
             <h2 className="submission-title" style={{ color: 'white' }}>
                {data.comp_title}
             </h2>
             <div className="ld-winners-container">
                <div className="winner-pos-2">
                   <img src={photoUrl[1]} class="runnerUp-img"></img>
-                  <p>{data.winners[1].name}</p>
+                  <p>{data.winners[1]?.name}</p>
                   <p style={{ marginTop: '5px' }} className="wc-wins">
                      <img src={second} class="wc-icons"></img>
                      {data.prize[1]}
@@ -39,7 +37,7 @@ const WinnerCard = ({ data }) => {
                </div>
                <div className="winner-pos-1">
                   <img src={photoUrl[0]} class="winner-img"></img>
-                  <p>{data.winners[0].name}</p>
+                  <p>{data.winners[0]?.name}</p>
                   <p style={{ marginTop: '5px' }} className="wc-wins">
                      <img src={first} class="wc-icons"></img>
                      {data.prize[0]}
@@ -54,8 +52,8 @@ const WinnerCard = ({ data }) => {
                   </p>
                </div>
             </div>
-         </div>
-      </Link>
+         </Link>
+      </div>
    );
 };
 

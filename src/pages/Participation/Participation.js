@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './participation.css';
 import firebase from '../../firebase';
-import image1 from '../../assets/banner.jpg';
 import { AuthContext } from '../../Auth';
 import Loading from '../../components/Loading/Loading';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { useHistory, useLocation, useParams } from 'react-router';
-import { Redirect } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const db = firebase.firestore();
 
@@ -23,8 +22,13 @@ const Participation = () => {
 
    const history = useHistory();
 
-   let { referBy, compFees } = useLocation().state;
-   if (referBy === user_id) referBy = undefined;
+   let { compFees } = useLocation().state;
+   if (!compFees) history.goBack();
+
+   const [cookies, setCookies, removeCookies] = useCookies(['referBy']);
+   let { referBy } = cookies;
+   if (referBy === user_id) removeCookies('referBy', { path: '/' });
+   console.log({ referBy });
 
    document.title = 'ChallengeMii - Participate';
 
@@ -93,8 +97,11 @@ const Participation = () => {
 
          setCurrentUser({
             ...currentUser,
-            tickets: currentUser.tickets - compFees,
+            tickets: currentUser.tickets - compFees - referBy ? 1 : 0,
          });
+
+         // if (referBy) removeCookies('referBy', { path: '/' });
+
          setLoading(false);
          toast.success(
             'Congrats! Your submission has been successfully uploaded.',

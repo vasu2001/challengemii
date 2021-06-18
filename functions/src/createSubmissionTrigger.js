@@ -12,9 +12,12 @@ module.exports = async (snap, context) => {
          await db.collection('competitions').doc(competition_id).get()
       ).data();
 
-      const dec = parseInt(
-         moment().diff(moment(starts, 'YYYY-MM-DD')) > 0 ? fees : preregis,
-      );
+      const dec =
+         parseInt(
+            moment().diff(moment(starts, 'YYYY-MM-DD')) > 0 ? fees : preregis,
+         ) - referBy
+            ? 1
+            : 0;
 
       db.collection('users')
          .doc(user_id)

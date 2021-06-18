@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../Auth';
 const db = firebase.firestore();
 
-const Card = ({ competition, id, referBy }) => {
+const Card = ({ competition, id }) => {
    const { currentUser, userData } = useContext(AuthContext);
    const history = useHistory();
 
@@ -105,7 +105,7 @@ const Card = ({ competition, id, referBy }) => {
                               if (parseInt(userData.tickets) >= compFees)
                                  history.push({
                                     pathname: '/participation/' + id,
-                                    state: { referBy, compFees },
+                                    state: { compFees },
                                  });
                               else toast.error('Not enough tickets');
                            }}

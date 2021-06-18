@@ -18,7 +18,7 @@ const Winners = () => {
             setData(
                querySnapshot.docs
                   .map((doc) => doc.data())
-                  .sort((a, b) => moment(a.end_date).diff(moment(b.end_date))),
+                  .sort((a, b) => moment(b.end_date).diff(moment(a.end_date))),
             );
          });
       document.title = 'ChallengeMii - Winners';

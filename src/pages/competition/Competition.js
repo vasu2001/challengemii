@@ -13,8 +13,8 @@ import { motion } from 'framer-motion';
 import ReportModal from '../../components/ReportModal/ReportModal';
 import Loading from '../../components/Loading/Loading';
 import moment from 'moment';
-
-const queryString = require('query-string');
+import { useCookies } from 'react-cookie';
+import queryString from 'query-string';
 
 const db = firebase.firestore();
 
@@ -23,7 +23,7 @@ const Competition = () => {
    const history = useHistory();
    const { state: locationState, search } = useLocation();
    const { id } = useParams();
-   const { referBy } = queryString.parse(search);
+   const [cookie, setCookie] = useCookies(['referBy']);
 
    const [competition, setCompetitions] = useState({});
    const [mySubs, setMySubs] = useState(null);
@@ -76,6 +76,15 @@ const Competition = () => {
    };
 
    useEffect(() => {
+      if (queryString.parse(search)?.referBy) {
+         setCookie('referBy', queryString.parse(search).referBy, {
+            maxAge: 24 * 60 * 60,
+            path: '/',
+         });
+         // console.log('cookie set');
+         history.replace(history.location.pathname.split('?')[0]);
+      }
+
       const showButton = () => {
          const element = document.getElementById('submit-vote');
          if (element) {
@@ -96,7 +105,7 @@ const Competition = () => {
       return () => {
          window.removeEventListener('scroll', showButton);
       };
-   }, [currentUser, id]);
+   }, [id]);
 
    const onSubmit = async () => {
       if (!currentUser) {
@@ -212,7 +221,7 @@ const Competition = () => {
             {loading ? <Loading /> : null}
             <div className="competition-content">
                <img className="cover-img" src={competition.coverUrl}></img>
-               <Card competition={competition} id={id} referBy={referBy} />
+               <Card competition={competition} id={id} />
                <div className="competition-info-container">
                   <div className="competition-info-text">
                      <p>{competition.desc}</p>
