@@ -15,9 +15,7 @@ module.exports = async (snap, context) => {
       const dec =
          parseInt(
             moment().diff(moment(starts, 'YYYY-MM-DD')) > 0 ? fees : preregis,
-         ) - referBy
-            ? 1
-            : 0;
+         ) - (referBy ? 1 : 0);
 
       db.collection('users')
          .doc(user_id)

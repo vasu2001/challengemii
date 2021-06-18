@@ -97,7 +97,7 @@ const Participation = () => {
 
          setCurrentUser({
             ...currentUser,
-            tickets: currentUser.tickets - compFees - referBy ? 1 : 0,
+            tickets: currentUser.tickets - compFees + (referBy ? 1 : 0),
          });
 
          // if (referBy) removeCookies('referBy', { path: '/' });
