@@ -49,23 +49,25 @@ const CoinsReq = () => {
       setLoading(true);
       const competition = competitions[i];
       try {
-         const compPromise = db
-            .collection('competitions')
-            .doc(competition.id)
-            .update({
-               ended: true,
-            });
+         const batch = db.batch();
 
-         const prizePromise = competition.prize.map((amt, pos) =>
-            db
-               .collection('users')
-               .doc(competition.submissions[pos].user_id)
-               .update({
+         batch.update(db.collection('competitions').doc(competition.id), {
+            ended: true,
+         });
+
+         // const compPromise =
+         //    .update();
+
+         competition.prize.forEach((amt, pos) =>
+            batch.update(
+               db.collection('users').doc(competition.submissions[pos].user_id),
+               {
                   coins: firebase.firestore.FieldValue.increment(amt),
-               }),
+               },
+            ),
          );
 
-         const winnerPromise = db.collection('winners').add({
+         batch.set(db.collection('winners').doc(), {
             comp_id: competition.id,
             comp_tagline: competition.tagline,
             comp_title: competition.title,
@@ -94,28 +96,20 @@ const CoinsReq = () => {
             .map((x) => x.voters)
             .reduce((a, b) => a.filter((x) => b.includes(x)));
 
-         let voterPromise = [];
          if (voters.length > 0) {
             const voterShare = Math.floor(
                parseInt(competition.voterPrize) / voters.length,
             );
 
-            voterPromise = voters.map((voter_id) =>
-               db
-                  .collection('users')
-                  .doc(voter_id)
-                  .update({
-                     coins: firebase.firestore.FieldValue.increment(voterShare),
-                  }),
+            voters.forEach((voter_id) =>
+               batch.update(db.collection('users').doc(voter_id), {
+                  coins: firebase.firestore.FieldValue.increment(voterShare),
+               }),
             );
          }
 
-         await Promise.all([
-            compPromise,
-            winnerPromise,
-            ...prizePromise,
-            ...voterPromise,
-         ]);
+         // console.log(batch);
+         await batch.commit();
 
          toast.success('competition ended');
          setDetails(-1);
