@@ -26,9 +26,14 @@
 }
 .prize-title {
    margin-bottom: 10px;
+   font-size: 18px;
+   font-weight: 600;
 }
 .prize-info {
    margin-top: 30px;
+   width: 200px;
+}
+.title-holder {
 }
 .prize-value {
    width: 20px;
