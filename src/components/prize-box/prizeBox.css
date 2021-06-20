@@ -84,18 +84,22 @@
       margin-left: 5px;
       padding-top: 30px;
    }
+   .prize-info {
+      margin-top: 30px;
+      width: 160px;
+   }
    .img-holder {
       width: 50px;
       height: 50px;
-   }
-   .prize-title {
-      font-size: 22px;
    }
    .prize-info {
       margin-top: 20px;
    }
    .circle {
       top: 80%;
+   }
+   .btn-add {
+      font-size: 14px;
    }
 }
 
@@ -104,6 +108,10 @@
       width: 170px;
       height: 270px;
       padding: 10px;
+   }
+   .prize-info {
+      margin-top: 30px;
+      width: 140px;
    }
    .img-holder {
       width: 50px;
@@ -137,6 +145,10 @@
       height: 200px;
       padding: 10px;
    }
+   .prize-info {
+      margin-top: 30px;
+      width: 120px;
+   }
    .img-holder {
       width: 40px;
       height: 40px;
@@ -152,7 +164,7 @@
       bottom: 0;
       padding: 10px 10px;
       width: 100%;
-      font-size: 14px;
+      font-size: 12px;
       cursor: pointer;
       color: #0099cc !important;
       text-transform: uppercase;
