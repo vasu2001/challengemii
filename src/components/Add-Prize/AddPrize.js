@@ -65,7 +65,10 @@ const AddPrize = () => {
                   .split('\n')
                   .map((s) => s.trim())
                   .filter((s) => s.length > 0),
-               tags: details.tags.split(',').map((x) => x.trim().toLowerCase()),
+               tags: details.tags
+                  .split(',')
+                  .map((x) => x.trim().toLowerCase())
+                  .filter((s) => s.length > 0),
             });
          setLoading(false);
          toast.success('Prize Uploaded Successfully!');
