@@ -18,7 +18,9 @@ const PrizeBox = ({ data, onRedeem }) => {
                <img src={data.image}></img>
             </div>
             <div className="prize-info">
-               <h3 className="prize-title">{data.name}</h3>
+               <div className="title-holder">
+                  <p className="prize-title">{data.name}</p>
+               </div>
                <p>{data.description}</p>
             </div>
             <a className="btn-add" onClick={onRedeem}>
