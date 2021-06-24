@@ -14,7 +14,7 @@ module.exports = (req, res) => {
       paytmParams.body = {
          requestType: 'Payment',
          mid: env.MERCHANT_ID,
-         websiteName: 'WEBSTAGING',
+         websiteName: 'DEFAULT',
          orderId,
          callbackUrl:
             'https://asia-south1-challengemii-website.cloudfunctions.net/completePayment',

@@ -63,7 +63,7 @@ const ManageTickets = () => {
          console.log(data);
 
          postForm({
-            action: `https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}`,
+            action: `https://securegw.paytm.in/theia/api/v1/showPaymentPage?mid=${process.env.REACT_APP_PAYTM_MERCHANT_ID}&orderId=${orderId}`,
             params: {
                mid: process.env.REACT_APP_PAYTM_MERCHANT_ID,
                orderId,

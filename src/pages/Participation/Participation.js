@@ -22,8 +22,8 @@ const Participation = () => {
 
    const history = useHistory();
 
-   let { compFees } = useLocation().state;
-   if (!compFees) history.goBack();
+   let compFees = Infinity;
+   const state = useLocation().state;
 
    const [cookies, setCookies, removeCookies] = useCookies(['referBy']);
    let { referBy } = cookies;
@@ -33,6 +33,10 @@ const Participation = () => {
    document.title = 'ChallengeMii - Participate';
 
    useEffect(() => {
+      if (typeof state?.compFees !== 'number')
+         history.replace(`/competition/${competition_id}`);
+      else compFees = state.compFees;
+
       if (currentUser) {
          db.collection('submissions')
             .where('user_id', '==', currentUser.uid)
